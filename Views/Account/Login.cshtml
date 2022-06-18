@@ -35,7 +35,7 @@
                         <div class="land-meta">
                             <h1> Van Lang University</h1>
                             <p>
-                               Login with Email VanLang
+                                Morality - Will - Creativity
                             </p>
                             <div class="friend-logo">
                                 @*<section id="socialLoginForm">
@@ -77,8 +77,12 @@
                                     <button class="mtr-btn signup" type="button"><span>Register</span></button>
                                 </div>
                             </form>
+                            <br />
+                            <h6 style="text-align:center; color: darkred">Log in using account on:</h6>
+                            <br />
+                            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
                         </div>
-
+                        
                     </div>
                 </div>
             </div>

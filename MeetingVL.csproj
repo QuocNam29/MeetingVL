@@ -354,6 +354,7 @@
     <Content Include="Template\app-assets\img\logos\logo-big-white.png" />
     <Content Include="Template\app-assets\img\logos\logo-color-big.png" />
     <Content Include="Template\app-assets\img\LogoVL.png" />
+    <Content Include="Template\app-assets\img\Office.png" />
     <Content Include="Template\app-assets\img\oval.svg" />
     <Content Include="Template\app-assets\img\pages\cd-arrow.svg" />
     <Content Include="Template\app-assets\img\pages\sativa.png" />
