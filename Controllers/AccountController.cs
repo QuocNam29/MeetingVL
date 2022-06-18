@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MeetingVL.Models;
 using Microsoft.Owin.Security.VanLang;
+using System.Net.Mail;
 
 namespace MeetingVL.Controllers
 {
@@ -326,6 +327,15 @@ namespace MeetingVL.Controllers
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync2();
             if (loginInfo == null)
             {
+                return RedirectToAction("Login");
+            }
+
+            // check email domain of Vanlanguni
+            MailAddress address = new MailAddress(loginInfo.Email);
+            string host = address.Host;
+            if (host != "vanlanguni.vn")
+            {
+                TempData["MailDomainError"] = "Oopss, địa chỉ email của bạn không phải email của Văn Lang, bạn hãy thử lại nhé";
                 return RedirectToAction("Login");
             }
 

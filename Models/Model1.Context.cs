@@ -30,5 +30,11 @@ namespace MeetingVL.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<ProjectParticipant> ProjectParticipants { get; set; }
+        public virtual DbSet<SessionReport> SessionReports { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -13,6 +13,16 @@
         <AssociationConnector Association="MeetingVLModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MeetingVLModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MeetingVLModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="MeetingVLModel.Category" Width="1.5" PointX="3.375" PointY="8.875" />
+        <EntityTypeShape EntityType="MeetingVLModel.Project" Width="1.5" PointX="5.625" PointY="8.25" />
+        <EntityTypeShape EntityType="MeetingVLModel.ProjectParticipant" Width="1.5" PointX="7.875" PointY="8.5" />
+        <EntityTypeShape EntityType="MeetingVLModel.SessionReport" Width="1.5" PointX="7.875" PointY="11.5" />
+        <EntityTypeShape EntityType="MeetingVLModel.sysdiagram" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MeetingVLModel.User" Width="1.5" PointX="5.625" PointY="12.125" />
+        <AssociationConnector Association="MeetingVLModel.FK_Project_Category" />
+        <AssociationConnector Association="MeetingVLModel.FK_ProjectParticipant_Project" />
+        <AssociationConnector Association="MeetingVLModel.FK_SessionReport_Project" />
+        <AssociationConnector Association="MeetingVLModel.FK_ProjectParticipant_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
