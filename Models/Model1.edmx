@@ -127,6 +127,7 @@
           <Property Name="Last_Access" Type="datetime" />
           <Property Name="Department" Type="nvarchar" MaxLength="100" />
           <Property Name="Majors" Type="nvarchar" MaxLength="100" />
+          <Property Name="State" Type="bit" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -483,6 +484,7 @@
           <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Majors" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProjectParticipants" Relationship="MeetingVLModel.FK_ProjectParticipant_User" FromRole="User" ToRole="ProjectParticipant" />
+          <Property Name="State" Type="Boolean" />
         </EntityType>
         <Association Name="FK_Project_Category">
           <End Type="MeetingVLModel.Category" Role="Category" Multiplicity="1" />
@@ -657,6 +659,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="MeetingVLModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Majors" ColumnName="Majors" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="Last_Access" ColumnName="Last_Access" />

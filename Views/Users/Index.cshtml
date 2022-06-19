@@ -24,174 +24,42 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                    <th>Department</th>
+                                    <th>Majors</th>
                                     <th>Token</th>
                                     <th>Last_Access</th>
+                                    <th>State</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach (var item in Model)
+                                {
                                 <tr>
-                                    <td>1</td>
-                                    <td>Trần Quốc Nam</td>
-                                    <td>nam.197PM55678@vanlanguni.vn</td>
-                                    <td>Manager</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Nguyễn Tân Duy</td>
-                                    <td>duy.197PM12365@vanlanguni.vn</td>
-                                    <td>Manager</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Hà Thị Ngọc</td>
-                                    <td>ngoc.197PM45678@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Lê Thị Lợi</td>
-                                    <td>loi.197PM12345@vanlanguni.vn</td>
-                                    <td>Manager</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lê Hữu Hiệp</td>
-                                    <td>hiep.197PM56985@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Lê Trường Thịnh</td>
-                                    <td>thinh.197PM56965@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>Trần Văn Quốc Bảo</td>
-                                    <td>thinh.197PM09634@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>Trần Trọng Nam</td>
-                                    <td>nam.197PM09874@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>Trần Vũ Uyển Nhi</td>
-                                    <td>nhi.197PM16547@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>25/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>Tăng Khánh Trung</td>
-                                    <td>trung.197PM09458@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>17/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>Huỳnh Trọng Công</td>
-                                    <td>cong.197PM53348@vanlanguni.vn</td>
-                                    <td>Manager</td>
-                                    <td></td>
-                                    <td>24/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td>Nguyễn văn Nghĩa</td>
-                                    <td>nghia.197PM09648@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>05/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>13</td>
-                                    <td>Lưu Thanh Long</td>
-                                    <td>long.197PM35648@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>12/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>14</td>
-                                    <td>Nguyễn Hạ</td>
-                                    <td>ha.197PM33642@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/07/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>15</td>
-                                    <td>Nguyễn Thanh An</td>
-                                    <td>an.197PM97555@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/08/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>16</td>
-                                    <td>Nguyễn Ngọc Kim Tuyền</td>
-                                    <td>tuyen.197PM74615@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>17</td>
-                                    <td>Trần Tuyết Minh</td>
-                                    <td>minh.197PM07323@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>18</td>
-                                    <td>Trần Văn Phi</td>
-                                    <td>phi.197PM09648@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>19</td>
-                                    <td>Dương Ngọc lam</td>
-                                    <td>lam.197PM77645@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
-                                <tr>
-                                    <td>20</td>
-                                    <td>Hồ Thanh Hà</td>
-                                    <td>Ha.197PM97845@vanlanguni.vn</td>
-                                    <td>Student</td>
-                                    <td></td>
-                                    <td>15/06/2022</td>
-                                </tr>
+                                    <td>@item.ID</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Role</td>
+                                    <td>@item.Department</td>
+                                    <td>@item.Majors</td>
+                                    @if (item.Token != null)
+                                    {
+                                        <td>True</td>
+                                        <td>@item.Last_Access</td>
+                                        
+                                        <td>@item.State.Value.ToString()</td>
+                                    }
+                                    else
+                                    {
+                                        <td>False</td>
+                                        <td></td>
+                                        <td></td>
+                                    }
 
 
+
+                                </tr>
+                                }
+                               
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -199,6 +67,8 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                    <th>Department</th>
+                                    <th>Majors</th>
                                     <th>Token</th>
                                     <th>Last_Access</th>
                                 </tr>

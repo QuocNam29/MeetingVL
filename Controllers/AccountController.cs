@@ -364,6 +364,8 @@ namespace MeetingVL.Controllers
                                 user.ID_VanLang = aspNetUser.Id;
                                 user.Token = aspNetUser.Id;
                                 user.Last_Access = DateTime.Now;
+                                user.Role = "User";
+                                user.State = true;
                                 db.Entry(user).State = EntityState.Modified;
                                 db.SaveChanges();
 
@@ -379,6 +381,8 @@ namespace MeetingVL.Controllers
                                 user1.ID_VanLang = aspNetUser.Id;
                                 user1.Token = aspNetUser.Id;
                                 user1.Last_Access = DateTime.Now;
+                                user1.Role = "User";
+                                user1.State = true;
                                 db.Users.Add(user1);
                                 db.SaveChanges();
 

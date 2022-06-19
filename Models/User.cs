@@ -29,6 +29,7 @@ namespace MeetingVL.Models
         public Nullable<System.DateTime> Last_Access { get; set; }
         public string Department { get; set; }
         public string Majors { get; set; }
+        public Nullable<bool> State { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProjectParticipant> ProjectParticipants { get; set; }
