@@ -43,7 +43,7 @@
                                 </section>*@
                                 <span> <img src="~/Template/app-assets/img/LogoVL.png" alt="" style="position: relative; top: -17px; left: -6px; "/></span>
                             </div>
-                            <a href="#" title="" class="folow-me">abcdef</a>
+                            <a  title="" class="folow-me">Welcome to Meeting-VL</a>
                         </div>
                     </div>
                 </div>
@@ -61,11 +61,7 @@
                                     <input type="password" name="matKhau" required="required" />
                                     <label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
                                 </div>
-                                @if (Session["Message_KiemDuyet"] != null)
-                                {
-                                    <div class="text-danger">@Session["Message_KiemDuyet"].ToString()</div>
-                                    <br />
-                                }
+
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" checked="checked" /><i class="check-box"></i>Always Remember Me.
@@ -78,6 +74,11 @@
                                 </div>
                             </form>
                             <br />
+                            @if (TempData["MailDomainError"] != null)
+                            {
+                                <div class="text-danger">@TempData["MailDomainError"].ToString()</div>
+                                <br />
+                            }
                             <h6 style="text-align:center; color: darkred">Log in using account on:</h6>
                             <br />
                             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })

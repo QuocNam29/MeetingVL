@@ -11,12 +11,15 @@ using Microsoft.Owin.Security;
 using MeetingVL.Models;
 using Microsoft.Owin.Security.VanLang;
 using System.Net.Mail;
+using System.Web.Security;
+using System.Data.Entity;
 
 namespace MeetingVL.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private MeetingVLEntities db = new MeetingVLEntities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -335,7 +338,7 @@ namespace MeetingVL.Controllers
             string host = address.Host;
             if (host != "vanlanguni.vn")
             {
-                TempData["MailDomainError"] = "Oopss, địa chỉ email của bạn không phải email của Văn Lang, bạn hãy thử lại nhé";
+                TempData["MailDomainError"] = "Oopss, địa chỉ email của bạn không phải email của Văn Lang, bạn hãy thử lại nhé !!!";
                 return RedirectToAction("Login");
             }
 
@@ -344,7 +347,63 @@ namespace MeetingVL.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var check = db.Users.FirstOrDefault(s => s.Email == loginInfo.Email && s.Token != null);
+                    if (check == null)
+                    {
+                        if (string.IsNullOrEmpty(loginInfo.Email))
+                        {
+                            return RedirectToAction("Login", "Account");
+                        }
+                        else
+                        {
+                            User user = db.Users.Where(c => c.Email == loginInfo.Email).FirstOrDefault();
+                            AspNetUser aspNetUser = db.AspNetUsers.Where(c => c.Email == loginInfo.Email).FirstOrDefault();
+
+                            if (user != null)
+                            {
+                                user.ID_VanLang = aspNetUser.Id;
+                                user.Token = aspNetUser.Id;
+                                user.Last_Access = DateTime.Now;
+                                db.Entry(user).State = EntityState.Modified;
+                                db.SaveChanges();
+
+                                Session["ID_User"] = user.ID;
+                                Session["ID_VL"] = user.ID_VanLang;
+                                Session["Name"] = user.Name;
+                                Session["Email"] = user.Email;
+                            }
+                            else
+                            {
+                                User user1 = new User();
+                                user1.Email = loginInfo.Email;
+                                user1.ID_VanLang = aspNetUser.Id;
+                                user1.Token = aspNetUser.Id;
+                                user1.Last_Access = DateTime.Now;
+                                db.Users.Add(user1);
+                                db.SaveChanges();
+
+                                Session["ID_User"] = user1.ID;
+                                Session["ID_VL"] = user1.ID_VanLang;
+                                Session["Name"] = user1.Name;
+                                Session["Email"] = user1.Email;
+                            }
+
+
+                            FormsAuthentication.SetAuthCookie(loginInfo.Email, false);
+
+                            return RedirectToAction("Index", "Users");
+                        }
+                    }
+                    else
+                    {
+                        var account = db.Users.Where(acc => acc.Email.Equals(loginInfo.Email)).FirstOrDefault();
+                        Session["ID_User"] = account.ID;
+                        Session["ID_VL"] = account.ID_VanLang;
+                        Session["Name"] = account.Name;
+                        Session["Email"] = account.Email;
+                        FormsAuthentication.SetAuthCookie(loginInfo.Email, false);
+                        return RedirectToAction("Index", "Users");
+                    }             
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

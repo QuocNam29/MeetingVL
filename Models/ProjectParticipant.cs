@@ -18,6 +18,7 @@ namespace MeetingVL.Models
         public int User_ID { get; set; }
         public int Project_ID { get; set; }
         public Nullable<int> Group { get; set; }
+        public string Role { get; set; }
     
         public virtual Project Project { get; set; }
         public virtual User User { get; set; }

@@ -92,6 +92,7 @@
           <Property Name="User_ID" Type="int" Nullable="false" />
           <Property Name="Project_ID" Type="int" Nullable="false" />
           <Property Name="Group" Type="int" />
+          <Property Name="Role" Type="varchar" MaxLength="36" />
         </EntityType>
         <EntityType Name="SessionReport">
           <Key>
@@ -445,6 +446,7 @@
           <Property Name="Group" Type="Int32" />
           <NavigationProperty Name="Project" Relationship="MeetingVLModel.FK_ProjectParticipant_Project" FromRole="ProjectParticipant" ToRole="Project" />
           <NavigationProperty Name="User" Relationship="MeetingVLModel.FK_ProjectParticipant_User" FromRole="ProjectParticipant" ToRole="User" />
+          <Property Name="Role" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SessionReport">
           <Key>
@@ -622,6 +624,7 @@
           <EntitySetMapping Name="ProjectParticipants">
             <EntityTypeMapping TypeName="MeetingVLModel.ProjectParticipant">
               <MappingFragment StoreEntitySet="ProjectParticipant">
+                <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="Group" ColumnName="Group" />
                 <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
