@@ -53628,3 +53628,67 @@ input[type='checkbox'].switch, input[type='radio'].switch {
 .main-content .color-palette span.dark {
   color : rgba(0, 0, 0, 0.87);
 }
+
+/* modal-add-row*/
+.modal-add-row {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.complaint-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-add-row.open {
+    display: flex;
+}
+
+.modal-card {
+    position: relative;
+    animation: slipDown linear 0.5s;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    padding: 4px;
+    cursor: pointer;
+    color: #454545;
+    opacity: 0.7;
+    transition: all 0.2s;
+}
+
+    .modal-close:hover {
+        opacity: 1;
+    }
+
+.modal-close-icon {
+    font-size: 20px;
+}
+
+
+@keyframes slipDown {
+    from {
+        opacity: 0;
+        transform: translateY(-300px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*END*/

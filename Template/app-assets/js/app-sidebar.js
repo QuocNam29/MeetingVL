@@ -15,7 +15,11 @@
         var $sidebar = $('.app-sidebar'),
         $sidebar_content = $('.sidebar-content'),
         $sidebar_img = $sidebar.data('image'),
-        $sidebar_img_container = $('.sidebar-background'),
+            $sidebar_img_container = $('.sidebar-background'),
+            $btnAddRow = $('.complaint-add-row'),
+            $modalAddRow = $('.modal-add-row'),
+            $modalClose = $('.modal-close'),
+            $btnCancel = $('.btn-cancel'),
         $wrapper = $('.wrapper');
 
         $sidebar_content.perfectScrollbar();
@@ -248,6 +252,18 @@
                     }
                 });
             }
-        }
+         }
+         $btnAddRow.on('click', () => {
+             $modalAddRow.addClass('open')
+         })
+
+         $modalClose.on('click', () => {
+             $modalAddRow.removeClass('open')
+         })
+
+         $btnCancel.on('click', () => {
+             $modalAddRow.removeClass('open')
+         })
+
     });
 })(window, document, jQuery);
