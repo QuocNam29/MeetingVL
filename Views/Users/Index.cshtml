@@ -3,24 +3,26 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    int no = 0;
 }
 
-<section id="pagination">
+
+<section id="file-export">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">List user</h4>
+                        <h4 class="card-title">List User</h4>
                     </div>
                 </div>
                 <div class="card-body collapse show">
                     <div class="card-block card-dashboard">
-                        <button id="addRow" class="btn btn-primary mb-2"><i class="ft-plus"></i>&nbsp; Add new row</button>
-                        <table class="table table-striped table-bordered alt-pagination">
+                        <button id="addRow" class="btn btn-primary mb-2" ><i class="ft-plus"></i>&nbsp; Add User</button>
+                        <table class="table table-striped table-bordered file-export">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>No.</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
@@ -34,36 +36,32 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr>
-                                    <td>@item.ID</td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Email</td>
-                                    <td>@item.Role</td>
-                                    <td>@item.Department</td>
-                                    <td>@item.Majors</td>
-                                    @if (item.Token != null)
-                                    {
-                                        <td>True</td>
-                                        <td>@item.Last_Access</td>
-                                        
-                                        <td>@item.State.Value.ToString()</td>
-                                    }
-                                    else
-                                    {
-                                        <td>False</td>
-                                        <td></td>
-                                        <td></td>
-                                    }
-
-
-
-                                </tr>
+                                    no++;
+                                    <tr>
+                                        <td>@no</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.Role</td>
+                                        <td>@item.Department</td>
+                                        <td>@item.Majors</td>
+                                        @if (item.Token != null)
+                                        {
+                                            <td>True</td>
+                                            <td>@item.Last_Access</td>
+                                            <td>@item.State.Value.ToString()</td>
+                                        }
+                                        else
+                                        {
+                                            <td>False</td>
+                                            <td></td>
+                                            <td></td>
+                                        }
+                                    </tr>
                                 }
-                               
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>No.</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
@@ -80,4 +78,6 @@
         </div>
     </div>
 </section>
+<!-- File export table -->
+
 

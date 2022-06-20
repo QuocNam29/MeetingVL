@@ -461,12 +461,13 @@ namespace MeetingVL.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+       
+        public ActionResult LogOut()
         {
+            Session.Clear();
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            Session.Abandon();
+            return RedirectToAction("Login", "Account");
         }
 
         //

@@ -1,4 +1,4 @@
-@charset 'UTF-8';
+﻿@charset 'UTF-8';
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -8454,7 +8454,10 @@ a.bg-base:hover, a.bg-base:focus, button.bg-base:hover, button.bg-base:focus {
 }
 
 .mb-2, .my-2 {
-  margin-bottom : 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+    float: right;
+    position: relative;
+    right: 50px;
 }
 
 .ml-2, .mx-2 {

@@ -70,7 +70,7 @@
                         </li>
 
                         <li class=" nav-item">
-                            <a href=""><i class="fa fa-sign-in"></i><span data-i18n="" class="menu-title">Logout</span></a>
+                            <a href="@Url.Action("LogOut", "Account")"><i class="fa fa-sign-in"></i><span data-i18n="" class="menu-title">Logout</span></a>
                         </li>
                     </ul>
                 </div>
@@ -159,8 +159,8 @@
                     <div class="container-fluid">
                         <!-- Zero configuration table -->
                         <!-- Alternative pagination table -->
-                      
-                      @RenderBody()
+
+                        @RenderBody()
 
                     </div>
                 </div>
@@ -341,13 +341,20 @@
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <script src="~/Template/app-assets/vendors/js/datatable/datatables.min.js"></script>
-    <script src="~/Template/app-assets/vendors/js/datatable/dataTables.responsive.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/dataTables.buttons.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/buttons.flash.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/jszip.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/pdfmake.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/vfs_fonts.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/buttons.html5.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/buttons.print.min.js"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN CONVEX JS-->
     <script src="~/Template/app-assets/js/app-sidebar.js"></script>
     <script src="~/Template/app-assets/js/notification-sidebar.js"></script>
     <!-- END CONVEX JS-->
     <!-- BEGIN PAGE LEVEL JS-->
+    <script src="~/Template/app-assets/js/data-tables/datatable-advanced.js"></script>
     <script src="~/Template/app-assets/js/data-tables/datatable-basic.js"></script>
     <script src="~/Template/app-assets/js/data-tables/datatable-api.js"></script>
     <!-- END PAGE LEVEL JS-->
