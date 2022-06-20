@@ -7,6 +7,12 @@
 
 
 <section id="minimal-statistics-bg">
+    <div class="row">
+        <div class="col-12  mb-1">
+            <h2 class="content-header">Category</h2>
+
+        </div>
+    </div>
     <section class="taskboard-app-form bg-blue-grey bg-lighten-5">
         <div class="card">
             <div class="card-block pt-3">
@@ -16,7 +22,7 @@
                     @Html.AntiForgeryToken()
                     <form class="taskboard-app-input row">
 
-                        <fieldset class="form-group position-relative has-icon-left col-md-4 col-12 "style="max-width: initial">
+                        <fieldset class="form-group position-relative has-icon-left col-md-4 col-12 " style="max-width: initial">
                             <div class="form-control-position">
                                 <i class="icon-emoticon-smile"></i>
                             </div>
@@ -26,23 +32,18 @@
                             </div>
 
                         </fieldset>
-                       
-                        <button type="submit" class="btn btn-primary" style="float: right;">
+
+                        <button type="submit" class="btn btn-primary" style="float: right; margin-bottom:auto">
                             <i class="fa fa-paper-plane-o hidden-lg-up"></i> Create
                         </button>
 
-                        
+
                     </form>
                 }
-                </div>
+            </div>
         </div>
     </section>
-    <div class="row">
-        <div class="col-12 mt-3 mb-1">
-            <h2 class="content-header">Category</h2>
-            <p class="content-sub-header">Category statistics</p>
-        </div>
-    </div>
+
 
     <div class="row">
         @foreach (var item in Model)
@@ -68,79 +69,79 @@
                 </div>
             </div>
         }
-     
+
         @*        <div class="col-xl-3 col-lg-6 col-12">
-            <div class="card gradient-light-blue-cyan">
-                <div class="card-body">
-                    <div class="px-3 py-3">
-                        <div class="clearfix">
-                            <a href="" class="content-header white">ĐỒ ÁN CAP</a>
-                            <div class="actions float-right">
-                                <div class="dropdown ml-2 display-inline-block">
-                                    <a id="apps" href="#" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
-                                    <div class="apps dropdown-menu">
-                                        <div class="arrow_box"><a href="" class="dropdown-item py-1"><span>Edit</span></a><a href="" class="dropdown-item py-1"><span>Delete</span></a></div>
+                <div class="card gradient-light-blue-cyan">
+                    <div class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="clearfix">
+                                <a href="" class="content-header white">ĐỒ ÁN CAP</a>
+                                <div class="actions float-right">
+                                    <div class="dropdown ml-2 display-inline-block">
+                                        <a id="apps" href="#" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                        <div class="apps dropdown-menu">
+                                            <div class="arrow_box"><a href="" class="dropdown-item py-1"><span>Edit</span></a><a href="" class="dropdown-item py-1"><span>Delete</span></a></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <span class="white">June 16</span>
+
+
+
                         </div>
-
-                        <span class="white">June 16</span>
-
-
-
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-12">
-            <div class="card gradient-red-pink">
-                <div class="card-body">
-                    <div class="px-3 py-3">
-                        <div class="clearfix">
-                            <a href="" class="content-header white">ĐỒ ÁN SEP</a>
-                            <div class="actions float-right">
-                                <div class="dropdown ml-2 display-inline-block">
-                                    <a id="apps" href="#" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
-                                    <div class="apps dropdown-menu">
-                                        <div class="arrow_box"><a href="" class="dropdown-item py-1"><span>Edit</span></a><a href="" class="dropdown-item py-1"><span>Delete</span></a></div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card gradient-red-pink">
+                    <div class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="clearfix">
+                                <a href="" class="content-header white">ĐỒ ÁN SEP</a>
+                                <div class="actions float-right">
+                                    <div class="dropdown ml-2 display-inline-block">
+                                        <a id="apps" href="#" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                        <div class="apps dropdown-menu">
+                                            <div class="arrow_box"><a href="" class="dropdown-item py-1"><span>Edit</span></a><a href="" class="dropdown-item py-1"><span>Delete</span></a></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <span class="white">June 16</span>
+
+
+
                         </div>
-
-                        <span class="white">June 16</span>
-
-
-
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-12">
-            <div class="card gradient-mint">
-                <div class="card-body">
-                    <div class="px-3 py-3">
-                        <div class="clearfix">
-                            <a href="" class="content-header white">ĐỒ ÁN SEP</a>
-                            <div class="actions float-right">
-                                <div class="dropdown ml-2 display-inline-block">
-                                    <a id="apps" href="#" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
-                                    <div class="apps dropdown-menu">
-                                        <div class="arrow_box"><a href="" class="dropdown-item py-1"><span>Edit</span></a><a href="" class="dropdown-item py-1"><span>Delete</span></a></div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card gradient-mint">
+                    <div class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="clearfix">
+                                <a href="" class="content-header white">ĐỒ ÁN SEP</a>
+                                <div class="actions float-right">
+                                    <div class="dropdown ml-2 display-inline-block">
+                                        <a id="apps" href="#" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                        <div class="apps dropdown-menu">
+                                            <div class="arrow_box"><a href="" class="dropdown-item py-1"><span>Edit</span></a><a href="" class="dropdown-item py-1"><span>Delete</span></a></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <span class="white">June 16</span>
+
+
+
                         </div>
-
-                        <span class="white">June 16</span>
-
-
-
                     </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
     </div>
 </section>
 
