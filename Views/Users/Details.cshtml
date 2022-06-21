@@ -5,79 +5,178 @@
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-fluid">
+    <!--Invoice template starts-->
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Details User</h4>
+        </div>
+    </div>
+    <section class="invoice-template">
+        <div class="card">
+            <div class="card-body p-3">
+                <div id="invoice-template" class="card-block">
+                    <!-- Invoice Company Details -->
+                    <div id="invoice-company-details" class="row">
+                        <div class="col-6 text-left">
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ID_VanLang)
-        </dt>
+                            <img src="~/Template/app-assets/img/LogoVL.png" alt="company logo" class="" width="70">
+                            <ul class="px-0 list-unstyled">
+                                <li class="text-bold-800">Van Lang University</li>
+                            </ul>
+                        </div>
+                        <div class="col-6 text-right">
+                            <h2>MeetingVL</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.ID_VanLang)
-        </dd>
+                        </div>
+                    </div>
+                    <!--/ Invoice Company Details -->
+                    <!-- Invoice Customer Details -->
+                    <div id="invoice-customer-details" class="row pt-2">
+                        <div class="col-sm-12 text-left">
+                            <p class="text-muted">DETAILS</p>
+                        </div>
+                        <div class="col-6 text-left">
+                            <ul class="px-0 list-unstyled">
+                                <li class="text-bold-800"><b>Name:</b> @Model.Name</li>
+                                <li><b>E-mail :</b> @Model.Email</li>
+                                <li><b>Role :</b> @Model.Role</li>
+                                <li><b>ID_VanLang :</b> @Model.ID_VanLang</li>
+                                <li><b>State :</b> @Model.State</li>
+                            </ul>
+                        </div>
+                        <div class="col-6 text-right">
+                            <p><span class="text-muted"><b>Department :</b></span> @Model.Department</p>
+                            <p><span class="text-muted"><b>Majors :</b></span> @Model.Majors</p>
+                            <p><span class="text-muted"><b>Last_Access :</b></span> @Model.Last_Access</p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                        </div>
+                    </div>
+                    <!--/ Invoice Customer Details -->
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                    <div id="invoice-footer">
+                        <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Role)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Token)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Token)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Last_Access)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Last_Access)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Department)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Department)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Majors)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Majors)
-        </dd>
-
-    </dl>
+                            <a class="btn mr-1 btn-info"> <i class="ft-arrow-left"></i> Come back</a>
+                            <a id="btnAdd" class="btn btn-primary mb-2 complaint-add-row"> <i class="icon-pencil"></i> Edit User</a>
+                        </div>
+                    </div>
+                    <!--/ Invoice Footer -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Invoice template ends-->
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<!--MODAL ADD ROW-->
+<div class="modal-add-row">
+    <div class="modal-container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <div class="card modal-card">
+                    <div class="card-header">
+                        <div class="card-title-wrap bar-success">
+                            <div>
+                                <h4 class="card-title" id="basic-layout-form">Add User</h4>
+                            </div>
+                        </div>
+                        <div class="modal-close">
+                            <i class="fa-solid fa-xmark modal-close-icon"></i>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="px-3">
+                            @using (Html.BeginForm("Edit", "Users"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("id",Model.ID)
+                                <form class="form">
+                                    <div class="form-body">
+                                        <h4 class="form-section">
+                                            <i class="icon-user"></i> User Details
+                                        </h4>
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput1">Name</label>
+                                                    <input type="text" id="projectinput1" value="@Model.Name" class="form-control" name="name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">Role</label>
+                                                    <select id="projectinput5" name="role" class="form-control">
+                                                        @if (Model.Role != null)
+                                                        {
+                                                            <option value="@Model.Role" selected="" disabled="">@Model.Role</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="none" selected="" disabled="">Role</option>
+                                                        }
+                                                        <option value="Admin">Admin</option>
+                                                        <option value="Sudent">Sudent</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">Department</label>
+                                                    <input type="text" id="projectinput3" value="@Model.Department" class="form-control" name="department">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">Majors</label>
+                                                    <input type="text" id="projectinput3" value="@Model.Majors" class="form-control" name="majors">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">E-mail</label>
+                                                    <input type="text" id="projectinput3" value="@Model.Email" class="form-control" name="email"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter Email')" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">State</label>
+                                                    <select id="projectinput5" name="state" class="form-control">
+                                                        @if (Model.Role != null)
+                                                        {
+                                                            <option value="@Model.State" selected="" disabled="">@Model.State</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="none" selected="" disabled="">State</option>
+                                                        }
+                                                        <option value="none" selected="" disabled="">State</option>
+                                                        <option value="true">True</option>
+                                                        <option value="false">False</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions complaint-form">
+                                        <button type="button" class="btn btn-danger mr-1 btn-cancel">
+                                            <i class="icon-trash"></i> Cancel
+                                        </button>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="icon-note"></i> Save
+                                        </button>
+                                    </div>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END-->

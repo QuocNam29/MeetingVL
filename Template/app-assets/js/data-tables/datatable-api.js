@@ -187,7 +187,7 @@
         });
 
         $('#delete-row').on('click', function() {
-            tableselectionDelete.row('.selected').remove().draw(false);
+           
         });
 
 

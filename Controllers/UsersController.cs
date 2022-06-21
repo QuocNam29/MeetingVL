@@ -20,6 +20,10 @@ namespace MeetingVL.Controllers
         {
             return View(db.Users.ToList());
         }
+        public ActionResult List_Edit()
+        {
+            return View(db.Users.ToList());
+        }
 
         // GET: Users/Details/5
         public ActionResult Details(int? id)
@@ -37,60 +41,71 @@ namespace MeetingVL.Controllers
         }
 
         // GET: Users/Create
-        public ActionResult Create()
+        public ActionResult Create(string name, string email, string role, string department, string majors)
         {
-            return View();
-        }
-
-        // POST: Users/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ID_VanLang,Name,Email,Role,Token,Last_Access,Department,Majors")] User user)
-        {
-            if (ModelState.IsValid)
+            User user = new User();
+            if (!string.IsNullOrWhiteSpace(name))
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                user.Name = name;
             }
-
-            return View(user);
+            if (!string.IsNullOrWhiteSpace(department))
+            {
+                user.Department = department;
+            }
+            if (!string.IsNullOrWhiteSpace(majors))
+            {
+                user.Majors = majors;
+            }
+            user.Email = email;
+            user.Role = role;
+            
+           
+            db.Users.Add(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+            
         }
+
       
 
         // GET: Users/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string name, string email, string role, string department, string majors, string state)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User user = db.Users.Find(id);
-            if (user == null)
+            if (!string.IsNullOrWhiteSpace(name))
             {
-                return HttpNotFound();
+                user.Name = name;
             }
-            return View(user);
+            if (!string.IsNullOrWhiteSpace(department))
+            {
+                user.Department = department;
+            }
+            if (!string.IsNullOrWhiteSpace(majors))
+            {
+                user.Majors = majors;
+            }
+            if (state == "true")
+            {
+                user.State = true;
+            }
+            else if (state == "false")
+            {
+                user.State = false;
+            }
+           
+            user.Email = email;
+            user.Role = role;
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new {id = id });
         }
 
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ID_VanLang,Name,Email,Role,Token,Last_Access,Department,Majors")] User user)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(user);
-        }
-
+        
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {

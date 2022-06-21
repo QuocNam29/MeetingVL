@@ -3536,6 +3536,7 @@
     <Content Include="Template\app-assets\fonts\font-awesome\fontawesome-free-6.1.0-web\webfonts\fa-solid-900.woff2" />
     <Content Include="Template\app-assets\fonts\font-awesome\fontawesome-free-6.1.0-web\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Template\app-assets\fonts\font-awesome\fontawesome-free-6.1.0-web\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="Views\Users\List_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
