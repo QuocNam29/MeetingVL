@@ -27,6 +27,7 @@ namespace MeetingVL.Models
         public string Description { get; set; }
         public Nullable<System.DateTime> Date_Start { get; set; }
         public Nullable<System.DateTime> Date_End { get; set; }
+        public string State { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

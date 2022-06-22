@@ -48,101 +48,37 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card gradient-light-blue-cyan">
-                    <div class="card-body">
-                        <div class="px-3 py-3">
-                            <div class="clearfix">
-                                <a href="" class="content-header white">@item.Name</a>
-                                <div class="actions float-right">
-                                    <div class="dropdown ml-2 display-inline-block">
-                                        <a id="apps" href="#" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
-                                        <div class="apps dropdown-menu">
-                                            <div class="arrow_box"><a href="" class="dropdown-item py-1"><span>Edit</span></a><a href="" class="dropdown-item py-1"><span>Delete</span></a></div>
+            if (item.State != "Deleted")
+            {
+                <div class="col-xl-3 col-lg-6 col-12">
+                    <div class="card gradient-light-blue-cyan">
+                        <div class="card-body">
+                            <div class="px-3 py-3">
+                                <div class="clearfix">
+                                    <a href="@Url.Action("Index","Projects",new { category_id = item.ID})" class="content-header white">@item.Name</a>
+                                    <div class="actions float-right">
+                                        <div class="dropdown ml-2 display-inline-block">
+                                            <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                            <div class="apps dropdown-menu">
+                                                <div class="arrow_box">
+                                                    @*<a href="" class="dropdown-item py-1"><span>Edit</span></a>*@
+                                                    <a href="@Url.Action("Delete","Categories",new { id = item.ID})" class="dropdown-item py-1"><span>Delete</span></a>
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <span class="white">June 16</span>
                             </div>
-                            <span class="white">June 16</span>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
+
         }
 
-        @*        <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card gradient-light-blue-cyan">
-                    <div class="card-body">
-                        <div class="px-3 py-3">
-                            <div class="clearfix">
-                                <a href="" class="content-header white">ĐỒ ÁN CAP</a>
-                                <div class="actions float-right">
-                                    <div class="dropdown ml-2 display-inline-block">
-                                        <a id="apps" href="#" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
-                                        <div class="apps dropdown-menu">
-                                            <div class="arrow_box"><a href="" class="dropdown-item py-1"><span>Edit</span></a><a href="" class="dropdown-item py-1"><span>Delete</span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <span class="white">June 16</span>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card gradient-red-pink">
-                    <div class="card-body">
-                        <div class="px-3 py-3">
-                            <div class="clearfix">
-                                <a href="" class="content-header white">ĐỒ ÁN SEP</a>
-                                <div class="actions float-right">
-                                    <div class="dropdown ml-2 display-inline-block">
-                                        <a id="apps" href="#" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
-                                        <div class="apps dropdown-menu">
-                                            <div class="arrow_box"><a href="" class="dropdown-item py-1"><span>Edit</span></a><a href="" class="dropdown-item py-1"><span>Delete</span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <span class="white">June 16</span>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card gradient-mint">
-                    <div class="card-body">
-                        <div class="px-3 py-3">
-                            <div class="clearfix">
-                                <a href="" class="content-header white">ĐỒ ÁN SEP</a>
-                                <div class="actions float-right">
-                                    <div class="dropdown ml-2 display-inline-block">
-                                        <a id="apps" href="#" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
-                                        <div class="apps dropdown-menu">
-                                            <div class="arrow_box"><a href="" class="dropdown-item py-1"><span>Edit</span></a><a href="" class="dropdown-item py-1"><span>Delete</span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <span class="white">June 16</span>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>*@
     </div>
 </section>
 
-			

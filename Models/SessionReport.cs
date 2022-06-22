@@ -19,6 +19,7 @@ namespace MeetingVL.Models
         public string Name { get; set; }
         public Nullable<System.DateTime> Date_Start { get; set; }
         public Nullable<System.DateTime> Date_End { get; set; }
+        public string State { get; set; }
     
         public virtual Project Project { get; set; }
     }

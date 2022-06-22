@@ -20,10 +20,9 @@ namespace MeetingVL.Models
             this.ProjectParticipants = new HashSet<ProjectParticipant>();
         }
     
-        public int ID { get; set; }
+        public string Email { get; set; }
         public string ID_VanLang { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
         public string Role { get; set; }
         public string Token { get; set; }
         public Nullable<System.DateTime> Last_Access { get; set; }

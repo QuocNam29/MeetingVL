@@ -1,0 +1,198 @@
+﻿@model IEnumerable<MeetingVL.Models.Project>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    int category_id = int.Parse(TempData["category_id"].ToString());
+}
+
+<section id="minimal-statistics">
+    <div class="row">
+
+        <div class="col-12 mt-3 mb-1">
+            <h2 class="content-header">Đồ Án SEP</h2>
+
+            <p class="content-sub-header">
+                mmmmmmskfjkdsf sadsa dsdsd sa d sa da sd á d asd  ad sa d sa d s d sad sa  s dsa d s d sa d d sd dsa sa dsa d sad sa d sad dsa  dsa sad sa d
+                d sad sa d sad sa dsa d á
+            </p>
+        </div>
+        <div>
+
+        </div>
+    </div>
+    <div class="row" style="float: right">
+        <div class="complaint-add-row">
+            <div id="btnAdd" class="btn btn-primary mb-2" >
+                <i class="ft-plus"></i>
+                Add Project
+            </div>
+        </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="media">
+                                <div class="media-body text-left align-self-center">
+                                    <i class="icon-pencil info font-large-2 float-left"></i>
+                                </div>
+                                <div class="media-body text-right">
+                                    <h3>4</h3>
+                                    <span>Project</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="media">
+                                <div class="media-body text-left align-self-center">
+                                    <i class="icon-speech warning font-large-2 float-left"></i>
+                                </div>
+                                <div class="media-body text-right">
+                                    <h3>156</h3>
+                                    <span>Comments</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="media align-items-stretch">
+                            <div class="p-2 text-center bg-info rounded-left pt-3">
+                                <i class="icon-wallet font-large-2 text-white"></i>
+                                <a href="taskboard.html"></a>
+                            </div>
+                            <div class="py-2 px-2 media-body">
+                                <a href="taskboard.html"></a>
+                                <h6 class="info">Khóa 26-PM</h6>
+                                <h5 class="text-bold-400">28</h5>
+                                <div class="progress mt-1 mb-0" style="height: 7px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+</section>
+<!--MODAL ADD ROW-->
+<div class="modal-add-row">
+    <div class="modal-container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <div class="card modal-card">
+                    <div class="card-header">
+                        <div class="card-title-wrap bar-success">
+                            <div>
+                                <h4 class="card-title" id="basic-layout-form">Add Project</h4>
+                            </div>
+                        </div>
+                        <div class="modal-close">
+                            <i class="fa-solid fa-xmark modal-close-icon"></i>
+                        </div>
+                       
+                    </div>
+                    <div class="card-body">
+                        <div class="px-3">
+                            @using (Html.BeginForm("Create", "Projects"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("category_id", category_id)
+                                <form class="form">
+                                    <div class="form-body">
+                                        
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="projectinput1">Name</label>
+                                                    <input type="text" id="projectinput1" class="form-control" name="name">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="issueinput3">Date_Start</label>
+                                                    <input type="date" id="issueinput3" class="form-control" name="date_Start" 
+                                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="issueinput4">Date_End</label>
+                                                    <input type="date" id="issueinput4" class="form-control" name="date_End" 
+                                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="projectinput1">Tilte Cycles per Time</label>
+                                                    <input type="text" id="projectinput1" class="form-control" name="tilte_Cycles">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">Cycles</label>
+                                                    <input type="number" id="projectinput3" class="form-control" name="cycles" min="1">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">Time</label>
+                                                    <select id="projectinput5" name="time" class="form-control">
+                                                        <option value="none" selected="" disabled="">Time</option>
+                                                        <option value="Day">Day</option>
+                                                        <option value="Week">Week</option>
+                                                        <option value="Month">Month</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="issueinput8">Description</label>
+                                                    <textarea id="issueinput8" rows="5" class="form-control" name="description" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                                              data-title="Comments"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions complaint-form">
+                                        <button type="button" class="btn btn-danger mr-1 btn-cancel">
+                                            <i class="icon-trash"></i> Cancel
+                                        </button>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="icon-note"></i> Save
+                                        </button>
+                                    </div>
+                                </form>
+                            }
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END-->

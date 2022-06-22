@@ -15,7 +15,7 @@ namespace MeetingVL.Models
     public partial class ProjectParticipant
     {
         public int ID { get; set; }
-        public int User_ID { get; set; }
+        public string User_ID { get; set; }
         public int Project_ID { get; set; }
         public Nullable<int> Group { get; set; }
         public string Role { get; set; }
