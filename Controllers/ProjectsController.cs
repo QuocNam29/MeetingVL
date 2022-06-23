@@ -18,7 +18,10 @@ namespace MeetingVL.Controllers
         public ActionResult Index(int category_id)
         {
             var projects = db.Projects.Include(p => p.Category).Where(p => p.Category_ID == category_id);
+            Category category = db.Categories.Find(category_id);
             TempData["category_id"] = category_id;
+            TempData["category_Name"] = category.Name;
+            
             return View(projects.ToList());
         }
 
@@ -53,7 +56,7 @@ namespace MeetingVL.Controllers
  
 
             TimeSpan Time = date_End - date_Start;
-            int SumTime = Time.Days;
+            int SumTime = Time.Days + 1;
             if (time == "Day")
             {
                 int CyclesperTime = SumTime / cycles;
@@ -70,10 +73,43 @@ namespace MeetingVL.Controllers
                     date_Start = date_Start.AddDays(cycles);
                 }
             }
+            else if (time == "Week")
+            {
+                int CyclesperTime = SumTime / (7 * cycles);
+                for (int i = 1; i <= CyclesperTime; i++)
+                {
+
+                    SessionReport sessionReport = new SessionReport();
+                    sessionReport.Project_ID = project.ID;
+                    sessionReport.Name = tilte_Cycles + " " + i;
+                    sessionReport.Date_Start = date_Start;
+                    sessionReport.Date_End = date_Start.AddDays((7 * cycles) - 1);
+                    db.SessionReports.Add(sessionReport);
+
+                    date_Start = date_Start.AddDays((7 * cycles));
+                }
+            }
+            else if (time == "Month")
+            {
+                int CyclesperTime = SumTime / (28 * cycles);
+                for (int i = 1; i <= CyclesperTime; i++)
+                {
+
+                    SessionReport sessionReport = new SessionReport();
+                    sessionReport.Project_ID = project.ID;
+                    sessionReport.Name = tilte_Cycles + " " + i;
+                    sessionReport.Date_Start = date_Start;
+                    sessionReport.Date_End = date_Start.AddMonths(cycles).AddDays(-1);
+                    db.SessionReports.Add(sessionReport);
+
+                    date_Start = date_Start.AddMonths(cycles);
+                }
+            }
             db.SaveChanges();
             return RedirectToAction("Index", new {category_id = category_id });
             
         }
+
 
         
         // GET: Projects/Edit/5

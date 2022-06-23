@@ -369,7 +369,7 @@ namespace MeetingVL.Controllers
                                 db.Entry(user).State = EntityState.Modified;
                                 db.SaveChanges();
 
-                                Session["ID_User"] = user.ID;
+                                Session["ID_User"] = user.Email;
                                 Session["ID_VL"] = user.ID_VanLang;
                                 Session["Name"] = user.Name;
                                 Session["Email"] = user.Email;
@@ -386,7 +386,7 @@ namespace MeetingVL.Controllers
                                 db.Users.Add(user1);
                                 db.SaveChanges();
 
-                                Session["ID_User"] = user1.ID;
+                                Session["ID_User"] = user1.Email;
                                 Session["ID_VL"] = user1.ID_VanLang;
                                 Session["Name"] = user1.Name;
                                 Session["Email"] = user1.Email;
@@ -401,7 +401,7 @@ namespace MeetingVL.Controllers
                     else
                     {
                         var account = db.Users.Where(acc => acc.Email.Equals(loginInfo.Email)).FirstOrDefault();
-                        Session["ID_User"] = account.ID;
+                        Session["ID_User"] = account.Email;
                         Session["ID_VL"] = account.ID_VanLang;
                         Session["Name"] = account.Name;
                         Session["Email"] = account.Email;
