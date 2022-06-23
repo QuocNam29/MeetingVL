@@ -267,3 +267,23 @@
 
     });
 })(window, document, jQuery);
+
+const headerControlItem = document.querySelectorAll('.header-controls-item')
+
+
+const removeActive = () => {
+    headerControlItem.forEach((event) => {
+        if (event.classList.contains('active')) {
+            event.classList.remove('active')
+        }
+    })
+}
+
+const handleClick = (event) => {
+    removeActive();
+    event.target.classList.add('active')
+}
+
+headerControlItem.forEach((e) => {
+    e.addEventListener('click', handleClick)
+})

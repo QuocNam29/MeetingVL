@@ -23,6 +23,7 @@
         <AssociationConnector Association="MeetingVLModel.FK_SessionReport_Project" ManuallyRouted="false" />
         <AssociationConnector Association="MeetingVLModel.FK_ProjectParticipant_User" ManuallyRouted="false" />
         <AssociationConnector Association="MeetingVLModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="MeetingVLModel.FK_Category_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

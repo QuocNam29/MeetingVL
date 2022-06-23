@@ -23,8 +23,10 @@ namespace MeetingVL.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string State { get; set; }
+        public string ID_User { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Project> Projects { get; set; }
+        public virtual User User { get; set; }
     }
 }

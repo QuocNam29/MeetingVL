@@ -53727,4 +53727,33 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
+/* header control*/
+
+
+.header-controls-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.header-controls-item {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+    .header-controls-item:hover {
+        opacity: 1;
+    }
+
+    .header-controls-item.active {
+        color: #000;
+        font-weight: 500;
+    }
+
+.header-direction {
+    padding: 0 6px;
+    margin-top: 1px;
+}
 

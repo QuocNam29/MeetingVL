@@ -18,10 +18,14 @@ namespace MeetingVL.Controllers
         public ActionResult Index(int? project_id)
         {
             var sessionReports = db.SessionReports.Include(s => s.Project).Where(p => p.Project_ID == project_id);
+            
             Project project = db.Projects.Find(project_id);
             TempData["project_id"] = project_id;
             TempData["project_Name"] = project.Name;
             TempData["project_Description"] = project.Description;
+            Category category = db.Categories.Find(project.Category_ID);
+            TempData["category_id"] = category.ID;
+            TempData["category_Name"] = category.Name;
             return View(sessionReports.ToList());
         }
 
