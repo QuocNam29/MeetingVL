@@ -58,7 +58,7 @@
                         <div class="row">
 
 
-                            <a class="btn mr-1 btn-info"> <i class="ft-arrow-left"></i> Come back</a>
+                            <a href="@Url.Action("Index","Users")" class="btn mr-1 btn-info"> <i class="ft-arrow-left"></i> Come back</a>
                             <a id="btnAdd" class="btn btn-primary mb-2 complaint-add-row"> <i class="icon-pencil"></i> Edit User</a>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                             @using (Html.BeginForm("Edit", "Users"))
                             {
                                 @Html.AntiForgeryToken()
-                                @Html.Hidden("id",Model.ID)
+                                
                                 <form class="form">
                                     <div class="form-body">
                                         <h4 class="form-section">

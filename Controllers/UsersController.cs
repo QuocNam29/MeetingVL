@@ -26,13 +26,9 @@ namespace MeetingVL.Controllers
         }
 
         // GET: Users/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string email)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
+            User user = db.Users.Find(email);
             if (user == null)
             {
                 return HttpNotFound();
@@ -69,13 +65,10 @@ namespace MeetingVL.Controllers
       
 
         // GET: Users/Edit/5
-        public ActionResult Edit(int? id, string name, string email, string role, string department, string majors, string state)
+        public ActionResult Edit( string name, string email, string role, string department, string majors, string state)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
+           
+            User user = db.Users.Find(email);
             if (!string.IsNullOrWhiteSpace(name))
             {
                 user.Name = name;
@@ -102,7 +95,7 @@ namespace MeetingVL.Controllers
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
 
-            return RedirectToAction("Details", new {id = id });
+            return RedirectToAction("Details", new { email = email });
         }
 
         
