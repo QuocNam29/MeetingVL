@@ -26,7 +26,8 @@
                             <div class="form-control-position">
                                 <i class="icon-emoticon-smile"></i>
                             </div>
-                            <input type="text" class="form-control" id="todoTitle" name="Name" placeholder="Title">
+                            <input type="text" class="form-control" id="todoTitle" name="Name" placeholder="Title"
+                                   required="required" oninvalid="this.setCustomValidity('Please enter name category')" oninput="setCustomValidity('')">
                             <div class="form-control-position control-position-right">
                                 <i class="ft-image"></i>
                             </div>
@@ -35,10 +36,6 @@
                                 <i class="fa fa-paper-plane-o hidden-lg-up"></i> Create
                             </button>
                         </fieldset>
-
-                       
-
-
                     </form>
                 }
             </div>

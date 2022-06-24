@@ -336,7 +336,7 @@ namespace MeetingVL.Controllers
             // check email domain of Vanlanguni
             MailAddress address = new MailAddress(loginInfo.Email);
             string host = address.Host;
-            if (host != "vanlanguni.vn")
+            if (host != "vanlanguni.vn" && host != "vlu.edu.vn")
             {
                 TempData["MailDomainError"] = "Oopss, địa chỉ email của bạn không phải email của Văn Lang, bạn hãy thử lại nhé !!!";
                 return RedirectToAction("Login");

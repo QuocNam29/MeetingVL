@@ -37,7 +37,7 @@
                                     <th>Majors</th>                                    
                                     <th>Last_Access</th>
                                     <th>State</th>
-                                    <th></th>
+                                   @* <th></th>*@
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,16 +46,16 @@
                                     no++;
                                 <tr>
                                     <td>@no</td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Email</td>
-                                    <td>@item.Role</td>
-                                    <td>@item.Department</td>
-                                    <td>@item.Majors</td>
+                                    <td><a href="@Url.Action("Details", "Users", new { email = item.Email})" style="color: dimgrey">@item.Name</a></td>
+                                    <td><a href="@Url.Action("Details", "Users", new { email = item.Email }) " style="color: dimgrey">@item.Email</a></td>
+                                    <td><a href="@Url.Action("Details", "Users", new { email = item.Email})" style="color: dimgrey">@item.Role</a></td>
+                                    <td><a href="@Url.Action("Details", "Users", new { email = item.Email})" style="color: dimgrey"> @item.Department</a> </td>
+                                    <td><a href="@Url.Action("Details", "Users", new { email = item.Email})" style="color: dimgrey"> @item.Majors</a> </td>
                                     @if (item.Token != null)
                                     {
                                         
-                                        <td>@item.Last_Access</td>
-                                        <td>@item.State.Value.ToString()</td>
+                                        <td><a href="@Url.Action("Details", "Users", new { email = item.Email})" style="color: dimgrey"> @item.Last_Access</a></td>
+                                        <td><a href="@Url.Action("Details", "Users", new { email = item.Email})" style="color: dimgrey"> @item.State.Value.ToString()</a></td>
                                     }
                                     else
                                     {
@@ -63,10 +63,10 @@
                                         <td></td>
                                         <td></td>
                                     }
-                                    <td>
+                                   @* <td>
                                         <button type="button" class="btn btn-sm btn-outline-danger round"
                                                  onclick="location.href = '@Url.Action("Details", "Users", new { email = item.Email})'"> <i class="icon-pencil"></i> Details</button>
-                                    </td>
+                                    </td>*@
                                 </tr>
 
                                 }
@@ -82,7 +82,7 @@
                                    
                                     <th>Last_Access</th>
                                     <th>State</th>
-                                    <th></th>
+                                    @*<th></th>*@
                                 </tr>
                             </tfoot>
                         </table>

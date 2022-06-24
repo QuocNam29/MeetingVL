@@ -32,36 +32,62 @@
     <div class="row match-height">
         @foreach (var item in Model)
         {
-            no++;
-            <div class="col-xl-3 col-lg-6 col-12">
-                @if (no % 4 == 1)
-                {
-                    <div class="card bg-success">
-                        <div class="card-body">
-                            <div class="px-3 py-3">
-                                <div class="row text-white">
-                                    <div class="col-12 courses-wrap">
-                                        <h1>
-                                            <i class="fa-regular fa-star background-round p-2 font-medium-4 courses-icon"></i>
-                                        </h1>
-                                        <a href="@Url.Action("Index","Session_Reports",new { project_id = item.ID})"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
-                                        <p class="courses-time font-small-3">
-                                            <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
-                                            <span>-</span>
-                                            <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
-                                        </p>
+            if (item.State != "Deleted")
+            {
+                no++;
+                <div class="col-xl-3 col-lg-6 col-12">
+                    @if (no % 4 == 1)
+                    {
+                        <div class="card bg-success">
+                            <div class="card-body">
+                                <div class="px-3 py-3">
+                                    <div class="actions float-right">
+                                        <div class="dropdown ml-2 display-inline-block">
+                                            <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                            <div class="apps dropdown-menu">
+                                                <div class="arrow_box">
+                                                    @*<a href="" class="dropdown-item py-1"><span>Edit</span></a>*@
+                                                    <a href="@Url.Action("Delete","Projects",new { id = item.ID, category_id = item.Category_ID})" class="dropdown-item py-1"><span>Delete</span></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row text-white">
+                                        <div class="col-12 courses-wrap">
+                                            <h1>
+                                                <i class="fa-regular fa-star background-round p-2 font-medium-4 courses-icon"></i>
+                                            </h1>
+                                            <a href="@Url.Action("Index","Session_Reports",new { project_id = item.ID})"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
+                                            <p class="courses-time font-small-3">
+                                                <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
+                                                <span>-</span>
+                                                <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                }
-                else if (no % 4 == 2)
-                {
-                    
+                    }
+                    else if (no % 4 == 2)
+                    {
+
                         <div class="card bg-danger">
                             <div class="px-3 py-3">
+                                <div class="actions float-right">
+                                    <div class="dropdown ml-2 display-inline-block">
+                                        <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                        <div class="apps dropdown-menu">
+                                            <div class="arrow_box">
+                                                @*<a href="" class="dropdown-item py-1"><span>Edit</span></a>*@
+                                                <a href="@Url.Action("Delete","Projects",new { id = item.ID, category_id = item.Category_ID})" class="dropdown-item py-1"><span>Delete</span></a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row text-white">
                                     <div class="col-12 courses-wrap">
                                         <h1>
@@ -77,13 +103,25 @@
                                 </div>
                             </div>
                         </div>
-                    
-                }
-                else if (no % 4 == 3)
-                {
-                    
+
+                    }
+                    else if (no % 4 == 3)
+                    {
+
                         <div class="card bg-info">
                             <div class="px-3 py-3">
+                                <div class="actions float-right">
+                                    <div class="dropdown ml-2 display-inline-block">
+                                        <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                        <div class="apps dropdown-menu">
+                                            <div class="arrow_box">
+                                                @*<a href="" class="dropdown-item py-1"><span>Edit</span></a>*@
+                                                <a href="@Url.Action("Delete","Projects",new { id = item.ID, category_id = item.Category_ID})" class="dropdown-item py-1"><span>Delete</span></a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row text-white">
                                     <div class="col-12 courses-wrap">
                                         <h1>
@@ -99,13 +137,25 @@
                                 </div>
                             </div>
                         </div>
-                   
-                }
-                else if (no % 4 == 0)
-                {
-                   
+
+                    }
+                    else if (no % 4 == 0)
+                    {
+
                         <div class="card bg-warning">
                             <div class="px-3 py-3">
+                                <div class="actions float-right">
+                                    <div class="dropdown ml-2 display-inline-block">
+                                        <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                        <div class="apps dropdown-menu">
+                                            <div class="arrow_box">
+                                                @*<a href="" class="dropdown-item py-1"><span>Edit</span></a>*@
+                                                <a href="@Url.Action("Delete","Projects",new { id = item.ID, category_id = item.Category_ID})" class="dropdown-item py-1"><span>Delete</span></a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row text-white">
                                     <div class="col-12 courses-wrap">
                                         <h1>
@@ -121,10 +171,12 @@
                                 </div>
                             </div>
                         </div>
-                  
-                }
 
-            </div>
+                    }
+
+                </div>
+            }
+
         }
 
 
@@ -161,7 +213,8 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="projectinput1">Name</label>
-                                                    <input type="text" id="projectinput1" class="form-control" name="name">
+                                                    <input type="text" id="projectinput1" class="form-control" name="name"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter name project')" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>
 
@@ -170,34 +223,38 @@
                                                 <div class="form-group">
                                                     <label for="issueinput3">Date_Start</label>
                                                     <input type="date" id="issueinput3" class="form-control" name="date_Start"
-                                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened">
+                                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter date start')" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="issueinput4">Date_End</label>
                                                     <input type="date" id="issueinput4" class="form-control" name="date_End"
-                                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed">
+                                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter date end')" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="projectinput1">Tilte Cycles per Time</label>
-                                                    <input type="text" id="projectinput1" class="form-control" name="tilte_Cycles">
+                                                    <input type="text" id="projectinput1" class="form-control" name="tilte_Cycles" 
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter Tilte Cycles per Time')" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="projectinput3">Cycles</label>
-                                                    <input type="number" id="projectinput3" class="form-control" name="cycles" min="1">
+                                                    <input type="number" id="projectinput3" class="form-control" name="cycles" min="1" 
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter Tilte Cycles')" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="projectinput3">Time</label>
                                                     <select id="projectinput5" name="time" class="form-control">
-                                                        <option value="none" selected="" disabled="">Time</option>
-                                                        <option value="Day">Day</option>
+                                                       
+                                                        <option value="Day" selected="">Day</option>
                                                         <option value="Week">Week</option>
                                                         <option value="Month">Month</option>
                                                     </select>
