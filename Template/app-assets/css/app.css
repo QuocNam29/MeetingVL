@@ -53719,6 +53719,13 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
 }
+.content-header-text {
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
 
 .ex-content {
     overflow: hidden;
@@ -53727,6 +53734,8 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
+
+
 /* header control*/
 
 
@@ -53755,5 +53764,18 @@ input[type='checkbox'].switch, input[type='radio'].switch {
 .header-direction {
     padding: 0 6px;
     margin-top: 1px;
+}
+
+.form-control-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.create-btn {
+    margin: 0 auto !important;
+}
+.icon-smile {
+    left: 20px !important;
+    margin-top: -2px !important;
 }
 

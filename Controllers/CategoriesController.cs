@@ -15,9 +15,20 @@ namespace MeetingVL.Controllers
         private MeetingVLEntities db = new MeetingVLEntities();
 
         // GET: Categories
-        public ActionResult Index()
+        public ActionResult Index(string keyword)
         {
-            return View(db.Categories.ToList());
+           
+            var links = from l in db.Categories
+                        select l;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.Name.ToLower().Contains(keyword.ToLower()));
+                TempData["keyword"] = keyword;
+                return View(links.ToList());
+            }
+
+            return View(links.ToList());
         }
 
         // GET: Categories/Details/5
@@ -47,35 +58,20 @@ namespace MeetingVL.Controllers
 
        
         // GET: Categories/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string Name)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
+            category.Name = Name;
+            db.Entry(category).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Category category)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(category);
-        }
+        
 
         // GET: Categories/Delete/5
         public ActionResult Delete(int? id)
