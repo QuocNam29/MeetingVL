@@ -28,7 +28,24 @@
             </div>
         </div>
     </div>
-   
+    <!-- /.col-lg-6 -->
+    @using (Html.BeginForm("Index", "Projects", FormMethod.Get))
+    {
+        @Html.Hidden("category_id", category_id)
+        <div class="col-lg-6">
+            <div class="input-group">
+
+                <input type="text" class="form-control" placeholder="Search for..." name="keyword">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Go!</button>
+                </div>
+
+            </div>
+            <!-- /input-group -->
+        </div>
+    }
+    <!-- /.col-lg-6 -->
+
     <div class="row match-height">
         @foreach (var item in Model)
         {
@@ -49,7 +66,7 @@
                                             <div class="apps dropdown-menu">
                                                 <div class="arrow_box">
                                                     <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap"><span>Edit</span></a>
-                                                    <a href="" class="dropdown-item py-1" ata-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
+                                                    <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,7 +100,7 @@
                                         <div class="apps dropdown-menu">
                                             <div class="arrow_box">
                                                 <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap"><span>Edit</span></a>
-                                                <a href="" class="dropdown-item py-1" ata-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
+                                                <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -116,7 +133,7 @@
                                         <div class="apps dropdown-menu">
                                             <div class="arrow_box">
                                                 <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap"><span>Edit</span></a>
-                                                <a href="" class="dropdown-item py-1" ata-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
+                                                <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -149,7 +166,7 @@
                                         <div class="apps dropdown-menu">
                                             <div class="arrow_box">
                                                 <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap"><span>Edit</span></a>
-                                                <a href="" class="dropdown-item py-1" ata-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
+                                                <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -190,10 +207,44 @@
                                 @Html.Hidden("id", item.ID)
                                 <form>
                                     <div class="modal-body">
-                                        <fieldset class="form-group floating-label-form-group">
-                                            <label for="email">Tilte Category</label>
-                                            <input type="text" class="form-control" id="Name" name="Name" value="@item.Name" placeholder="Tilte Category">
-                                        </fieldset>
+
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="projectinput1">Name</label>
+                                                    <input type="text" id="projectinput1" class="form-control" name="name" value="@item.Name"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter name project')" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="issueinput3">Date_Start</label>
+                                                    <input type="date" id="issueinput3" class="form-control" name="date_Start" value="@String.Format("{0:yyyy-MM-dd}",item.Date_Start)"
+                                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter date start')" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="issueinput4">Date_End</label>
+                                                    <input type="date" id="issueinput4" class="form-control" name="date_End" value="@String.Format("{0:yyyy-MM-dd}",item.Date_End)"
+                                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter date end')" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="issueinput8">Description</label> 
+                                                    <textarea id="issueinput8" rows="5" class="form-control" name="description"
+                                                              data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                                              data-title="Comments">@item.Description</textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
@@ -241,6 +292,7 @@
     </div>
 </section>
 <!--End-->
+
 <!--MODAL ADD ROW-->
 <div class="modal-add-row">
     <div class="modal-container-fluid">

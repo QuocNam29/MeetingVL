@@ -15,14 +15,28 @@ namespace MeetingVL.Controllers
         private MeetingVLEntities db = new MeetingVLEntities();
 
         // GET: Projects
-        public ActionResult Index(int category_id)
+        public ActionResult Index(int category_id, string keyword)
         {
             var projects = db.Projects.Include(p => p.Category).Where(p => p.Category_ID == category_id);
+
+            var links = from l in db.Projects.Include(p => p.Category)
+                        .Where(p => p.Category_ID == category_id)
+                        select l;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.Name.ToLower().Contains(keyword.ToLower()));
+                TempData["keyword"] = keyword;
+                Category category1 = db.Categories.Find(category_id);
+                TempData["category_id"] = category_id;
+                TempData["category_Name"] = category1.Name;
+                return View(links.ToList());
+            }
             Category category = db.Categories.Find(category_id);
             TempData["category_id"] = category_id;
             TempData["category_Name"] = category.Name;
             
-            return View(projects.ToList());
+            return View(links.ToList());
         }
 
         // GET: Projects/Details/5
@@ -113,40 +127,27 @@ namespace MeetingVL.Controllers
 
         
         // GET: Projects/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string name,
+            string description, DateTime date_Start, DateTime date_End)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Project project = db.Projects.Find(id);
-            if (project == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Category_ID = new SelectList(db.Categories, "ID", "Name", project.Category_ID);
-            return View(project);
+            project.Name = name;
+            project.Description = description;
+            project.Date_Start = date_Start;
+            project.Date_End = date_End;
+
+            db.Entry(project).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", new { category_id = project.Category_ID });
         }
 
-        // POST: Projects/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Category_ID,Name,Description,Date_Start,Date_End,State")] Project project)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(project).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Category_ID = new SelectList(db.Categories, "ID", "Name", project.Category_ID);
-            return View(project);
-        }
-
+        
         // GET: Projects/Delete/5
-        public ActionResult Delete(int? id, int? category_id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -156,7 +157,7 @@ namespace MeetingVL.Controllers
             project.State = "Deleted";
             db.Entry(project).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index", new { category_id = category_id });
+            return RedirectToAction("Index", new { category_id = project.Category_ID });
         }
 
       
