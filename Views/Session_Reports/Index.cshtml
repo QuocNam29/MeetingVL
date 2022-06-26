@@ -25,24 +25,29 @@
                 <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Projects", new {category_id = category_id })">@category_Name</a></li>
                 <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
                 <li class="header-controls-item text-bold-400">@project_Name</li>
-                
+
             </ul>
         </div>
 
         <div class="col-sm-12">
             <h2 class="content-header">@project_Name</h2>
-            <div class="complaint-add-row" style="float: right">
-                <div id="btnAdd" class="btn btn-primary mb-2">
-                    <i class="ft-plus"></i>
-                    Add Session Report
+            <div class="" style="float: right">
+                <div class="btn-group mr-2">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Add Session Report
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#myBootstrap"><span>Each report</span></a>
+                        <a class="dropdown-item complaint-add-row" href="#">A lot of reprot</a>
+                    </div>
                 </div>
             </div>
             <p class="content-sub-header">@project_Description</p>
         </div>
     </div>
-    
-       
-    
+
+
+
     <div class="row">
         @foreach (var item in Model)
         {
@@ -138,3 +143,156 @@
         }
     </div>
 </section>
+
+<!-- Modal Bootstrap -->
+<div class="modal fade text-left" id="myBootstrap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel35"> Add each report </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("Create", "Session_Reports"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("project_id", project_id)
+                @Html.Hidden("option", 1)
+                @Html.Hidden("cycles", 1)
+                <form>
+                    <div class="modal-body">
+
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="projectinput1">Tilte Cycles per Time</label>
+                                    <input type="text" id="projectinput1" class="form-control" name="tilte_Cycles"
+                                           required="required" oninvalid="this.setCustomValidity('Please enter Tilte Cycles per Time')" oninput="setCustomValidity('')">
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="issueinput3">Date_Start</label>
+                                    <input type="date" id="issueinput3" class="form-control" name="date_Start"
+                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened"
+                                           required="required" oninvalid="this.setCustomValidity('Please enter date start')" oninput="setCustomValidity('')">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="issueinput4">Date_End</label>
+                                    <input type="date" id="issueinput4" class="form-control" name="date_End"
+                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed"
+                                           required="required" oninvalid="this.setCustomValidity('Please enter date end')" oninput="setCustomValidity('')">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
+                        <input type="submit" class="btn btn-outline-primary btn-lg" value="Save">
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+<!-- Modal Bootstrap -->
+
+<!--MODAL ADD ROW-->
+<div class="modal-add-row">
+    <div class="modal-container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <div class="card modal-card">
+                    <div class="card-header">
+                        <div class="card-title-wrap bar-success">
+                            <div>
+                                <h4 class="card-title" id="basic-layout-form">Add a lot of reprot</h4>
+                            </div>
+                        </div>
+                        <div class="modal-close">
+                            <i class="fa-solid fa-xmark modal-close-icon"></i>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="px-3">
+                            @using (Html.BeginForm("Create", "Session_Reports"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("option", 2)
+                                @Html.Hidden("project_id", project_id)
+                                <form class="form">
+                                    <div class="form-body">
+
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="projectinput1">Tilte Cycles per Time</label>
+                                                    <input type="text" id="projectinput1" class="form-control" name="tilte_Cycles"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter Tilte Cycles per Time')" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="issueinput3">Date_Start</label>
+                                                    <input type="date" id="issueinput3" class="form-control" name="date_Start"
+                                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter date start')" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="issueinput4">Date_End</label>
+                                                    <input type="date" id="issueinput4" class="form-control" name="date_End"
+                                                           data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter date end')" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">Cycles</label>
+                                                    <input type="number" id="projectinput3" class="form-control" name="cycles" min="1"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter Tilte Cycles')" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">Time</label>
+                                                    <select id="projectinput5" name="time" class="form-control">
+
+                                                        <option value="Day" selected="">Day</option>
+                                                        <option value="Week">Week</option>
+                                                        <option value="Month">Month</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions complaint-form">
+                                        <button type="button" class="btn btn-danger mr-1 btn-cancel">
+                                            <i class="icon-trash"></i> Cancel
+                                        </button>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="icon-note"></i> Save
+                                        </button>
+                                    </div>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END-->

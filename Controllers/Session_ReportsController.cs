@@ -45,29 +45,82 @@ namespace MeetingVL.Controllers
         }
 
         // GET: Session_Reports/Create
-        public ActionResult Create()
+        public ActionResult Create(string tilte_Cycles, int project_id,
+            DateTime date_Start, DateTime date_End,
+            int cycles, string time, int option)
         {
-            ViewBag.Project_ID = new SelectList(db.Projects, "ID", "Name");
+           
+            if (option == 1)
+            {
+                SessionReport sessionReport = new SessionReport();
+                sessionReport.Project_ID = project_id;
+                sessionReport.Name = tilte_Cycles;
+                sessionReport.Date_Start = date_Start;
+                sessionReport.Date_End = date_End;
+                db.SessionReports.Add(sessionReport);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { project_id = project_id });
+            }
+
+            else if (option == 2)
+            {                           
+                TimeSpan Time = date_End - date_Start;
+                int SumTime = Time.Days + 1;
+                if (time == "Day")
+                {
+                    int CyclesperTime = SumTime / cycles;
+                    for (int i = 1; i <= CyclesperTime; i++)
+                    {
+
+                        SessionReport sessionReport = new SessionReport();
+                        sessionReport.Project_ID = project_id;
+                        sessionReport.Name = tilte_Cycles + " " + i;
+                        sessionReport.Date_Start = date_Start;
+                        sessionReport.Date_End = date_Start.AddDays(cycles - 1);
+                        db.SessionReports.Add(sessionReport);
+
+                        date_Start = date_Start.AddDays(cycles);
+                    }
+                }
+                else if (time == "Week")
+                {
+                    int CyclesperTime = SumTime / (7 * cycles);
+                    for (int i = 1; i <= CyclesperTime; i++)
+                    {
+
+                        SessionReport sessionReport = new SessionReport();
+                        sessionReport.Project_ID = project_id;
+                        sessionReport.Name = tilte_Cycles + " " + i;
+                        sessionReport.Date_Start = date_Start;
+                        sessionReport.Date_End = date_Start.AddDays((7 * cycles) - 1);
+                        db.SessionReports.Add(sessionReport);
+
+                        date_Start = date_Start.AddDays((7 * cycles));
+                    }
+                }
+                else if (time == "Month")
+                {
+                    int CyclesperTime = SumTime / (28 * cycles);
+                    for (int i = 1; i <= CyclesperTime; i++)
+                    {
+
+                        SessionReport sessionReport = new SessionReport();
+                        sessionReport.Project_ID = project_id;
+                        sessionReport.Name = tilte_Cycles + " " + i;
+                        sessionReport.Date_Start = date_Start;
+                        sessionReport.Date_End = date_Start.AddMonths(cycles).AddDays(-1);
+                        db.SessionReports.Add(sessionReport);
+
+                        date_Start = date_Start.AddMonths(cycles);
+                    }
+                }
+                db.SaveChanges();
+                return RedirectToAction("Index", new { project_id = project_id });
+            }
+            
             return View();
         }
 
-        // POST: Session_Reports/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Project_ID,Name,Date_Start,Date_End,State")] SessionReport sessionReport)
-        {
-            if (ModelState.IsValid)
-            {
-                db.SessionReports.Add(sessionReport);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.Project_ID = new SelectList(db.Projects, "ID", "Name", sessionReport.Project_ID);
-            return View(sessionReport);
-        }
 
         // GET: Session_Reports/Edit/5
         public ActionResult Edit(int? id)
