@@ -20,8 +20,8 @@ namespace MeetingVL.Controllers
         // GET: Categories
         public ActionResult Index(string keyword)
         {
-           
-            var links = from l in db.Categories.Where(c => c.ID_User == Session["ID_User"].ToString())
+            string ID_User = Session["ID_User"].ToString();
+            var links = from l in db.Categories.Where(c => c.ID_User == ID_User)
                         select l;
 
             if (!string.IsNullOrEmpty(keyword))
