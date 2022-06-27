@@ -15,10 +15,29 @@ namespace MeetingVL.Controllers
         private SEP25Team13Entities db = new SEP25Team13Entities();
 
         // GET: Session_Reports
-        public ActionResult Index(int? project_id)
+        public ActionResult Index(int project_id, string keyword)
         {
             var sessionReports = db.SessionReports.Include(s => s.Project).Where(p => p.Project_ID == project_id);
-            
+
+            var links = from l in db.SessionReports.Include(s => s.Project)
+                        .Where(p => p.Project_ID == project_id).Where(s => s.State != "Deleted")
+                        select l;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.Name.ToLower().Contains(keyword.ToLower()));
+                TempData["keyword"] = keyword;
+
+                Project project1 = db.Projects.Find(project_id);
+                TempData["project_id"] = project_id;
+                TempData["project_Name"] = project1.Name;
+                TempData["project_Description"] = project1.Description;
+                Category category1 = db.Categories.Find(project1.Category_ID);
+                TempData["category_id"] = category1.ID;
+                TempData["category_Name"] = category1.Name;
+                return View(links.ToList());
+            }
+
             Project project = db.Projects.Find(project_id);
             TempData["project_id"] = project_id;
             TempData["project_Name"] = project.Name;
@@ -26,7 +45,7 @@ namespace MeetingVL.Controllers
             Category category = db.Categories.Find(project.Category_ID);
             TempData["category_id"] = category.ID;
             TempData["category_Name"] = category.Name;
-            return View(sessionReports.ToList());
+            return View(links.ToList());
         }
 
         // GET: Session_Reports/Details/5
@@ -123,36 +142,20 @@ namespace MeetingVL.Controllers
 
 
         // GET: Session_Reports/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string name,
+             DateTime date_Start, DateTime date_End)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             SessionReport sessionReport = db.SessionReports.Find(id);
-            if (sessionReport == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Project_ID = new SelectList(db.Projects, "ID", "Name", sessionReport.Project_ID);
-            return View(sessionReport);
-        }
-
-        // POST: Session_Reports/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Project_ID,Name,Date_Start,Date_End,State")] SessionReport sessionReport)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(sessionReport).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Project_ID = new SelectList(db.Projects, "ID", "Name", sessionReport.Project_ID);
-            return View(sessionReport);
+            sessionReport.Name = name;
+            sessionReport.Date_Start = date_Start;
+            sessionReport.Date_End = date_End;
+            db.Entry(sessionReport).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", new { project_id = sessionReport.Project_ID });
         }
 
         // GET: Session_Reports/Delete/5
@@ -163,22 +166,10 @@ namespace MeetingVL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             SessionReport sessionReport = db.SessionReports.Find(id);
-            if (sessionReport == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sessionReport);
-        }
-
-        // POST: Session_Reports/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            SessionReport sessionReport = db.SessionReports.Find(id);
-            db.SessionReports.Remove(sessionReport);
+            sessionReport.State = "Deleted";
+            db.Entry(sessionReport).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { project_id = sessionReport.Project_ID });
         }
 
         protected override void Dispose(bool disposing)
