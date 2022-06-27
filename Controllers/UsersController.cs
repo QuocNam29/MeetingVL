@@ -7,10 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using MeetingVL.Middleware;
 using MeetingVL.Models;
 
 namespace MeetingVL.Controllers
 {
+    [LoginVerification]
     public class UsersController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();

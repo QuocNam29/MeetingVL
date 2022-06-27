@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MeetingVL.Middleware;
 using MeetingVL.Models;
 
 namespace MeetingVL.Controllers
 {
+    [LoginVerification]
     public class ProjectsController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
@@ -17,9 +19,9 @@ namespace MeetingVL.Controllers
         // GET: Projects
         public ActionResult Index(int category_id, string keyword)
         {
-            var projects = db.Projects.Include(p => p.Category).Where(p => p.Category_ID == category_id);
+            
 
-            var links = from l in db.Projects.Include(p => p.Category)
+            var links = from l in db.Projects.Include(p => p.Category)                      
                         .Where(p => p.Category_ID == category_id)
                         select l;
 
@@ -38,6 +40,7 @@ namespace MeetingVL.Controllers
             
             return View(links.ToList());
         }
+
 
         // GET: Projects/Details/5
         public ActionResult Details(int? id)
@@ -67,7 +70,13 @@ namespace MeetingVL.Controllers
             project.Date_Start = date_Start;
             project.Date_End = date_End;
             db.Projects.Add(project);
- 
+
+            ProjectParticipant projectParticipant = new ProjectParticipant();
+            projectParticipant.Project_ID = project.ID;
+            projectParticipant.User_ID = Session["ID_User"].ToString();
+            projectParticipant.Role = "Manager";
+            db.ProjectParticipants.Add(projectParticipant);
+
 
             TimeSpan Time = date_End - date_Start;
             int SumTime = Time.Days + 1;

@@ -6,10 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MeetingVL.Middleware;
 using MeetingVL.Models;
 
 namespace MeetingVL.Controllers
 {
+    [LoginVerification]
+
     public class CategoriesController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
@@ -18,7 +21,7 @@ namespace MeetingVL.Controllers
         public ActionResult Index(string keyword)
         {
            
-            var links = from l in db.Categories
+            var links = from l in db.Categories.Where(c => c.ID_User == Session["ID_User"].ToString())
                         select l;
 
             if (!string.IsNullOrEmpty(keyword))
@@ -51,6 +54,7 @@ namespace MeetingVL.Controllers
         {
             Category category = new Category();
             category.Name = Name;
+            category.ID_User = Session["ID_User"].ToString();
             db.Categories.Add(category);
             db.SaveChanges();
             return RedirectToAction("Index");

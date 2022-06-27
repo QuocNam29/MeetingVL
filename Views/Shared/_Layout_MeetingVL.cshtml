@@ -13,7 +13,7 @@
     <link rel="apple-touch-icon" sizes="120x120" href="~/Template/app-assets/img/ico/apple-icon-120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="~/Template/app-assets/img/ico/apple-icon-152.png">
     <link rel="shortcut icon" type="image/x-icon" href="~/Template/app-assets/img/LogoVL.png">
-    <link rel="shortcut icon" type="image/png" href="~/Template/app-assets/img/ico/favicon-32.png">
+    <link rel="shortcut icon" type="image/png" href="~/Template/app-assets/img/LogoVL.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -56,10 +56,13 @@
                                 </li>
                             </ul>
                         </li>
-
-                        <li class=" nav-item">
-                            <a href="@Url.Action("Index","Users")"><i class="icon-layers"></i><span data-i18n="" class="menu-title">Manage User</span></a>
-                        </li>
+                        @if (Session["Role"].ToString() == "Admin")
+                        {
+                            <li class=" nav-item">
+                                <a href="@Url.Action("Index","Users")"><i class="icon-layers"></i><span data-i18n="" class="menu-title">Manage User</span></a>
+                            </li>
+                        }
+                        
 
 
                         <li class="nav-item">

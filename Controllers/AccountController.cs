@@ -372,7 +372,7 @@ namespace MeetingVL.Controllers
                                 Session["ID_User"] = user.Email;
                                 Session["ID_VL"] = user.ID_VanLang;
                                 Session["Name"] = user.Name;
-                                Session["Email"] = user.Email;
+                                Session["Role"] = user.Role;
                             }
                             else
                             {
@@ -389,13 +389,13 @@ namespace MeetingVL.Controllers
                                 Session["ID_User"] = user1.Email;
                                 Session["ID_VL"] = user1.ID_VanLang;
                                 Session["Name"] = user1.Name;
-                                Session["Email"] = user1.Email;
+                                Session["Role"] = user.Role;
                             }
 
 
                             FormsAuthentication.SetAuthCookie(loginInfo.Email, false);
 
-                            return RedirectToAction("Index", "Users");
+                            return RedirectToAction("Index", "Categories");
                         }
                     }
                     else
@@ -404,9 +404,9 @@ namespace MeetingVL.Controllers
                         Session["ID_User"] = account.Email;
                         Session["ID_VL"] = account.ID_VanLang;
                         Session["Name"] = account.Name;
-                        Session["Email"] = account.Email;
+                        Session["Role"] = account.Role;
                         FormsAuthentication.SetAuthCookie(loginInfo.Email, false);
-                        return RedirectToAction("Index", "Users");
+                        return RedirectToAction("Index", "Categories");
                     }             
                 case SignInStatus.LockedOut:
                     return View("Lockout");
