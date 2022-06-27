@@ -17,8 +17,8 @@ namespace MeetingVL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.ProjectParticipants = new HashSet<ProjectParticipant>();
             this.Categories = new HashSet<Category>();
+            this.ProjectParticipants = new HashSet<ProjectParticipant>();
         }
     
         public string Email { get; set; }
@@ -32,8 +32,8 @@ namespace MeetingVL.Models
         public Nullable<bool> State { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProjectParticipant> ProjectParticipants { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Category> Categories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProjectParticipant> ProjectParticipants { get; set; }
     }
 }

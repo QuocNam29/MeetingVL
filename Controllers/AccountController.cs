@@ -19,7 +19,7 @@ namespace MeetingVL.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private MeetingVLEntities db = new MeetingVLEntities();
+        private SEP25Team13Entities db = new SEP25Team13Entities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 

@@ -4,26 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ca268042a0fc42edb436a8e11fd536fc" Name="Diagram1">
-        <EntityTypeShape EntityType="MeetingVLModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingVLModel.AspNetRole" Width="1.5" PointX="7.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingVLModel.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingVLModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingVLModel.AspNetUser" Width="1.5" PointX="10" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingVLModel.Category" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingVLModel.Project" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingVLModel.ProjectParticipant" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingVLModel.SessionReport" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingVLModel.sysdiagram" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MeetingVLModel.User" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
-        <AssociationConnector Association="MeetingVLModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="MeetingVLModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="MeetingVLModel.FK_Project_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="MeetingVLModel.FK_ProjectParticipant_Project" ManuallyRouted="false" />
-        <AssociationConnector Association="MeetingVLModel.FK_SessionReport_Project" ManuallyRouted="false" />
-        <AssociationConnector Association="MeetingVLModel.FK_ProjectParticipant_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MeetingVLModel.AspNetUserRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="MeetingVLModel.FK_Category_User" />
+      <Diagram DiagramId="9de38db776d94ce7854c4dea25d27848" Name="Diagram1">
+        <EntityTypeShape EntityType="SEP25Team13Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.AspNetRole" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.AspNetUserClaim" Width="1.5" PointX="14.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.AspNetUserLogin" Width="1.5" PointX="14.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.AspNetUser" Width="1.5" PointX="12" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Category" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Project" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.ProjectParticipant" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.SessionReport" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.User" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="SEP25Team13Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Category_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Project_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.FK_ProjectParticipant_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.FK_SessionReport_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.FK_ProjectParticipant_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

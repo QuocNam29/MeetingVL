@@ -12,7 +12,7 @@ namespace MeetingVL.Controllers
 {
     public class CategoriesController : Controller
     {
-        private MeetingVLEntities db = new MeetingVLEntities();
+        private SEP25Team13Entities db = new SEP25Team13Entities();
 
         // GET: Categories
         public ActionResult Index(string keyword)
@@ -30,7 +30,7 @@ namespace MeetingVL.Controllers
 
             return View(links.ToList());
         }
-
+       
         // GET: Categories/Details/5
         public ActionResult Details(int? id)
         {

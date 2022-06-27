@@ -13,10 +13,10 @@ namespace MeetingVL.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MeetingVLEntities : DbContext
+    public partial class SEP25Team13Entities : DbContext
     {
-        public MeetingVLEntities()
-            : base("name=MeetingVLEntities")
+        public SEP25Team13Entities()
+            : base("name=SEP25Team13Entities")
         {
         }
     
@@ -34,7 +34,6 @@ namespace MeetingVL.Models
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectParticipant> ProjectParticipants { get; set; }
         public virtual DbSet<SessionReport> SessionReports { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

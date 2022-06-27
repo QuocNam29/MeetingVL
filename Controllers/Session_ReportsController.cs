@@ -12,7 +12,7 @@ namespace MeetingVL.Controllers
 {
     public class Session_ReportsController : Controller
     {
-        private MeetingVLEntities db = new MeetingVLEntities();
+        private SEP25Team13Entities db = new SEP25Team13Entities();
 
         // GET: Session_Reports
         public ActionResult Index(int? project_id)
