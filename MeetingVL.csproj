@@ -176,6 +176,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectParticipantsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\Session_ReportsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -1454,6 +1455,11 @@
     <Content Include="Views\Session_Reports\Details.cshtml" />
     <Content Include="Views\Session_Reports\Edit.cshtml" />
     <Content Include="Views\Session_Reports\Index.cshtml" />
+    <Content Include="Views\ProjectParticipants\Create.cshtml" />
+    <Content Include="Views\ProjectParticipants\Delete.cshtml" />
+    <Content Include="Views\ProjectParticipants\Details.cshtml" />
+    <Content Include="Views\ProjectParticipants\Edit.cshtml" />
+    <Content Include="Views\ProjectParticipants\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
