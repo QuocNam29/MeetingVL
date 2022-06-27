@@ -7,9 +7,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MeetingVL.Models;
+using MeetingVL.Middleware;
 
 namespace MeetingVL.Controllers
 {
+    [LoginVerification]
     [Authorize]
     public class ManageController : Controller
     {
