@@ -21,7 +21,7 @@ namespace MeetingVL.Controllers
         public ActionResult Index(string keyword)
         {
             string ID_User = Session["ID_User"].ToString();
-            var links = from l in db.Categories.Where(c => c.ID_User == ID_User)
+            var links = from l in db.Categories.Where(c => c.ID_User == ID_User && c.State != "Deleted")
                         select l;
 
             if (!string.IsNullOrEmpty(keyword))

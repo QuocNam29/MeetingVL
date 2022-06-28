@@ -37,29 +37,29 @@
                 }
             </div>
         </div>
+        
     </section>
-    <!-- /.col-lg-6 -->  
-    @using (Html.BeginForm("Index", "Categories", FormMethod.Get))
-    {
-        <div class="col-lg-6">
-            <div class="input-group">
+  
+   
+        @using (Html.BeginForm("Index", "Categories", FormMethod.Get))
+        {
+            <div class="col-lg-6" >
+                <div class="input-group" >
 
-                <input type="text" class="form-control" placeholder="Search for..." name="keyword">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">Go!</button>
+                    <input type="text" class="form-control" placeholder="Search for..." name="keyword">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Go!</button>
+                    </div>
+
                 </div>
-                
+                <!-- /input-group -->
             </div>
-            <!-- /input-group -->
-        </div>
-    }
-        <!-- /.col-lg-6 -->
-
+        }
+    
         <div class="row">
             @foreach (var item in Model)
             {
-                if (item.State != "Deleted")
-                {
+                
                     var myModal = "default" + item.ID;
                     var myBootstrap = "bootstrap" + item.ID;
                     <div class="col-xl-3 col-lg-6 col-12">
@@ -141,12 +141,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="white">June 16</span>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
-                }
+                
             }
         </div>
     </section>

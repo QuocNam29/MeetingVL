@@ -137,8 +137,17 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="projectinput3">E-mail</label>
-                                                    <input type="text" id="projectinput3" value="@Model.Email" class="form-control" name="email"
-                                                           required="required" oninvalid="this.setCustomValidity('Please enter Email')" oninput="setCustomValidity('')">
+                                                    @if (Model.Token != null)
+                                                    {
+                                                        <input type="text" id="projectinput3" value="@Model.Email" class="form-control" name="email" disabled
+                                                               required="required" oninvalid="this.setCustomValidity('Please enter Email')" oninput="setCustomValidity('')">
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" id="projectinput3" value="@Model.Email" class="form-control" name="email" 
+                                                               required="required" oninvalid="this.setCustomValidity('Please enter Email')" oninput="setCustomValidity('')">
+                                                    }
+
                                                 </div>
                                             </div>
                                             <div class="col-md-12">

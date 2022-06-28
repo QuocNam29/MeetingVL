@@ -17,4 +17,16 @@ namespace MeetingVL.Middleware
             }
         }
     }
+
+    public class AdminVerification : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (filterContext.HttpContext.Session["Role"].ToString() != "Admin")
+            {
+                filterContext.Result = new RedirectResult("~/Account/Login");
+                return;
+            }
+        }
+    }
 }

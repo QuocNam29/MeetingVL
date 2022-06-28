@@ -12,7 +12,7 @@ using MeetingVL.Models;
 
 namespace MeetingVL.Controllers
 {
-    [LoginVerification]
+    [AdminVerification]
     public class UsersController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
@@ -94,8 +94,20 @@ namespace MeetingVL.Controllers
            
             user.Email = email;
             user.Role = role;
+            string ID_User =  Session["ID_User"].ToString();
+            if (ID_User == email)
+            {               
+                Session["ID_VL"] = user.ID_VanLang;
+                Session["Name"] = name;
+                Session["Role"] = role;
+            }
+           
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
+            if (Session["Role"].ToString() != "Admin")
+            {
+                return RedirectToAction("Index", "Categories");
+            }
 
             return RedirectToAction("Details", new { email = email });
         }
