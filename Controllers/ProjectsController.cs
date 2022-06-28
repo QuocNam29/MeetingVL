@@ -27,7 +27,7 @@ namespace MeetingVL.Controllers
 
             if (!string.IsNullOrEmpty(keyword))
             {
-                links = links.Where(b => b.Name.ToLower().Contains(keyword.ToLower()));
+                links = links.Where(b => b.Name.ToLower().Contains(keyword.ToLower().Trim()));
                 TempData["keyword"] = keyword;
                 Category category1 = db.Categories.Find(category_id);
                 TempData["category_id"] = category_id;

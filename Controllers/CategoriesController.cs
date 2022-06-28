@@ -26,7 +26,7 @@ namespace MeetingVL.Controllers
 
             if (!string.IsNullOrEmpty(keyword))
             {
-                links = links.Where(b => b.Name.ToLower().Contains(keyword.ToLower()));
+                links = links.Where(b => b.Name.ToLower().Contains(keyword.ToLower().Trim()));
                 TempData["keyword"] = keyword;
                 return View(links.ToList());
             }
