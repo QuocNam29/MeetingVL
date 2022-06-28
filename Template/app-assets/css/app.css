@@ -53784,3 +53784,23 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     right: 4px;
 }
 
+/*.card .card-body {
+    height: 150px;
+}
+*/
+
+.content-header-body {
+    position: absolute;
+    width: 200px;
+    top: 50%;
+    left: 50%;
+    font-size: 22px;
+    text-align: center;
+    transform: translate( -50%, -50%);
+    overflow: hidden;
+    display: flex;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
