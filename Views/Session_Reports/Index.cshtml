@@ -49,17 +49,19 @@
     @using (Html.BeginForm("Index", "Session_Reports", FormMethod.Get))
     {
         @Html.Hidden("project_id", project_id)
-        <div class="col-lg-6">
+<div class="row">
+    <div class="col-12">
+        <div class="col-lg-6 input-wrap">
             <div class="input-group">
 
                 <input type="text" class="form-control" placeholder="Search for..." name="keyword">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">Go!</button>
                 </div>
-
             </div>
-            <!-- /input-group -->
         </div>
+    </div>
+</div>  
     }
     <!-- /.col-lg-6 -->
 

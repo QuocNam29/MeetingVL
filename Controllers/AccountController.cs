@@ -389,7 +389,7 @@ namespace MeetingVL.Controllers
                                 Session["ID_User"] = user1.Email;
                                 Session["ID_VL"] = user1.ID_VanLang;
                                 Session["Name"] = user1.Name;
-                                Session["Role"] = user.Role;
+                                Session["Role"] = user1.Role;
                             }
 
 

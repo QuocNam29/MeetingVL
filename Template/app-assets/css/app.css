@@ -53803,4 +53803,9 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
-
+.input-wrap {
+    float: right
+}
+.header-content-group{
+    display :flex;
+}

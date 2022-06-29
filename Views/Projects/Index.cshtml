@@ -18,9 +18,9 @@
                 <li class="header-controls-item text-bold-400">@category_Name</li>
             </ul>
         </div>
-        <div class="col-12 mt-3 mb-1">
-            <h2 class="content-header">@category_Name</h2>
-            <div class="complaint-add-row" style="float: right">
+        <div class="col-12 mt-3 mb-1 header-content-group">
+            <h2 class="content-header col-10">@category_Name</h2>
+            <div class="complaint-add-row col-2 " style="float: right">
                 <div id="btnAdd" class="btn btn-primary mb-2">
                     <i class="ft-plus"></i>
                     Add Project
@@ -32,17 +32,19 @@
     @using (Html.BeginForm("Index", "Projects", FormMethod.Get))
     {
         @Html.Hidden("category_id", category_id)
-        <div class="col-lg-6">
+<div class="row">
+    <div class="col-12">
+        <div class="col-lg-6 input-wrap">
             <div class="input-group">
 
                 <input type="text" class="form-control" placeholder="Search for..." name="keyword">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">Go!</button>
                 </div>
-
             </div>
-            <!-- /input-group -->
         </div>
+    </div>
+</div>
     }
     <!-- /.col-lg-6 -->
 
