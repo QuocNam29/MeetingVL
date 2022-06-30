@@ -60,6 +60,7 @@ namespace MeetingVL.Controllers
            
             db.Users.Add(user);
             db.SaveChanges();
+            Session["notification"] = "Successfully Added New User";
             return RedirectToAction("Index");
             
         }
@@ -106,9 +107,11 @@ namespace MeetingVL.Controllers
             db.SaveChanges();
             if (Session["Role"].ToString() != "Admin")
             {
+                Session["notification"] = "Successfully Edited User";
                 return RedirectToAction("Index", "Categories");
             }
 
+            Session["notification"] = "Successfully Edited User";
             return RedirectToAction("Details", new { email = email });
         }
 

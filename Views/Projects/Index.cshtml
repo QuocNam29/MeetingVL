@@ -7,7 +7,19 @@
     string category_Name = TempData["category_Name"].ToString();
     int no = 0;
 }
-
+@if (Session["notification"] != null)
+{
+    <button type="button" hidden class="btn btn-lg btn-block btn-outline-success mb-2" id="type-success" onclick="test()">Success</button>
+    <script>
+            function test() {
+                toastr.success('@Session["notification"].ToString()', 'Success');
+            }
+            window.onload = function () {
+                document.getElementById('type-success').click();
+            }
+    </script>
+    Session["notification"] = null;
+}
 <!--Start-->
 <section id="minimal-statistics-bg">
     <div class="row">
@@ -32,19 +44,19 @@
     @using (Html.BeginForm("Index", "Projects", FormMethod.Get))
     {
         @Html.Hidden("category_id", category_id)
-<div class="row">
-    <div class="col-12">
-        <div class="col-lg-6 input-wrap">
-            <div class="input-group">
+        <div class="row">
+            <div class="col-12">
+                <div class="col-lg-6 input-wrap">
+                    <div class="input-group">
 
-                <input type="text" class="form-control" placeholder="Search for..." name="keyword">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">Go!</button>
+                        <input type="text" class="form-control" placeholder="Search for..." name="keyword">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Go!</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
     }
     <!-- /.col-lg-6 -->
 
@@ -162,18 +174,18 @@
 
                         <div class="card bg-warning">
                             <div class="px-3 py-3">
-                                 <div class="dropdown nav-item mt-1 actions">
-                                <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>                                <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="arrow_box_right">
-                                        <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap">
-                                            <span> Edit</span>
-                                        </a>
-                                        <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal">
-                                            <span> Delete</span>
-                                        </a>
+                                <div class="dropdown nav-item mt-1 actions">
+                                    <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>                                <div class="dropdown-menu dropdown-menu-right">
+                                        <div class="arrow_box_right">
+                                            <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap">
+                                                <span> Edit</span>
+                                            </a>
+                                            <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal">
+                                                <span> Delete</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                                 <div class="row text-white">
                                     <div class="col-12 courses-wrap">
                                         <h1>
@@ -240,7 +252,7 @@
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="issueinput8">Description</label> 
+                                                    <label for="issueinput8">Description</label>
                                                     <textarea id="issueinput8" rows="5" class="form-control" name="description"
                                                               data-toggle="tooltip" data-trigger="hover" data-placement="top"
                                                               data-title="Comments">@item.Description</textarea>
@@ -292,7 +304,6 @@
     </div>
 </section>
 <!--End-->
-
 <!--MODAL ADD ROW-->
 <div class="modal-add-row">
     <div class="modal-container-fluid">
@@ -348,14 +359,14 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="projectinput1">Tilte Cycles per Time</label>
-                                                    <input type="text" id="projectinput1" class="form-control" name="tilte_Cycles" 
+                                                    <input type="text" id="projectinput1" class="form-control" name="tilte_Cycles"
                                                            required="required" oninvalid="this.setCustomValidity('Please enter Tilte Cycles per Time')" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="projectinput3">Cycles</label>
-                                                    <input type="number" id="projectinput3" class="form-control" name="cycles" min="1" 
+                                                    <input type="number" id="projectinput3" class="form-control" name="cycles" min="1"
                                                            required="required" oninvalid="this.setCustomValidity('Please enter Tilte Cycles')" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>
@@ -363,7 +374,7 @@
                                                 <div class="form-group">
                                                     <label for="projectinput3">Time</label>
                                                     <select id="projectinput5" name="time" class="form-control">
-                                                       
+
                                                         <option value="Day" selected="">Day</option>
                                                         <option value="Week">Week</option>
                                                         <option value="Month">Month</option>

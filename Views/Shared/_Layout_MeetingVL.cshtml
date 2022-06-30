@@ -28,7 +28,10 @@
     <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/tables/datatable/responsive.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="~/Template/app-assets/css/app.css">
 
-    
+    <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/toastr.css">
+
+
+
 </head>
 <body data-col="2-columns" class=" 2-columns ">
     <!-- ////////////////////////////////////////////////////////////////////////////-->
@@ -59,10 +62,10 @@
                         @if (Session["Role"].ToString() == "Admin")
                         {
                             <li class=" nav-item">
-                                <a href="@Url.Action("Index","Users")"><i class="icon-layers"></i><span data-i18n="" class="menu-title">Manage User</span></a>
+                                <a href="@Url.Action("Index","Users")"><i class="icon-layers"></i><span data-i18n="" class="menu-title">User</span></a>
                             </li>
                         }
-                        
+
 
 
                         <li class="nav-item">
@@ -364,6 +367,9 @@
     <script src="~/Template/app-assets/js/data-tables/datatable-basic.js"></script>
     <script src="~/Template/app-assets/js/data-tables/datatable-api.js"></script>
     <script src="~/Template/app-assets/js/components-modal.min.js"></script>
+
+    <script src="~/Template/app-assets/vendors/js/toastr.min.js"></script>
+    <script src="~/Template/app-assets/js/toastr.min.js"></script>
     <!-- END PAGE LEVEL JS-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

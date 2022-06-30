@@ -23,6 +23,8 @@ namespace MeetingVL.Controllers
             string ID_User = Session["ID_User"].ToString();
             var links = from l in db.Categories.Where(c => c.ID_User == ID_User && c.State != "Deleted")
                         select l;
+           
+           
 
             if (!string.IsNullOrEmpty(keyword))
             {
@@ -57,6 +59,7 @@ namespace MeetingVL.Controllers
             category.ID_User = Session["ID_User"].ToString();
             db.Categories.Add(category);
             db.SaveChanges();
+            Session["notification"] = "Successfully added new Category";
             return RedirectToAction("Index");
         }
 
@@ -72,6 +75,7 @@ namespace MeetingVL.Controllers
             category.Name = Name;
             db.Entry(category).State = EntityState.Modified;
             db.SaveChanges();
+            Session["notification"] = "Successfully Edited Category";
             return RedirectToAction("Index");
         }
 
@@ -88,6 +92,7 @@ namespace MeetingVL.Controllers
             category.State = "Deleted";
             db.Entry(category).State = EntityState.Modified;
             db.SaveChanges();
+            Session["notification"] = "Successfully Deleted Category";
             return RedirectToAction("Index");
         }
 

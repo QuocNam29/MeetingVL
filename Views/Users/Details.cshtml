@@ -4,7 +4,19 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
 }
-
+@if (Session["notification"] != null)
+{
+    <button type="button" hidden class="btn btn-lg btn-block btn-outline-success mb-2" id="type-success" onclick="test()">Success</button>
+    <script>
+            function test() {
+                toastr.success('@Session["notification"].ToString()', 'Success');
+            }
+            window.onload = function () {
+                document.getElementById('type-success').click();
+            }
+    </script>
+    Session["notification"] = null;
+}
 <div class="container-fluid">
     <!--Invoice template starts-->
     <div class="row">
@@ -92,7 +104,7 @@
                             @using (Html.BeginForm("Edit", "Users"))
                             {
                                 @Html.AntiForgeryToken()
-                                
+
                                 <form class="form">
                                     <div class="form-body">
                                         <h4 class="form-section">
@@ -111,7 +123,7 @@
                                                     <select id="projectinput5" name="role" class="form-control">
                                                         @if (Model.Role != null)
                                                         {
-                                                            <option value="@Model.Role" selected="" disabled="">@Model.Role</option>
+                                                            <option value="@Model.Role" selected="" >@Model.Role</option>
                                                         }
                                                         else
                                                         {
@@ -139,12 +151,12 @@
                                                     <label for="projectinput3">E-mail</label>
                                                     @if (Model.Token != null)
                                                     {
-                                                        <input type="text" id="projectinput3" value="@Model.Email" class="form-control" name="email" disabled
+                                                        <input type="text" id="projectinput3" value="@Model.Email" class="form-control" name="email" readonly
                                                                required="required" oninvalid="this.setCustomValidity('Please enter Email')" oninput="setCustomValidity('')">
                                                     }
                                                     else
                                                     {
-                                                        <input type="text" id="projectinput3" value="@Model.Email" class="form-control" name="email" 
+                                                        <input type="text" id="projectinput3" value="@Model.Email" class="form-control" name="email"
                                                                required="required" oninvalid="this.setCustomValidity('Please enter Email')" oninput="setCustomValidity('')">
                                                     }
 

@@ -129,6 +129,7 @@ namespace MeetingVL.Controllers
                 }
             }
             db.SaveChanges();
+            Session["notification"] = "Successfully Added New Project";
             return RedirectToAction("Index", new {category_id = category_id });
             
         }
@@ -151,6 +152,7 @@ namespace MeetingVL.Controllers
 
             db.Entry(project).State = EntityState.Modified;
             db.SaveChanges();
+            Session["notification"] = "Successfully Edited Project";
             return RedirectToAction("Index", new { category_id = project.Category_ID });
         }
 
@@ -166,6 +168,7 @@ namespace MeetingVL.Controllers
             project.State = "Deleted";
             db.Entry(project).State = EntityState.Modified;
             db.SaveChanges();
+            Session["notification"] = "Successfully Deleted Project";
             return RedirectToAction("Index", new { category_id = project.Category_ID });
         }
 

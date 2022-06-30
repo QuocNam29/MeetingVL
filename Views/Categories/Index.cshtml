@@ -5,6 +5,19 @@
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
 }
 
+@if (Session["notification"] != null)
+{   
+        <button type="button" hidden class="btn btn-lg btn-block btn-outline-success mb-2" id="type-success" onclick="test()">Success</button>
+        <script>
+            function test() {
+                toastr.success('@Session["notification"].ToString()', 'Success');
+            }
+            window.onload = function () {
+                document.getElementById('type-success').click();
+            }
+        </script>
+        Session["notification"] = null;
+}
 
 <section id="minimal-statistics-bg">
     <div class="row">
@@ -28,7 +41,7 @@
                             </div>
 
                             <input type="text" class="form-control col-md-10" id="todoTitle" name="Name" placeholder="Title"
-                                   required="required" oninvalid="this.setCustomValidity('Please enter name category')" oninput="setCustomValidity('')">
+                                   required="required" oninvalid="this.setCustomValidity('Please enter name category')" oninput="">
                             <button type="submit" class="btn btn-primary col-md-1 create-btn" @*style="float: right; margin-bottom:auto"*@>
                                 <i class="fa fa-paper-plane-o hidden-lg-up"></i> Create
                             </button>
@@ -99,7 +112,7 @@
                                                                         </fieldset>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
+                                                                        <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Close">
                                                                         <input type="submit" class="btn btn-outline-primary btn-lg" value="Save">
                                                                     </div>
                                                                 </form>
@@ -152,4 +165,8 @@
         }
     </div>
 </section>
+
+
+
+
 

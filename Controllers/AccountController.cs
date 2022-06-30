@@ -394,7 +394,7 @@ namespace MeetingVL.Controllers
 
 
                             FormsAuthentication.SetAuthCookie(loginInfo.Email, false);
-
+                            Session["notification"] = null;
                             return RedirectToAction("Index", "Categories");
                         }
                     }
@@ -406,6 +406,8 @@ namespace MeetingVL.Controllers
                         Session["Name"] = account.Name;
                         Session["Role"] = account.Role;
                         FormsAuthentication.SetAuthCookie(loginInfo.Email, false);
+
+                        Session["notification"] = null;
                         return RedirectToAction("Index", "Categories");
                     }             
                 case SignInStatus.LockedOut:

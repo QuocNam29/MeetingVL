@@ -136,6 +136,7 @@ namespace MeetingVL.Controllers
                     }
                 }
                 db.SaveChanges();
+                Session["notification"] = "Successfully Added New Session Report";
                 return RedirectToAction("Index", new { project_id = project_id });
             }
             
@@ -157,6 +158,7 @@ namespace MeetingVL.Controllers
             sessionReport.Date_End = date_End;
             db.Entry(sessionReport).State = EntityState.Modified;
             db.SaveChanges();
+            Session["notification"] = "Successfully Edited Session Report";
             return RedirectToAction("Index", new { project_id = sessionReport.Project_ID });
         }
 
@@ -171,6 +173,7 @@ namespace MeetingVL.Controllers
             sessionReport.State = "Deleted";
             db.Entry(sessionReport).State = EntityState.Modified;
             db.SaveChanges();
+            Session["notification"] = "Successfully Deleted Session Report";
             return RedirectToAction("Index", new { project_id = sessionReport.Project_ID });
         }
 
