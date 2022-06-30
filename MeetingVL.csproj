@@ -797,11 +797,9 @@
     <Content Include="Template\gulp-tasks\sass\watch.js" />
     <Content Include="Template\gulp-tasks\uglify\min.js" />
     <Content Include="Template\gulpfile.js" />
-    <Content Include="Template\Login\css\color.css" />
-    <Content Include="Template\Login\css\main.min.css" />
-    <Content Include="Template\Login\css\responsive.css" />
-    <Content Include="Template\Login\css\strip.css" />
+    <Content Include="Template\Login\css\grid.css" />
     <Content Include="Template\Login\css\style.css" />
+    <Content Include="Template\Login\css\vanlang5-2476.jpg" />
     <Content Include="Template\Login\js\map-init.js" />
     <Content Include="Template\Login\js\script.js" />
     <Content Include="Template\src\js\app-sidebar.js" />
@@ -862,7 +860,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
