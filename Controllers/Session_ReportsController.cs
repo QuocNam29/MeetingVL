@@ -49,6 +49,31 @@ namespace MeetingVL.Controllers
             TempData["category_Name"] = category.Name;
             return View(links.ToList());
         }
+        public ActionResult Student_SReport(int project_id, string keyword)
+        {
+            var sessionReports = db.SessionReports.Include(s => s.Project).Where(p => p.Project_ID == project_id);
+
+            var links = from l in db.SessionReports.Include(s => s.Project)
+                        .Where(p => p.Project_ID == project_id).Where(s => s.State != "Deleted")
+                        select l;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.Name.ToLower().Contains(keyword.ToLower().Trim()));
+                TempData["keyword"] = keyword;
+
+                Project project1 = db.Projects.Find(project_id);
+                TempData["project_id"] = project_id;
+                TempData["project_Name"] = project1.Name;
+                TempData["project_Description"] = project1.Description;                
+                return View(links.ToList());
+            }
+            Project project = db.Projects.Find(project_id);
+            TempData["project_id"] = project_id;
+            TempData["project_Name"] = project.Name;
+            TempData["project_Description"] = project.Description;           
+            return View(links.ToList());
+        }
 
         // GET: Session_Reports/Details/5
         public ActionResult Details(int? id)

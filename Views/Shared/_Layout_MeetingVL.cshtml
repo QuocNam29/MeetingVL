@@ -62,7 +62,7 @@
                         @if (Session["Role"].ToString() == "Admin")
                         {
                             <li class=" nav-item">
-                                <a href="@Url.Action("Index","Users")"><i class="icon-layers"></i><span data-i18n="" class="menu-title">User</span></a>
+                                <a href="@Url.Action("Index","Users")"><i class="icon-layers"></i><span data-i18n="" class="menu-title">Users</span></a>
                             </li>
                         }
 
@@ -70,6 +70,10 @@
 
                         <li class="nav-item">
                             <a href="@Url.Action("Index", "Categories")"><i class="icon-notebook"></i><span data-i18n="" class="menu-title">Category</span></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "ProjectParticipants")"><i class="icon-notebook"></i><span data-i18n="" class="menu-title">Project</span></a>
                         </li>
                         <li class=" nav-item">
                             <a href="dt-basic-initialization"><i class="fa fa-graduation-cap"></i><span data-i18n="" class="menu-title">Students</span></a>

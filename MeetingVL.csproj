@@ -1460,6 +1460,7 @@
     <Content Include="Views\ProjectParticipants\Details.cshtml" />
     <Content Include="Views\ProjectParticipants\Edit.cshtml" />
     <Content Include="Views\ProjectParticipants\Index.cshtml" />
+    <Content Include="Views\Session_Reports\Student_SReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

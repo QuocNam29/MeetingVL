@@ -1,0 +1,148 @@
+﻿@model IEnumerable<MeetingVL.Models.SessionReport>
+
+@{
+    ViewBag.Title = "Student_SReport";
+    Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    int project_id = int.Parse(TempData["project_id"].ToString());
+    string project_Name = TempData["project_Name"].ToString();
+    string project_Description = "";
+    if (TempData["project_Description"] != null)
+    {
+        project_Description = TempData["project_Description"].ToString();
+    }
+    int no = 0;
+}
+
+<section id="minimal-statistics">
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="header-controls-list">
+                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "ProjectParticipants")">Project</a></li>
+                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+                <li class="header-controls-item text-bold-400">@project_Name</li>
+
+            </ul>
+        </div>
+
+        <div class="col-sm-12">
+            <h2 class="content-header">@project_Name</h2>
+           
+            <p class="content-sub-header">@project_Description</p>
+        </div>
+    </div>
+    <!-- /.col-lg-6 -->
+    @using (Html.BeginForm("Index", "Session_Reports", FormMethod.Get))
+    {
+        @Html.Hidden("project_id", project_id)
+        <div class="row">
+            <div class="col-12">
+                <div class="col-lg-6 input-wrap">
+                    <div class="input-group">
+
+                        <input type="text" class="form-control" placeholder="Search for..." name="keyword">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Go!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- /.col-lg-6 -->
+
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            var myModal = "default" + item.ID;
+            var myBootstrap = "bootstrap" + item.ID;
+            no++;
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="media align-items-stretch">
+                            @if (no % 4 == 1)
+                            {
+                                <div class="p-2 text-center bg-info rounded-left pt-3">
+                                    <ion-icon name="calendar-outline" class="font-large-2 text-white"></ion-icon>
+                                    <a href="taskboard.html"></a>
+                                </div>
+                                
+                                <div class="py-2 px-2 media-body">
+                                    <a href="taskboard.html"></a>
+                                    <h6 class="info text-bold-500">@item.Name</h6>
+                                    <p class="courses-time font-small-3">
+                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
+                                        <span>-</span>
+                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
+                                    </p>
+                                    
+                                </div>
+
+                            }
+                            else if (no % 4 == 2)
+                            {
+                                <div class="p-2 text-center bg-danger rounded-left pt-3">
+                                    <ion-icon name="calendar-outline" class="font-large-2 text-white"></ion-icon>
+                                    <a href="taskboard.html"></a>
+                                </div>
+                                
+                                <div class="py-2 px-2 media-body">
+                                    <a href="taskboard.html"></a>
+                                    <h6 class="info text-bold-500">@item.Name</h6>
+                                    <p class="courses-time font-small-3">
+                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
+                                        <span>-</span>
+                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
+                                    </p>
+                                   
+                                </div>
+                            }
+                            else if (no % 4 == 3)
+                            {
+                                <div class="p-2 text-center bg-success rounded-left pt-3">
+                                    <ion-icon name="calendar-outline" class="font-large-2 text-white"></ion-icon>
+                                    <a href="taskboard.html"></a>
+                                </div>
+                                
+                                <div class="py-2 px-2 media-body">
+                                    <a href="taskboard.html"></a>
+                                    <h6 class="info text-bold-500">@item.Name</h6>
+                                    <p class="courses-time font-small-3">
+                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
+                                        <span>-</span>
+                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
+                                    </p>
+                                    
+                                </div>
+
+                            }
+                            else if (no % 4 == 0)
+                            {
+                                <div class="p-2 text-center bg-warning rounded-left pt-3">
+                                    <ion-icon name="calendar-outline" class="font-large-2 text-white"></ion-icon>
+                                    <a href="taskboard.html"></a>
+                                </div>
+                                
+                                <div class="py-2 px-2 media-body">
+                                    <a href="taskboard.html"></a>
+                                    <h6 class="info text-bold-500">@item.Name</h6>
+                                    <p class="courses-time font-small-3">
+                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
+                                        <span>-</span>
+                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
+                                    </p>
+                                   
+                                </div>
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+        }
+    </div>
+</section>

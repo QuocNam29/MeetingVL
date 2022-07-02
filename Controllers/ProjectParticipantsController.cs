@@ -17,10 +17,23 @@ namespace MeetingVL.Controllers
         private SEP25Team13Entities db = new SEP25Team13Entities();
 
         // GET: ProjectParticipants
-        public ActionResult Index()
+        public ActionResult Index(string keyword)
         {
-            var projectParticipants = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User);
-            return View(projectParticipants.ToList());
+            string email = Session["ID_User"].ToString();
+            var projectParticipants = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.User_ID == email && p.Role == "Student");
+
+            var links = from l in db.ProjectParticipants.Include(p => p.Project)
+                        .Include(p => p.User).Where(p => p.User_ID == email && p.Role == "Student")
+                        select l;
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.Project.Name.ToLower().Contains(keyword.ToLower().Trim()));
+               
+                return View(links.ToList());
+            }
+
+
+            return View(links.ToList());
         }
 
         // GET: ProjectParticipants/Details/5
