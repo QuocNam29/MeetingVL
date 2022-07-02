@@ -13,7 +13,7 @@
 
 		// Success Type
 		$('#type-success').on('click',function(){
-			toastr.success('Have fun storming the castle!', 'Miracle Max Says');
+			/*toastr.success('Have fun storming the castle!', 'Miracle Max Says');*/
 		});
 
 		// Success Type
