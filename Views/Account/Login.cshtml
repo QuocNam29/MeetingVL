@@ -1,4 +1,6 @@
-﻿@using MeetingVL.Models
+﻿
+
+@using MeetingVL.Models
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
@@ -23,64 +25,26 @@
 </head>
 <body>
     <!--<div class="se-pre-con"></div>-->
-    <div class="theme-layout">
-        <div class="container-fluid pdng0">
-            <div class="row merged">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="land-featurearea">
-                        <div class="land-meta">
-                            <h1> Van Lang University</h1>
-                            <p>
-                                Morality - Will - Creativity
-                            </p>
-                            <div class="friend-logo">
-                                @*<section id="socialLoginForm">
-                                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                                </section>*@
-                                <span> <img src="~/Template/app-assets/img/LogoVL.png" alt="" style="position: relative; top: -17px; left: -6px; "/></span>
-                            </div>
-                            <a  title="" class="folow-me">Welcome to Meeting-VL</a>
-                        </div>
+    <div class="container">
+        <div id="slider" class="row">
+            <div class="col l-12 m-12 c-12 form-login-wrap">
+                <p class="form-login-desc">Wellcome to meeting VanLang</p>
+                <p class="form-login-line"></p>
+                <div class="form-login">
+                    <div class="form-logo">
+                        <img src="~/Template/app-assets/img/LogoVL.png" class="form-logo-link" alt="Logo">
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="login-reg-bg">
-                        <div class="log-reg-area sign">
-                            <h2 class="log-title">Login Meeting-VL</h2>
+                    <p class="form-name">Morality - Will - Creativity</p>
+                   
+                    <a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=ea2300f8-22a5-4f18-86d4-78316fb2c5e9&scope=https%3A%2F%2Fgraph.microsoft.com%2Fuser.read&response_type=code&redirect_uri=https%3A%2F%2Ffitlogin.vanlanguni.edu.vn%2FLoginManagement%2Fsignin-microsoft&state=edj0vgOTkG8pPSr-mIr8DOCv81RurV7jGOHCoisc7D-Fj-lZrZmuNo-8C90Gb917MvW4dlYVVhs4lhLweD7uxrzSc_OgghGNCEKEvIH25zq0Bg3ZNpNJm02oKWykr90IwOdRu4NqdBuOTbLnTavjfFV2y8oOy7K1SMiwyVrvDWuIy3Q_h23SqNCdKhSHMKNH7OF0oZvhzrt2tnq0Uc-Bz1-cs5p4KuADBDxn6oyC3TYVulodmGsmGAq9oJce8DmHXxgF31NvUwg75nS2qHz3-DJARYQev5vd1CeBss_2lMbPQooIPGyM2P4kkJE6O9hK1yrA-gpQuCFaZAEdtpvBlu5O1LGWrFLtiWurhmGEydSt26Un7mf7OOF9N0SZm9aOU9vcbWh5lLHiADahRs7ptwhWZh_4BcO4Kcjf_v5LocG05qedPMC7IXAGk4_Q1PGdOt08kRSPHQRguRqj_TGICg">
+                        <button class="form-btn">
+                            <span>Logn in</span>
+                        </button>
+                    </a>
+                   
 
-                            <form method="post" action="@Url.Action("KiemDuyet_DangNhap")">
-                                <div class="form-group">
-                                    <input type="text" id="input" name="mail" required="required" />
-                                    <label class="control-label" for="input">Email</label><i class="mtrl-select"></i>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="matKhau" required="required" />
-                                    <label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
-                                </div>
+                    <p class="form-desc">Login with VanLang account</p>
 
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" checked="checked" /><i class="check-box"></i>Always Remember Me.
-                                    </label>
-                                </div>
-                                <a href="#" title="" class="forgot-pwd">Forgot Password?</a>
-                                <div class="submit-btns">
-                                    <button class="mtr-btn signin" type="button"><span>Login</span></button>
-                                    <button class="mtr-btn signup" type="button"><span>Register</span></button>
-                                </div>
-                            </form>
-                            <br />
-                            @if (TempData["MailDomainError"] != null)
-                            {
-                                <div class="text-danger">@TempData["MailDomainError"].ToString()</div>
-                                <br />
-                            }
-                            <h6 style="text-align:center; color: darkred">Log in using account on:</h6>
-                            <br />
-                            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                        </div>
-                        
-                    </div>
                 </div>
             </div>
         </div>
