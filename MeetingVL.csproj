@@ -800,8 +800,6 @@
     <Content Include="Template\Login\css\grid.css" />
     <Content Include="Template\Login\css\style.css" />
     <Content Include="Template\Login\css\vanlang5-2476.jpg" />
-    <Content Include="Template\Login\js\map-init.js" />
-    <Content Include="Template\Login\js\script.js" />
     <Content Include="Template\src\js\app-sidebar.js" />
     <Content Include="Template\src\js\chartist.js" />
     <Content Include="Template\src\js\chartjs.js" />
@@ -1458,6 +1456,7 @@
     <Content Include="Views\ProjectParticipants\Edit.cshtml" />
     <Content Include="Views\ProjectParticipants\Index.cshtml" />
     <Content Include="Views\Session_Reports\Student_SReport.cshtml" />
+    <Content Include="Template\Login\.vscode\settings.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

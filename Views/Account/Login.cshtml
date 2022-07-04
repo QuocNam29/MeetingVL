@@ -10,21 +10,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <title>Login</title>
-    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
-
-    <link rel="stylesheet" href="~/Template/Login/css/main.min.css">
-    <link rel="stylesheet" href="~/Template/Login/css/style.css">
-    <link rel="stylesheet" href="~/Template/Login/css/color.css">
-    <link rel="stylesheet" href="~/Template/Login/css/responsive.css">
-
+    <link href="~/Template/Login/css/grid.css" rel="stylesheet" />
+    <link href="~/Template/Login/css/style.css" rel="stylesheet" />
+    <title>Document</title>
 </head>
 <body>
-    <!--<div class="se-pre-con"></div>-->
     <div class="container">
         <div id="slider" class="row">
             <div class="col l-12 m-12 c-12 form-login-wrap">
@@ -32,33 +25,19 @@
                 <p class="form-login-line"></p>
                 <div class="form-login">
                     <div class="form-logo">
+
                         <img src="~/Template/app-assets/img/LogoVL.png" class="form-logo-link" alt="Logo">
                     </div>
                     <p class="form-name">Morality - Will - Creativity</p>
-                   
-                    <a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=ea2300f8-22a5-4f18-86d4-78316fb2c5e9&scope=https%3A%2F%2Fgraph.microsoft.com%2Fuser.read&response_type=code&redirect_uri=https%3A%2F%2Ffitlogin.vanlanguni.edu.vn%2FLoginManagement%2Fsignin-microsoft&state=edj0vgOTkG8pPSr-mIr8DOCv81RurV7jGOHCoisc7D-Fj-lZrZmuNo-8C90Gb917MvW4dlYVVhs4lhLweD7uxrzSc_OgghGNCEKEvIH25zq0Bg3ZNpNJm02oKWykr90IwOdRu4NqdBuOTbLnTavjfFV2y8oOy7K1SMiwyVrvDWuIy3Q_h23SqNCdKhSHMKNH7OF0oZvhzrt2tnq0Uc-Bz1-cs5p4KuADBDxn6oyC3TYVulodmGsmGAq9oJce8DmHXxgF31NvUwg75nS2qHz3-DJARYQev5vd1CeBss_2lMbPQooIPGyM2P4kkJE6O9hK1yrA-gpQuCFaZAEdtpvBlu5O1LGWrFLtiWurhmGEydSt26Un7mf7OOF9N0SZm9aOU9vcbWh5lLHiADahRs7ptwhWZh_4BcO4Kcjf_v5LocG05qedPMC7IXAGk4_Q1PGdOt08kRSPHQRguRqj_TGICg">
-                        <button class="form-btn">
-                            <span>Logn in</span>
-                        </button>
-                    </a>
-                   
-
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                    
                     <p class="form-desc">Login with VanLang account</p>
-
                 </div>
             </div>
         </div>
     </div>
-
-
-    <script src="~/Template/Login/js/main.min.js"></script>
-    <script src="~/Template/Login/js/script.js"></script>
-
 </body>
-
 </html>
-
-
 
 
 @section Scripts {
