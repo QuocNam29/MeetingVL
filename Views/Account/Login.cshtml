@@ -25,12 +25,10 @@
                 <p class="form-login-line"></p>
                 <div class="form-login">
                     <div class="form-logo">
-
                         <img src="~/Template/app-assets/img/LogoVL.png" class="form-logo-link" alt="Logo">
                     </div>
                     <p class="form-name">Morality - Will - Creativity</p>
-                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                    
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })                  
                     <p class="form-desc">Login with VanLang account</p>
                 </div>
             </div>
