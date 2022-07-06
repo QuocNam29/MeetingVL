@@ -287,3 +287,32 @@ const handleClick = (event) => {
 headerControlItem.forEach((e) => {
     e.addEventListener('click', handleClick)
 })
+
+
+
+var start = document.getElementById('date-start');
+var end = document.getElementById('date-end');
+
+start.addEventListener('change', function () {
+    if (start.value)
+        end.min = start.value;
+}, false);
+
+end.addEventListener('change', function () {
+    if (end.value)
+        start.max = end.value;
+}, false);
+
+
+var add_start = document.getElementById('add-date-start');
+var add_end = document.getElementById('add-date-end');
+
+add_start.addEventListener('change', function () {
+    if (add_start.value)
+        add_end.min = add_start.value;
+}, false);
+
+add_end.addEventListener('change', function () {
+    if (add_end.value)
+        add_start.max = add_end.value;
+}, false);

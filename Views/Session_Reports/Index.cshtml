@@ -51,7 +51,7 @@
                     </button>
                     <div class="dropdown-menu">
                         <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#myBootstrap"><span>Each report</span></a>
-                        <a class="dropdown-item complaint-add-row" href="#">A lot of reprot</a>
+                        <a class="dropdown-item complaint-add-row" href="#">A lot of report</a>
                     </div>
                 </div>
             </div>
@@ -249,7 +249,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="issueinput3">Date_Start</label>
-                                                <input type="date" id="issueinput3" class="form-control" name="date_Start" value="@String.Format("{0:yyyy-MM-dd}",item.Date_Start)"
+                                                <input type="date" id="date-start-@item.ID" class="form-control" name="date_Start" value="@String.Format("{0:yyyy-MM-dd}",item.Date_Start)"
                                                        data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened"
                                                        required="required" oninvalid="this.setCustomValidity('Please enter date start')" oninput="setCustomValidity('')">
                                             </div>
@@ -257,7 +257,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="issueinput4">Date_End</label>
-                                                <input type="date" id="issueinput4" class="form-control" name="date_End" value="@String.Format("{0:yyyy-MM-dd}",item.Date_End)"
+                                                <input type="date" id="date-end-@item.ID" class="form-control" name="date_End" value="@String.Format("{0:yyyy-MM-dd}",item.Date_End)"
                                                        data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed"
                                                        required="required" oninvalid="this.setCustomValidity('Please enter date end')" oninput="setCustomValidity('')">
                                             </div>
@@ -272,6 +272,20 @@
                                     <input type="submit" class="btn btn-outline-primary btn-lg" value="Save">
                                 </div>
                             </form>
+                            <script>
+                                var start_@item.ID = document.getElementById('date-start-@item.ID');
+                                var end_@item.ID = document.getElementById('date-end-@item.ID');
+
+                                start_@item.ID .addEventListener('change', function () {
+                                    if ((start_@item.ID).value)
+                                        (end_@item.ID).min = (start_@item.ID).value;
+                                }, false);
+
+                                end_@item.ID .addEventListener('change', function () {
+                                    if ((end_@item.ID).value)
+                                        (start_@item.ID).max = (end_@item.ID).value;
+                                }, false);
+                            </script>
                         }
                     </div>
                 </div>
@@ -304,6 +318,7 @@
                 </div>
             </div>
             <!----Modal-->
+
         }
     </div>
 </section>
@@ -340,7 +355,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="issueinput3">Date_Start</label>
-                                    <input type="date" id="issueinput3" class="form-control" name="date_Start"
+                                    <input type="date" id="date-start" class="form-control" name="date_Start"
                                            data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened"
                                            required="required" oninvalid="this.setCustomValidity('Please enter date start')" oninput="setCustomValidity('')">
                                 </div>
@@ -348,7 +363,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="issueinput4">Date_End</label>
-                                    <input type="date" id="issueinput4" class="form-control" name="date_End"
+                                    <input type="date" id="date-end" class="form-control" name="date_End"
                                            data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed"
                                            required="required" oninvalid="this.setCustomValidity('Please enter date end')" oninput="setCustomValidity('')">
                                 </div>
@@ -357,7 +372,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
+                        <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Cancel">
                         <input type="submit" class="btn btn-outline-primary btn-lg" value="Save">
                     </div>
                 </form>
@@ -375,7 +390,7 @@
                     <div class="card-header">
                         <div class="card-title-wrap bar-success">
                             <div>
-                                <h4 class="card-title" id="basic-layout-form">Add a lot of reprot</h4>
+                                <h4 class="card-title" id="basic-layout-form">Add a lot of report</h4>
                             </div>
                         </div>
                         <div class="modal-close">
@@ -405,7 +420,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="issueinput3">Date_Start</label>
-                                                    <input type="date" id="issueinput3" class="form-control" name="date_Start"
+                                                    <input type="date" id="add-date-start" class="form-control" name="date_Start"
                                                            data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened"
                                                            required="required" oninvalid="this.setCustomValidity('Please enter date start')" oninput="setCustomValidity('')">
                                                 </div>
@@ -413,7 +428,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="issueinput4">Date_End</label>
-                                                    <input type="date" id="issueinput4" class="form-control" name="date_End"
+                                                    <input type="date" id="add-date-end" class="form-control" name="date_End"
                                                            data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed"
                                                            required="required" oninvalid="this.setCustomValidity('Please enter date end')" oninput="setCustomValidity('')">
                                                 </div>

@@ -1,170 +1,19 @@
-﻿@model IEnumerable<MeetingVL.Models.User>
+﻿<form>
+    <label>Start date: <input type=date id=start required></label>
+    <label>End date: <input type=date id=end required></label>
+    <input type=submit>
+</form>
+<script>
+    var start = document.getElementById('start');
+    var end = document.getElementById('end');
 
-@{
-    Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
-    int no = 0;
-}
-<section id="configuration">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">List User</h4>
-                    </div>
-                </div>
-                <div class="card-body collapse show">
-                    <div class="card-block card-dashboard">
-                        <div class="complaint-add-row">
-                            <div id="btnAdd" class="btn btn-primary mb-2">
-                                <i class="ft-plus"></i>
-                                Add User
-                            </div>
-                        </div>
-                        <a class="btn mr-1 btn-info"> <i class="ft-arrow-left"></i> Come back</a>
-                        <table class="table table-hover  table-bordered dataTables_wrapper container-fluid dt-bootstrap4">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Department</th>
-                                    <th>Majors</th>
-                                    <th>State</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    no++;
-                                    <tr>
-                                        <td>@no</td>
-                                        <td>@item.Name</td>
-                                        <td>@item.Email</td>
-                                        <td>@item.Role</td>
-                                        <td>@item.Department</td>
-                                        <td>@item.Majors</td>
-                                        @if (item.State != null)
-                                        {
+    start.addEventListener('change', function () {
+        if (start.value)
+            end.min = start.value;
+    }, false);
+    end.addEventListener('change', function () {
+        if (end.value)
+            start.max = end.value;
+    }, false);
 
-                                            <td>@item.State.Value.ToString()</td>
-                                        }
-                                        else
-                                        {
-
-                                            <td></td>
-                                        }
-                                        <td>
-                                            <button type="button" class="btn btn-sm btn-outline-danger round complaint-add-row">Edit</button>
-                                        </td>
-
-
-                                    </tr>
-                                }
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Department</th>
-                                    <th>Majors</th>
-                                    <th>State</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- File export table -->
-<!--MODAL ADD ROW-->
-<div class="modal-add-row">
-    <div class="modal-container-fluid">
-        <div class="row justify-content-md-center">
-            <div class="col-md-6">
-                <div class="card modal-card">
-                    <div class="card-header">
-                        <div class="card-title-wrap bar-success">
-                            <div>
-                                <h4 class="card-title" id="basic-layout-form">Add User</h4>
-                            </div>
-                        </div>
-                        <div class="modal-close">
-                            <i class="fa-solid fa-xmark modal-close-icon"></i>
-                        </div>
-
-                    </div>
-                    <div class="card-body">
-                        <div class="px-3">
-                            @using (Html.BeginForm("Create", "Users"))
-                            {
-                                @Html.AntiForgeryToken()
-                                <form class="form">
-                                    <div class="form-body">
-                                        <h4 class="form-section">
-                                            <i class="icon-user"></i> User Details
-                                        </h4>
-                                        <div class="row justify-content-md-center">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="projectinput1">Name</label>
-                                                    <input type="text" id="projectinput1" value="" class="form-control" name="name">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="projectinput3">Role</label>
-                                                    <select id="projectinput5" name="role" class="form-control">
-                                                        <option value="none" selected="" disabled="">Role</option>
-                                                        <option value="Admin">Admin</option>
-                                                        <option value="Sudent">Sudent</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="projectinput3">Department</label>
-                                                    <input type="text" id="projectinput3" class="form-control" name="department">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="projectinput3">Majors</label>
-                                                    <input type="text" id="projectinput3" class="form-control" name="majors">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="projectinput3">E-mail</label>
-                                                    <input type="text" id="projectinput3" value="" class="form-control" name="email">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-actions complaint-form">
-                                        <button type="button" class="btn btn-danger mr-1 btn-cancel">
-                                            <i class="icon-trash"></i> Cancel
-                                        </button>
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="icon-note"></i> Save
-                                        </button>
-                                    </div>
-                                </form>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--END-->
-
+</script>

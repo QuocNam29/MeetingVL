@@ -70,8 +70,8 @@
                         <div class="row">
 
 
-                            <a href="@Url.Action("Index","Users")" class="btn mr-1 btn-info"> <i class="ft-arrow-left"></i> Come back</a>
-                            <a id="btnAdd" class="btn btn-primary mb-2 complaint-add-row"> <i class="icon-pencil"></i> Edit User</a>
+                            <a href="@Url.Action("Index","Users")" class="btn mr-2 btn-info  btn-primary"> <i class="ft-arrow-left"></i> Come back</a>
+                            <a id="btnAdd" class="btn btn-primary mr-2 complaint-add-row" style="position:inherit; left: 20px"> <i class="icon-pencil"></i> Edit User</a>
                         </div>
                     </div>
                     <!--/ Invoice Footer -->
@@ -91,7 +91,7 @@
                     <div class="card-header">
                         <div class="card-title-wrap bar-success">
                             <div>
-                                <h4 class="card-title" id="basic-layout-form">Add User</h4>
+                                <h4 class="card-title" id="basic-layout-form">Update User</h4>
                             </div>
                         </div>
                         <div class="modal-close">
@@ -117,23 +117,39 @@
                                                     <input type="text" id="projectinput1" value="@Model.Name" class="form-control" name="name">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="projectinput3">Role</label>
-                                                    <select id="projectinput5" name="role" class="form-control">
-                                                        @if (Model.Role != null)
-                                                        {
-                                                            <option value="@Model.Role" selected="" >@Model.Role</option>
-                                                        }
-                                                        else
-                                                        {
-                                                            <option value="none" selected="" disabled="">Role</option>
-                                                        }
-                                                        <option value="Admin">Admin</option>
-                                                        <option value="User">User</option>
-                                                    </select>
+                                            @if (Model.Email == Session["ID_User"].ToString())
+                                            {
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="projectinput3">Role</label>
+                                                        <select id="projectinput5" name="role" class="form-control" disabled>
+
+                                                            <option value="@Model.Role" selected="" disabled>@Model.Role</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="projectinput3">Role</label>
+                                                        <select id="projectinput5" name="role" class="form-control">
+                                                            @if (Model.Role != null)
+                                                            {
+                                                                <option value="@Model.Role" selected="" disabled>@Model.Role</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="none" selected="" disabled="">Role</option>
+                                                            }
+                                                            <option value="Admin">Admin</option>
+                                                            <option value="User">User</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            }
+
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="projectinput3">Department</label>
@@ -162,24 +178,28 @@
 
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="projectinput3">State</label>
-                                                    <select id="projectinput5" name="state" class="form-control">
-                                                        @if (Model.Role != null)
-                                                        {
-                                                            <option value="@Model.State" selected="" disabled="">@Model.State</option>
-                                                        }
-                                                        else
-                                                        {
-                                                            <option value="none" selected="" disabled="">State</option>
-                                                        }
-                                                        <option value="none" selected="" disabled="">State</option>
-                                                        <option value="true">True</option>
-                                                        <option value="false">False</option>
-                                                    </select>
+                                            @if (Model.Token != null)
+                                            {
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="projectinput3">State</label>
+                                                        <select id="projectinput5" name="state" class="form-control">
+                                                            @if (Model.State != null)
+                                                            {
+                                                                <option value="@Model.State" selected="" disabled="">@Model.State</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="none" selected="" disabled="">State</option>
+                                                            }
+
+                                                            <option value="true">True</option>
+                                                            <option value="false">False</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            }
+
                                         </div>
                                     </div>
 

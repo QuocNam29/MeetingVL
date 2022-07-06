@@ -22,7 +22,7 @@ namespace MeetingVL.Middleware
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session["Role"].ToString() != "Admin")
+            if (filterContext.HttpContext.Session["ID_User"] == null || filterContext.HttpContext.Session["Role"].ToString() != "Admin")
             {
                 filterContext.Result = new RedirectResult("~/Account/Login");
                 return;

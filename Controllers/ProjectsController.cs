@@ -22,7 +22,7 @@ namespace MeetingVL.Controllers
             
 
             var links = from l in db.Projects.Include(p => p.Category)                      
-                        .Where(p => p.Category_ID == category_id)
+                        .Where(p => p.Category_ID == category_id && p.State != "Deleted")
                         select l;
 
             if (!string.IsNullOrEmpty(keyword))
