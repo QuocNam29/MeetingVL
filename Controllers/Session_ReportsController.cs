@@ -95,16 +95,34 @@ namespace MeetingVL.Controllers
             DateTime date_Start, DateTime date_End,
             int cycles, string time, int option)
         {
-           
+            int start = 0;
+            int location = -1;
+            var resule = db.SessionReports.OrderByDescending(s => s.ID).FirstOrDefault(p => p.Project_ID == project_id && p.State != "Deleted" && p.Name.StartsWith(tilte_Cycles));
+            if (resule!= null)
+            {
+                 location = resule.Name.LastIndexOf(tilte_Cycles);
+            }           
+            if (location >=0)
+            {
+                string hihi = resule.Name.Substring(tilte_Cycles.Length);
+                if (!String.IsNullOrEmpty(hihi))
+                {
+                    start = int.Parse(hihi);
+                }
+            }
+            
             if (option == 1)
             {
+                start++;
+                string finish_tilte_Cycles = tilte_Cycles + " " + start;
                 SessionReport sessionReport = new SessionReport();
                 sessionReport.Project_ID = project_id;
-                sessionReport.Name = tilte_Cycles;
+                sessionReport.Name = finish_tilte_Cycles;
                 sessionReport.Date_Start = date_Start;
                 sessionReport.Date_End = date_End;
                 db.SessionReports.Add(sessionReport);
                 db.SaveChanges();
+                Session["notification"] = "Successfully Added Session Report";
                 return RedirectToAction("Index", new { project_id = project_id });
             }
 
@@ -114,8 +132,9 @@ namespace MeetingVL.Controllers
                 int SumTime = Time.Days + 1;
                 if (time == "Day")
                 {
-                    int CyclesperTime = SumTime / cycles;
-                    for (int i = 1; i <= CyclesperTime; i++)
+                    int CyclesperTime = SumTime / cycles + start;
+                    start++; 
+                    for (int i = start; i <= CyclesperTime; i++)
                     {
 
                         SessionReport sessionReport = new SessionReport();
@@ -130,8 +149,9 @@ namespace MeetingVL.Controllers
                 }
                 else if (time == "Week")
                 {
-                    int CyclesperTime = SumTime / (7 * cycles);
-                    for (int i = 1; i <= CyclesperTime; i++)
+                    int CyclesperTime = SumTime / (7 * cycles) +start;
+                    start++;
+                    for (int i = start; i <= CyclesperTime; i++)
                     {
 
                         SessionReport sessionReport = new SessionReport();
@@ -146,8 +166,9 @@ namespace MeetingVL.Controllers
                 }
                 else if (time == "Month")
                 {
-                    int CyclesperTime = SumTime / (28 * cycles);
-                    for (int i = 1; i <= CyclesperTime; i++)
+                    int CyclesperTime = SumTime / (28 * cycles) + start;
+                    start++;
+                    for (int i = start; i <= CyclesperTime; i++)
                     {
 
                         SessionReport sessionReport = new SessionReport();

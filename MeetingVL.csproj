@@ -1457,6 +1457,7 @@
     <Content Include="Views\ProjectParticipants\Index.cshtml" />
     <Content Include="Views\Session_Reports\Student_SReport.cshtml" />
     <Content Include="Template\Login\.vscode\settings.json" />
+    <Content Include="Views\ProjectParticipants\List_member.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

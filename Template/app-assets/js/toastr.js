@@ -11,11 +11,11 @@
     'use strict';
 	$(document).ready(function(){
 
-		// Success Type
+		/*// Success Typetype-success
 		$('#type-success').on('click',function(){
-			/*toastr.success('Have fun storming the castle!', 'Miracle Max Says');*/
+			toastr.success('Have fun storming the castle!', 'Miracle Max Says');
 		});
-
+*/
 		// Success Type
 		$('#type-info').on('click',function(){
 			toastr.info('We do have the Kapua suite available.', 'Turtle Bay Resort');

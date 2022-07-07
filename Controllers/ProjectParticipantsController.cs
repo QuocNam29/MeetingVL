@@ -35,6 +35,15 @@ namespace MeetingVL.Controllers
 
             return View(links.ToList());
         }
+        public ActionResult List_member(int project_id)
+        {
+            
+            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id);
+
+
+            return View(member.ToList());
+        }
+
 
         // GET: ProjectParticipants/Details/5
         public ActionResult Details(int? id)

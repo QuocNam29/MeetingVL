@@ -1,0 +1,150 @@
+﻿@model List<MeetingVL.Models.ProjectParticipant>
+
+@{
+    Layout = null;
+    int no = 0;
+}
+
+<section id="file-export">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+           
+                <div class="card-body collapse show">
+                    <div class="card-block card-dashboard">
+                        <div class="complaint-add-row">
+                            <div id="btnAdd" class="btn btn-primary mb-2">
+                                <i class="ft-plus"></i>
+                                Add User
+                            </div>
+                        </div>
+
+                        <table class="table table-striped table-bordered file-export">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Group</th>
+                                    <th>Role</th>
+
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    no++;
+                                    <tr>
+                                        <td>@no</td>
+                                        <td>@item.User.Name</td>
+                                        <td>@item.User_ID</td>
+                                        <td>@item.Group</td>
+                                        <td>@item.Role</td>                                       
+                                    </tr>
+
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Group</th>
+                                    <th>Role</th>
+                                    
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- File export table -->
+<!--MODAL ADD ROW-->
+<div class="modal-add-row">
+    <div class="modal-container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <div class="card modal-card">
+                    <div class="card-header">
+                        <div class="card-title-wrap bar-success">
+                            <div>
+                                <h4 class="card-title" id="basic-layout-form">Add User</h4>
+                            </div>
+                        </div>
+                        <div class="modal-close">
+                            <i class="fa-solid fa-xmark modal-close-icon"></i>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="px-3">
+                            @using (Html.BeginForm("Create", "Users"))
+                            {
+                                @Html.AntiForgeryToken()
+                                <form class="form">
+                                    <div class="form-body">
+                                        <h4 class="form-section">
+                                            <i class="icon-user"></i> User Details
+                                        </h4>
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput1">Name</label>
+                                                    <input type="text" id="projectinput1" class="form-control" name="name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">Role</label>
+                                                    <select id="projectinput5" name="role" class="form-control">
+                                                        <option value="none" selected="" disabled="">Role</option>
+                                                        <option value="Admin">Admin</option>
+                                                        <option value="User">User</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">Department</label>
+                                                    <input type="text" id="projectinput3" class="form-control" name="department">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">Majors</label>
+                                                    <input type="text" id="projectinput3" class="form-control" name="majors">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="projectinput3">E-mail</label>
+                                                    <input type="text" id="projectinput3" class="form-control" name="email"
+                                                           required="required" oninvalid="this.setCustomValidity('Please enter Email')" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions complaint-form">
+                                        <button type="button" class="btn btn-danger mr-1 btn-cancel">
+                                            <i class="icon-trash"></i> Cancel
+                                        </button>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="icon-note"></i> Save
+                                        </button>
+                                    </div>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END-->

@@ -348,7 +348,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="issueinput3">Date_Start</label>
-                                    <input type="date" id="add-date-start" class="form-control" name="date_Start"
+                                    <input type="date" id="add-date-start1" class="form-control" name="date_Start"
                                            data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened"
                                            required="required" oninvalid="this.setCustomValidity('Please enter date start')" oninput="setCustomValidity('')">
                                 </div>
@@ -356,7 +356,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="issueinput4">Date_End</label>
-                                    <input type="date" id="add-date-end" class="form-control" name="date_End"
+                                    <input type="date" id="add-date-end1" class="form-control" name="date_End"
                                            data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed"
                                            required="required" oninvalid="this.setCustomValidity('Please enter date end')" oninput="setCustomValidity('')">
                                 </div>
@@ -406,3 +406,18 @@
         </div>
     </div>
 </div>
+<script>
+    var add_start1 = document.getElementById('add-date-start1');
+    var add_end1 = document.getElementById('add-date-end1');
+
+    add_start1.addEventListener('change', function () {
+        if (add_start1.value)
+            add_end1.min = add_start1.value;
+    }, false);
+
+    add_end1.addEventListener('change', function () {
+        if (add_end1.value)
+            add_start1.max = add_end1.value;
+    }, false);
+
+</script>
