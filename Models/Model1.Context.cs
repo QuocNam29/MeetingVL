@@ -35,5 +35,12 @@ namespace MeetingVL.Models
         public virtual DbSet<ProjectParticipant> ProjectParticipants { get; set; }
         public virtual DbSet<SessionReport> SessionReports { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Action> Actions { get; set; }
+        public virtual DbSet<Evaluate> Evaluates { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<MeetingMinute> MeetingMinutes { get; set; }
+        public virtual DbSet<Semester> Semesters { get; set; }
+        public virtual DbSet<Session_Semester> Session_Semester { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

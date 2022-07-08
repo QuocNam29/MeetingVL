@@ -12,23 +12,28 @@ namespace MeetingVL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SessionReport
+    public partial class MeetingMinute
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SessionReport()
+        public MeetingMinute()
         {
-            this.Session_Semester = new HashSet<Session_Semester>();
+            this.Actions = new HashSet<Action>();
         }
     
         public int ID { get; set; }
-        public int Project_ID { get; set; }
-        public string Name { get; set; }
-        public Nullable<System.DateTime> Date_Start { get; set; }
-        public Nullable<System.DateTime> Date_End { get; set; }
-        public string State { get; set; }
+        public string User_ID { get; set; }
+        public int SessionReport { get; set; }
+        public System.DateTime Date { get; set; }
+        public string Location { get; set; }
+        public string Objectives { get; set; }
+        public string Content { get; set; }
+        public string Customer { get; set; }
+        public string Mentor { get; set; }
+        public string TeamMember { get; set; }
+        public Nullable<System.DateTime> Time { get; set; }
     
-        public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Session_Semester> Session_Semester { get; set; }
+        public virtual ICollection<Action> Actions { get; set; }
+        public virtual User User { get; set; }
     }
 }

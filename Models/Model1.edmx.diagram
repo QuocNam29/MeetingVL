@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9de38db776d94ce7854c4dea25d27848" Name="Diagram1">
+      <Diagram DiagramId="9de38db776d94ce7854c4dea25d27848" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="SEP25Team13Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.AspNetRole" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.AspNetUserClaim" Width="1.5" PointX="14.25" PointY="1" IsExpanded="true" />
@@ -23,6 +23,22 @@
         <AssociationConnector Association="SEP25Team13Model.FK_SessionReport_Project" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_ProjectParticipant_User" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Action" Width="1.5" PointX="5.25" PointY="8.75" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Evaluate" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Group" Width="1.5" PointX="5.25" PointY="12.625" />
+        <EntityTypeShape EntityType="SEP25Team13Model.MeetingMinute" Width="1.5" PointX="3" PointY="12.25" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Semester" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Session_Semester" Width="1.5" PointX="9.75" PointY="1.375" />
+        <EntityTypeShape EntityType="SEP25Team13Model.sysdiagram" Width="1.5" PointX="7.375" PointY="11.5" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Action_MeetingMinutes" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Action_User" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Evaluate_Group" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Evaluate_User" />
+        <AssociationConnector Association="SEP25Team13Model.FK_ProjectParticipant_Group" />
+        <AssociationConnector Association="SEP25Team13Model.FK_MeetingMinutes_User" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Semester_User" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Session_Semester_Semester" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Session_Semester_SessionReport" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

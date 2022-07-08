@@ -12,23 +12,24 @@ namespace MeetingVL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SessionReport
+    public partial class Group
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SessionReport()
+        public Group()
         {
-            this.Session_Semester = new HashSet<Session_Semester>();
+            this.Evaluates = new HashSet<Evaluate>();
+            this.ProjectParticipants = new HashSet<ProjectParticipant>();
         }
     
         public int ID { get; set; }
-        public int Project_ID { get; set; }
         public string Name { get; set; }
-        public Nullable<System.DateTime> Date_Start { get; set; }
-        public Nullable<System.DateTime> Date_End { get; set; }
-        public string State { get; set; }
+        public string Topic { get; set; }
+        public string Mentor { get; set; }
+        public string Customer { get; set; }
     
-        public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Session_Semester> Session_Semester { get; set; }
+        public virtual ICollection<Evaluate> Evaluates { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProjectParticipant> ProjectParticipants { get; set; }
     }
 }

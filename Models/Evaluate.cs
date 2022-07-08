@@ -12,17 +12,17 @@ namespace MeetingVL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProjectParticipant
+    public partial class Evaluate
     {
         public int ID { get; set; }
         public string User_ID { get; set; }
-        public int Project_ID { get; set; }
-        public Nullable<int> Group { get; set; }
-        public string Role { get; set; }
-        public Nullable<int> Group_ID { get; set; }
+        public int Group_ID { get; set; }
+        public string State { get; set; }
+        public string Review { get; set; }
+        public string Comment { get; set; }
+        public string Status { get; set; }
     
-        public virtual Project Project { get; set; }
+        public virtual Group Group { get; set; }
         public virtual User User { get; set; }
-        public virtual Group Group1 { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SEP25Team13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SEP25Team13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -14,6 +14,16 @@
           <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Meeting_ID" Type="int" Nullable="false" />
+          <Property Name="Work" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Deadline" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -75,6 +85,44 @@
           <Property Name="State" Type="nvarchar" MaxLength="50" />
           <Property Name="ID_User" Type="varchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="Evaluate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Group_ID" Type="int" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="200" />
+          <Property Name="Review" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Topic" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Mentor" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="MeetingMinutes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="SessionReport" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Objectives" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mentor" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeamMember" Type="nvarchar" MaxLength="200" />
+          <Property Name="Time" Type="datetime" />
+        </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="ID" />
@@ -94,8 +142,25 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="User_ID" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Project_ID" Type="int" Nullable="false" />
-          <Property Name="Group" Type="int" />
+          <Property Name="Group_ID" Type="int" />
           <Property Name="Role" Type="varchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Session_Semester">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionReport_ID" Type="int" Nullable="false" />
+          <Property Name="Semester_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SessionReport">
           <Key>
@@ -107,6 +172,16 @@
           <Property Name="Date_Start" Type="datetime" />
           <Property Name="Date_End" Type="datetime" />
           <Property Name="State" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -122,6 +197,30 @@
           <Property Name="Majors" Type="nvarchar" MaxLength="100" />
           <Property Name="State" Type="bit" />
         </EntityType>
+        <Association Name="FK_Action_MeetingMinutes">
+          <End Role="MeetingMinutes" Type="Self.MeetingMinutes" Multiplicity="1" />
+          <End Role="Action" Type="Self.Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeetingMinutes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Action">
+              <PropertyRef Name="Meeting_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Action_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Action" Type="Self.Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Action">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Category_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Category" Type="Self.Category" Multiplicity="*" />
@@ -190,6 +289,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Evaluate_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Evaluate" Type="Self.Evaluate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Evaluate">
+              <PropertyRef Name="Group_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluate_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Evaluate" Type="Self.Evaluate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Evaluate">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeetingMinutes_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="MeetingMinutes" Type="Self.MeetingMinutes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="MeetingMinutes">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Project_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Project" Type="Self.Project" Multiplicity="*" />
@@ -199,6 +334,18 @@
             </Principal>
             <Dependent Role="Project">
               <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectParticipant_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="ProjectParticipant" Type="Self.ProjectParticipant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectParticipant">
+              <PropertyRef Name="Group_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -226,6 +373,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Semester_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Semester" Type="Self.Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Semester">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Semester_Semester">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="1" />
+          <End Role="Session_Semester" Type="Self.Session_Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Session_Semester">
+              <PropertyRef Name="Semester_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Semester_SessionReport">
+          <End Role="SessionReport" Type="Self.SessionReport" Multiplicity="1" />
+          <End Role="Session_Semester" Type="Self.Session_Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SessionReport">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Session_Semester">
+              <PropertyRef Name="SessionReport_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SessionReport_Project">
           <End Role="Project" Type="Self.Project" Multiplicity="1" />
           <End Role="SessionReport" Type="Self.SessionReport" Multiplicity="*" />
@@ -240,16 +423,31 @@
         </Association>
         <EntityContainer Name="SEP25Team13ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evaluate" EntityType="Self.Evaluate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeetingMinutes" EntityType="Self.MeetingMinutes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectParticipant" EntityType="Self.ProjectParticipant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Session_Semester" EntityType="Self.Session_Semester" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SessionReport" EntityType="Self.SessionReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Action_MeetingMinutes" Association="Self.FK_Action_MeetingMinutes">
+            <End Role="MeetingMinutes" EntitySet="MeetingMinutes" />
+            <End Role="Action" EntitySet="Action" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Action_User" Association="Self.FK_Action_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Action" EntitySet="Action" />
+          </AssociationSet>
           <AssociationSet Name="FK_Category_User" Association="Self.FK_Category_User">
             <End Role="User" EntitySet="User" />
             <End Role="Category" EntitySet="Category" />
@@ -270,9 +468,25 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Evaluate_Group" Association="Self.FK_Evaluate_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Evaluate" EntitySet="Evaluate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluate_User" Association="Self.FK_Evaluate_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Evaluate" EntitySet="Evaluate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MeetingMinutes_User" Association="Self.FK_MeetingMinutes_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="MeetingMinutes" EntitySet="MeetingMinutes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Project_Category" Association="Self.FK_Project_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectParticipant_Group" Association="Self.FK_ProjectParticipant_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="ProjectParticipant" EntitySet="ProjectParticipant" />
           </AssociationSet>
           <AssociationSet Name="FK_ProjectParticipant_Project" Association="Self.FK_ProjectParticipant_Project">
             <End Role="Project" EntitySet="Project" />
@@ -282,13 +496,24 @@
             <End Role="User" EntitySet="User" />
             <End Role="ProjectParticipant" EntitySet="ProjectParticipant" />
           </AssociationSet>
+          <AssociationSet Name="FK_Semester_User" Association="Self.FK_Semester_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Semester" EntitySet="Semester" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Semester_Semester" Association="Self.FK_Session_Semester_Semester">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="Session_Semester" EntitySet="Session_Semester" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Semester_SessionReport" Association="Self.FK_Session_Semester_SessionReport">
+            <End Role="SessionReport" EntitySet="SessionReport" />
+            <End Role="Session_Semester" EntitySet="Session_Semester" />
+          </AssociationSet>
           <AssociationSet Name="FK_SessionReport_Project" Association="Self.FK_SessionReport_Project">
             <End Role="Project" EntitySet="Project" />
             <End Role="SessionReport" EntitySet="SessionReport" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SEP25Team13Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -388,6 +613,8 @@
           <Property Name="Role" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Project" Relationship="Self.FK_ProjectParticipant_Project" FromRole="ProjectParticipant" ToRole="Project" />
           <NavigationProperty Name="User" Relationship="Self.FK_ProjectParticipant_User" FromRole="ProjectParticipant" ToRole="User" />
+          <Property Name="Group_ID" Type="Int32" />
+          <NavigationProperty Name="Group1" Relationship="SEP25Team13Model.FK_ProjectParticipant_Group" FromRole="ProjectParticipant" ToRole="Group" />
         </EntityType>
         <EntityType Name="SessionReport">
           <Key>
@@ -400,6 +627,7 @@
           <Property Name="Date_End" Type="DateTime" Precision="3" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Project" Relationship="Self.FK_SessionReport_Project" FromRole="SessionReport" ToRole="Project" />
+          <NavigationProperty Name="Session_Semester" Relationship="SEP25Team13Model.FK_Session_Semester_SessionReport" FromRole="SessionReport" ToRole="Session_Semester" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -416,6 +644,10 @@
           <Property Name="State" Type="Boolean" />
           <NavigationProperty Name="Categories" Relationship="Self.FK_Category_User" FromRole="User" ToRole="Category" />
           <NavigationProperty Name="ProjectParticipants" Relationship="Self.FK_ProjectParticipant_User" FromRole="User" ToRole="ProjectParticipant" />
+          <NavigationProperty Name="Actions" Relationship="SEP25Team13Model.FK_Action_User" FromRole="User" ToRole="Action" />
+          <NavigationProperty Name="Evaluates" Relationship="SEP25Team13Model.FK_Evaluate_User" FromRole="User" ToRole="Evaluate" />
+          <NavigationProperty Name="MeetingMinutes" Relationship="SEP25Team13Model.FK_MeetingMinutes_User" FromRole="User" ToRole="MeetingMinute" />
+          <NavigationProperty Name="Semesters" Relationship="SEP25Team13Model.FK_Semester_User" FromRole="User" ToRole="Semester" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -552,7 +784,245 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Actions" EntityType="SEP25Team13Model.Action" />
+          <EntitySet Name="Evaluates" EntityType="SEP25Team13Model.Evaluate" />
+          <EntitySet Name="Groups" EntityType="SEP25Team13Model.Group" />
+          <EntitySet Name="MeetingMinutes" EntityType="SEP25Team13Model.MeetingMinute" />
+          <EntitySet Name="Semesters" EntityType="SEP25Team13Model.Semester" />
+          <EntitySet Name="Session_Semester" EntityType="SEP25Team13Model.Session_Semester" />
+          <EntitySet Name="sysdiagrams" EntityType="SEP25Team13Model.sysdiagram" />
+          <AssociationSet Name="FK_Action_MeetingMinutes" Association="SEP25Team13Model.FK_Action_MeetingMinutes">
+            <End Role="MeetingMinute" EntitySet="MeetingMinutes" />
+            <End Role="Action" EntitySet="Actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Action_User" Association="SEP25Team13Model.FK_Action_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Action" EntitySet="Actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluate_Group" Association="SEP25Team13Model.FK_Evaluate_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Evaluate" EntitySet="Evaluates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluate_User" Association="SEP25Team13Model.FK_Evaluate_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Evaluate" EntitySet="Evaluates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectParticipant_Group" Association="SEP25Team13Model.FK_ProjectParticipant_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="ProjectParticipant" EntitySet="ProjectParticipants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MeetingMinutes_User" Association="SEP25Team13Model.FK_MeetingMinutes_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="MeetingMinute" EntitySet="MeetingMinutes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Semester_User" Association="SEP25Team13Model.FK_Semester_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Semester" EntitySet="Semesters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Semester_Semester" Association="SEP25Team13Model.FK_Session_Semester_Semester">
+            <End Role="Semester" EntitySet="Semesters" />
+            <End Role="Session_Semester" EntitySet="Session_Semester" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Semester_SessionReport" Association="SEP25Team13Model.FK_Session_Semester_SessionReport">
+            <End Role="SessionReport" EntitySet="SessionReports" />
+            <End Role="Session_Semester" EntitySet="Session_Semester" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Meeting_ID" Type="Int32" Nullable="false" />
+          <Property Name="Work" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Deadline" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MeetingMinute" Relationship="SEP25Team13Model.FK_Action_MeetingMinutes" FromRole="Action" ToRole="MeetingMinute" />
+          <NavigationProperty Name="User" Relationship="SEP25Team13Model.FK_Action_User" FromRole="Action" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Evaluate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Group_ID" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Review" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Group" Relationship="SEP25Team13Model.FK_Evaluate_Group" FromRole="Evaluate" ToRole="Group" />
+          <NavigationProperty Name="User" Relationship="SEP25Team13Model.FK_Evaluate_User" FromRole="Evaluate" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Topic" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Mentor" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Evaluates" Relationship="SEP25Team13Model.FK_Evaluate_Group" FromRole="Group" ToRole="Evaluate" />
+          <NavigationProperty Name="ProjectParticipants" Relationship="SEP25Team13Model.FK_ProjectParticipant_Group" FromRole="Group" ToRole="ProjectParticipant" />
+        </EntityType>
+        <EntityType Name="MeetingMinute">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SessionReport" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Objectives" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mentor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeamMember" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Actions" Relationship="SEP25Team13Model.FK_Action_MeetingMinutes" FromRole="MeetingMinute" ToRole="Action" />
+          <NavigationProperty Name="User" Relationship="SEP25Team13Model.FK_MeetingMinutes_User" FromRole="MeetingMinute" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="SEP25Team13Model.FK_Semester_User" FromRole="Semester" ToRole="User" />
+          <NavigationProperty Name="Session_Semester" Relationship="SEP25Team13Model.FK_Session_Semester_Semester" FromRole="Semester" ToRole="Session_Semester" />
+        </EntityType>
+        <EntityType Name="Session_Semester">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionReport_ID" Type="Int32" Nullable="false" />
+          <Property Name="Semester_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Semester" Relationship="SEP25Team13Model.FK_Session_Semester_Semester" FromRole="Session_Semester" ToRole="Semester" />
+          <NavigationProperty Name="SessionReport" Relationship="SEP25Team13Model.FK_Session_Semester_SessionReport" FromRole="Session_Semester" ToRole="SessionReport" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Action_MeetingMinutes">
+          <End Type="SEP25Team13Model.MeetingMinute" Role="MeetingMinute" Multiplicity="1" />
+          <End Type="SEP25Team13Model.Action" Role="Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeetingMinute">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Action">
+              <PropertyRef Name="Meeting_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Action_User">
+          <End Type="SEP25Team13Model.User" Role="User" Multiplicity="1" />
+          <End Type="SEP25Team13Model.Action" Role="Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Action">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluate_Group">
+          <End Type="SEP25Team13Model.Group" Role="Group" Multiplicity="1" />
+          <End Type="SEP25Team13Model.Evaluate" Role="Evaluate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Evaluate">
+              <PropertyRef Name="Group_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluate_User">
+          <End Type="SEP25Team13Model.User" Role="User" Multiplicity="1" />
+          <End Type="SEP25Team13Model.Evaluate" Role="Evaluate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Evaluate">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectParticipant_Group">
+          <End Type="SEP25Team13Model.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="SEP25Team13Model.ProjectParticipant" Role="ProjectParticipant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectParticipant">
+              <PropertyRef Name="Group_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeetingMinutes_User">
+          <End Type="SEP25Team13Model.User" Role="User" Multiplicity="1" />
+          <End Type="SEP25Team13Model.MeetingMinute" Role="MeetingMinute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="MeetingMinute">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Semester_User">
+          <End Type="SEP25Team13Model.User" Role="User" Multiplicity="1" />
+          <End Type="SEP25Team13Model.Semester" Role="Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Semester">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Semester_Semester">
+          <End Type="SEP25Team13Model.Semester" Role="Semester" Multiplicity="1" />
+          <End Type="SEP25Team13Model.Session_Semester" Role="Session_Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Session_Semester">
+              <PropertyRef Name="Semester_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Semester_SessionReport">
+          <End Type="SEP25Team13Model.SessionReport" Role="SessionReport" Multiplicity="1" />
+          <End Type="SEP25Team13Model.Session_Semester" Role="Session_Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SessionReport">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Session_Semester">
+              <PropertyRef Name="SessionReport_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -640,10 +1110,10 @@
           <EntitySetMapping Name="ProjectParticipants">
             <EntityTypeMapping TypeName="SEP25Team13Model.ProjectParticipant">
               <MappingFragment StoreEntitySet="ProjectParticipant">
+                <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
-                <ScalarProperty Name="Group" ColumnName="Group" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -683,6 +1153,88 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Actions">
+            <EntityTypeMapping TypeName="SEP25Team13Model.Action">
+              <MappingFragment StoreEntitySet="Action">
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="Work" ColumnName="Work" />
+                <ScalarProperty Name="Meeting_ID" ColumnName="Meeting_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evaluates">
+            <EntityTypeMapping TypeName="SEP25Team13Model.Evaluate">
+              <MappingFragment StoreEntitySet="Evaluate">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="SEP25Team13Model.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Mentor" ColumnName="Mentor" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeetingMinutes">
+            <EntityTypeMapping TypeName="SEP25Team13Model.MeetingMinute">
+              <MappingFragment StoreEntitySet="MeetingMinutes">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="TeamMember" ColumnName="TeamMember" />
+                <ScalarProperty Name="Mentor" ColumnName="Mentor" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Objectives" ColumnName="Objectives" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SessionReport" ColumnName="SessionReport" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semesters">
+            <EntityTypeMapping TypeName="SEP25Team13Model.Semester">
+              <MappingFragment StoreEntitySet="Semester">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Session_Semester">
+            <EntityTypeMapping TypeName="SEP25Team13Model.Session_Semester">
+              <MappingFragment StoreEntitySet="Session_Semester">
+                <ScalarProperty Name="Semester_ID" ColumnName="Semester_ID" />
+                <ScalarProperty Name="SessionReport_ID" ColumnName="SessionReport_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SEP25Team13Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

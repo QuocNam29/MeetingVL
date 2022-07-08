@@ -12,17 +12,13 @@ namespace MeetingVL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProjectParticipant
+    public partial class Session_Semester
     {
         public int ID { get; set; }
-        public string User_ID { get; set; }
-        public int Project_ID { get; set; }
-        public Nullable<int> Group { get; set; }
-        public string Role { get; set; }
-        public Nullable<int> Group_ID { get; set; }
+        public int SessionReport_ID { get; set; }
+        public int Semester_ID { get; set; }
     
-        public virtual Project Project { get; set; }
-        public virtual User User { get; set; }
-        public virtual Group Group1 { get; set; }
+        public virtual Semester Semester { get; set; }
+        public virtual SessionReport SessionReport { get; set; }
     }
 }
