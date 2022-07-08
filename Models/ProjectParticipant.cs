@@ -17,12 +17,11 @@ namespace MeetingVL.Models
         public int ID { get; set; }
         public string User_ID { get; set; }
         public int Project_ID { get; set; }
-        public Nullable<int> Group { get; set; }
-        public string Role { get; set; }
         public Nullable<int> Group_ID { get; set; }
+        public string Role { get; set; }
     
+        public virtual Group Group { get; set; }
         public virtual Project Project { get; set; }
         public virtual User User { get; set; }
-        public virtual Group Group1 { get; set; }
     }
 }

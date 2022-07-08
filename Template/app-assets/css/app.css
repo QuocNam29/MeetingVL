@@ -7240,6 +7240,7 @@ a.bg-base:hover, a.bg-base:focus, button.bg-base:hover, button.bg-base:focus {
      -moz-box-align : stretch !important;
   -ms-flex-align : stretch !important;
           align-items : stretch !important;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .align-content-start {
