@@ -44431,6 +44431,19 @@ ul.list-inline.list-inline-pipe > li + li:before {
   background-color : #FFFFFF;
 }
 
+.btn-excel {
+    background-color: #107c41;
+    color: #FFFFFF !important;
+    background-color: #107c41;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px !important;
+}
+    .btn-excel:hover {
+        color: #107c41 !important;
+        background: transparent;
+        border-color: #107c41;
+    }
+
 .btn-facebook {
   background-color : #3B5998;
   color : #FFFFFF !important;

@@ -375,6 +375,7 @@
     <Content Include="Template\app-assets\img\icons\thumbs-up.jpg" />
     <Content Include="Template\app-assets\img\ico\favicon-32.png" />
     <Content Include="Template\app-assets\img\ico\favicon.ico" />
+    <Content Include="Template\app-assets\img\in-progress-animate.svg" />
     <Content Include="Template\app-assets\img\logo-dark.png" />
     <Content Include="Template\app-assets\img\logo.png" />
     <Content Include="Template\app-assets\img\logos\logo-big-black.png" />
