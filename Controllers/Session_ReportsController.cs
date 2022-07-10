@@ -17,7 +17,61 @@ namespace MeetingVL.Controllers
         private SEP25Team13Entities db = new SEP25Team13Entities();
 
         // GET: Session_Reports
-        public ActionResult Index(int project_id, string keyword)
+        public ActionResult Index(int project_id, string keyword, int active)
+        {
+            var sessionReports = db.SessionReports.Include(s => s.Project).Where(p => p.Project_ID == project_id);
+
+            var links = from l in db.SessionReports.Include(s => s.Project)
+                        .Where(p => p.Project_ID == project_id).Where(s => s.State != "Deleted")
+                        select l;
+            if (active == 1)
+            { 
+                Session["List_SessionReport"] = "active";
+                Session["List_Member"] = ""; 
+                Session["List_Group"] = "";
+            }
+            else if (active == 2)
+            {
+                Session["List_SessionReport"] = "";
+                Session["List_Member"] = "active";
+                Session["List_Group"] = "";
+            }
+            else
+            {
+                Session["List_SessionReport"] = "";
+                Session["List_Member"] = "";
+                Session["List_Group"] = "active";
+            }
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.Name.ToLower().Contains(keyword.ToLower().Trim()));
+                TempData["keyword"] = keyword;
+
+                Project project1 = db.Projects.Find(project_id);
+                TempData["project_id"] = project_id;
+                TempData["project_Name"] = project1.Name;
+                TempData["project_Description"] = project1.Description;
+                Category category1 = db.Categories.Find(project1.Category_ID);
+                TempData["category_id"] = category1.ID;
+                TempData["category_Name"] = category1.Name;
+
+               
+                return View(links.ToList());
+            }
+
+            Project project = db.Projects.Find(project_id);
+            TempData["project_id"] = project_id;
+            TempData["project_Name"] = project.Name;
+            TempData["project_Description"] = project.Description;
+            Category category = db.Categories.Find(project.Category_ID);
+            TempData["category_id"] = category.ID;
+            TempData["category_Name"] = category.Name;
+
+           
+
+            return View(links.ToList());
+        }
+        public ActionResult List_SessionReport(int project_id, string keyword)
         {
             var sessionReports = db.SessionReports.Include(s => s.Project).Where(p => p.Project_ID == project_id);
 
@@ -37,6 +91,10 @@ namespace MeetingVL.Controllers
                 Category category1 = db.Categories.Find(project1.Category_ID);
                 TempData["category_id"] = category1.ID;
                 TempData["category_Name"] = category1.Name;
+               
+
+               
+
                 return View(links.ToList());
             }
 
@@ -47,6 +105,9 @@ namespace MeetingVL.Controllers
             Category category = db.Categories.Find(project.Category_ID);
             TempData["category_id"] = category.ID;
             TempData["category_Name"] = category.Name;
+            ViewBag.SessionReport = true;
+
+            
             return View(links.ToList());
         }
         public ActionResult Student_SReport(int project_id, string keyword)

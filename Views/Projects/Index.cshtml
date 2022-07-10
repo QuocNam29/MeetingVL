@@ -91,7 +91,7 @@
                                         <h1>
                                             <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
                                         </h1>
-                                        <a href="@Url.Action("Index","Session_Reports",new { project_id = item.ID})"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
+                                        <a href="@Url.Action("Index","Session_Reports",new { project_id = item.ID, active = 1})"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
                                         <p class="courses-time font-small-3">
                                             <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
                                             <span>-</span>
@@ -125,7 +125,7 @@
                                     <h1>
                                         <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
                                     </h1>
-                                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID })"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
+                                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID, active = 1 })"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
                                     <p class="courses-time font-small-3">
                                         <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
                                         <span>-</span>
@@ -158,7 +158,7 @@
                                     <h1>
                                         <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
                                     </h1>
-                                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID })"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
+                                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID, active = 1 })"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
                                     <p class="courses-time font-small-3">
                                         <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
                                         <span>-</span>
@@ -192,7 +192,7 @@
                                     <h1>
                                         <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
                                     </h1>
-                                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID })"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
+                                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID, active = 1 })"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
                                     <p class="courses-time font-small-3">
                                         <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
                                         <span>-</span>

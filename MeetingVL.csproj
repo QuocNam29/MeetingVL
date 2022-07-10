@@ -174,7 +174,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Import_StudentController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectParticipantsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -1479,6 +1481,13 @@
     <Content Include="Views\Session_Reports\Student_SReport.cshtml" />
     <Content Include="Template\Login\.vscode\settings.json" />
     <Content Include="Views\ProjectParticipants\List_member.cshtml" />
+    <Content Include="Views\Session_Reports\List_SessionReport.cshtml" />
+    <Content Include="Views\Import_Student\Index.cshtml" />
+    <Content Include="Views\Groups\Create.cshtml" />
+    <Content Include="Views\Groups\Delete.cshtml" />
+    <Content Include="Views\Groups\Details.cshtml" />
+    <Content Include="Views\Groups\Edit.cshtml" />
+    <Content Include="Views\Groups\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
