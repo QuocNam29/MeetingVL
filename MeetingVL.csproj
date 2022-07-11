@@ -1481,7 +1481,6 @@
     <Content Include="Views\ProjectParticipants\Index.cshtml" />
     <Content Include="Views\Session_Reports\Student_SReport.cshtml" />
     <Content Include="Template\Login\.vscode\settings.json" />
-    <Content Include="Views\ProjectParticipants\List_member.cshtml" />
     <Content Include="Views\Session_Reports\List_SessionReport.cshtml" />
     <Content Include="Views\Import_Student\Index.cshtml" />
     <Content Include="Views\Groups\Create.cshtml" />
@@ -1489,6 +1488,7 @@
     <Content Include="Views\Groups\Details.cshtml" />
     <Content Include="Views\Groups\Edit.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
+    <Content Include="Views\ProjectParticipants\List_member.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

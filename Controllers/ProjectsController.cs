@@ -19,8 +19,9 @@ namespace MeetingVL.Controllers
         // GET: Projects
         public ActionResult Index(int category_id, string keyword)
         {
-            
 
+            Session["ViewBag.FileStatus"] = null;
+            Session["ViewBag.Success"] = null;
             var links = from l in db.Projects.Include(p => p.Category)                      
                         .Where(p => p.Category_ID == category_id && p.State != "Deleted")
                         select l;
