@@ -42,8 +42,7 @@ namespace MeetingVL.Controllers
                 Session["List_Member"] = "";
                 Session["List_Group"] = "active";
             }
-            Session["ViewBag.Success"] = null;
-            Session["ViewBag.FileStatus"] = null;
+           
 
             if (!string.IsNullOrEmpty(keyword))
             {

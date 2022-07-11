@@ -12,9 +12,11 @@
             @Session["ViewBag.FileStatus"].ToString()
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">×</span>
+
             </button>
         </div>
-    }
+        @Session["ViewBag.FileStatus"] = null;
+}
 
     @if (Session["ViewBag.Success"] != null)
     {
@@ -24,7 +26,7 @@
                 <span aria-hidden="true">×</span>
             </button>
         </div>
-
+        @Session["ViewBag.Success"] = null;
     }
 </div>
 <section id="file-export">
@@ -36,12 +38,12 @@
 
                     <div class="card-block card-dashboard">
 
-                        <div class="complaint-add-row">
-                            <div id="btnAdd" class="btn btn-primary mb-2">
-                                <i class="ft-plus"></i>
-                                Add User
-                            </div>
+
+                        <div id="btnAdd" class="btn btn-primary mb-2" data-toggle="modal" data-target="#AddStudent">
+                            <i class="ft-plus"></i>
+                            Add User
                         </div>
+
 
                         <a class="btn btn-social btn-round btn-min-width mr-2 mb-2 btn-excel" data-toggle="modal" data-target="#iconForm">
                             <span class="fa fa-file-excel-o"></span> Import Excel
@@ -139,12 +141,42 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">               
+            <div class="modal-body">
                 <img src="~/Template/app-assets/img/in-progress-animate.svg" style=" display: block; margin-left: auto; margin-right: auto; width: 50%;" />
                 <p> Please wait while the system is importing the list...</p>
             </div>
-            
+
         </div>
     </div>
 </div>
 <!----Modal-->
+
+<div class="modal fade text-left" id="AddStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel34">Add student</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("Create", "ProjectParticipants", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.Hidden("project_id", project_id)
+                <div class="modal-body">
+                    <div class="col-12">
+                        
+                        <div class="form-group">
+                            <div class="close-char form-control" data-tags-input-name="addStudent"></div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-outline-primary btn-lg" value="Add">
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -28,7 +28,7 @@ namespace MeetingVL.Controllers
             if (!string.IsNullOrEmpty(keyword))
             {
                 links = links.Where(b => b.Project.Name.ToLower().Contains(keyword.ToLower().Trim()));
-               
+
                 return View(links.ToList());
             }
 
@@ -37,7 +37,7 @@ namespace MeetingVL.Controllers
         }
         public ActionResult List_member(int project_id)
         {
-            
+
             var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id);
             TempData["project_id"] = project_id;
 
@@ -61,31 +61,60 @@ namespace MeetingVL.Controllers
         }
 
         // GET: ProjectParticipants/Create
-        public ActionResult Create()
+        public ActionResult Create(string[] addStudent, int project_id)
         {
-            ViewBag.Project_ID = new SelectList(db.Projects, "ID", "Name");
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang");
-            return View();
-        }
-
-        // POST: ProjectParticipants/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,User_ID,Project_ID,Group,Role")] ProjectParticipant projectParticipant)
-        {
-            if (ModelState.IsValid)
+            string exist = "Đã tồn tại ";
+            string user_null = "Chưa tồn tại ";
+            bool flat = true;
+            bool flat_user = true;
+            for (int i = 0; i < addStudent.Length; i++)
             {
-                db.ProjectParticipants.Add(projectParticipant);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string student = addStudent[i].Trim();
+                var check_user = db.Users.Find(student);
+                if (check_user != null)
+                {
+                    var check_student = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Include(p => p.Group)
+                     .Where(c => c.User_ID == student && c.Project_ID == project_id).FirstOrDefault();
+
+                    if (check_student == null)
+                    {
+                        ProjectParticipant projectParticipant = new ProjectParticipant();
+                        projectParticipant.Project_ID = project_id;
+                        projectParticipant.User_ID = addStudent[i].Trim();
+                        projectParticipant.Role = "Student";
+                        db.ProjectParticipants.Add(projectParticipant);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        flat = false;
+                        exist += addStudent[i].Trim() + " ";
+                    }
+                }
+                else
+                {
+                    flat_user = false;
+                    user_null += addStudent[i].Trim() + " ";
+                }              
+            }
+            Session["ViewBag.FileStatus"] = null;
+            Session["ViewBag.Success"] = "Import student successful !";
+            exist += "trong project";
+            user_null += "trong hệ thống";
+            if (flat == false)
+            {
+                Session["ViewBag.Success"] = null;
+                Session["ViewBag.FileStatus"] = exist;
+            }
+            if (flat_user == false)
+            {
+                Session["ViewBag.Success"] = null;
+                Session["ViewBag.FileStatus"] = user_null;
             }
 
-            ViewBag.Project_ID = new SelectList(db.Projects, "ID", "Name", projectParticipant.Project_ID);
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", projectParticipant.User_ID);
-            return View(projectParticipant);
+            return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 2 });
         }
+
 
         // GET: ProjectParticipants/Edit/5
         public ActionResult Edit(int? id)
