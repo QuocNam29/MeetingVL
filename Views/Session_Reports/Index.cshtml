@@ -46,6 +46,8 @@
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
                         <h4 class="card-title">@project_Name</h4>
+                        <p class="content-sub-header">@project_Description</p>
+
                     </div>
                 </div>
                 <div class="card-body">
@@ -72,7 +74,7 @@
                               @Html.Action("List_member", "ProjectParticipants", new { project_id = project_id })
                            </div>
                             <div class="tab-pane @Session["List_Group"].ToString()" id="tab3" aria-labelledby="base-tabX3">
-                                <p>Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert jujubes powder sweet sesame snaps.</p>
+                                @Html.Action("List_Group", "ProjectParticipants", new { project_id = project_id })
                             </div>
                         </div>
                     </div>

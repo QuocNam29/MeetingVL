@@ -38,15 +38,49 @@ namespace MeetingVL.Controllers
         public ActionResult List_member(int project_id)
         {
 
-            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id);
+            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id);         
             TempData["project_id"] = project_id;
 
             return View(member.ToList());
         }
-        public ActionResult List_Group(int project_id)
+        public ActionResult List_Group(int project_id, string keyword)
         {
 
-            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id);
+            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id && p.Group_ID != null);
+            if (Session["Keyword_Group"] != null)
+            {
+                keyword = Session["Keyword_Group"].ToString();
+            }
+            
+            var links = from l in db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
+                        .Where(p => p.Project_ID == project_id && p.Group_ID != null)
+                        select l;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.Group.Name.ToLower().Contains(keyword.ToLower().Trim())
+                || b.Group.Topic.ToLower().Contains(keyword.ToLower().Trim())
+                || b.Group.Mentor.ToLower().Contains(keyword.ToLower().Trim())
+                || b.Group.Customer.ToLower().Contains(keyword.ToLower().Trim())
+                || b.User.Email.ToLower().Contains(keyword.ToLower().Trim())
+                || b.User.Name.ToLower().Contains(keyword.ToLower().Trim()));
+            }
+            TempData["project_id"] = project_id;
+
+            return View(links.ToList());
+        }
+
+        public ActionResult Search_Group(int project_id, string keyword)
+        {
+
+            Session["Keyword_Group"] = keyword;
+
+            return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 3 });
+        }
+        public ActionResult List_Member_Group(int project_id, int group_id)
+        {
+
+            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id && p.Group_ID == group_id);
             TempData["project_id"] = project_id;
 
             return View(member.ToList());

@@ -22,6 +22,7 @@ namespace MeetingVL.Controllers
 
             Session["ViewBag.FileStatus"] = null;
             Session["ViewBag.Success"] = null;
+            Session["Keyword_Group"] = null;
             var links = from l in db.Projects.Include(p => p.Category)                      
                         .Where(p => p.Category_ID == category_id && p.State != "Deleted")
                         select l;

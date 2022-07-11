@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MeetingVL.Models.ProjectParticipant>
+
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+<span class="accordion-name-desc accordion-name-desc-member">
+    <ion-icon name="person-circle-sharp" class="accordion-name-desc-member-icon"></ion-icon>
+    @item.User.Email
+</span>
+}
+    
+    

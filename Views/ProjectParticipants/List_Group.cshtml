@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MeetingVL.Models.ProjectParticipant>
+
+@{
+    Layout = null;
+    int project_id = int.Parse(TempData["project_id"].ToString());
+    int group = -1;
+}
+
+<div class="row">
+
+
+    <div class="col-sm-12">
+
+        <div class="" style="float: right">
+            <div class="btn-group mr-2">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Add Session Report
+                </button>
+                <div class="dropdown-menu">
+                    <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#myBootstrap"><span>Each report</span></a>
+                    <a class="dropdown-item complaint-add-row" href="#">A lot of report</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.col-lg-6 -->
+@using (Html.BeginForm("Search_Group", "ProjectParticipants", FormMethod.Get))
+{
+    @Html.Hidden("project_id", project_id)
+    <div class="row">
+        <div class="col-12">
+            <div class="col-lg-6 input-wrap">
+                <div class="input-group">
+
+                    <input type="text" class="form-control" placeholder="Search for..." name="keyword">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Go!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!-- /.col-lg-6 -->   
+<div class="row match-height">
+    @foreach (var item in Model)
+    {
+
+        if (group != item.Group_ID)
+        {                
+             group = item.Group.ID;
+           
+
+    <div class="col-lg-12 col-xl-4">
+        <div class="accordion-wrap-link">
+            <div class="accordion-wrap">
+                <a class="accordion-with-card">
+                    <div class="accordion-card">
+                        <div class="accordion-heading">@item.Group.Name</div>
+                        <!-- <ion-icon name="add-outline" class="accordion-icon-link"></ion-icon> -->
+                        <ion-icon name="close-outline" class="accordion-icon-link"></ion-icon>
+                    </div>
+                </a>
+                <ul class="accordion-with-content">
+                    <li class="accordion-item">
+                        <p class="accordion-text-topic">@item.Group.Topic</p>
+                    </li>
+                    <li class="accordion-item">
+                        <p class="accordion-text">Mentor:</p>
+                        <span class="accordion-name-desc"> @item.Group.Mentor</span>
+                    </li>
+                    <li class="accordion-item">
+                        <p class="accordion-text">Customer:</p>
+                        <span class="accordion-name-desc"> @item.Group.Customer</span>
+                    </li>
+                    <li class="accordion-item accordion-item-member">
+                        <p class="accordion-text">Member:</p>
+                        @Html.Action("List_Member_Group", "ProjectParticipants", new { project_id = project_id, group_id = item.Group_ID })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        }
+        
+
+    }
+</div>

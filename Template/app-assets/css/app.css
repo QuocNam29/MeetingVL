@@ -53867,3 +53867,146 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     background: rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
+.accordion-wrap {
+    background: var(--white);
+    color: #12a4d9;
+    margin: 15px 0;
+    padding: 24px;
+    font-size: 1.2em;
+    border-radius: 10px;
+    /* border-left: 5px solid var(--primary); */
+    max-height: 500px;
+    transition: 0.5s;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-box-shadow: 0 6px 0 0 rgb(0 0 0 / 1%), 0 15px 32px 0 rgb(0 0 0 / 6%);
+    position: relative;
+}
+
+    .accordion-wrap:before {
+        position: absolute;
+        content: "";
+        border-top: 5px solid #c4e2f9;
+        border-left: 5px solid #c4e2f9;
+        width: 15%;
+        height: 15%;
+        top: 0;
+        left: 0;
+        transition: 0.5s;
+    }
+
+    .accordion-wrap:after {
+        position: absolute;
+        content: "";
+        border-right: 5px solid #c4e2f9;
+        border-bottom: 5px solid #c4e2f9;
+        width: 15%;
+        height: 15%;
+        right: 0;
+        bottom: 0;
+        transition: 0.5s;
+    }
+
+    .accordion-wrap:hover::after,
+    .accordion-wrap:hover::before {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .accordion-wrap.open-menu {
+        max-height: 75px;
+        overflow: hidden;
+        transition: 0.5s;
+    }
+
+        .accordion-wrap.open-menu .accordion-icon-link {
+            transform: rotate(135deg);
+        }
+
+
+.accordion-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .accordion-card.open-menu {
+        max-width: 500px;
+    }
+
+
+
+.accordion-icon {
+    display: flex;
+    align-items: center;
+}
+
+.accordion-icon-link {
+    font-size: 1.25em;
+    transition: 0.5s;
+}
+
+
+.accordion-heading {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+
+.accordion-with-content {
+    margin-top: 37px;
+    color: #000;
+    padding-left: 0;
+    text-decoration: none;
+    position: relative;
+}
+
+    .accordion-with-content::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 20px;
+        top: -10px;
+        border-top: 1px solid #c4e2f9;
+    }
+
+.accordion-item {
+    list-style: none;
+    display: flex;
+}
+
+.accordion-text-topic {
+    color: #12a4d9;
+    text-align: center;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.accordion-name-desc {
+    padding-left: 12px;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #12a4d9;
+}
+
+.accordion-text {
+    margin-bottom: 6px;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.accordion-item-member {
+    display: flex;
+    flex-direction: column;
+}
+
+.accordion-name-desc-member {
+    display: flex;
+    align-items: center;
+}
+
+.accordion-name-desc-member-icon {
+    padding-right: 6px;
+    font-size: 1.2rem;
+}

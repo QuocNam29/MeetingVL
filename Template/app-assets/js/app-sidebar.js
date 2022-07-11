@@ -316,3 +316,14 @@ add_end.addEventListener('change', function () {
     if (add_end.value)
         add_start.max = add_end.value;
 }, false);
+
+const accordionWrap = document.querySelectorAll('.accordion-wrap')
+const accordionCard = document.querySelectorAll('.accordion-card')
+
+const handleClickMenu = (e) => {
+    e.target.classList.toggle('open-menu')
+}
+
+accordionWrap.forEach((e) => {
+    e.addEventListener('click', handleClickMenu)
+})

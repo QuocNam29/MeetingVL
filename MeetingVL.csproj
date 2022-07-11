@@ -1489,6 +1489,8 @@
     <Content Include="Views\Groups\Edit.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\ProjectParticipants\List_member.cshtml" />
+    <Content Include="Views\ProjectParticipants\List_Group.cshtml" />
+    <Content Include="Views\ProjectParticipants\List_Member_Group.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
