@@ -90,7 +90,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @using (Html.BeginForm("Create", "ProjectParticipants", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("Create", "Groups", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.Hidden("project_id", project_id)
         <div class="modal-body">
@@ -105,7 +105,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="projectinput1">Topic</label>
-                        <textarea id="issueinput8" rows="5" class="form-control" name="description" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                        <textarea id="issueinput8" rows="5" class="form-control" name="topic" data-toggle="tooltip" data-trigger="hover" data-placement="top"
                                   data-title="Comments" required="required" oninvalid="this.setCustomValidity('Please enter topic')" oninput="setCustomValidity('')"></textarea>                   
                     </div>
                 </div>
@@ -119,8 +119,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="projectinput1">Customer</label>
-                        <input type="text" id="projectinput1" class="form-control" name="customer"
-                               required="required" oninvalid="this.setCustomValidity('Please enter customer')" oninput="setCustomValidity('')">
+                        <input type="text" id="projectinput1" class="form-control" name="customer">
                     </div>
                 </div>
                 <div class="col-12">

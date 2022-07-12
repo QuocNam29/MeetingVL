@@ -35,28 +35,21 @@ namespace MeetingVL.Controllers
             return View(group);
         }
 
-        // GET: Groups/Create
-        public ActionResult Create()
+      /*  // GET: Groups/Create
+        public ActionResult Create(string name, string topic, string mentor,string customer, string[] addStudent, int project_id)
         {
-            return View();
-        }
+            Group group = new Group();
+            group.Name = name;
+            group.Topic = topic;
+            group.Mentor = mentor;
+            group.Customer = customer;
+            db.Groups.Add(group);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 3 });
+        }*/
 
-        // POST: Groups/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Topic,Mentor,Customer")] Group group)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Groups.Add(group);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(group);
-        }
+       
+        
 
         // GET: Groups/Edit/5
         public ActionResult Edit(int? id)

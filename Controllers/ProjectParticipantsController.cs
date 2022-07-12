@@ -107,40 +107,51 @@ namespace MeetingVL.Controllers
         {
             string exist = "Đã tồn tại ";
             string user_null = "Chưa tồn tại ";
+            
             bool flat = true;
             bool flat_user = true;
-            for (int i = 0; i < addStudent.Length; i++)
+            if (addStudent != null)
             {
-                string student = addStudent[i].Trim();
-                var check_user = db.Users.Find(student);
-                if (check_user != null)
+                for (int i = 0; i < addStudent.Length; i++)
                 {
-                    var check_student = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Include(p => p.Group)
-                     .Where(c => c.User_ID == student && c.Project_ID == project_id).FirstOrDefault();
+                                string student = addStudent[i].Trim();
+                                var check_user = db.Users.Find(student);
+                                if (check_user != null)
+                                {
+                                    var check_student = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Include(p => p.Group)
+                                     .Where(c => c.User_ID == student && c.Project_ID == project_id).FirstOrDefault();
 
-                    if (check_student == null)
-                    {
-                        ProjectParticipant projectParticipant = new ProjectParticipant();
-                        projectParticipant.Project_ID = project_id;
-                        projectParticipant.User_ID = addStudent[i].Trim();
-                        projectParticipant.Role = "Student";
-                        db.ProjectParticipants.Add(projectParticipant);
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        flat = false;
-                        exist += addStudent[i].Trim() + " ";
-                    }
-                }
-                else
-                {
-                    flat_user = false;
-                    user_null += addStudent[i].Trim() + " ";
-                }              
-            }
+                                    if (check_student == null)
+                                    {
+                                        ProjectParticipant projectParticipant = new ProjectParticipant();
+                                        projectParticipant.Project_ID = project_id;
+                                        projectParticipant.User_ID = addStudent[i].Trim();
+                                        projectParticipant.Role = "Student";
+                                        db.ProjectParticipants.Add(projectParticipant);
+                                        db.SaveChanges();
+                                    }
+                                    else
+                                    {
+                                        flat = false;
+                                        exist += addStudent[i].Trim() + " ";
+                                    }
+                                }
+                                else
+                                {
+                                    flat_user = false;
+                                    user_null += addStudent[i].Trim() + " ";
+                                }              
+                } 
             Session["ViewBag.FileStatus"] = null;
             Session["ViewBag.Success"] = "Import student successful !";
+               
+            } 
+            else
+                {
+                    Session["ViewBag.Success"] = null;
+                Session["ViewBag.FileStatus"] = "You have not entered student !";
+                }
+           
             exist += "trong project";
             user_null += "trong hệ thống";
             if (flat == false)
