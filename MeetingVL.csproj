@@ -178,6 +178,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Import_StudentController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MeetingMinutesController.cs" />
     <Compile Include="Controllers\ProjectParticipantsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\Session_ReportsController.cs" />
@@ -1491,6 +1492,11 @@
     <Content Include="Views\ProjectParticipants\List_member.cshtml" />
     <Content Include="Views\ProjectParticipants\List_Group.cshtml" />
     <Content Include="Views\ProjectParticipants\List_Member_Group.cshtml" />
+    <Content Include="Views\MeetingMinutes\Create.cshtml" />
+    <Content Include="Views\MeetingMinutes\Delete.cshtml" />
+    <Content Include="Views\MeetingMinutes\Details.cshtml" />
+    <Content Include="Views\MeetingMinutes\Edit.cshtml" />
+    <Content Include="Views\MeetingMinutes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

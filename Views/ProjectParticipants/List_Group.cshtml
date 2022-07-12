@@ -11,16 +11,9 @@
 
     <div class="col-sm-12">
 
-        <div class="" style="float: right">
-            <div class="btn-group mr-2">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Add Session Report
-                </button>
-                <div class="dropdown-menu">
-                    <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#myBootstrap"><span>Each report</span></a>
-                    <a class="dropdown-item complaint-add-row" href="#">A lot of report</a>
-                </div>
-            </div>
+        <div id="btnAdd" class="btn btn-primary mb-2" data-toggle="modal" data-target="#AddGroup">
+            <i class="ft-plus"></i>
+            Add Group
         </div>
     </div>
 </div>
@@ -86,4 +79,64 @@
         
 
     }
+</div>
+
+<div class="modal fade text-left" id="AddGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel34">Add Group</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("Create", "ProjectParticipants", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.Hidden("project_id", project_id)
+        <div class="modal-body">
+            <div class="row justify-content-md-center">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="projectinput1">Name</label>
+                        <input type="text" id="projectinput1" class="form-control" name="name"
+                               required="required" oninvalid="this.setCustomValidity('Please enter name group')" oninput="setCustomValidity('')">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="projectinput1">Topic</label>
+                        <textarea id="issueinput8" rows="5" class="form-control" name="description" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                  data-title="Comments" required="required" oninvalid="this.setCustomValidity('Please enter topic')" oninput="setCustomValidity('')"></textarea>                   
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="projectinput1">Mentor</label>
+                        <input type="text" id="projectinput1" class="form-control" name="mentor"
+                               required="required" oninvalid="this.setCustomValidity('Please enter mentor')" oninput="setCustomValidity('')">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="projectinput1">Customer</label>
+                        <input type="text" id="projectinput1" class="form-control" name="customer"
+                               required="required" oninvalid="this.setCustomValidity('Please enter customer')" oninput="setCustomValidity('')">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="projectinput1">Add student</label>
+                        <div class="close-char form-control" data-tags-input-name="addStudent"></div>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Cancel">
+                <input type="submit" class="btn btn-outline-primary btn-lg" value="Add">
+            </div>
+            }
+        </div>
+    </div>
 </div>
