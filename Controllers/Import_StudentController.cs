@@ -78,10 +78,12 @@ namespace MeetingVL.Controllers
 
                             }
                         }
-                    }
+                    } 
+                    int addRow = 0;
                     //Insert records to database table.
                     foreach (DataRow row in dt.Rows)
                     {
+                       
                         if (!String.IsNullOrEmpty(row["EMAIL"].ToString()))
                         {
                             string user_id = row["EMAIL"].ToString();
@@ -125,6 +127,7 @@ namespace MeetingVL.Controllers
                                     projectParticipant.Role = "Student";
                                     db.ProjectParticipants.Add(projectParticipant);
                                     db.SaveChanges();
+                                   
                                 }
                                 else
                                 {
@@ -137,12 +140,14 @@ namespace MeetingVL.Controllers
                                     projectParticipant.Role = "Student";
                                     db.ProjectParticipants.Add(projectParticipant);
                                     db.SaveChanges();
+                                    
                                 }
+                                addRow++;
                             }                         
                         }
                     }
                     Session["ViewBag.FileStatus"] = null;
-                    Session["ViewBag.Success"] = "Import student list successful !";
+                    Session["ViewBag.Success"] = "Import student list successful ! " + "(" + addRow + " row data)";
 
                 }
                 else
