@@ -21,6 +21,12 @@ namespace MeetingVL.Controllers
             return View(meetingMinutes.ToList());
         }
 
+        public ActionResult Content_Meeting()
+        {
+            var meetingMinutes = db.MeetingMinutes.Include(m => m.User);
+            return View(meetingMinutes.ToList());
+        }
+
         // GET: MeetingMinutes/Details/5
         public ActionResult Details(int? id)
         {

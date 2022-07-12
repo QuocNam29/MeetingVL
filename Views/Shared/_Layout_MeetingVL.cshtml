@@ -28,11 +28,16 @@
     <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/tables/datatable/responsive.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/tagging.css">
 
+    <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/monokai-sublime.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/quill.snow.css">
+
     <link rel="stylesheet" type="text/css" href="~/Template/app-assets/css/app.css">
 
     <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/toastr.css">
 
 
+    @RenderSection("scripts", required: false)
 
 </head>
 <body data-col="2-columns" class=" 2-columns ">
@@ -61,12 +66,12 @@
                                 </li>
                             </ul>
                         </li>
-                        @if (Session["Role"].ToString() == "Admin")
-                        {
-                            <li class=" nav-item">
-                                <a href="@Url.Action("Index","Users")"><i class="icon-user"></i><span data-i18n="" class="menu-title">Users</span></a>
-                            </li>
-                        }
+                        @*@if (Session["Role"].ToString() == "Admin")
+                            {
+                                <li class=" nav-item">
+                                    <a href="@Url.Action("Index","Users")"><i class="icon-user"></i><span data-i18n="" class="menu-title">Users</span></a>
+                                </li>
+                            }*@
                         <li class="nav-item">
                             <a href="@Url.Action("Index", "Categories")"><i class="icon-folder"></i><span data-i18n="" class="menu-title">Category</span></a>
                         </li>
@@ -381,6 +386,14 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="~/Template/app-assets/js/tagging.js"></script>
     <!-- END PAGE LEVEL JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="~/Template/app-assets/vendors/js/katex.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/highlight.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/quill.min.js"></script>
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="~/Template/app-assets/js/quill.min.js"></script>
+    <!-- END PAGE LEVEL JS-->
+    <!-- END PAGE VENDOR JS-->
     <!-- END PAGE VENDOR JS-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

@@ -1497,6 +1497,7 @@
     <Content Include="Views\MeetingMinutes\Details.cshtml" />
     <Content Include="Views\MeetingMinutes\Edit.cshtml" />
     <Content Include="Views\MeetingMinutes\Index.cshtml" />
+    <Content Include="Views\MeetingMinutes\Content_Meeting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
