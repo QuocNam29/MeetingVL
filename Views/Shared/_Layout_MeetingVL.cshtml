@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="~/Template/app-assets/css/app.css">
 
     <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/toastr.css">
+    <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/wizard.css">
 
 
     @RenderSection("scripts", required: false)
@@ -66,12 +67,12 @@
                                 </li>
                             </ul>
                         </li>
-                        @if (Session["Role"].ToString() == "Admin")
-                            {
-                                <li class=" nav-item">
-                                    <a href="@Url.Action("Index","Users")"><i class="icon-user"></i><span data-i18n="" class="menu-title">Users</span></a>
-                                </li>
-                            }
+                        @*@if (Session["Role"].ToString() == "Admin")
+                        {
+                            <li class=" nav-item">
+                                <a href="@Url.Action("Index","Users")"><i class="icon-user"></i><span data-i18n="" class="menu-title">Users</span></a>
+                            </li>
+                        }*@
                         <li class="nav-item">
                             <a href="@Url.Action("Index", "Categories")"><i class="icon-folder"></i><span data-i18n="" class="menu-title">Category</span></a>
                         </li>
@@ -395,6 +396,17 @@
     <!-- END PAGE LEVEL JS-->
     <!-- END PAGE VENDOR JS-->
     <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="~/Template/app-assets/js/wizard-steps.js"></script>
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="~/Template/app-assets/vendors/js/jquery.steps.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/pickadate/picker.js"></script>
+    <script src="~/Template/app-assets/vendors/js/pickadate/picker.date.js"></script>
+    <script src="~/Template/app-assets/vendors/js/pickadate/picker.time.js"></script>
+    <script src="~/Template/app-assets/vendors/js/pickadate/legacy.js"></script>
+    <script src="~/Template/app-assets/vendors/js/jquery.validate.min.js"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- END PAGE LEVEL JS-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

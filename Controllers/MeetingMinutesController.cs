@@ -26,6 +26,11 @@ namespace MeetingVL.Controllers
             var meetingMinutes = db.MeetingMinutes.Include(m => m.User);
             return View(meetingMinutes.ToList());
         }
+        public ActionResult Demo_form()
+        {
+            var meetingMinutes = db.MeetingMinutes.Include(m => m.User);
+            return View(meetingMinutes.ToList());
+        }
 
         // GET: MeetingMinutes/Details/5
         public ActionResult Details(int? id)

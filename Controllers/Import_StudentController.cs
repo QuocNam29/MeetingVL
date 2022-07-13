@@ -87,7 +87,7 @@ namespace MeetingVL.Controllers
                         if (!String.IsNullOrEmpty(row["EMAIL"].ToString()))
                         {
                             string user_id = row["EMAIL"].ToString();
-                            var check_user = db.ProjectParticipants.Where(c => c.Project_ID == project_id && c.User_ID == user_id).FirstOrDefault();
+                            var check_user = db.ProjectParticipants.Where(c => c.Project_ID == project_id && c.User_ID == user_id ).FirstOrDefault();
                             if (check_user == null)
                             {
                                 var user = db.Users.Find(user_id);
@@ -102,12 +102,18 @@ namespace MeetingVL.Controllers
                                 {
                                     Session["Topic"] = row["TOPIC"].ToString();
                                     Session["Mentor"] = row["MENTOR"].ToString();
+                                    Session["NameGroup"] = row["TEAM"].ToString();
+                                    Session["Customer"] = row["CUSTOMER"].ToString();
                                 }
 
 
                                 string topic = Session["Topic"].ToString();
                                 string mentor = Session["Mentor"].ToString();
-                                var group = db.Groups.Where(g => g.Topic == topic && g.Mentor == mentor).FirstOrDefault();
+                                string customer = Session["CUSTOMER"].ToString();
+                                string nameGroup = "Team " + Session["NameGroup"].ToString();
+
+                                var group = db.Groups.Where(g => g.Topic == topic && g.Mentor == mentor 
+                                && g.Name == nameGroup && g.Customer == customer).FirstOrDefault();
                                 if (group == null)
                                 {
                                     Group addGroup = new Group();

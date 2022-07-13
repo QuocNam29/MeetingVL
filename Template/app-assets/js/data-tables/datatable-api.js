@@ -16,15 +16,44 @@
         ******************************/
 
         var t = $('.add-rows').DataTable();
+        
         var counter = 1;
 
-        $('#addRow').on( 'click', function () {
-            t.row.add( [
-                counter +'.1',
-                counter +'.2',
-                counter +'.3',
-                counter +'.4',
-                counter +'.5'
+
+        $('#addRow').on('click', function () {
+            var Action = "";
+            var Deadline = "";
+            var Descriptions = "";
+            var Member = "";
+
+            $('#Action')
+                .keypress(function () {
+                    Action = $(this).val();
+                })
+                .keypress();
+            $('#Deadline')
+                .keypress(function () {
+                    Deadline = $(this).val();
+                })
+                .keypress();
+            $('#Descriptions')
+                .keypress(function () {
+                    Descriptions = $(this).val();
+                })
+                .keypress();
+            $('#Member')
+                .keypress(function () {
+                    Member = $(this).val();
+                })
+                .keypress();
+
+
+            t.row.add([
+                counter,
+                Member,
+                Action,
+                Deadline,
+                Descriptions
             ] ).draw( false );
 
             counter++;
@@ -34,8 +63,8 @@
         *       Automatically add a first row of data        *
         *****************************************************/
 
-        $('#addRow').trigger('click');
-
+/*        $('#addRow').trigger('click');
+*/
 
         /***************************************************************
         *       js of Individual column searching (text inputs)        *

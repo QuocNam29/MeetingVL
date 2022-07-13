@@ -1,0 +1,192 @@
+﻿
+@{
+    ViewBag.Title = "Demo_form";
+    Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+}
+<section id="icon-tabs">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Form wizard with icon tabs</h4>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <form class="icons-tab-steps wizard-circle">
+                            <!-- Step 1 -->
+                            <h6>Step 1</h6>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstName2">Meeting Date</label>
+                                            <input type="datetime-local" id="userinput1" class="form-control" name="firstname">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastName2">Location</label>
+                                            <input type="text" class="form-control" id="lastName2" name="lastName2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="emailAddress3">PROCESS (%)</label>
+                                            <input type="number" class="form-control" id="emailAddress3" name="emailAddress3" min="0" max="100">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phoneNumber2">STAGES</label>
+                                            <input type="text" class="form-control" id="phoneNumber2" name="phoneNumber2">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Mentor</label>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="6th-item">
+                                                <label class="custom-control-label" for="6th-item">6th item</label>
+                                            </div>
+                                            <label>Customer</label>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="7th-item">
+                                                <label class="custom-control-label" for="7th-item">7th item</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Member</label>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="1st-item">
+                                                <label class="custom-control-label" for="1st-item">1st item</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="2nd-item">
+                                                <label class="custom-control-label" for="2nd-item">2nd item</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="3rd-item">
+                                                <label class="custom-control-label" for="3rd-item">3rd item</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="4th-item">
+                                                <label class="custom-control-label" for="4th-item">4th item</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="5th-item">
+                                                <label class="custom-control-label" for="5th-item">5th item</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                            <!-- Step 2 -->
+                            <h6>Step 2</h6>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="shortDescription2">Content</label>
+                                            <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="shortDescription2">ISSUES</label>
+                                            <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="shortDescription2">N/A</label>
+                                            <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <!-- Step 3 -->
+                            <h6>Step 3</h6>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="shortDescription2">ACTION</label>
+                                            <textarea name="participants" id="participants2" rows="4" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstName2">DEADLINE</label>
+                                            <input type="datetime-local" id="userinput1" class="form-control" name="firstname">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="shortDescription2">DISCRIPTION</label>
+                                            <textarea name="participants" id="participants2" rows="2" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add rows table -->
+<section id="add-row">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">Add rows</h4>
+                    </div>
+                </div>
+                <div class="card-body collapse show">
+                    <div class="card-block">
+                        <p class="card-text">
+                            New rows can be added to a DataTable very easily using the ( row.add() ) API method. Simply call the API function with the data that is to be used for the new row (be it an array or object). Multiple rows can be added using the ( rows.add() ) method (note the plural). Data can be likewise be updated with the ( row().data() and row().remove() methods. )
+                        </p>
+                        <button id="addRow" class="btn btn-primary mb-2"><i class="ft-plus"></i>&nbsp; Add new row</button>
+                        <table class="table table-striped table-bordered add-rows">
+                            <thead>
+                                <tr>
+                                    <th>Column 1</th>
+                                    <th>Column 2</th>
+                                    <th>Column 3</th>
+                                    <th>Column 4</th>
+                                    <th>Column 5</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Column 1</th>
+                                    <th>Column 2</th>
+                                    <th>Column 3</th>
+                                    <th>Column 4</th>
+                                    <th>Column 5</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ Add rows table -->

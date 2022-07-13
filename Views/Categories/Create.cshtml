@@ -5,32 +5,323 @@
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
 }
 
-<h2>Create</h2>
+<style>
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #16aaff38;
+        background-clip: border-box;
+        border: 1px solid rgba(26,54,126,0.125);
+        border-radius: .25rem;
+    }
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Category</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    body {
+        font-size: 1rem;
+    }
+</style>
+<form asp-action=@(ViewBag.IsCreate ? "Create" : "Edit") enctype="multipart/form-data">
+    <h2 class="text-center">@(ViewBag.IsCreate ? "TẠO" : "CẬP NHẬT") PHIẾU </h2>
+    <input hidden name="actions" value="1" />
+    <div class="">
+        @if (!(bool)ViewBag.IsCreate)
+        {
+<input asp-for="CreatedAt" class="form-control" type="hidden">
+                <input asp-for="id" class="form-control" type="hidden">
+                                <input asp-for="ReceiptCode" class="form-control" type="hidden">}
+        <input name="type" value="1" class="form-control" type="hidden">
+        <div class="row justify-content-center">
+            <div class="col-12 m-b-20" style="margin-bottom:20px">
+                <button class=" btn btn-primary float-right" type="submit">@(ViewBag.IsCreate == true ? "Thêm" : "Cập nhật")</button>
+                <a asp-action="1" class=" btn btn-warning float-left"><i class="fa fa-chevron-circle-left font-size-xlg"></i></a>
+            </div>
+            <div class="main-card mb-3 col-md-7 card">
+                <h4 class="m-t-5 text-center" style="margin-top:10px"><b>THÔNG TIN CHUNG</b></h4>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="" asp-for="CustomerCode">Mã KH:</label>
+                                <input asp-for="CustomerCode" class="form-control">
+                                <span asp-validation-for="CustomerCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">Tên KH:</label>
+                                <input asp-for="CustomerName" class="form-control">
+                                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">Công ty</label>
+                                @if (ViewBag.IsCreate)
+                                {
+                    <input asp-for="CompanyName" class="form-control">
+                                    <span asp-validation-for="CompanyName" class="text-danger"></span> }
+                                                else
+                                                {
+                                    <input asp-for="CompanyName" class="form-control">
+                                                    <span asp-validation-for="CompanyName" class="text-danger"></span>}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">Người nhận</label>
+                                <input asp-for="Receiver" class="form-control">
+                                <span asp-validation-for="Receiver" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">SĐT</label>
+                                <input asp-for="Phone" class="form-control">
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="">Email</label>
+                                <input asp-for="Email" class="form-control">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <label class="">Địa chỉ</label>
+                                <input asp-for="Adress" class="form-control">
+                                <span asp-validation-for="Adress" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <label class="">Mô tả</label>
+                                <textarea asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-card mb-3 m-l-10 col-md-4 card" style="margin-left:10px">
+                <h4 class="text-center" style="margin-top:10px"><b>THÔNG TIN KIỂM</b></h4>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <label class="">Ngày:</label>
+                                <input asp-for="ReceiveDay" class="form-control daterangepicker">
+                                <span asp-validation-for="ReceiveDay" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <label class="">Chứng từ:</label>
+                                @if (ViewBag.IsCreate)
+                                {
+                    <input asp-for="LicensesIn" class="form-control">
+                                    <span asp-validation-for="LicensesIn" class="text-danger"></span> }
+                                                else
+                                                {
+                                    <input asp-for="LicensesIn" class="form-control" readonly>
+                                                    <span asp-validation-for="LicensesIn" class="text-danger"></span>}
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <label class="">Chứ từ kiểm</label>
+                                <input asp-for="LicensesCheck" class="form-control">
+                                <span asp-validation-for="LicensesCheck" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class=" col-md-12">
+
+                            <div class="position-relative form-group" style="margin-top:20px">
+                                <label class="">Ghi chú</label>
+                                <textarea asp-for="Note" class="form-control"></textarea>
+                                <span asp-validation-for="Note" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class=" col-md-12">
+
+                            <div class="position-relative form-group" style="margin-top:20px">
+                                <label class="">Tổng tiền</label>
+                                <input asp-for="TotalPrice" readonly class="form-control"></input>
+                                <span asp-validation-for="TotalPrice" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="main-card col-md-12 card">
+            <h4 class="m-t-5 text-center" style="margin-top:10px"><b>THÔNG TIN CHI TIẾT</b></h4>
+            <div class="row">
+                <div class="card-body">
+                    <table id="datatable" class="table table-striped border">
+                        <thead style="background-color:#85a7ed">
+                            <tr>
+                                <th>Vật liệu</th>
+                                <th>Số lượng</th>
+                                <th>Quy cách</th>
+
+                                <th>Đơn giá</th>
+                                <th>Đơn vị</th>
+                                <th>Thành tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        
+                        
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <div class="m-auto" style="text-align:center;justify-content:center">
+                            <button id="addnew" class="m-auto btn btn-info">+</button>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+                    </table>
+                </div>
+
             </div>
         </div>
+
+        <br />
+
     </div>
-}
+</form>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<script>
+    $(document).ready(function () {
+        //add row
+        $('.allow-search').select2();
+        $("#addnew").click(function (e) {
+            e.preventDefault();
+            var $tableBody = $("#datatable");
+            var $trlast = $tableBody.find("tbody tr:last");
+            var $trnew = $trlast.clone();
+            var surfix = $trnew.find(':input:first').attr('name').match(/\d+/);
+            var surfixspan = $trnew.find('span:first').attr('data-valmsg-for').match(/\d+/);
+            $trnew.find("td:last").html('<a href="#" class="btn btn-warning remove m-auto">X</a>');
+            $.each($trnew.find('td:first'), function (i, val) {
+                $(this).find('select').attr('id', (parseInt(surfix) + 1))
+            });
+            $.each($trnew.find('td:eq(2)'), function (i, val) {
+                $(this).find('select').attr('id', "district" + (parseInt(surfix) + 1))
+                $(this).find('input').attr('id', "countdistrict" + (parseInt(surfix) + 1))
+            });
+            $.each($trnew.find('td:eq(3)'), function (i, val) {
+                $(this).find('input').attr('id', "prices" + (parseInt(surfix) + 1))
+
+            });
+            $.each($trnew.find('td:eq(1)'), function (i, val) {
+                $(this).find('input').attr('id', "quantity" + (parseInt(surfix) + 1))
+                $(this).find('input').val(0);
+
+            });
+            $.each($trnew.find('td:eq(4)'), function (i, val) {
+                $(this).find('input').attr('id', "amounts" + (parseInt(surfix) + 1))
+                var oldN = $(this).find('span').attr('data-valmsg-for');
+                var newN = oldN.replace('[' + surfixspan + ']', '[' + (parseInt(surfixspan) + 1) + ']');
+                $(this).find('span').attr('data-valmsg-for', newN);
+                $(this).find('span').text("");
+                $(this).find('input').val(0);
+            });
+            $.each($trnew.find('td:eq(5)'), function (i, val) {
+                $(this).find('input').attr('id', "totals" + (parseInt(surfix) + 1))
+                $(this).find('input').val(0);
+            });
+            $.each($trnew.find(':input'), function (i, val) {
+                //replac ename
+                var oldN = $(this).attr('name');
+                var newN = oldN.replace('[' + surfix + ']', '[' + (parseInt(surfix) + 1) + ']');
+                $(this).attr('name', newN);
+                //replace val
+                var type = $(this).attr('type');
+                if (type == "number") {
+                    $(this).text(0);
+                }
+                //if have other type replace with default val
+                if ($(this).hasClass("lvel")) {
+                    $(this).val((parseInt(surfix)) + 1)
+                    $('#count').text((parseInt(surfix) + 1))
+                }
+                $(this).removeClass("input-validation-error");
+            });
+            $trlast.after($trnew);
+            //Re-assgin validation
+            totalPriceCal()
+            var form = $("form")
+                .remove("validator")
+                .remove("unobtrustsiveValidation");
+            $.vaidator.unobtrustsive.parse(form);
+        });
+        $(document).on("click", "a.remove", function (e) {
+            e.preventDefault();
+            $(this).parent().parent().remove();
+            totalPriceCal()
+        });
+    });
+   @* var districtUrl = "@Constants.SUBDOMAINS/Receipt/GetDistrictByCityId/";
+    var urlAmount = "@Constants.SUBDOMAINS/Receipt/GetProcedureAmount/";*@
+    async function calculatePrice(target) {
+        var sp = target.replace("quantity", "");
+        var am = await calAmout($("#district" + sp).val(), ("district" + sp));
+        am;
+        var po = $("#prices" + sp).val();
+        $("#totals" + sp).val(am * po);
+        totalPriceCal();
+    };
+    function totalPriceCal() {
+        var total = 0;
+        $(".totalspriceCal").each(function (idx, el) {
+            total = total + parseFloat($("#totals" + (idx)).val());
+            $("#TotalPrice").val(parseFloat(total));
+        });
+        return;
+    };
+    async function calAmout(id, target) {
+        var split = target.replace("district", "");
+        var amo = 0;
+        await $.get(urlAmount + id, function (data) {
+            amo = parseInt(data * $("#quantity" + split).val());
+            $("#amounts" + split).val(data * $("#quantity" + split).val());
+            totalPriceCal();
+        })
+        calculatePrice("quantity" + split);
+        return parseInt(amo);
+    }
+    @*async function _getDistrict(id, targetId) {
+        await $.get("@Constants.SUBDOMAINS/Receipt/GetPrice/" + id, function (data) {
+            $("#prices" + targetId).val(data);
+        });*@
+        await $.get(districtUrl + id, function (data) {
+            if (data != null && data != undefined && data.length) {
+                var html = '';
+                $.each(data, function (key, item) {
+                    if (key == 0) {
+                        html += '<option selected value=' + item.id + '>' + item.procedureName + '</option>';
+                    } else {
+                        html += '<option value=' + item.id + '>' + item.procedureName + '</option>';
+                    }
+                });
+                $("#district" + targetId).html(html);
+
+            } else {
+                var html = '';
+                html += '<option value="">--Không có quy cách phù hợp--</option>';
+                $("#district" + targetId).html(html);
+            }
+        });
+        calculatePrice(("quantity" + targetId));
+    }
+</script>
+
