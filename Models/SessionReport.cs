@@ -17,6 +17,7 @@ namespace MeetingVL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SessionReport()
         {
+            this.MeetingMinutes = new HashSet<MeetingMinute>();
             this.Session_Semester = new HashSet<Session_Semester>();
         }
     
@@ -27,6 +28,8 @@ namespace MeetingVL.Models
         public Nullable<System.DateTime> Date_End { get; set; }
         public string State { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MeetingMinute> MeetingMinutes { get; set; }
         public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Session_Semester> Session_Semester { get; set; }

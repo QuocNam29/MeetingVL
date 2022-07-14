@@ -3,12 +3,13 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    int session_id = int.Parse(TempData["session_id"].ToString());
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { session_id = session_id })
 </p>
 <table class="table">
     <tr>

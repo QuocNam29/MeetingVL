@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    int session_id = int.Parse(TempData["session_id"].ToString());
+    int project_id = int.Parse(TempData["project_id"].ToString());
+    int group_id = int.Parse(TempData["group_id"].ToString());
 }
 
 <div class="row">
@@ -16,178 +19,238 @@
             </div>
             <div class="card-body">
                 <div class="px-3">
-                    <form class="form form-horizontal">
-                        <div class="form-body">
-                            <h4 class="form-section">
-                                <i class="icon-direction"></i> Meeting Minutes
-                            </h4>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="userinput1">Meeting date: </label>
-                                        <div class="col-md-9">
-                                            <input type="datetime-local" id="userinput1" class="form-control border-primary" name="firstname">
+                    @using (Html.BeginForm("Create_Meeting", "MeetingMinutes" ))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("session_id", session_id)
+                        <form class="form form-horizontal">
+                            <div class="form-body">
+                                <h4 class="form-section">
+                                    <i class="icon-direction"></i> Meeting Minutes
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput1">Meeting date: </label>
+                                            <div class="col-md-9">
+                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter Meeting Date')" oninput="setCustomValidity('')">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="userinput3">Location: </label>
-                                        <div class="col-md-9">
-                                            <input type="email" id="userinput3" class="form-control border-primary" name="username">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="userinput2">Process (%): </label>
-                                        <div class="col-md-9">
-                                            <input type="number" id="userinput2" class="form-control border-primary" name="lastname" min="0" max="100">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="userinput3">stages: </label>
-                                        <div class="col-md-9">
-                                            <input type="email" id="userinput3" class="form-control border-primary" name="username">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput3">Location: </label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="userinput3" class="form-control border-primary" name="location"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter location')" oninput="setCustomValidity('')">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                            </div>
-                            <h4 class="form-section">
-                                <i class="icon-note"></i>Content
-                            </h4>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group row">
-                                        <div class="col-md-12">
-                                            <textarea id="userinput8" rows="6" class="form-control col-md-12 border-primary" name="address"></textarea>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput2">Process (%): </label>
+                                            <div class="col-md-9">
+                                                <input type="number" id="process" class="form-control border-primary" name="process" min="0" max="100"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter process')" oninput="setCustomValidity('')">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-
-                            <h4 class="form-section">
-                                <i class="ft-info"></i> Issues
-                            </h4>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="userinput2">Issues: </label>
-                                        <div class="col-md-9">
-                                            <textarea class="form-control border-primary" type="url" id="userinput6"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="userinput3">N/A: </label>
-                                        <div class="col-md-9">
-                                            <textarea class="form-control border-primary" type="url" id="userinput6"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <h4 class="form-section">
-                                <i class="icon-users"></i> Action
-                            </h4>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="userinput8">Action: </label>
-                                        <div class="col-md-9">
-                                            <textarea id="Action" rows="6" class="form-control col-md-9 border-primary"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="userinput5">Member: </label>
-                                        <div class="col-md-9">
-
-                                            <select class="custom-select form-control border-primary" id="Member" data-placeholder="Type to search cities" name="eventType2">
-                                                <option value="Banquet">Banquet</option>
-                                                <option value="Fund Raiser">Fund Raiser</option>
-                                                <option value="Dinner Party">Dinner Party</option>
-                                                <option value="Wedding">Wedding</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="userinput5">Deadline: </label>
-                                        <div class="col-md-9">
-                                            <input class="form-control border-primary" type="date" id="Deadline">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput3">stages: </label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="stages" class="form-control border-primary" name="stages"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter stages')" oninput="setCustomValidity('')">
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="userinput6">Descriptions: </label>
-                                        <div class="col-md-9">
-                                            <textarea class="form-control border-primary" type="url" id="Descriptions"></textarea>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label>Mentor</label>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="6th-item">
+                                                <label class="custom-control-label" for="6th-item">6th item</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                            <label>Customer</label>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="7th-item">
+                                                <label class="custom-control-label" for="7th-item">7th item</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Member</label>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="1st-item">
+                                                <label class="custom-control-label" for="1st-item">1st item</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="2nd-item">
+                                                <label class="custom-control-label" for="2nd-item">2nd item</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="3rd-item">
+                                                <label class="custom-control-label" for="3rd-item">3rd item</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="4th-item">
+                                                <label class="custom-control-label" for="4th-item">4th item</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox m-0">
+                                                <input type="checkbox" class="custom-control-input" id="5th-item">
+                                                <label class="custom-control-label" for="5th-item">5th item</label>
+                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input hidden type="text" id="URL_Action" value="@Url.Action("InsertAction", "Actions")">
-                                        <button method="post" type="button" id="addRow12" class="btn btn-primary mb-2"><i class="ft-plus"></i>sadsaffafd</button>
-
-                                        <button method="post" type="button" id="addRow" class="btn btn-primary mb-2"><i class="ft-plus"></i> Add new row</button>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <h4 class="form-section">
-                                <i class="icon-users"></i> Action List
-                            </h4>
-                            <section id="add-row">
-
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <table class="table table-striped table-bordered add-rows">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>User</th>
-                                                        <th>Action</th>
-                                                        <th>Deadline</th>
-                                                        <th>Description</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-
-                                            </table>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput8">Objectives: </label>
+                                            <div class="col-md-9">
+                                                <textarea id="Objectives" rows="2" class="form-control col-md-9 border-primary" name="objectives"></textarea>
+                                            </div>
                                         </div>
                                     </div>
+                                 </div>
+
+                                    <h4 class="form-section">
+                                        <i class="icon-note"></i>Content
+                                    </h4>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+                                                <div class="col-md-12">
+                                                    <textarea id="userinput8" rows="6" class="form-control col-md-12 border-primary" name="content"
+                                                              required="required" oninvalid="this.setCustomValidity('Please enter content')" oninput="setCustomValidity('')"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <h4 class="form-section">
+                                        <i class="ft-info"></i> Issues
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput2">Issues: </label>
+                                                <div class="col-md-9">
+                                                    <textarea class="form-control border-primary" type="url" id="userinput6" name="issues"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput3">N/A: </label>
+                                                <div class="col-md-9">
+                                                    <textarea class="form-control border-primary" type="url" id="userinput6" name="NA"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <h4 class="form-section">
+                                        <i class="icon-users"></i> Action
+                                    </h4>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput8">Action: </label>
+                                                <div class="col-md-9">
+                                                    <textarea id="Action" rows="6" class="form-control col-md-9 border-primary"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput5">Member: </label>
+                                                <div class="col-md-9">
+
+                                                    @Html.Action("List_Member_Meeting", "ProjectParticipants", new { project_id = project_id, group_id = group_id })
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput5">Deadline: </label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control border-primary" type="date" id="Deadline">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput6">Descriptions: </label>
+                                                <div class="col-md-9">
+                                                    <textarea class="form-control border-primary" type="url" id="Descriptions"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input hidden type="text" id="URL_Action" value="@Url.Action("InsertAction", "Actions")">
+
+                                                <button method="post" type="button" id="addRow" class="btn btn-primary mb-2"><i class="ft-plus"></i> Add new row</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 class="form-section">
+                                        <i class="icon-users"></i> Action List
+                                    </h4>
+                                    <section id="add-row">
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="card">
+                                                    <table class="table table-striped table-bordered add-rows">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No.</th>
+                                                                <th>User</th>
+                                                                <th>Action</th>
+                                                                <th>Deadline</th>
+                                                                <th>Description</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+
                                 </div>
-                            </section>
 
-                        </div>
-
-                        <div class="form-actions right">
-                            <button type="button" class="btn btn-danger mr-1">
-                                <i class="icon-trash"></i> Cancel
-                            </button>
-                            <button type="button" class="btn btn-success">
-                                <i class="icon-note"></i> Save
-                            </button>
-                        </div>
-                    </form>
-
-                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-danger mr-1">
+                                        <i class="icon-trash"></i> Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="icon-note"></i> Save
+                                    </button>
+                                </div>
+</form>
+                    }
+                    </div>
             </div>
         </div>
     </div>

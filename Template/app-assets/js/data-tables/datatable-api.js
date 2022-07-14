@@ -18,23 +18,7 @@
         var t = $('.add-rows').DataTable();
         
         var counter = 1;
-        var Action = "";
-
-        var URL = "";
-
-        $('#Action')
-            .keypress(function () {
-                Action = $(this).val();
-            })
-            .keypress();
-
-
-        $('#URL_Action')
-            .keypress(function () {
-                URL = $(this).val();
-
-            })
-            .keypress();
+        
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -44,7 +28,7 @@
         $('#addRow').on('click', function () {
             var Action = "";
             var Deadline = "";
-            var Descriptions = "";
+            var Description = "";
             var Member = "";
             var URL = "";
 
@@ -60,7 +44,7 @@
                 .keypress();
             $('#Descriptions')
                 .keypress(function () {
-                    Descriptions = $(this).val();
+                    Description = $(this).val();
                 })
                 .keypress();
             $('#Member')
@@ -76,24 +60,29 @@
                 })
                 .keypress();
 
-           /* var action = {};
-            action.Work = Action;
-*//*            action.Deadline = Date.parse(Deadline);
-*//*            action.Meeting_ID = 1;
-            action.User_ID = "nam.197pm33932@vanlanguni.vn";
-         
-            
+            var tire = {};
+            tire.Work = Action;
+            tire.Deadline = dateTime;
+            tire.Description = Description;
+            tire.User_ID = Member;
+
+
             $.ajax({
                 type: "POST",
                 url: URL,
-                data: JSON.stringify(action),
-                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(tire),
+                contentType: "application/json; charset=utf-8",
                 dataType: 'json',
-                success: function (r) {
 
+
+                success: function (r) {
+                    alert(r)
+                },
+                error: function (error) {
+                    alert("Keep trying  " + error.status.text);
+                    console.log(error.status.text)
                 }
             });
-*/
             t.row.add([
                 counter,
                 Member,
@@ -106,33 +95,7 @@
             counter++;
         });
 
-       $('#addRow12').on('click', function () {
-          
-
-            var tire = {};
-            tire.Work = Action;
-            tire.Deadline = dateTime;
-            tire.Meeting_ID = 1;
-            tire.User_ID = "nam.197pm33932@vanlanguni.vn";
-
-
-            $.ajax({
-                type: "POST",
-                url: URL,
-                data: JSON.stringify(tire),
-                contentType: "application/json; charset=utf-8",
-                dataType: 'json',
-               
-                
-                success: function (r) {
-                    alert(r)
-                },
-                error: function (error) {
-                    alert("Keep trying  " + error.status.text);
-                    console.log(error.status.text)
-                }
-            });
-        });
+    
 
         /*****************************************************
         *       Automatically add a first row of data        *

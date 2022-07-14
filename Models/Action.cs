@@ -19,6 +19,7 @@ namespace MeetingVL.Models
         public int Meeting_ID { get; set; }
         public string Work { get; set; }
         public System.DateTime Deadline { get; set; }
+        public string Description { get; set; }
     
         public virtual MeetingMinute MeetingMinute { get; set; }
         public virtual User User { get; set; }

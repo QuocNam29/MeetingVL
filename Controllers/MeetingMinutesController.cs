@@ -32,9 +32,10 @@ namespace MeetingVL.Controllers
             }
         }
         // GET: MeetingMinutes
-        public ActionResult Index()
+        public ActionResult Index(int session_id)
         {
             var meetingMinutes = db.MeetingMinutes.Include(m => m.User);
+            TempData["session_id"] = session_id;
             return View(meetingMinutes.ToList());
         }
 
@@ -66,28 +67,57 @@ namespace MeetingVL.Controllers
         }
 
         // GET: MeetingMinutes/Create
-        public ActionResult Create()
+        public ActionResult Create(int session_id)
         {
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang");
+            string ID_User = Session["ID_User"].ToString();
+            TempData["session_id"] = session_id;
+
+            SessionReport sessionReport = db.SessionReports.Find(session_id);
+            TempData["project_id"] = sessionReport.Project_ID;
+
+            var participant = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == sessionReport.Project_ID && p.User_ID == ID_User).FirstOrDefault();
+            TempData["group_id"] = participant.Group_ID;
             return View();
         }
 
-        // POST: MeetingMinutes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,User_ID,SessionReport,Date,Location,Objectives,Content,Customer,Mentor,TeamMember,Time")] MeetingMinute meetingMinute)
+        public ActionResult Create_Meeting(DateTime meetingDate, string location,
+             int process, string stages, string content, string objectives,
+             string issues, string NA, int session_id)
         {
-            if (ModelState.IsValid)
-            {
-                db.MeetingMinutes.Add(meetingMinute);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            var session = System.Web.HttpContext.Current.Session;
+            GetAction_list();
+            string ID_User = Session["ID_User"].ToString();
+            MeetingMinute meetingMinute = new MeetingMinute();
+            meetingMinute.User_ID = ID_User;
+            meetingMinute.SessionReport_ID = session_id;
+            meetingMinute.Date = meetingDate;
+            meetingMinute.Location = location;
+            meetingMinute.Objectives = objectives;
+            meetingMinute.Content = content;
+            meetingMinute.Time = DateTime.Now;
+            meetingMinute.Process = process;
+            meetingMinute.Issues = issues;
+            meetingMinute.NA = NA;
+            meetingMinute.Stages = stages;
+            db.MeetingMinutes.Add(meetingMinute);
+            db.SaveChanges();
 
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", meetingMinute.User_ID);
-            return View(meetingMinute);
+            foreach (var item in Action_list)
+            {
+                db.Actions.Add(new Action
+                {
+                    Work = item.Work,
+                    Deadline = item.Deadline,
+                    Description = item.Description,
+                    Meeting_ID = meetingMinute.ID,
+                    User_ID = item.User_ID
+                }) ;
+            }
+            db.SaveChanges();
+            session["ShoppingCart"] = null;
+
+            return RedirectToAction("Index", new { session_id = session_id });
         }
 
         // GET: MeetingMinutes/Edit/5

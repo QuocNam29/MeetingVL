@@ -1,0 +1,14 @@
+﻿@model IEnumerable<MeetingVL.Models.ProjectParticipant>
+
+@{
+    Layout = null;
+}
+
+<select class="custom-select form-control border-primary" id="Member" data-placeholder="Type to search cities" name="eventType2">
+   
+    @foreach (var item in Model)
+    {
+        <option value="@item.User_ID">@item.User_ID</option>
+    }
+   
+</select>

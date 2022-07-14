@@ -48,7 +48,9 @@ namespace MeetingVL.Controllers
             Action_list.Add(new Action
             {
                 Work = tire.Work,
-                Deadline = tire.Deadline             
+                Deadline = tire.Deadline, 
+                Description = tire.Description,
+                User_ID = tire.User_ID
             });
 
             return Json(tire);

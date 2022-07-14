@@ -22,7 +22,7 @@ namespace MeetingVL.Models
     
         public int ID { get; set; }
         public string User_ID { get; set; }
-        public int SessionReport { get; set; }
+        public int SessionReport_ID { get; set; }
         public System.DateTime Date { get; set; }
         public string Location { get; set; }
         public string Objectives { get; set; }
@@ -31,9 +31,14 @@ namespace MeetingVL.Models
         public string Mentor { get; set; }
         public string TeamMember { get; set; }
         public Nullable<System.DateTime> Time { get; set; }
+        public string Issues { get; set; }
+        public string NA { get; set; }
+        public int Process { get; set; }
+        public string Stages { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Action> Actions { get; set; }
+        public virtual SessionReport SessionReport { get; set; }
         public virtual User User { get; set; }
     }
 }
