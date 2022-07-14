@@ -173,6 +173,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Actions1Controller.cs" />
+    <Compile Include="Controllers\ActionsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1499,6 +1501,16 @@
     <Content Include="Views\MeetingMinutes\Index.cshtml" />
     <Content Include="Views\MeetingMinutes\Content_Meeting.cshtml" />
     <Content Include="Views\MeetingMinutes\Demo_form.cshtml" />
+    <Content Include="Views\Actions\Create.cshtml" />
+    <Content Include="Views\Actions\Delete.cshtml" />
+    <Content Include="Views\Actions\Details.cshtml" />
+    <Content Include="Views\Actions\Edit.cshtml" />
+    <Content Include="Views\Actions\Index.cshtml" />
+    <Content Include="Views\Actions1\Create.cshtml" />
+    <Content Include="Views\Actions1\Delete.cshtml" />
+    <Content Include="Views\Actions1\Details.cshtml" />
+    <Content Include="Views\Actions1\Edit.cshtml" />
+    <Content Include="Views\Actions1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
