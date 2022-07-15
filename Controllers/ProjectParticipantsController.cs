@@ -38,7 +38,7 @@ namespace MeetingVL.Controllers
         public ActionResult List_member(int project_id)
         {
 
-            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id);
+            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id && p.User_ID != null);
 
             ViewBag.Group = null;
 
@@ -90,7 +90,8 @@ namespace MeetingVL.Controllers
         public ActionResult List_Member_Group(int project_id, int group_id)
         {
 
-            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id && p.Group_ID == group_id);
+            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
+                .Where(p => p.Project_ID == project_id && p.Group_ID == group_id && p.User_ID != null);
             TempData["project_id"] = project_id;
 
             return View(member.ToList());
@@ -98,7 +99,8 @@ namespace MeetingVL.Controllers
         public ActionResult List_Member_Meeting(int project_id, int group_id)
         {
 
-            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id && p.Group_ID == group_id);
+            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
+                .Where(p => p.Project_ID == project_id && p.Group_ID == group_id && p.User_ID != null);
             TempData["project_id"] = project_id;
 
             return View(member.ToList());
@@ -129,8 +131,8 @@ namespace MeetingVL.Controllers
         // GET: ProjectParticipants/Create
         public ActionResult Create(string[] addStudent, int project_id, int? group_id)
         {
-            string exist = "Đã tồn tại ";
-            string user_null = "Chưa tồn tại ";
+            string exist = "Already exists ";
+            string user_null = "There is no ";
 
             bool flat = true;
             bool flat_user = true;
@@ -181,8 +183,8 @@ namespace MeetingVL.Controllers
                 Session["ViewBag.FileStatus"] = "You have not entered student !";
             }
 
-            exist += "trong project";
-            user_null += "trong hệ thống";
+            exist += "in the project";
+            user_null += "in the system yet";
             if (flat == false)
             {
                 Session["ViewBag.Success"] = null;

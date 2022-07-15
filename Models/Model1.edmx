@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SEP25Team13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SEP25Team13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -145,7 +145,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="User_ID" Type="varchar" MaxLength="250" />
           <Property Name="Project_ID" Type="int" Nullable="false" />
           <Property Name="Group_ID" Type="int" />
           <Property Name="Role" Type="varchar" MaxLength="36" />
@@ -379,7 +379,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProjectParticipant_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="ProjectParticipant" Type="Self.ProjectParticipant" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -534,7 +534,8 @@
             <End Role="SessionReport" EntitySet="SessionReport" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SEP25Team13Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -557,9 +558,9 @@
           <Property Name="Meeting_ID" Type="Int32" Nullable="false" />
           <Property Name="Work" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Deadline" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MeetingMinute" Relationship="Self.FK_Action_MeetingMinutes" FromRole="Action" ToRole="MeetingMinutes" />
           <NavigationProperty Name="User" Relationship="Self.FK_Action_User" FromRole="Action" ToRole="User" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
@@ -664,11 +665,11 @@
           <Property Name="Time" Type="DateTime" Precision="3" />
           <Property Name="Issues" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Process" Type="Int32" Nullable="false" />
+          <Property Name="Stages" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Actions" Relationship="Self.FK_Action_MeetingMinutes" FromRole="MeetingMinutes" ToRole="Action" />
           <NavigationProperty Name="SessionReport" Relationship="Self.FK_MeetingMinutes_SessionReport" FromRole="MeetingMinutes" ToRole="SessionReport" />
           <NavigationProperty Name="User" Relationship="Self.FK_MeetingMinutes_User" FromRole="MeetingMinutes" ToRole="User" />
-          <Property Name="Process" Type="Int32" Nullable="false" />
-          <Property Name="Stages" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -690,7 +691,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_ID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Project_ID" Type="Int32" Nullable="false" />
           <Property Name="Group_ID" Type="Int32" />
           <Property Name="Role" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
@@ -924,7 +925,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProjectParticipant_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="ProjectParticipant" Type="Self.ProjectParticipant" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -1085,12 +1086,12 @@
           <EntitySetMapping Name="Actions">
             <EntityTypeMapping TypeName="SEP25Team13Model.Action">
               <MappingFragment StoreEntitySet="Action">
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="Meeting_ID" ColumnName="Meeting_ID" />
                 <ScalarProperty Name="Work" ColumnName="Work" />
                 <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1176,8 +1177,6 @@
           <EntitySetMapping Name="MeetingMinutes">
             <EntityTypeMapping TypeName="SEP25Team13Model.MeetingMinute">
               <MappingFragment StoreEntitySet="MeetingMinutes">
-                <ScalarProperty Name="Stages" ColumnName="Stages" />
-                <ScalarProperty Name="Process" ColumnName="Process" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="SessionReport_ID" ColumnName="SessionReport_ID" />
@@ -1191,6 +1190,8 @@
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Issues" ColumnName="Issues" />
                 <ScalarProperty Name="NA" ColumnName="NA" />
+                <ScalarProperty Name="Process" ColumnName="Process" />
+                <ScalarProperty Name="Stages" ColumnName="Stages" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
