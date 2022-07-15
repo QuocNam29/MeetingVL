@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<MeetingVL.Models.SessionReport>
 
 @{
-    ViewBag.Title = "Student_SReport";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    int no = 0;
     int project_id = int.Parse(TempData["project_id"].ToString());
     string project_Name = TempData["project_Name"].ToString();
     string project_Description = "";
@@ -10,139 +11,59 @@
     {
         project_Description = TempData["project_Description"].ToString();
     }
-    int no = 0;
+    
 }
 
-<section id="minimal-statistics">
-    <div class="row">
-        <div class="col-sm-12">
-            <ul class="header-controls-list">
-                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "ProjectParticipants")">Project</a></li>
-                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
-                <li class="header-controls-item text-bold-400">@project_Name</li>
+<section id="basic-tabs-components">
+    <div class="col-sm-12">
+        <ul class="header-controls-list">
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "ProjectParticipants")">Project</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400">@project_Name</li>
 
-            </ul>
-        </div>
-
-        <div class="col-sm-12">
-            <h2 class="content-header">@project_Name</h2>
-           
-            <p class="content-sub-header">@project_Description</p>
-        </div>
+        </ul>
     </div>
-    <!-- /.col-lg-6 -->
-    @using (Html.BeginForm("Index", "Session_Reports", FormMethod.Get))
-    {
-        @Html.Hidden("project_id", project_id)
-        <div class="row">
-            <div class="col-12">
-                <div class="col-lg-6 input-wrap">
-                    <div class="input-group">
+    <div class="row match-height">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">@project_Name</h4>
+                        <p class="content-sub-header">@project_Description</p>
 
-                        <input type="text" class="form-control" placeholder="Search for..." name="keyword">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">Go!</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link @Session["List_SessionReport"].ToString()" id="base-tabX1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true">Session Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @Session["List_Member"].ToString()" id="base-tabX2" data-toggle="tab" aria-controls="tab2" href="#tab2">Members</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @Session["List_Group"].ToString()" id="base-tabX3" data-toggle="tab" aria-controls="tab3" href="#tab3">Group</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled">Disabled</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content px-1 pt-1">
+                            <div class="tab-pane @Session["List_SessionReport"].ToString()" id="tab1" aria-expanded="true" aria-labelledby="base-tabX1">
+                                @Html.Action("List_SessionReport", "Session_Reports", new { project_id = project_id })
+                            </div>
+                            <div class="tab-pane @Session["List_Member"].ToString()" id="tab2" aria-labelledby="base-tabX2">
+                                @Html.Action("List_member", "ProjectParticipants", new { project_id = project_id })
+                            </div>
+                            <div class="tab-pane @Session["List_Group"].ToString()" id="tab3" aria-labelledby="base-tabX3">
+                                @Html.Action("List_Group", "ProjectParticipants", new { project_id = project_id })
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    }
-    <!-- /.col-lg-6 -->
 
-
-    <div class="row">
-        @foreach (var item in Model)
-        {
-            var myModal = "default" + item.ID;
-            var myBootstrap = "bootstrap" + item.ID;
-            no++;
-            <div class="col-xl-3 col-lg-6 col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="media align-items-stretch">
-                            @if (no % 4 == 1)
-                            {
-                                <div class="p-2 text-center bg-info rounded-left pt-3">
-                                    <ion-icon name="calendar-outline" class="font-large-2 text-white"></ion-icon>
-                                    <a href="taskboard.html"></a>
-                                </div>
-                                
-                                <div class="py-2 px-2 media-body">
-                                    <a href="taskboard.html"></a>
-                                    <h6 class="info text-bold-500">@item.Name</h6>
-                                    <p class="courses-time font-small-3">
-                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
-                                        <span>-</span>
-                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
-                                    </p>
-                                    
-                                </div>
-
-                            }
-                            else if (no % 4 == 2)
-                            {
-                                <div class="p-2 text-center bg-danger rounded-left pt-3">
-                                    <ion-icon name="calendar-outline" class="font-large-2 text-white"></ion-icon>
-                                    <a href="taskboard.html"></a>
-                                </div>
-                                
-                                <div class="py-2 px-2 media-body">
-                                    <a href="taskboard.html"></a>
-                                    <h6 class="info text-bold-500">@item.Name</h6>
-                                    <p class="courses-time font-small-3">
-                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
-                                        <span>-</span>
-                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
-                                    </p>
-                                   
-                                </div>
-                            }
-                            else if (no % 4 == 3)
-                            {
-                                <div class="p-2 text-center bg-success rounded-left pt-3">
-                                    <ion-icon name="calendar-outline" class="font-large-2 text-white"></ion-icon>
-                                    <a href="taskboard.html"></a>
-                                </div>
-                                
-                                <div class="py-2 px-2 media-body">
-                                    <a href="taskboard.html"></a>
-                                    <h6 class="info text-bold-500">@item.Name</h6>
-                                    <p class="courses-time font-small-3">
-                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
-                                        <span>-</span>
-                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
-                                    </p>
-                                    
-                                </div>
-
-                            }
-                            else if (no % 4 == 0)
-                            {
-                                <div class="p-2 text-center bg-warning rounded-left pt-3">
-                                    <ion-icon name="calendar-outline" class="font-large-2 text-white"></ion-icon>
-                                    <a href="taskboard.html"></a>
-                                </div>
-                                
-                                <div class="py-2 px-2 media-body">
-                                    <a href="taskboard.html"></a>
-                                    <h6 class="info text-bold-500">@item.Name</h6>
-                                    <p class="courses-time font-small-3">
-                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
-                                        <span>-</span>
-                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
-                                    </p>
-                                   
-                                </div>
-
-                            }
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-           
-        }
     </div>
 </section>

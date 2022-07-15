@@ -41,6 +41,10 @@ namespace MeetingVL.Controllers
             var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id);         
             TempData["project_id"] = project_id;
 
+            string ID_User = Session["ID_User"].ToString();
+            var Check = db.ProjectParticipants.Where(r => r.User_ID == ID_User && r.Project_ID == project_id).FirstOrDefault();
+            TempData["roles_Project"] = Check.Role;
+
             return View(member.ToList());
         }
         public ActionResult List_Group(int project_id, string keyword)
@@ -51,7 +55,10 @@ namespace MeetingVL.Controllers
             {
                 keyword = Session["Keyword_Group"].ToString();
             }
-            
+            string ID_User = Session["ID_User"].ToString();
+            var Check = db.ProjectParticipants.Where(r => r.User_ID == ID_User && r.Project_ID == project_id).FirstOrDefault();
+            TempData["roles_Project"] = Check.Role;
+
             var links = from l in db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
                         .Where(p => p.Project_ID == project_id && p.Group_ID != null)
                         select l;

@@ -115,7 +115,7 @@ namespace MeetingVL.Controllers
                 }) ;
             }
             db.SaveChanges();
-            session["ShoppingCart"] = null;
+            session["Action_list"] = null;
 
             return RedirectToAction("Index", new { session_id = session_id });
         }
