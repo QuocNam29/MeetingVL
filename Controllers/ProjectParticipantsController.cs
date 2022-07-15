@@ -200,65 +200,28 @@ namespace MeetingVL.Controllers
         }
 
 
-        // GET: ProjectParticipants/Edit/5
-        public ActionResult Edit(int? id)
+       
+        public ActionResult Edit(string email, int? group_id, string role, int project_id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ProjectParticipant projectParticipant = db.ProjectParticipants.Find(id);
-            if (projectParticipant == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Project_ID = new SelectList(db.Projects, "ID", "Name", projectParticipant.Project_ID);
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", projectParticipant.User_ID);
-            return View(projectParticipant);
-        }
-
-        // POST: ProjectParticipants/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,User_ID,Project_ID,Group,Role")] ProjectParticipant projectParticipant)
-        {
-            if (ModelState.IsValid)
-            {
+            var projectParticipant = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Include(p => p.Group)
+                                     .Where(p => p.Project_ID == project_id && p.User_ID == email).FirstOrDefault();
+            projectParticipant.Group_ID = group_id;
+            projectParticipant.Role = role;
                 db.Entry(projectParticipant).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Project_ID = new SelectList(db.Projects, "ID", "Name", projectParticipant.Project_ID);
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", projectParticipant.User_ID);
-            return View(projectParticipant);
+              
+            return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 2 });
         }
 
-        // GET: ProjectParticipants/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ProjectParticipant projectParticipant = db.ProjectParticipants.Find(id);
-            if (projectParticipant == null)
-            {
-                return HttpNotFound();
-            }
-            return View(projectParticipant);
-        }
-
-        // POST: ProjectParticipants/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+      
+        public ActionResult Delete(int id, int project_id)
         {
             ProjectParticipant projectParticipant = db.ProjectParticipants.Find(id);
             db.ProjectParticipants.Remove(projectParticipant);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            Session["ViewBag.FileStatus"] = null;
+            Session["ViewBag.Success"] = "Delete user successful !";
+            return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 2 });
         }
 
         protected override void Dispose(bool disposing)

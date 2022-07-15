@@ -218,7 +218,7 @@ namespace MeetingVL.Controllers
                 db.SessionReports.Add(sessionReport);
                 db.SaveChanges();
                 Session["notification"] = "Successfully Added Session Report";
-                return RedirectToAction("Index", new { project_id = project_id });
+                return RedirectToAction("Index", new { project_id = project_id, active = 1 });
             }
 
             else if (option == 2)
@@ -278,10 +278,11 @@ namespace MeetingVL.Controllers
                 }
                 db.SaveChanges();
                 Session["notification"] = "Successfully Added New Session Report";
-                return RedirectToAction("Index", new { project_id = project_id });
+                return RedirectToAction("Index", new { project_id = project_id, active = 1 });
+               
             }
-            
-            return View();
+
+            return RedirectToAction("Index", new { project_id = project_id, active = 1 });
         }
 
 

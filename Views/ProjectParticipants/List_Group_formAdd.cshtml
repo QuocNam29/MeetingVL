@@ -5,7 +5,7 @@
     int group_id = 0;
 }
 
-<select class="custom-select form-control border-primary" id="Group" data-placeholder="Type to search cities" name="group_id">
+
     @foreach (var item in Model)
     {
         if (group_id != item.Group_ID)
@@ -15,5 +15,3 @@
         }
 
     }
-
-</select>
