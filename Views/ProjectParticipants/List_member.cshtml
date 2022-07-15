@@ -170,9 +170,16 @@
                     <div class="col-12">
 
                         <div class="form-group">
+                            <label for="projectinput1">Student</label>
                             <div class="close-char form-control" data-tags-input-name="addStudent"></div>
-
                         </div>
+                        
+                            <label for="projectinput1">Group</label>
+
+                            @Html.Action("List_Group_formAdd", "ProjectParticipants", new { project_id = project_id })
+
+                        
+
                     </div>
                 </div>
                 <div class="modal-footer">

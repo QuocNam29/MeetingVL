@@ -38,12 +38,15 @@ namespace MeetingVL.Controllers
         public ActionResult List_member(int project_id)
         {
 
-            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id);         
-            TempData["project_id"] = project_id;
+            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id);
+
+            ViewBag.Group = null;
 
             string ID_User = Session["ID_User"].ToString();
             var Check = db.ProjectParticipants.Where(r => r.User_ID == ID_User && r.Project_ID == project_id).FirstOrDefault();
             TempData["roles_Project"] = Check.Role;
+
+
 
             return View(member.ToList());
         }
@@ -100,6 +103,12 @@ namespace MeetingVL.Controllers
 
             return View(member.ToList());
         }
+        public ActionResult List_Group_formAdd(int project_id)
+        {
+            var group = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id && p.Group_ID != null).OrderBy(p => p.Group.ID);
+
+            return View(group.ToList());
+        }
 
 
         // GET: ProjectParticipants/Details/5
@@ -118,55 +127,60 @@ namespace MeetingVL.Controllers
         }
 
         // GET: ProjectParticipants/Create
-        public ActionResult Create(string[] addStudent, int project_id)
+        public ActionResult Create(string[] addStudent, int project_id, int? group_id)
         {
             string exist = "Đã tồn tại ";
             string user_null = "Chưa tồn tại ";
-            
+
             bool flat = true;
             bool flat_user = true;
             if (addStudent != null)
             {
                 for (int i = 0; i < addStudent.Length; i++)
                 {
-                                string student = addStudent[i].Trim();
-                                var check_user = db.Users.Find(student);
-                                if (check_user != null)
-                                {
-                                    var check_student = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Include(p => p.Group)
-                                     .Where(c => c.User_ID == student && c.Project_ID == project_id).FirstOrDefault();
+                    string student = addStudent[i].Trim();
+                    var check_user = db.Users.Find(student);
+                    if (check_user != null)
+                    {
+                        var check_student = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Include(p => p.Group)
+                         .Where(c => c.User_ID == student && c.Project_ID == project_id).FirstOrDefault();
 
-                                    if (check_student == null)
-                                    {
-                                        ProjectParticipant projectParticipant = new ProjectParticipant();
-                                        projectParticipant.Project_ID = project_id;
-                                        projectParticipant.User_ID = addStudent[i].Trim();
-                                        projectParticipant.Role = "Student";
-                                        db.ProjectParticipants.Add(projectParticipant);
-                                        db.SaveChanges();
-                                    }
-                                    else
-                                    {
-                                        flat = false;
-                                        exist += addStudent[i].Trim() + " ";
-                                    }
-                                }
-                                else
-                                {
-                                    flat_user = false;
-                                    user_null += addStudent[i].Trim() + " ";
-                                }              
-                } 
-            Session["ViewBag.FileStatus"] = null;
-            Session["ViewBag.Success"] = "Import student successful !";
-               
-            } 
-            else
-                {
-                    Session["ViewBag.Success"] = null;
-                Session["ViewBag.FileStatus"] = "You have not entered student !";
+                        if (check_student == null)
+                        {
+                            ProjectParticipant projectParticipant = new ProjectParticipant();
+                            projectParticipant.Project_ID = project_id;
+                            projectParticipant.User_ID = addStudent[i].Trim();
+                            projectParticipant.Role = "Student";
+                            if (group_id != null)
+                            {
+                                projectParticipant.Group_ID = group_id;
+                            }
+                           
+                            db.ProjectParticipants.Add(projectParticipant);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            flat = false;
+                            exist += addStudent[i].Trim() + " ";
+                        }
+                    }
+                    else
+                    {
+                        flat_user = false;
+                        user_null += addStudent[i].Trim() + " ";
+                    }
                 }
-           
+                Session["ViewBag.FileStatus"] = null;
+                Session["ViewBag.Success"] = "Import student successful !";
+
+            }
+            else
+            {
+                Session["ViewBag.Success"] = null;
+                Session["ViewBag.FileStatus"] = "You have not entered student !";
+            }
+
             exist += "trong project";
             user_null += "trong hệ thống";
             if (flat == false)

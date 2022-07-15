@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MeetingVL.Models.ProjectParticipant>
+
+@{
+    Layout = null;
+    int group_id = 0;
+}
+
+<select class="custom-select form-control border-primary" id="Group" data-placeholder="Type to search cities" name="group_id">
+    @foreach (var item in Model)
+    {
+        if (group_id != item.Group_ID)
+        {
+            group_id = item.Group.ID;
+            <option value="@item.Group_ID">@item.Group.Name</option>
+        }
+
+    }
+
+</select>
