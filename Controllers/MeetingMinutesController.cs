@@ -37,6 +37,17 @@ namespace MeetingVL.Controllers
         {
             var meetingMinutes = db.MeetingMinutes.Include(m => m.User).Where(m => m.SessionReport_ID == session_id).OrderBy(m => m.Group.Name);
             TempData["session_id"] = session_id;
+            SessionReport sessionReport = db.SessionReports.Find(session_id);
+            TempData["session_Name"] = sessionReport.Name;
+            Project project = db.Projects.Find(sessionReport.Project_ID);
+            TempData["project_id"] = sessionReport.Project_ID;
+            TempData["project_Name"] = project.Name;
+            TempData["project_Description"] = project.Description;
+            Category category = db.Categories.Find(project.Category_ID);
+            TempData["category_id"] = category.ID;
+            TempData["category_Name"] = category.Name;
+
+
             return View(meetingMinutes.ToList());
         }
 
