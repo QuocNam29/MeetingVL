@@ -6,13 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MeetingVL.Middleware;
 using MeetingVL.Models;
 using Action = MeetingVL.Models.Action;
 
 namespace MeetingVL.Controllers
 {
-    
 
+    [LoginVerification]
     public class MeetingMinutesController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
@@ -34,7 +35,7 @@ namespace MeetingVL.Controllers
         // GET: MeetingMinutes
         public ActionResult Index(int session_id)
         {
-            var meetingMinutes = db.MeetingMinutes.Include(m => m.User);
+            var meetingMinutes = db.MeetingMinutes.Include(m => m.User).Where(m => m.SessionReport_ID == session_id).OrderBy(m => m.Group.Name);
             TempData["session_id"] = session_id;
             return View(meetingMinutes.ToList());
         }
@@ -83,7 +84,7 @@ namespace MeetingVL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create_Meeting(DateTime meetingDate, string location,
              int process, string stages, string content, string objectives,
-             string issues, string NA, int session_id)
+             string issues, string NA, int session_id, int? group_id)
         {
             var session = System.Web.HttpContext.Current.Session;
             GetAction_list();
@@ -100,6 +101,11 @@ namespace MeetingVL.Controllers
             meetingMinute.Issues = issues;
             meetingMinute.NA = NA;
             meetingMinute.Stages = stages;
+            if (group_id != 0)
+            {
+            meetingMinute.Group_ID = group_id;
+            }
+            
             db.MeetingMinutes.Add(meetingMinute);
             db.SaveChanges();
 

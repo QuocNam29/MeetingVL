@@ -29,6 +29,7 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.Hidden("session_id", session_id)
+                        @Html.Hidden("group_id", group_id)
                         <form class="form form-horizontal">
                             <div class="form-body">
                                 <h4 class="form-section">
@@ -141,7 +142,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group row">
                                                 <div class="col-md-12">
-                                                    <textarea id="userinput8" rows="6" class="form-control col-md-12 border-primary" name="content"
+                                                    <textarea id="content_meeting" rows="6" class="form-control col-md-12 border-primary" name="content"
                                                               required="required" oninvalid="this.setCustomValidity('Please enter content')" oninput="setCustomValidity('')"></textarea>
                                                 </div>
                                             </div>

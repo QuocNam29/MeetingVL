@@ -54010,3 +54010,13 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     padding-right: 6px;
     font-size: 1.2rem;
 }
+#format-true {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 20px;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}

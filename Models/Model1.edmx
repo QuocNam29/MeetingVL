@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SEP25Team13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SEP25Team13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -127,6 +127,7 @@
           <Property Name="NA" Type="nvarchar(max)" />
           <Property Name="Process" Type="int" Nullable="false" />
           <Property Name="Stages" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Group_ID" Type="int" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -318,6 +319,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MeetingMinutes_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="MeetingMinutes" Type="Self.MeetingMinutes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MeetingMinutes">
+              <PropertyRef Name="Group_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MeetingMinutes_SessionReport">
           <End Role="SessionReport" Type="Self.SessionReport" Multiplicity="1" />
           <End Role="MeetingMinutes" Type="Self.MeetingMinutes" Multiplicity="*" />
@@ -493,6 +506,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="Evaluate" EntitySet="Evaluate" />
           </AssociationSet>
+          <AssociationSet Name="FK_MeetingMinutes_Group" Association="Self.FK_MeetingMinutes_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="MeetingMinutes" EntitySet="MeetingMinutes" />
+          </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutes_SessionReport" Association="Self.FK_MeetingMinutes_SessionReport">
             <End Role="SessionReport" EntitySet="SessionReport" />
             <End Role="MeetingMinutes" EntitySet="MeetingMinutes" />
@@ -534,8 +551,7 @@
             <End Role="SessionReport" EntitySet="SessionReport" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SEP25Team13Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -647,6 +663,7 @@
           <Property Name="Customer" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Evaluates" Relationship="Self.FK_Evaluate_Group" FromRole="Group" ToRole="Evaluate" />
           <NavigationProperty Name="ProjectParticipants" Relationship="Self.FK_ProjectParticipant_Group" FromRole="Group" ToRole="ProjectParticipant" />
+          <NavigationProperty Name="MeetingMinutes" Relationship="SEP25Team13Model.FK_MeetingMinutes_Group" FromRole="Group" ToRole="MeetingMinute" />
         </EntityType>
         <EntityType Name="MeetingMinute">
           <Key>
@@ -670,6 +687,8 @@
           <NavigationProperty Name="Actions" Relationship="Self.FK_Action_MeetingMinutes" FromRole="MeetingMinutes" ToRole="Action" />
           <NavigationProperty Name="SessionReport" Relationship="Self.FK_MeetingMinutes_SessionReport" FromRole="MeetingMinutes" ToRole="SessionReport" />
           <NavigationProperty Name="User" Relationship="Self.FK_MeetingMinutes_User" FromRole="MeetingMinutes" ToRole="User" />
+          <Property Name="Group_ID" Type="Int32" />
+          <NavigationProperty Name="Group" Relationship="SEP25Team13Model.FK_MeetingMinutes_Group" FromRole="MeetingMinute" ToRole="Group" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -1066,7 +1085,23 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_MeetingMinutes_Group" Association="SEP25Team13Model.FK_MeetingMinutes_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="MeetingMinute" EntitySet="MeetingMinutes" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_MeetingMinutes_Group">
+          <End Type="SEP25Team13Model.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="SEP25Team13Model.MeetingMinute" Role="MeetingMinute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MeetingMinute">
+              <PropertyRef Name="Group_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1177,6 +1212,7 @@
           <EntitySetMapping Name="MeetingMinutes">
             <EntityTypeMapping TypeName="SEP25Team13Model.MeetingMinute">
               <MappingFragment StoreEntitySet="MeetingMinutes">
+                <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="SessionReport_ID" ColumnName="SessionReport_ID" />

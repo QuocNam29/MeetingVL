@@ -40,6 +40,7 @@
         <AssociationConnector Association="SEP25Team13Model.FK_Session_Semester_Semester" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Session_Semester_SessionReport" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.FK_MeetingMinutes_Group" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -6,84 +6,36 @@
     int session_id = int.Parse(TempData["session_id"].ToString());
 }
 
-<h2>Index</h2>
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("Index","Projects",new { category_id = item.ID})">
+        <div class="card border-left my-4 border-primary border-3">
+            <div class="card-block pt-3">
+                <div class="clearfix">
+                    @if (item.Group_ID != null)
+                    {
+                        <h5 class="text-bold-500 primary float-left">@item.Group.Name </h5>
+                    }
+                    else
+                    {
+                        <h5 class="text-bold-500 primary float-left">Meeting Minutes - @item.User.Email </h5>
+                    }
+                    <div class="actions float-right">
+                        <i class="ft-edit mr-1 info"></i>
+                        <i class="ft-trash-2 danger"></i>
+                    </div>
+                </div>
+                <p id="format-true" style="color : dimgrey">@item.Content</p>
+                <span class="primary display-inline-block pt-2">@item.Time</span>
+                <img src="app-assets/img/portrait/small/avatar-s-3.jpg" class="rounded-circle width-50 mr-2 float-right" alt="user image">
+            </div>
+        </div>
+        </a>
+        }
 
-<p>
-    @Html.ActionLink("Create New", "Create", new { session_id = session_id })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SessionReport)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Objectives)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mentor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeamMember)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.ID_VanLang)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SessionReport)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Objectives)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mentor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamMember)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.ID_VanLang)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
 
-</table>
+        <p>
+            @Html.ActionLink("Create New", "Create", new { session_id = session_id })
+        </p>
+      
