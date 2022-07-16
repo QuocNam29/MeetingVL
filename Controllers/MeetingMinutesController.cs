@@ -33,22 +33,46 @@ namespace MeetingVL.Controllers
             }
         }
         // GET: MeetingMinutes
-        public ActionResult Index(int session_id)
+        public ActionResult Index(int session_id, string keyword)
         {
             var meetingMinutes = db.MeetingMinutes.Include(m => m.User).Where(m => m.SessionReport_ID == session_id).OrderBy(m => m.Group.Name);
-            TempData["session_id"] = session_id;
+            var links = from l in db.MeetingMinutes.Include(m => m.User)
+                        .Where(m => m.SessionReport_ID == session_id).OrderBy(m => m.Group.Name)
+                        select l;
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.Group.Name.ToLower().Contains(keyword.ToLower().Trim()));
+                SessionReport sessionReport1 = db.SessionReports.Find(session_id);
+                TempData["session_id"] = session_id;
+                TempData["session_Name"] = sessionReport1.Name;
+
+                Project project1 = db.Projects.Find(sessionReport1.Project_ID);
+                TempData["project_id"] = sessionReport1.Project_ID;
+                TempData["project_Name"] = project1.Name;
+                TempData["project_Description"] = project1.Description;
+
+                Category category1 = db.Categories.Find(project1.Category_ID);
+                TempData["category_id"] = category1.ID;
+                TempData["category_Name"] = category1.Name;
+
+
+                return View(links.ToList());
+            }
             SessionReport sessionReport = db.SessionReports.Find(session_id);
+            TempData["session_id"] = session_id;
             TempData["session_Name"] = sessionReport.Name;
+
             Project project = db.Projects.Find(sessionReport.Project_ID);
             TempData["project_id"] = sessionReport.Project_ID;
             TempData["project_Name"] = project.Name;
             TempData["project_Description"] = project.Description;
+
             Category category = db.Categories.Find(project.Category_ID);
             TempData["category_id"] = category.ID;
             TempData["category_Name"] = category.Name;
 
 
-            return View(meetingMinutes.ToList());
+            return View(links.ToList());
         }
 
 
@@ -170,30 +194,15 @@ namespace MeetingVL.Controllers
             return View(meetingMinute);
         }
 
-        // GET: MeetingMinutes/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MeetingMinute meetingMinute = db.MeetingMinutes.Find(id);
-            if (meetingMinute == null)
-            {
-                return HttpNotFound();
-            }
-            return View(meetingMinute);
-        }
-
-        // POST: MeetingMinutes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+      
+        public ActionResult Delete(int? id, int? session_id)
         {
             MeetingMinute meetingMinute = db.MeetingMinutes.Find(id);
             db.MeetingMinutes.Remove(meetingMinute);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            Session["ViewBag.FileStatus"] = null;
+            Session["ViewBag.Success"] = "Delete meeting minutes successful !";
+            return RedirectToAction("Index", new { session_id = session_id });
         }
 
         protected override void Dispose(bool disposing)

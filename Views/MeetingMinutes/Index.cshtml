@@ -17,79 +17,107 @@
 }
 
 
-    <div class="row">
-        <div class="col-sm-12">
-            <ul class="header-controls-list">
-                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Categories")">Category</a></li>
-                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
-                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Projects", new {category_id = category_id })">@category_Name</a></li>
-                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
-                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Session_Reports", new {project_id = project_id, active = 1 })">@project_Name</a></li>                
-                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
-                <li class="header-controls-item text-bold-400">@session_Name</li>
+<div class="row">
+    <div class="col-sm-12">
+        <ul class="header-controls-list">
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Categories")">Category</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Projects", new {category_id = category_id })">@category_Name</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Session_Reports", new {project_id = project_id, active = 1 })">@project_Name</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400">@session_Name</li>
 
-            </ul>
-        </div>
-        <div class="col-12 mt-3 mb-1 header-content-group">
-            <h2 class="content-header col-10">@session_Name</h2>
-            <a href="@Url.Action("Create", "MeetingMinutes", new { session_id = session_id })">
-                <div class="col-2 " style="float: right; left: -45px">
-                    <div id="btnAdd" class="btn btn-primary mb-2">
-                        <i class="ft-plus"></i>
-                        Create Meeting Minutes
-                    </div>
-                </div>
-            </a>
-           
-        </div>
+        </ul>
     </div>
-    <!-- /.col-lg-6 -->
-    @using (Html.BeginForm("Index", "Projects", FormMethod.Get))
-    {
-        @Html.Hidden("category_id", category_id)
-        <div class="row">
-            <div class="col-12">
-                <div class="col-lg-6 input-wrap">
-                    <div class="input-group">
-
-                        <input type="text" class="form-control" placeholder="Search for..." name="keyword">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">Go!</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-    <!-- /.col-lg-6 -->
-
-    @foreach (var item in Model)
-    {
-        <a href="@Url.Action("Index","Projects",new { category_id = item.ID})">
-            <div class="card border-left my-4 border-primary border-3">
-                <div class="card-block pt-3">
-                    <div class="clearfix">
-                        @if (item.Group_ID != null)
-                        {
-                            <h5 class="text-bold-500 primary float-left">@item.Group.Name </h5>
-                        }
-                        else
-                        {
-                            <h5 class="text-bold-500 primary float-left">Meeting Minutes - @item.User.Email </h5>
-                        }
-                        <div class="actions float-right">
-                            <i class="ft-edit mr-1 info"></i>
-                            <i class="ft-trash-2 danger"></i>
-                        </div>
-                    </div>
-                    <p id="format-true" style="color : dimgrey">@item.Content</p>
-                    <span class="primary display-inline-block pt-2">@item.Time</span>
-                    <img src="app-assets/img/portrait/small/avatar-s-3.jpg" class="rounded-circle width-50 mr-2 float-right" alt="user image">
+    <div class="col-12 mt-3 mb-1 header-content-group">
+        <h2 class="content-header col-10">@session_Name</h2>
+        <a href="@Url.Action("Create", "MeetingMinutes", new { session_id = session_id })">
+            <div class="col-2 " style="float: right; left: -45px">
+                <div id="btnAdd" class="btn btn-primary mb-2">
+                    <i class="ft-plus"></i>
+                    Create Meeting Minutes
                 </div>
             </div>
         </a>
-    }
 
+    </div>
+</div>
+<!-- /.col-lg-6 -->
+@using (Html.BeginForm("Index", "MeetingMinutes", FormMethod.Get))
+{
+    @Html.Hidden("session_id", session_id)
+    <div class="row">
+        <div class="col-12">
+            <div class="col-lg-6 input-wrap">
+                <div class="input-group">
 
+                    <input type="text" class="form-control" placeholder="Search for..." name="keyword">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Go!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!-- /.col-lg-6 -->
 
+@foreach (var item in Model)
+{
+    string DeleteMeeting = "DeleteMeeting" + item.ID;
+        <div class="card border-left my-4 border-primary border-3">
+            <div class="card-block pt-3">
+                <div class="clearfix">
+                    @if (item.Group_ID != null)
+                    {
+                        <h5 class="text-bold-500 primary float-left">@item.Group.Name </h5>
+                    }
+                    else
+                    {
+                        <h5 class="text-bold-500 primary float-left">Meeting Minutes - @item.User.Email </h5>
+                    }
+                <div class="actions float-right">
+                    <a href="">  <i class="ft-edit mr-1 info"></i></a>
+                    <a data-toggle="modal" data-target="#@DeleteMeeting"> <i class="ft-trash-2 danger"></i></a>
+
+                    <div class="modal fade text-left" id="@DeleteMeeting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel1"><b>Notification</b></h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>Are you sure?</h5>
+                                    <p>Are you sure you want to remove Meeting Minutes !!!</p>
+                                </div>
+                                <div class="modal-footer">
+                                    @using (Html.BeginForm("Delete", "MeetingMinutes", new { id = item.ID }))
+                                    {
+                                        @Html.Hidden("session_id", session_id)
+                                        @Html.AntiForgeryToken()
+                                        <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-outline-primary">Yes</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <a href="#">
+                    <p id="format-true" style="color : dimgrey">@item.Content</p>
+                </a>
+                
+                    <span class="primary display-inline-block pt-2">@item.Time</span>
+                    <img src="app-assets/img/portrait/small/avatar-s-3.jpg" class="rounded-circle width-50 mr-2 float-right" alt="user image">
+            </div>
+        </div>
   
+}
+
+
+
