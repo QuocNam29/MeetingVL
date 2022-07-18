@@ -5,95 +5,162 @@
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
 }
 
-<h2>Details</h2>
+<section class="invoice-template">
+    <div class="card">
+        <div class="card-body p-3">
+            <div id="invoice-template" class="card-block">
+                <!-- Invoice Company Details -->
+                <div id="invoice-company-details" class="row">
+                    <div class="col-6 text-left">
+                        <img src="~/Template/app-assets/img/LogoVL.png" alt="company logo" class="" width="70">
+                        <ul class="px-0 list-unstyled">
+                            <li class="text-bold-800">Van Lang University</li>
+                        </ul>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h2>MeetingVL</h2>
+                        @if (Model.Group_ID != null)
+                        {
+                            <p class="pb-3 ">@Model.Group.Name</p>
 
-<div>
-    <h4>MeetingMinute</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SessionReport)
-        </dt>
+                        }
+                    </div>
+                </div>
+                <!--/ Invoice Company Details -->
+                <!-- Invoice Customer Details -->
+                <div id="invoice-customer-details" class="row pt-2">
+                    <div class="col-sm-12 text-center">
+                        <h5> <b>Process: @Model.Process % </b></h5>
 
-        <dd>
-            @Html.DisplayFor(model => model.SessionReport)
-        </dd>
+                    </div>
+                    <div class="col-4 text-left">
+                        <p><span class="text-muted">Date of Meeting :</span> @Model.Date</p>
+                    </div>
+                    <div class="col-4 text-center">
+                        <p><span class="text-muted">Location :</span> @Model.Location</p>
+                    </div>
+                    <div class="col-4 text-right">
+                        <p><span class="text-muted">Satges :</span> @Model.Stages</p>
+                    </div>
+                </div>
+                <!--/ Invoice Customer Details -->
+                <!-- Invoice Items Details -->
+                <div id="invoice-items-details" class="pt-2">
+                    @if (!String.IsNullOrEmpty(Model.Objectives.ToString()))
+                    {
+                        <div class="row">
+                            <div class="table-responsive col-sm-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center; font-size: 30px">Objectives</th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
+                                            <td>
+                                                <p id="format-Meeting">@Model.Objectives</p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
+                                            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
+                                        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Objectives)
-        </dt>
+                                    </tbody>
 
-        <dd>
-            @Html.DisplayFor(model => model.Objectives)
-        </dd>
+                                </table>
+                            </div>
+                        </div>
+                    }
+                    
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
+                    <div class="row">
+                        <div class="table-responsive col-sm-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center; font-size: 30px">Content</th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Customer)
-        </dt>
+                                        <td>
+                                            <p id="format-Meeting">@Model.Content</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Customer)
-        </dd>
+                                        </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Mentor)
-        </dt>
+                                    </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Mentor)
-        </dd>
+                                </tbody>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TeamMember)
-        </dt>
+                            </table>
+                        </div>
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TeamMember)
-        </dd>
+                    <div class="row">
+                        <div class="table-responsive col-sm-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                        <th>Deadline</th>
+                                        <th>Description</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @Html.Action("Index", "Actions", new { MeetingMinute_id = Model.ID, Group_id = Model.Group_ID })
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Time)
-        </dt>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="table-responsive col-sm-12">
+                            <table class="table">
 
-        <dd>
-            @Html.DisplayFor(model => model.Time)
-        </dd>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>Issues</b>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User.ID_VanLang)
-        </dt>
+                                        </td>
+                                        <td>
+                                            <p>@Model.Issues</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.ID_VanLang)
-        </dd>
+                                        </td>
+                                        <td>
+                                            <b>N/A</b>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                                        </td>
+                                        <td>@Model.NA</td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Invoice Footer -->
+                <div id="invoice-footer">
+                    <div class="row">
+
+                        <div class="col-md-3 col-sm-12 text-center">
+                            <button type="button" class="btn btn-primary my-1"><i class="fa fa-paper-plane-o"></i> Edit</button>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Invoice Footer -->
+            </div>
+        </div>
+    </div>
+</section>
+
+

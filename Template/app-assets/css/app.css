@@ -54020,3 +54020,8 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
+#format-Meeting {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    
+}

@@ -129,12 +129,22 @@ namespace MeetingVL.Controllers
             meetingMinute.SessionReport_ID = session_id;
             meetingMinute.Date = meetingDate;
             meetingMinute.Location = location;
-            meetingMinute.Objectives = objectives;
+            if (!String.IsNullOrEmpty(objectives))
+            {
+                meetingMinute.Objectives = objectives;
+            }
+
             meetingMinute.Content = content;
             meetingMinute.Time = DateTime.Now;
             meetingMinute.Process = process;
-            meetingMinute.Issues = issues;
-            meetingMinute.NA = NA;
+            if (!String.IsNullOrEmpty(issues))
+            {
+                meetingMinute.Issues = issues;
+            }
+            if (!String.IsNullOrEmpty(NA))
+            {
+                meetingMinute.NA = NA;
+            }
             meetingMinute.Stages = stages;
             if (group_id != 0)
             {
@@ -177,21 +187,35 @@ namespace MeetingVL.Controllers
             return View(meetingMinute);
         }
 
-        // POST: MeetingMinutes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,User_ID,SessionReport,Date,Location,Objectives,Content,Customer,Mentor,TeamMember,Time")] MeetingMinute meetingMinute)
+        public ActionResult Edit_form(int meeting_id, DateTime meetingDate, string location,
+             int process, string stages, string content, string objectives,
+             string issues, string NA)
         {
-            if (ModelState.IsValid)
+            MeetingMinute meetingMinute = db.MeetingMinutes.Find(meeting_id);
+            
+            meetingMinute.Date = meetingDate;
+            meetingMinute.Location = location;
+            if (!String.IsNullOrEmpty(objectives))
             {
-                db.Entry(meetingMinute).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                meetingMinute.Objectives = objectives;
             }
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", meetingMinute.User_ID);
-            return View(meetingMinute);
+           
+            meetingMinute.Content = content;
+            meetingMinute.Time = DateTime.Now;
+            meetingMinute.Process = process;
+            if (!String.IsNullOrEmpty(issues))
+            {
+                meetingMinute.Issues = issues;
+            }
+            if (!String.IsNullOrEmpty(NA))
+            {
+                meetingMinute.NA = NA;
+            }
+            meetingMinute.Stages = stages;
+            db.Entry(meetingMinute).State = EntityState.Modified;
+            db.SaveChanges();
+            Session["notification"] = "Successfully Deleted Project";
+            return RedirectToAction("Details", new { id = meeting_id });
         }
 
       

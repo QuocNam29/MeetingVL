@@ -96,9 +96,9 @@ namespace MeetingVL.Controllers
 
             return View(member.ToList());
         }
-        public ActionResult List_Member_Meeting(int project_id, int group_id)
+        public ActionResult List_Member_Meeting(int project_id, int group_id )
         {
-
+         
             var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
                 .Where(p => p.Project_ID == project_id && p.Group_ID == group_id && p.User_ID != null);
             TempData["project_id"] = project_id;

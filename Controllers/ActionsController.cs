@@ -6,11 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MeetingVL.Middleware;
 using MeetingVL.Models;
 using Action = MeetingVL.Models.Action;
 
 namespace MeetingVL.Controllers
 {
+    [LoginVerification]
     public class ActionsController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
@@ -31,10 +33,16 @@ namespace MeetingVL.Controllers
             }
         }
         // GET: Actions
-        public ActionResult Index()
+        public ActionResult Index(int MeetingMinute_id, int? Group_id)
         {
             
-            var actions = db.Actions.Include(a => a.MeetingMinute).Include(a => a.User);
+            var actions = db.Actions.Include(a => a.MeetingMinute).Include(a => a.User).Where(a => a.Meeting_ID == MeetingMinute_id).OrderBy( a => a.User.Name);
+            MeetingMinute meetingMinute = db.MeetingMinutes.Find(MeetingMinute_id);
+            SessionReport sessionReport = db.SessionReports.Find(meetingMinute.SessionReport_ID);
+
+            TempData["Group_id"] = Group_id;
+            TempData["Project_id"] = sessionReport.Project_ID;
+
             return View(actions.ToList());
         }
 

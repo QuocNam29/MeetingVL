@@ -5,111 +5,139 @@
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
 }
 
-<h2>Edit</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-warning">
+                    <h4 class="card-title" id="horz-layout-colored-controls">Edit Minutes</h4>
+                </div>
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>MeetingMinute</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.User_ID, "User_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("User_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.User_ID, "", new { @class = "text-danger" })
             </div>
-        </div>
+            <div class="card-body">
+                <div class="px-3">
+                    @using (Html.BeginForm("Edit_form", "MeetingMinutes"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("meeting_id", Model.ID)
+                       
+                        <form class="form form-horizontal">
+                            <div class="form-body">
+                                <h4 class="form-section">
+                                    <i class="icon-direction"></i> Meeting Minutes
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput1">Meeting date: </label>
+                                            <div class="col-md-9">
+                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate"   value="@String.Format("{0:yyyy-MM-ddTHH:mm:ss}",Model.Date)"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter Meeting Date')" oninput="setCustomValidity('')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput3">Location: </label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="userinput3" class="form-control border-primary" name="location" value="@Model.Location"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter location')" oninput="setCustomValidity('')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SessionReport, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SessionReport, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SessionReport, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput2">Process (%): </label>
+                                            <div class="col-md-9">
+                                                <input type="number" id="process" class="form-control border-primary" name="process" min="0" max="100" value="@Model.Process"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter process')" oninput="setCustomValidity('')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput3">stages: </label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="stages" class="form-control border-primary" name="stages" value="@Model.Stages"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter stages')" oninput="setCustomValidity('')">
+                                            </div>
+                                        </div>
+                                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Objectives, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Objectives, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Objectives, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                   
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Customer, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Customer, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Customer, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput8">Objectives: </label>
+                                            <div class="col-md-9">
+                                                <textarea id="Objectives" rows="2" class="form-control col-md-9 border-primary" name="objectives"> @Model.Objectives</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Mentor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Mentor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Mentor, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                <h4 class="form-section">
+                                    <i class="icon-note"></i>Content
+                                </h4>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TeamMember, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TeamMember, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TeamMember, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <textarea id="content_meeting" rows="6" class="form-control col-md-12 border-primary" name="content" 
+                                                          required="required" oninvalid="this.setCustomValidity('Please enter content')" oninput="setCustomValidity('')"> @Model.Content</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Time, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                                <h4 class="form-section">
+                                    <i class="ft-info"></i> Issues
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput2">Issues: </label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control border-primary" type="url" id="userinput6" name="issues">@Model.Issues</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput3">N/A: </label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control border-primary" type="url" id="userinput6" name="NA">@Model.NA</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            
+                               
+
+                            <div class="form-actions right">
+                                <button type="button" class="btn btn-danger mr-1">
+                                    <i class="icon-trash"></i> Cancel
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="icon-note"></i> Save
+                                </button>
+                            </div>
+                                </div>
+                        </form>
+                    }
+                </div>
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

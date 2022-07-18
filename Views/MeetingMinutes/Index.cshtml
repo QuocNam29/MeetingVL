@@ -78,7 +78,7 @@
                         <h5 class="text-bold-500 primary float-left">Meeting Minutes - @item.User.Email </h5>
                     }
                 <div class="actions float-right">
-                    <a href="">  <i class="ft-edit mr-1 info"></i></a>
+                    <a href="@Url.Action("Edit", "MeetingMinutes", new { id = item.ID })">  <i class="ft-edit mr-1 info"></i></a>
                     <a data-toggle="modal" data-target="#@DeleteMeeting"> <i class="ft-trash-2 danger"></i></a>
 
                     <div class="modal fade text-left" id="@DeleteMeeting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 </div>
-                <a href="#">
+                <a href="@Url.Action("Details", "MeetingMinutes", new { id = item.ID })">
                     <p id="format-true" style="color : dimgrey">@item.Content</p>
                 </a>
                 

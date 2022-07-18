@@ -4,49 +4,160 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
 }
+<section class="invoice-template">
+    <div class="card">
+        <div class="card-body p-3">
+            <div id="invoice-template" class="card-block">
+                <!-- Invoice Company Details -->
+                <div id="invoice-company-details" class="row">
+                    <div class="col-6 text-left">
+                        <img src="~/Template/app-assets/img/LogoVL.png" alt="company logo" class="" width="70">
+                        <ul class="px-0 list-unstyled">
+                            <li class="text-bold-800">Van Lang University</li>                           
+                        </ul>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h2>MeetingVL</h2>
+                        <p class="pb-3 " >TEAM EL-EASYLIFE</p>
+                      
+                    </div>
+                </div>
+                <!--/ Invoice Company Details -->
+                <!-- Invoice Customer Details -->
+                <div id="invoice-customer-details" class="row pt-2">
+                    <div class="col-sm-12 text-center">
+                        <h5> <b>Process: ??? % </b></h5>
 
-<h2>Index</h2>
+                    </div>
+                    <div class="col-sm-12 text-left">
+                        <h5> <b>Attendees</b></h5>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Work)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deadline)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MeetingMinute.User_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.ID_VanLang)
-        </th>
-        <th></th>
-    </tr>
+                    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Work)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deadline)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MeetingMinute.User_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.ID_VanLang)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
 
-</table>
+                    <div class="col-4 text-left">
+                        <ul class="px-0 list-unstyled">
+                            <li class="text-bold-800">Mentor: Lý Thị Huyền Châu</li>
+                            <li>Customer: Lý Thị Huyền Châu</li>
+
+
+                        </ul>
+                    </div>
+                    <div class="col-4 text-center">
+                        <ul class="px-0 list-unstyled">
+
+                            <li class="text-left">Member(6/6): </li>
+                            <li>Trần Quốc Nam</li>
+                            <li>Trần Quốc Nam</li>
+                            <li>Trần Quốc Nam</li>
+                            <li>Trần Quốc Nam</li>
+                            <li>Trần Quốc Nam</li>
+                            <li>Trần Quốc Nam</li>
+                        </ul>
+                    </div>
+                    <div class="col-4 text-right">
+                        <p><span class="text-muted">Date :</span> 06/05/2016</p>
+                        <p><span class="text-muted">Location :</span> Online</p>
+                        <p><span class="text-muted">Satges :</span> Srint 1</p>
+                    </div>
+                </div>
+                <!--/ Invoice Customer Details -->
+                <!-- Invoice Items Details -->
+                <div id="invoice-items-details" class="pt-2">
+                    <div class="row">
+                        <div class="table-responsive col-sm-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center; font-size: 30px">Content</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+                                        <td>
+                                            <p>nam.197pm33932@vanlanguni.vn</p>
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="table-responsive col-sm-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                        <th class="text-right">Deadline</th>
+                                        <th class="text-right">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>
+                                            <p>nam.197pm33932@vanlanguni.vn</p>
+
+                                        </td>
+                                        <td>Simply dummy text of the printing and typesetting industry Simply dummy text of the printing and typesetting industry Simply dummy text of the printing and typesetting industry</td>
+                                        <td>17/07/2022</td>
+                                        <td>Simply dummy text of the printing and typesetting industry</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="table-responsive col-sm-12">
+                            <table class="table">
+                               
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>Issues</b>
+
+                                        </td>
+                                        <td>
+                                            <p>nam.197pm33932@vanlanguni.vn</p>
+
+                                        </td>
+                                        <td>
+                                            <b>N/A</b>
+
+                                        </td>
+                                        <td>Simply dummy text of the printing and typesetting industry Simply dummy text of the printing and typesetting industry Simply dummy text of the printing and typesetting industry</td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- Invoice Footer -->
+                <div id="invoice-footer">
+                    <div class="row">
+                       
+                        <div class="col-md-3 col-sm-12 text-center">
+                            <button type="button" class="btn btn-primary my-1"><i class="fa fa-paper-plane-o"></i> Send Invoice</button>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Invoice Footer -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
