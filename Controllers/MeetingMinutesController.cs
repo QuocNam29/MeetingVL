@@ -41,7 +41,8 @@ namespace MeetingVL.Controllers
                         select l;
             if (!string.IsNullOrEmpty(keyword))
             {
-                links = links.Where(b => b.Group.Name.ToLower().Contains(keyword.ToLower().Trim()));
+                links = links.Where(b => b.Group.Name.ToLower().Contains(keyword.ToLower().Trim())
+                && b.User_ID.ToLower().Contains(keyword.ToLower().Trim()));
                 SessionReport sessionReport1 = db.SessionReports.Find(session_id);
                 TempData["session_id"] = session_id;
                 TempData["session_Name"] = sessionReport1.Name;
