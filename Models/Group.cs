@@ -18,8 +18,8 @@ namespace MeetingVL.Models
         public Group()
         {
             this.Evaluates = new HashSet<Evaluate>();
-            this.ProjectParticipants = new HashSet<ProjectParticipant>();
             this.MeetingMinutes = new HashSet<MeetingMinute>();
+            this.ProjectParticipants = new HashSet<ProjectParticipant>();
         }
     
         public int ID { get; set; }
@@ -31,8 +31,8 @@ namespace MeetingVL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Evaluate> Evaluates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProjectParticipant> ProjectParticipants { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeetingMinute> MeetingMinutes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProjectParticipant> ProjectParticipants { get; set; }
     }
 }

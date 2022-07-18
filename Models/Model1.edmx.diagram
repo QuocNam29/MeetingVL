@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="da176dd8ee254ae6b4775ca25c1de409" Name="Diagram1">
+      <Diagram DiagramId="985d6283f5e540559ff1f6234f501552" Name="Diagram1">
         <EntityTypeShape EntityType="SEP25Team13Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Action" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Action" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.AspNetRole" Width="1.5" PointX="5.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.AspNetUser" Width="1.5" PointX="8" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Category" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Evaluate" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Group" Width="1.5" PointX="3.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Category" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Evaluate" Width="1.5" PointX="6" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Group" Width="1.5" PointX="3.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.MeetingMinute" Width="1.5" PointX="9.75" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Project" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.ProjectParticipant" Width="1.5" PointX="7.5" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Semester" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Session_Semester" Width="1.5" PointX="9.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.SessionReport" Width="1.5" PointX="7.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Project" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.ProjectParticipant" Width="1.5" PointX="7.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Semester" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Session_Semester" Width="1.5" PointX="9.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.SessionReport" Width="1.5" PointX="7.5" PointY="16" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.User" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.User" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
         <AssociationConnector Association="SEP25Team13Model.FK_Action_MeetingMinutes" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Action_User" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
@@ -30,6 +30,7 @@
         <AssociationConnector Association="SEP25Team13Model.FK_Project_Category" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Evaluate_Group" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Evaluate_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.FK_MeetingMinutes_Group" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_ProjectParticipant_Group" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_MeetingMinutes_SessionReport" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_MeetingMinutes_User" ManuallyRouted="false" />
@@ -40,7 +41,6 @@
         <AssociationConnector Association="SEP25Team13Model.FK_Session_Semester_Semester" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Session_Semester_SessionReport" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.AspNetUserRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="SEP25Team13Model.FK_MeetingMinutes_Group" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

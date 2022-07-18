@@ -36,11 +36,12 @@ namespace MeetingVL.Models
         public int Process { get; set; }
         public string Stages { get; set; }
         public Nullable<int> Group_ID { get; set; }
+        public string State { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Action> Actions { get; set; }
+        public virtual Group Group { get; set; }
         public virtual SessionReport SessionReport { get; set; }
         public virtual User User { get; set; }
-        public virtual Group Group { get; set; }
     }
 }

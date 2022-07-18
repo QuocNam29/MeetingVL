@@ -144,12 +144,14 @@ namespace MeetingVL.Controllers
         // POST: Actions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, int? meeting_id)
         {
             Action action = db.Actions.Find(id);
             db.Actions.Remove(action);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            Session["notification"] = "Successfully Delete Action";
+            
+            return RedirectToAction("Details", "MeetingMinutes", new { id = meeting_id });
         }
 
         protected override void Dispose(bool disposing)

@@ -35,9 +35,9 @@ namespace MeetingVL.Controllers
         // GET: MeetingMinutes
         public ActionResult Index(int session_id, string keyword)
         {
-            var meetingMinutes = db.MeetingMinutes.Include(m => m.User).Where(m => m.SessionReport_ID == session_id).OrderBy(m => m.Group.Name);
+            var meetingMinutes = db.MeetingMinutes.Include(m => m.User).Where(m => m.SessionReport_ID == session_id && m.State != "Deleted").OrderBy(m => m.Group.Name);
             var links = from l in db.MeetingMinutes.Include(m => m.User)
-                        .Where(m => m.SessionReport_ID == session_id).OrderBy(m => m.Group.Name)
+                        .Where(m => m.SessionReport_ID == session_id && m.State != "Deleted").OrderBy(m => m.Group.Name)
                         select l;
             if (!string.IsNullOrEmpty(keyword))
             {
@@ -234,7 +234,8 @@ namespace MeetingVL.Controllers
         public ActionResult Delete(int? id, int? session_id)
         {
             MeetingMinute meetingMinute = db.MeetingMinutes.Find(id);
-            db.MeetingMinutes.Remove(meetingMinute);
+            meetingMinute.State = "Deleted";
+            db.Entry(meetingMinute).State = EntityState.Modified;
             db.SaveChanges();
             Session["ViewBag.FileStatus"] = null;
             Session["ViewBag.Success"] = "Delete meeting minutes successful !";
