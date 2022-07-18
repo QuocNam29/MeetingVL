@@ -182,19 +182,29 @@
                                             {
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="projectinput3">State</label>
+                                                        <label for="projectinput3">Status</label>
                                                         <select id="projectinput5" name="state" class="form-control">
+
                                                             @if (Model.State != null)
                                                             {
-                                                                <option value="@Model.State" selected="" disabled="">@Model.State</option>
+                                                                string state = "";
+                                                                if (@Model.State == true)
+                                                                {
+                                                                    state = "Enable";
+                                                                }
+                                                                else
+                                                                {
+                                                                    state = "Disable";
+                                                                }
+                                                                <option value="@Model.State" selected="" disabled="">@state</option>
                                                             }
                                                             else
                                                             {
-                                                                <option value="none" selected="" disabled="">State</option>
+                                                                <option value="none" selected="" disabled="">Status</option>
                                                             }
 
-                                                            <option value="true">True</option>
-                                                            <option value="false">False</option>
+                                                            <option value="true">Enable</option>
+                                                            <option value="false">Disable</option>
                                                         </select>
                                                     </div>
                                                 </div>
