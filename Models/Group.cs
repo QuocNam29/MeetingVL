@@ -27,6 +27,7 @@ namespace MeetingVL.Models
         public string Topic { get; set; }
         public string Mentor { get; set; }
         public string Customer { get; set; }
+        public string State { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Evaluate> Evaluates { get; set; }

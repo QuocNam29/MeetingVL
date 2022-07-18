@@ -121,65 +121,46 @@ namespace MeetingVL.Controllers
             return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 3 });
         }
 
-       
-        
-
         // GET: Groups/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+        public ActionResult Edit(int? id, string name, string topic, string mentor, string customer, int project_id)
+        {       
             Group group = db.Groups.Find(id);
-            if (group == null)
-            {
-                return HttpNotFound();
-            }
-            return View(group);
-        }
-
-        // POST: Groups/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Topic,Mentor,Customer")] Group group)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(group).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(group);
-        }
-
-        // GET: Groups/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Group group = db.Groups.Find(id);
-            if (group == null)
-            {
-                return HttpNotFound();
-            }
-            return View(group);
-        }
-
-        // POST: Groups/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Group group = db.Groups.Find(id);
-            db.Groups.Remove(group);
+            group.Name = name;
+            group.Topic = topic;
+            group.Mentor = mentor;
+            group.Customer = customer;
+            db.Entry(group).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            Session["notification"] = "Successfully Edit Group";
+
+            return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 3 });
         }
+
+      
+        // GET: Groups/Delete/5
+        public ActionResult Delete(int? id, int project_id)
+        {
+            Group group = db.Groups.Find(id);
+            group.State = "Deleted";
+
+            db.Entry(group).State = EntityState.Modified;
+            db.SaveChanges();
+            var member_group = db.ProjectParticipants.Where(m => m.Group_ID == id && m.Project_ID == project_id
+            && m.Group_ID != null);
+            for (int i = 0; i <= member_group.Count(); i++)
+            {
+                var member = member_group.FirstOrDefault();
+                member.Group_ID = null;
+                db.Entry(member).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            Session["notification"] = "Successfully Deleted Group";
+
+            return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 3 });
+
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

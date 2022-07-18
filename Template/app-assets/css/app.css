@@ -53875,12 +53875,14 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     font-size: 1.2em;
     border-radius: 10px;
     /* border-left: 5px solid var(--primary); */
-    max-height: 500px;
+    max-height: 5000px;
     transition: 0.5s;
     overflow: hidden;
     cursor: pointer;
     -webkit-box-shadow: 0 6px 0 0 rgb(0 0 0 / 1%), 0 15px 32px 0 rgb(0 0 0 / 6%);
     position: relative;
+   
+
 }
 
     .accordion-wrap:before {
@@ -53960,6 +53962,7 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     padding-left: 0;
     text-decoration: none;
     position: relative;
+    z-index: 1;
 }
 
     .accordion-with-content::after {
@@ -54022,6 +54025,12 @@ input[type='checkbox'].switch, input[type='radio'].switch {
 }
 #format-Meeting {
     white-space: pre-wrap;
-    overflow-wrap: break-word;
-    
+    overflow-wrap: break-word;   
+}
+.accordion-btn {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    background: #c4e2f9;
+    z-index: 10;
 }

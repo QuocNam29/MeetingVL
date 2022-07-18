@@ -107,6 +107,7 @@
           <Property Name="Topic" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Mentor" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Customer" Type="nvarchar" MaxLength="250" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MeetingMinutes">
           <Key>
@@ -665,6 +666,7 @@
           <NavigationProperty Name="Evaluates" Relationship="Self.FK_Evaluate_Group" FromRole="Group" ToRole="Evaluate" />
           <NavigationProperty Name="MeetingMinutes" Relationship="Self.FK_MeetingMinutes_Group" FromRole="Group" ToRole="MeetingMinutes" />
           <NavigationProperty Name="ProjectParticipants" Relationship="Self.FK_ProjectParticipant_Group" FromRole="Group" ToRole="ProjectParticipant" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MeetingMinute">
           <Key>
@@ -1203,6 +1205,7 @@
           <EntitySetMapping Name="Groups">
             <EntityTypeMapping TypeName="SEP25Team13Model.Group">
               <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Topic" ColumnName="Topic" />

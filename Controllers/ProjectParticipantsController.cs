@@ -43,7 +43,8 @@ namespace MeetingVL.Controllers
             ViewBag.Group = null;
 
             string ID_User = Session["ID_User"].ToString();
-            var Check = db.ProjectParticipants.Where(r => r.User_ID == ID_User && r.Project_ID == project_id).FirstOrDefault();
+            var Check = db.ProjectParticipants.Where(r => r.User_ID == ID_User && r.Project_ID == project_id 
+            && r.Group.State != "Deleted").FirstOrDefault();
             TempData["roles_Project"] = Check.Role;
 
 
@@ -53,7 +54,6 @@ namespace MeetingVL.Controllers
         public ActionResult List_Group(int project_id, string keyword)
         {
 
-            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id && p.Group_ID != null);
             if (Session["Keyword_Group"] != null)
             {
                 keyword = Session["Keyword_Group"].ToString();
@@ -63,7 +63,7 @@ namespace MeetingVL.Controllers
             TempData["roles_Project"] = Check.Role;
 
             var links = from l in db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
-                        .Where(p => p.Project_ID == project_id && p.Group_ID != null)
+                        .Where(p => p.Project_ID == project_id && p.Group_ID != null && p.Group.State != "Deleted")
                         select l;
 
             if (!string.IsNullOrEmpty(keyword))
