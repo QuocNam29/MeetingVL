@@ -1513,6 +1513,7 @@
     <Content Include="Views\Actions1\Index.cshtml" />
     <Content Include="Views\ProjectParticipants\List_Member_Meeting.cshtml" />
     <Content Include="Views\ProjectParticipants\List_Group_formAdd.cshtml" />
+    <Content Include="Views\Session_Reports\List_Submit_SessionReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

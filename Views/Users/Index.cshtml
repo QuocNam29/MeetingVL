@@ -56,6 +56,15 @@
                                 @foreach (var item in Model)
                                 {
                                     no++;
+                                    string state = "";
+                                    if (item.State == true)
+                                    {
+                                        state = "Enable";
+                                    }
+                                    else
+                                    {
+                                        state = "Disable";
+                                    }
                                     <tr>
                                         <td>@no</td>
                                         <td><a href="@Url.Action("Details", "Users", new { email = item.Email})" style="color: dimgrey">@item.Name</a></td>
@@ -67,7 +76,7 @@
                                         {
 
                                             <td><a href="@Url.Action("Details", "Users", new { email = item.Email})" style="color: dimgrey"> @item.Last_Access</a></td>
-                                            <td><a href="@Url.Action("Details", "Users", new { email = item.Email})" style="color: dimgrey"> @item.State.Value.ToString()</a></td>
+                                            <td><a href="@Url.Action("Details", "Users", new { email = item.Email})" style="color: dimgrey"> @state</a></td>
                                         }
                                         else
                                         {

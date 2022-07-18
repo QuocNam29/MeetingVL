@@ -98,12 +98,7 @@ namespace MeetingVL.Controllers
                 TempData["project_Description"] = project1.Description;
                 Category category1 = db.Categories.Find(project1.Category_ID);
                 TempData["category_id"] = category1.ID;
-                TempData["category_Name"] = category1.Name;
-
-
-
-               
-
+                TempData["category_Name"] = category1.Name;              
                 return View(links.ToList());
             }
 
@@ -117,6 +112,47 @@ namespace MeetingVL.Controllers
             ViewBag.SessionReport = true;
 
             
+            return View(links.ToList());
+        }
+        public ActionResult List_Submit_SessionReport(int project_id,  int  Action)
+        {
+            string ID_User = Session["ID_User"].ToString();
+            var check_group = db.ProjectParticipants.Where(g => g.Project_ID == project_id && g.User_ID == ID_User).FirstOrDefault();
+            var links = from l in db.SessionReports.Include(s => s.Project)
+                       .Where(p => p.Project_ID == project_id)
+                        select l;
+            if (Action == 1)
+            {
+                links = links.Where(s => s.State != "Deleted"
+                       && s.MeetingMinutes.Where(c => c.Group_ID == check_group.Group_ID).Count() > 0);
+
+            }
+            else
+            {
+                links = links.Where(s => s.State != "Deleted"
+                       && s.MeetingMinutes.Where(c => c.Group_ID == check_group.Group_ID).Count() <= 0);
+            }
+            
+
+           
+           
+            var Check = db.ProjectParticipants.Where(r => r.User_ID == ID_User && r.Project_ID == project_id).FirstOrDefault();
+            if (Check != null)
+            {
+                TempData["roles_Project"] = Check.Role;
+            }
+          
+
+            Project project = db.Projects.Find(project_id);
+            TempData["project_id"] = project_id;
+            TempData["project_Name"] = project.Name;
+            TempData["project_Description"] = project.Description;
+            Category category = db.Categories.Find(project.Category_ID);
+            TempData["category_id"] = category.ID;
+            TempData["category_Name"] = category.Name;
+            ViewBag.SessionReport = true;
+
+
             return View(links.ToList());
         }
         public ActionResult Student_SReport(int project_id, string keyword, int active)

@@ -1,4 +1,4 @@
-﻿@model List<MeetingVL.Models.SessionReport>
+﻿@model IEnumerable<MeetingVL.Models.SessionReport>
 
 @{
     Layout = null;
@@ -37,27 +37,7 @@
         </div>
     }
 
-    <!-- /.col-lg-6 -->
-    @using (Html.BeginForm("Index", "Session_Reports", FormMethod.Get))
-    {
-        @Html.Hidden("project_id", project_id)
-        @Html.Hidden("active", 1)
-        <div class="row">
-            <div class="col-12">
-                <div class="col-lg-6 input-wrap">
-                    <div class="input-group">
-
-                        <input type="text" class="form-control" placeholder="Search for..." name="keyword">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">Go!</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-    <!-- /.col-lg-6 -->
-
+    
 
     <div class="row">
         @foreach (var item in Model)
@@ -65,6 +45,7 @@
             var myModal = "default" + item.ID;
             var myBootstrap = "bootstrap" + item.ID;
             no++;
+
             <div class="col-xl-3 col-lg-6 col-12">
                 <div class="card">
                     <div class="card-body">
