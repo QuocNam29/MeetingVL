@@ -3,7 +3,12 @@
 @{
     Layout = null;
     int row = 0;
-    int group_id = int.Parse(TempData["Group_id"].ToString());
+    int group_id = 0;
+    if (TempData["Group_id"] != null)
+    {
+        group_id = int.Parse(TempData["Group_id"].ToString());
+    }
+
     int project_id = int.Parse(TempData["Project_id"].ToString());
 }
 
