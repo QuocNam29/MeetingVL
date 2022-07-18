@@ -10,6 +10,7 @@
     }
 
     int project_id = int.Parse(TempData["Project_id"].ToString());
+    string User_id =  Session["ID_User"].ToString();
 }
 
 @foreach (var item in Model)
@@ -64,7 +65,7 @@
                                             <select class="custom-select form-control border-primary" id="Member" data-placeholder="Type to search cities" name="Member">
 
 
-                                                <option value="hihi">hihi</option>
+                                                <option value="@User_id">@User_id</option>
 
 
                                             </select>
