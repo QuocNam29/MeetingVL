@@ -99,6 +99,18 @@ namespace MeetingVL.Controllers
             {
                 return HttpNotFound();
             }
+            SessionReport sessionReport = db.SessionReports.Find(meetingMinute.SessionReport_ID);
+            TempData["session_id"] = sessionReport.ID;
+            TempData["session_Name"] = sessionReport.Name;
+
+            Project project = db.Projects.Find(sessionReport.Project_ID);
+            TempData["project_id"] = sessionReport.Project_ID;
+            TempData["project_Name"] = project.Name;
+            TempData["project_Description"] = project.Description;
+
+            Category category = db.Categories.Find(project.Category_ID);
+            TempData["category_id"] = category.ID;
+            TempData["category_Name"] = category.Name;
             return View(meetingMinute);
         }
 
@@ -111,7 +123,7 @@ namespace MeetingVL.Controllers
             SessionReport sessionReport = db.SessionReports.Find(session_id);
             TempData["project_id"] = sessionReport.Project_ID;
 
-            var participant = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == sessionReport.Project_ID && p.User_ID == ID_User).FirstOrDefault();
+            var participant = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == sessionReport.Project_ID && p.User_ID == ID_User ).FirstOrDefault();
             TempData["group_id"] = participant.Group_ID;
             return View();
         }
@@ -214,7 +226,7 @@ namespace MeetingVL.Controllers
             meetingMinute.Stages = stages;
             db.Entry(meetingMinute).State = EntityState.Modified;
             db.SaveChanges();
-            Session["notification"] = "Successfully Deleted Project";
+            Session["notification"] = "Successfully Edit Meetin Minutes";
             return RedirectToAction("Details", new { id = meeting_id });
         }
 

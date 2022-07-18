@@ -3,8 +3,35 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    int session_id = int.Parse(TempData["session_id"].ToString());
+    string session_Name = TempData["session_Name"].ToString();
+    int project_id = int.Parse(TempData["project_id"].ToString());
+    string project_Name = TempData["project_Name"].ToString();
+    string project_Description = "";
+    if (TempData["project_Description"] != null)
+    {
+        project_Description = TempData["project_Description"].ToString();
+    }
+    int category_id = int.Parse(TempData["category_id"].ToString());
+    string category_Name = TempData["category_Name"].ToString();
 }
+<div class="row">
+    <div class="col-sm-12">
+        <ul class="header-controls-list">
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Categories")">Category</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Projects", new {category_id = category_id })">@category_Name</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Session_Reports", new {project_id = project_id, active = 1 })">@project_Name</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "MeetingMinutes", new { session_id = session_id })">@session_Name</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400">Details</li>
 
+        </ul>
+    </div>
+    
+</div>
 <section class="invoice-template">
     <div class="card">
         <div class="card-body p-3">
@@ -152,8 +179,10 @@
                 <div id="invoice-footer">
                     <div class="row">
 
-                        <div class="col-md-3 col-sm-12 text-center">
-                            <button type="button" class="btn btn-primary my-1"><i class="fa fa-paper-plane-o"></i> Edit</button>
+                        <div class="col-md-12 col-sm-12 text-right">
+                            <a href="@Url.Action("Index", "MeetingMinutes", new { session_id = session_id })" class="btn  btn-info  my-1"> <i class="ft-arrow-left"></i> Come back</a>
+
+                            <button type="button" class="btn btn-primary my-1" onclick="location.href='@Url.Action("Edit", "MeetingMinutes", new { id = Model.ID })'"><i class="fa ft-edit"></i> Edit</button>
                         </div>
                     </div>
                 </div>

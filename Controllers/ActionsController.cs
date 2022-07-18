@@ -121,7 +121,7 @@ namespace MeetingVL.Controllers
 
             db.Entry(action).State = EntityState.Modified;
             db.SaveChanges();
-            Session["notification"] = "Successfully Deleted Project";
+            Session["notification"] = "Successfully Edit Action";
             return RedirectToAction("Details", "MeetingMinutes", new { id = meeting_id });
         }
 

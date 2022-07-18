@@ -227,9 +227,11 @@
                                 </div>
 
                                 <div class="form-actions right">
-                                    <button type="button" class="btn btn-danger mr-1">
-                                        <i class="icon-trash"></i> Cancel
-                                    </button>
+                                    <a href="@Url.Action("Index", "MeetingMinutes", new { session_id = session_id })">
+                                        <button type="button" class="btn btn-danger mr-1">
+                                            <i class="icon-trash"></i> Cancel
+                                        </button>
+                                    </a>
                                     <button type="submit" class="btn btn-success">
                                         <i class="icon-note"></i> Save
                                     </button>

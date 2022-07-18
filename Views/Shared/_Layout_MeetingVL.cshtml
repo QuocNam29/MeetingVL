@@ -67,7 +67,7 @@
                                 </li>
                             </ul>
                         </li>
-                       @* @if (Session["Role"].ToString() == "Admin")
+                        @* @if (Session["Role"].ToString() == "Admin")
                             {
                                 <li class=" nav-item">
                                     <a href="@Url.Action("Index","Users")"><i class="icon-user"></i><span data-i18n="" class="menu-title">Users</span></a>
@@ -177,7 +177,19 @@
                     <div class="container-fluid">
                         <!-- Zero configuration table -->
                         <!-- Alternative pagination table -->
-
+                        @if (Session["notification"] != null)
+                        {
+                            <button type="button" hidden class="btn btn-lg btn-block btn-outline-success mb-2" id="type-success" onclick="test()">Success</button>
+                            <script>
+            function test() {
+                toastr.success('@Session["notification"].ToString()', 'Success');
+            }
+            window.onload = function () {
+                document.getElementById('type-success').click();
+            }
+                            </script>
+                            Session["notification"] = null;
+                        }
                         @RenderBody()
 
                     </div>
