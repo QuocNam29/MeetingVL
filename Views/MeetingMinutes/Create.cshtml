@@ -149,8 +149,10 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="userinput5">Member: </label>
                                                     <div class="col-md-9">
+                                                        <select class="custom-select form-control border-primary" id="Member" data-placeholder="Type to search cities" name="Member">
 
-                                                        @Html.Action("List_Member_Meeting", "ProjectParticipants", new { project_id = project_id, group_id = group_id })
+                                                            @Html.Action("List_Member_Meeting", "ProjectParticipants", new { project_id = project_id, group_id = group_id })
+                                                        </select>
 
                                                     </div>
                                                 </div>

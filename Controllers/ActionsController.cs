@@ -107,39 +107,24 @@ namespace MeetingVL.Controllers
         }
 
         // GET: Actions/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string Member, string Action, 
+            DateTime Deadline, string Descriptions, int meeting_id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Action action = db.Actions.Find(id);
-            if (action == null)
+            action.User_ID = Member;
+            action.Work = Action;
+            action.Deadline = Deadline;
+            if (!String.IsNullOrEmpty(Descriptions))
             {
-                return HttpNotFound();
+                 action.Description = Descriptions;
             }
-            ViewBag.Meeting_ID = new SelectList(db.MeetingMinutes, "ID", "User_ID", action.Meeting_ID);
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", action.User_ID);
-            return View(action);
+
+            db.Entry(action).State = EntityState.Modified;
+            db.SaveChanges();
+            Session["notification"] = "Successfully Deleted Project";
+            return RedirectToAction("Details", "MeetingMinutes", new { id = meeting_id });
         }
 
-        // POST: Actions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,User_ID,Meeting_ID,Work,Deadline")] Action action)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(action).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Meeting_ID = new SelectList(db.MeetingMinutes, "ID", "User_ID", action.Meeting_ID);
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", action.User_ID);
-            return View(action);
-        }
 
         // GET: Actions/Delete/5
         public ActionResult Delete(int? id)

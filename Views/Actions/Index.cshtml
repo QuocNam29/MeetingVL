@@ -37,22 +37,26 @@
                         </div>
                         @using (Html.BeginForm("Edit", "Actions", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
-                            @*  @Html.Hidden("project_id", project_id)*@
+                            @Html.Hidden("id", item.ID)
+                            @Html.Hidden("meeting_id", item.Meeting_ID)
                             <div class="modal-body">
                                 <div class="col-md-12">
                                     @if (TempData["group_id"] != null)
                                     {
-                                        <div class="form-group">
-                                            <label for="projectinput1">Email</label>
+                                    <div class="form-group">
+                                        <label for="projectinput1">Email</label>
+                                        <select class="custom-select form-control border-primary" id="Member" data-placeholder="Type to search cities" name="Member">
+                                            <option value="@item.User_ID">@item.User_ID</option>
                                             @Html.Action("List_Member_Meeting", "ProjectParticipants", new { project_id = project_id, group_id = group_id })
-                                        </div>
+                                        </select>
+                                    </div>
 
                                     }
                                     else
                                     {
                                         <div class="form-group">
                                             <label for="projectinput1">Email</label>
-                                            <select class="custom-select form-control border-primary" id="Member" data-placeholder="Type to search cities" name="eventType2">
+                                            <select class="custom-select form-control border-primary" id="Member" data-placeholder="Type to search cities" name="Member">
 
 
                                                 <option value="hihi">hihi</option>
@@ -64,15 +68,15 @@
                                     }
                                     <div class="form-group">
                                         <label for="projectinput1">Action: </label>
-                                        <textarea class="form-control border-primary" type="url" id="Descriptions">@item.Work</textarea>
+                                        <textarea class="form-control border-primary" type="url" id="Descriptions" name="Action">@item.Work</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="projectinput1">Deadline: </label>
-                                        <input class="form-control border-primary" type="date" id="Deadline" value="@String.Format("{0:yyyy-MM-dd}",item.Deadline)">
+                                        <input class="form-control border-primary" type="date" id="Deadline" name="Deadline" value="@String.Format("{0:yyyy-MM-dd}",item.Deadline)">
                                     </div>
                                     <div class="form-group">
                                         <label for="projectinput1">Descriptions: </label>
-                                        <textarea class="form-control border-primary" type="url" id="Descriptions">@item.Description</textarea>
+                                        <textarea class="form-control border-primary" type="url" id="Descriptions" name="Descriptions">@item.Description</textarea>
                                     </div>
 
 
