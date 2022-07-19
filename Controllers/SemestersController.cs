@@ -17,7 +17,7 @@ namespace MeetingVL.Controllers
         // GET: Semesters
         public ActionResult Index(int project_id)
         {
-            var semesters = db.Semesters.Include(s => s.User);
+            var semesters = db.Semesters.Include(s => s.User).Where(s => s.State != "Deleted");
             TempData["project_id"] = project_id;
             return View(semesters.ToList());
         }
@@ -60,6 +60,7 @@ namespace MeetingVL.Controllers
                 db.Session_Semester.Add(session_Semester);
                 db.SaveChanges();
             }
+            Session["notification"] = "Successfully Create Semester";
 
             return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 4 });
         }
@@ -100,30 +101,17 @@ namespace MeetingVL.Controllers
         }
 
         // GET: Semesters/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+        public ActionResult Delete(int? id, int project_id)
+        {            
             Semester semester = db.Semesters.Find(id);
-            if (semester == null)
-            {
-                return HttpNotFound();
-            }
-            return View(semester);
+            semester.State = "Deleted";
+            db.Entry(semester).State = EntityState.Modified;
+            db.SaveChanges();
+            Session["notification"] = "Successfully Delete Semester";
+            return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 4 });
         }
 
-        // POST: Semesters/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Semester semester = db.Semesters.Find(id);
-            db.Semesters.Remove(semester);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+
 
         protected override void Dispose(bool disposing)
         {
