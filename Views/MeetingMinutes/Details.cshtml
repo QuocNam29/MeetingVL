@@ -73,7 +73,7 @@
                 <!--/ Invoice Customer Details -->
                 <!-- Invoice Items Details -->
                 <div id="invoice-items-details" class="pt-2">
-                    @if (!String.IsNullOrEmpty(Model.Objectives.ToString()))
+                    @if (Model.Objectives != null)
                     {
                         <div class="row">
                             <div class="table-responsive col-sm-12">
