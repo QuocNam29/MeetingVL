@@ -1,0 +1,120 @@
+﻿@model IEnumerable<MeetingVL.Models.Semester>
+
+@{
+    Layout = null;
+    int no = 0;
+    int project_id = int.Parse(TempData["project_id"].ToString());
+}
+<section id="minimal-statistics">
+   
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="btnAdd" class="btn btn-primary mb-2" data-toggle="modal" data-target="#AddSemester">
+                <i class="ft-plus"></i>
+                Add Semester
+            </div>
+        </div>
+    </div>
+    
+
+
+   @* @using (Html.BeginForm("Index", "Session_Reports", FormMethod.Get))
+    {
+        @Html.Hidden("project_id", project_id)
+        @Html.Hidden("active", 1)
+        <div class="row">
+            <div class="col-12">
+                <div class="col-lg-6 input-wrap">
+                    <div class="input-group">
+
+                        <input type="text" class="form-control" placeholder="Search for..." name="keyword">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Go!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }*@
+
+
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            var myModal = "default" + item.ID;
+            var myBootstrap = "bootstrap" + item.ID;
+         
+        <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="media align-items-stretch">
+                        <div class="p-2 text-center bg-warning rounded-left pt-3">
+                            <i class="icon-wallet font-large-2 text-white"></i>
+                        </div>
+                        <div class="p-2 media-body">
+                            <h5>@item.Name</h5>
+                            <p class="courses-time font-small-3">
+                                <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_start)</span>
+                                <span>-</span>
+                                <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_end)</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            
+
+       }
+    </div>
+</section>
+<div class="modal fade text-left" id="AddSemester" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel34">Add Group</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("Create", "Semesters", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("project_id", project_id)
+                <div class="modal-body">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="projectinput1">Name</label>
+                                <input type="text" id="projectinput1" class="form-control" name="name"
+                                       required="required" oninvalid="this.setCustomValidity('Please enter name group')" oninput="setCustomValidity('')">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="issueinput3">Date_Start</label>
+                                <input type="date" id="date-start" class="form-control" name="date_Start"
+                                       data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened"
+                                       required="required" oninvalid="this.setCustomValidity('Please enter date start')" oninput="setCustomValidity('')">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="issueinput4">Date_End</label>
+                                <input type="date" id="date-end" class="form-control" name="date_End"
+                                       data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Fixed"
+                                       required="required" oninvalid="this.setCustomValidity('Please enter date end')" oninput="setCustomValidity('')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-outline-primary btn-lg" value="Add">
+                </div>
+            }
+        </div>
+    </div>
+</div>

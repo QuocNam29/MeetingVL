@@ -60,21 +60,25 @@
                                 <a class="nav-link @Session["List_Member"].ToString()" id="base-tabX2" data-toggle="tab" aria-controls="tab2" href="#tab2">Members</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @Session["List_Group"].ToString()" id="base-tabX3" data-toggle="tab" aria-controls="tab3" href="#tab3" >Group</a>
+                                <a class="nav-link @Session["List_Group"].ToString()" id="base-tabX3" data-toggle="tab" aria-controls="tab3" href="#tab3">Group</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled">Disabled</a>
+                                <a class="nav-link @Session["List_Group"].ToString()" id="base-tabX3" data-toggle="tab" aria-controls="tab4" href="#tab4">Semester</a>
                             </li>
+                            
                         </ul>
                         <div class="tab-content px-1 pt-1">
-                            <div  class="tab-pane @Session["List_SessionReport"].ToString()" id="tab1" aria-expanded="true" aria-labelledby="base-tabX1">
+                            <div class="tab-pane @Session["List_SessionReport"].ToString()" id="tab1" aria-expanded="true" aria-labelledby="base-tabX1">
                                 @Html.Action("List_SessionReport", "Session_Reports", new { project_id = project_id })
                             </div>
-                            <div  class="tab-pane @Session["List_Member"].ToString()" id="tab2" aria-labelledby="base-tabX2">
-                              @Html.Action("List_member", "ProjectParticipants", new { project_id = project_id })
-                           </div>
+                            <div class="tab-pane @Session["List_Member"].ToString()" id="tab2" aria-labelledby="base-tabX2">
+                                @Html.Action("List_member", "ProjectParticipants", new { project_id = project_id })
+                            </div>
                             <div class="tab-pane @Session["List_Group"].ToString()" id="tab3" aria-labelledby="base-tabX3">
                                 @Html.Action("List_Group", "ProjectParticipants", new { project_id = project_id })
+                            </div>
+                            <div class="tab-pane @Session["List_Group"].ToString()" id="tab4" aria-labelledby="base-tabX3">
+                                @Html.Action("Index", "Semesters", new { project_id = project_id })
                             </div>
                         </div>
                     </div>

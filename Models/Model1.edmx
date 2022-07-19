@@ -171,6 +171,8 @@
           <Property Name="User_ID" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Date" Type="datetime" />
+          <Property Name="Date_start" Type="datetime" />
+          <Property Name="Date_end" Type="datetime" />
         </EntityType>
         <EntityType Name="Session_Semester">
           <Key>
@@ -776,6 +778,8 @@
           <Property Name="Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="User" Relationship="Self.FK_Semester_User" FromRole="Semester" ToRole="User" />
           <NavigationProperty Name="Session_Semester" Relationship="Self.FK_Session_Semester_Semester" FromRole="Semester" ToRole="Session_Semester" />
+          <Property Name="Date_start" Type="DateTime" Precision="3" />
+          <Property Name="Date_end" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Session_Semester">
           <Key>
@@ -1354,6 +1358,8 @@
           <EntitySetMapping Name="Semesters">
             <EntityTypeMapping TypeName="SEP25Team13Model.Semester">
               <MappingFragment StoreEntitySet="Semester">
+                <ScalarProperty Name="Date_end" ColumnName="Date_end" />
+                <ScalarProperty Name="Date_start" ColumnName="Date_start" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

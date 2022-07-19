@@ -24,6 +24,8 @@ namespace MeetingVL.Models
         public string User_ID { get; set; }
         public string Name { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<System.DateTime> Date_start { get; set; }
+        public Nullable<System.DateTime> Date_end { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

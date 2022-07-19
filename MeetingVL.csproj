@@ -183,6 +183,7 @@
     <Compile Include="Controllers\MeetingMinutesController.cs" />
     <Compile Include="Controllers\ProjectParticipantsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\SemestersController.cs" />
     <Compile Include="Controllers\Session_ReportsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1517,6 +1518,11 @@
     <Content Include="Views\ProjectParticipants\List_Member_Meeting.cshtml" />
     <Content Include="Views\ProjectParticipants\List_Group_formAdd.cshtml" />
     <Content Include="Views\Session_Reports\List_Submit_SessionReport.cshtml" />
+    <Content Include="Views\Semesters\Create.cshtml" />
+    <Content Include="Views\Semesters\Delete.cshtml" />
+    <Content Include="Views\Semesters\Details.cshtml" />
+    <Content Include="Views\Semesters\Edit.cshtml" />
+    <Content Include="Views\Semesters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

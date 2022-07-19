@@ -29,18 +29,28 @@ namespace MeetingVL.Controllers
                 Session["List_SessionReport"] = "active";
                 Session["List_Member"] = ""; 
                 Session["List_Group"] = "";
+                Session["List_Semester"] = "";
             }
             else if (active == 2)
             {
                 Session["List_SessionReport"] = "";
                 Session["List_Member"] = "active";
                 Session["List_Group"] = "";
+                Session["List_Semester"] = "";
+            }
+            else if (active == 3)
+            {
+                Session["List_SessionReport"] = "";
+                Session["List_Member"] = "";
+                Session["List_Group"] = "active";
+                Session["List_Semester"] = "";
             }
             else
             {
                 Session["List_SessionReport"] = "";
                 Session["List_Member"] = "";
-                Session["List_Group"] = "active";
+                Session["List_Group"] = "";
+                Session["List_Semester"] = "active";
             }
            
 
@@ -167,18 +177,28 @@ namespace MeetingVL.Controllers
                 Session["List_SessionReport"] = "active";
                 Session["List_Member"] = "";
                 Session["List_Group"] = "";
+                Session["List_Semester"] = "";
             }
             else if (active == 2)
             {
                 Session["List_SessionReport"] = "";
                 Session["List_Member"] = "active";
                 Session["List_Group"] = "";
+                Session["List_Semester"] = "";
+            }
+            else if (active == 3)
+            {
+                Session["List_SessionReport"] = "";
+                Session["List_Member"] = "";
+                Session["List_Group"] = "active";
+                Session["List_Semester"] = "";
             }
             else
             {
                 Session["List_SessionReport"] = "";
                 Session["List_Member"] = "";
-                Session["List_Group"] = "active";
+                Session["List_Group"] = "";
+                Session["List_Semester"] = "active";
             }
 
 
