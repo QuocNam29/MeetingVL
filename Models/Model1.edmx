@@ -86,6 +86,16 @@
           <Property Name="State" Type="nvarchar" MaxLength="50" />
           <Property Name="ID_User" Type="varchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="varchar" MaxLength="250" />
+          <Property Name="Meeting_ID" Type="int" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
         <EntityType Name="Evaluate">
           <Key>
             <PropertyRef Name="ID" />
@@ -238,6 +248,30 @@
             </Principal>
             <Dependent Role="Category">
               <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_MeetingMinutes">
+          <End Role="MeetingMinutes" Type="Self.MeetingMinutes" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeetingMinutes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Meeting_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -462,6 +496,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evaluate" EntityType="Self.Evaluate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeetingMinutes" EntityType="Self.MeetingMinutes" Schema="dbo" store:Type="Tables" />
@@ -483,6 +518,14 @@
           <AssociationSet Name="FK_Category_User" Association="Self.FK_Category_User">
             <End Role="User" EntitySet="User" />
             <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_MeetingMinutes" Association="Self.FK_Comment_MeetingMinutes">
+            <End Role="MeetingMinutes" EntitySet="MeetingMinutes" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -693,6 +736,7 @@
           <NavigationProperty Name="SessionReport" Relationship="Self.FK_MeetingMinutes_SessionReport" FromRole="MeetingMinutes" ToRole="SessionReport" />
           <NavigationProperty Name="User" Relationship="Self.FK_MeetingMinutes_User" FromRole="MeetingMinutes" ToRole="User" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Comments" Relationship="SEP25Team13Model.FK_Comment_MeetingMinutes" FromRole="MeetingMinute" ToRole="Comment" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -786,6 +830,7 @@
           <NavigationProperty Name="MeetingMinutes" Relationship="Self.FK_MeetingMinutes_User" FromRole="User" ToRole="MeetingMinutes" />
           <NavigationProperty Name="ProjectParticipants" Relationship="Self.FK_ProjectParticipant_User" FromRole="User" ToRole="ProjectParticipant" />
           <NavigationProperty Name="Semesters" Relationship="Self.FK_Semester_User" FromRole="User" ToRole="Semester" />
+          <NavigationProperty Name="Comments" Relationship="SEP25Team13Model.FK_Comment_User" FromRole="User" ToRole="Comment" />
         </EntityType>
         <Association Name="FK_Action_MeetingMinutes">
           <End Role="MeetingMinutes" Type="Self.MeetingMinute" Multiplicity="1" />
@@ -1105,7 +1150,52 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Comments" EntityType="SEP25Team13Model.Comment" />
+          <AssociationSet Name="FK_Comment_MeetingMinutes" Association="SEP25Team13Model.FK_Comment_MeetingMinutes">
+            <End Role="MeetingMinute" EntitySet="MeetingMinutes" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="SEP25Team13Model.FK_Comment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Meeting_ID" Type="Int32" />
+          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MeetingMinute" Relationship="SEP25Team13Model.FK_Comment_MeetingMinutes" FromRole="Comment" ToRole="MeetingMinute" />
+          <NavigationProperty Name="User" Relationship="SEP25Team13Model.FK_Comment_User" FromRole="Comment" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Comment_MeetingMinutes">
+          <End Type="SEP25Team13Model.MeetingMinute" Role="MeetingMinute" Multiplicity="0..1" />
+          <End Type="SEP25Team13Model.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeetingMinute">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Meeting_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Type="SEP25Team13Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="SEP25Team13Model.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1326,6 +1416,17 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="SEP25Team13Model.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment" />
+                <ScalarProperty Name="Meeting_ID" ColumnName="Meeting_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

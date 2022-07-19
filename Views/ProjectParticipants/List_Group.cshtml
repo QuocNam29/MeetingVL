@@ -101,14 +101,16 @@
                                     <p class="accordion-text">Member:</p>
                                     @Html.Action("List_Member_Group", "ProjectParticipants", new { project_id = project_id, group_id = item.Group_ID })
                                 </li>
-                                <div style="float: right">
-                                    <a  data-toggle="modal" data-target="#@EditGroup">  <i class="ft-edit mr-1 info"></i></a>
-                                    <a data-toggle="modal" data-target="#@DeleteGroup"> <i class="ft-trash-2 danger"></i></a>
-                                </div>
+                                @if (Role == "Manager")
+                                {
+                                    <div style="float: right">
+                                        <a data-toggle="modal" data-target="#@EditGroup">  <i class="ft-edit mr-1 info"></i></a>
+                                        <a data-toggle="modal" data-target="#@DeleteGroup"> <i class="ft-trash-2 danger"></i></a>
+                                    </div>
+                                }
 
 
-
-                            </ul>
+                                </ul>
                             <div class="modal fade text-left" id="@DeleteGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">

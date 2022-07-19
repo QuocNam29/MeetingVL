@@ -41,6 +41,9 @@
         <AssociationConnector Association="SEP25Team13Model.FK_Session_Semester_Semester" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Session_Semester_SessionReport" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Comment" Width="1.5" PointX="12" PointY="12.625" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Comment_MeetingMinutes" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Comment_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
