@@ -53,7 +53,7 @@
                             <i class="icon-wallet font-large-2 text-white"></i>
                         </div>
                         <div class="p-2 media-body">
-                            <h5>@item.Name</h5>
+                            <a href="@Url.Action("Index","Session_Semester" )"><h5>@item.Name</h5> </a>
                             <p class="courses-time font-small-3">
                                 <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_start)</span>
                                 <span>-</span>
