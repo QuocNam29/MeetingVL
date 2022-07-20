@@ -1,0 +1,90 @@
+﻿@model MeetingVL.Models.Evaluate
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+}
+
+<div class="timeline-card card border-grey border-lighten-2">
+    <div class="card-header">
+        <div class="media">
+            <div class="media-left mr-2">
+                <a>
+                    <span class="avatar avatar-md avatar-busy">
+                        <img src="app-assets/img/portrait/small/avatar-s-18.jpg" class="rounded-circle" alt="avatar" width="50">
+                    </span>
+                    <i></i>
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="card-title mb-0">
+                    <a>Application API Support</a>
+                </h4>
+                <div class="card-subtitle text-muted mt-0">
+                    <span class="font-small-3">15 Oct, 2015 at 8.00 A.M</span>
+                    <span class="tag tag-pill tag-default tag-warning float-right">High</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <img class="img-fluid" src="app-assets/img/photos/03.jpg" alt="Timeline Image 1">
+        <div class="card-body">
+            <div class="card-block">
+                <p class="card-text">
+                    Nullam facilisis fermentum aliquam. Suspendisse ornare dolor vitae libero hendrerit auctor lacinia a ligula.
+                    Curabitur elit tellus, porta ut orci sed, fermentum bibendum nisi.
+                </p>
+                <div class="list-inline mb-1">
+                    <span class="pr-1">
+                        <a class="primary">
+                            <span class="fa fa-commenting-o"></span> Comment
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer px-0 py-0">
+            <div class="card-block">
+                <div class="media">
+                    <div class="media-left mr-2">
+                        <a>
+                            <span class="avatar avatar-online">
+                                <img src="app-assets/img/portrait/small/avatar-s-4.jpg" class="rounded-circle" alt="avatar" width="50">
+                            </span>
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <p class="text-bold-600 mb-0">
+                            <a>Crystal Lawson</a>
+                        </p>
+                        <p class="m-0">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
+                        <div class="media">
+                            <div class="media-left mr-2">
+                                <a>
+                                    <span class="avatar avatar-online">
+                                        <img src="app-assets/img/portrait/small/avatar-s-6.jpg" class="rounded-circle" alt="avatar" width="50">
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <p class="text-bold-600 mb-0">
+                                    <a>Rafila Găitan</a>
+                                </p>
+                                <p>Gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form>
+                    <fieldset class="form-group position-relative has-icon-left mb-0">
+                        <input type="text" class="form-control" placeholder="Write comments...">
+                        <div class="form-control-position">
+                            <i class="fa fa-dashcube"></i>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

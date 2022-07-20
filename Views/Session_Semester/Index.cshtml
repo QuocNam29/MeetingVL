@@ -3,53 +3,41 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    int project_id = int.Parse(TempData["project_id"].ToString());
+    int semester_id = int.Parse(TempData["semester_id"].ToString());
 }
 
-<section id="basic-tabs-components">
-    @*<div class="col-sm-12">
-        <ul class="header-controls-list">
-            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Categories")">Category</a></li>
-            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
-            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Projects", new {category_id = category_id })">@category_Name</a></li>
-            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
-            <li class="header-controls-item text-bold-400">@project_Name</li>
 
-        </ul>
-    </div>*@
-    <div class="row match-height">
-        <div class="col-xl-12 col-lg-12">
+<section id="horizontal">
+    <div class="row">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title-wrap bar-success">
+                    <div class="card-title-wrap bar-danger">
                         <h4 class="card-title">Semester</h4>
-
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="card-block">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link @Session["List_SessionReport"].ToString()" id="base-tabX1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true">Meeting minutes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link @Session["List_Member"].ToString()" id="base-tabX2" data-toggle="tab" aria-controls="tab2" href="#tab2">Đánh giá</a>
-                            </li>
-                            
+                <div class="card-body collapse show">
+                    <div class="card-block card-dashboard">
+                        <table class="table display nowrap table-striped table-bordered scroll-horizontal">
+                            <thead>
+                                <tr>
+                                    <th>Name Group</th>
+                                    @foreach (var item in Model)
+                                    {
+                                        <th>@item.SessionReport.Name</th>
+                                    }
+                                    <th>Đánh giá</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @Html.Action("List_Group_Semester", "ProjectParticipants", new { project_id = project_id, semester_id = semester_id })
 
-                        </ul>
-                        <div class="tab-content px-1 pt-1">
-                            <div class="tab-pane @Session["List_SessionReport"].ToString()" id="tab1" aria-expanded="true" aria-labelledby="base-tabX1">
-@*                                @Html.Action("List_SessionReport", "Session_Reports", new { project_id = project_id })
-*@                            </div>
-                            <div class="tab-pane @Session["List_Member"].ToString()" id="tab2" aria-labelledby="base-tabX2">
-@*                                @Html.Action("List_member", "ProjectParticipants", new { project_id = project_id })
-*@                            </div>
-                            
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </section>

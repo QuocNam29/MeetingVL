@@ -165,6 +165,18 @@ namespace MeetingVL.Controllers
 
             return View(links.ToList());
         }
+
+        public ActionResult List_Submit_Semester(int semester_id, int group_id)
+        {
+          
+            var links = from l in db.Session_Semester
+                       .Where(p => p.Semester_ID == semester_id)
+                        select l;
+            TempData["group_id"] = group_id;
+
+
+            return View(links.ToList());
+        }
         public ActionResult Student_SReport(int project_id, string keyword, int active)
         {
             var sessionReports = db.SessionReports.Include(s => s.Project).Where(p => p.Project_ID == project_id);

@@ -79,6 +79,18 @@ namespace MeetingVL.Controllers
 
             return View(links.ToList());
         }
+        public ActionResult List_Group_Semester(int project_id, int semester_id)
+        {
+            var links = from l in db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
+                        .Where(p => p.Project_ID == project_id && p.Group_ID != null && p.Group.State != "Deleted")
+                        select l;
+
+            
+            TempData["project_id"] = project_id;
+            TempData["semester_id"] = semester_id;
+
+            return View(links.ToList());
+        }
 
         public ActionResult Search_Group(int project_id, string keyword)
         {

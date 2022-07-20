@@ -21,6 +21,7 @@ namespace MeetingVL.Models
         public string Review { get; set; }
         public string Comment { get; set; }
         public string Status { get; set; }
+        public Nullable<int> Point { get; set; }
     
         public virtual Group Group { get; set; }
         public virtual User User { get; set; }

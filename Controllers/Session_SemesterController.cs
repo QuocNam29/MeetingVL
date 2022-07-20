@@ -15,9 +15,14 @@ namespace MeetingVL.Controllers
         private SEP25Team13Entities db = new SEP25Team13Entities();
 
         // GET: Session_Semester
-        public ActionResult Index()
+        public ActionResult Index(int semester_id)
         {
-            var session_Semester = db.Session_Semester.Include(s => s.Semester).Include(s => s.SessionReport);
+            var session_Semester = db.Session_Semester.Include(s => s.Semester).Include(s => s.SessionReport).Where(s => s.Semester_ID == semester_id);
+
+            int project_id = session_Semester.FirstOrDefault().SessionReport.Project_ID;
+            TempData["project_id"] = project_id;
+            TempData["semester_id"] = semester_id;
+
             return View(session_Semester.ToList());
         }
 

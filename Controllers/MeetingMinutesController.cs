@@ -75,7 +75,29 @@ namespace MeetingVL.Controllers
 
             return View(links.ToList());
         }
+        public ActionResult List_Meeting_Semester(int session_id,int group_id)
+        {
+            var meetingMinutes = db.MeetingMinutes.Include(m => m.User).Where(m => m.SessionReport_ID == session_id && m.State != "Deleted").OrderBy(m => m.Group.Name);
+            var links = from l in db.MeetingMinutes.Include(m => m.User)
+                        .Where(m => m.SessionReport_ID == session_id && m.Group_ID == group_id && m.State != "Deleted").OrderBy(m => m.Group.Name)
+                        select l;
+           
+            SessionReport sessionReport = db.SessionReports.Find(session_id);
+            TempData["session_id"] = session_id;
+            TempData["session_Name"] = sessionReport.Name;
 
+            Project project = db.Projects.Find(sessionReport.Project_ID);
+            TempData["project_id"] = sessionReport.Project_ID;
+            TempData["project_Name"] = project.Name;
+            TempData["project_Description"] = project.Description;
+
+            Category category = db.Categories.Find(project.Category_ID);
+            TempData["category_id"] = category.ID;
+            TempData["category_Name"] = category.Name;
+
+
+            return View(links.ToList());
+        }
 
         public ActionResult Content_Meeting()
         {

@@ -176,6 +176,7 @@
     <Compile Include="Controllers\Actions1Controller.cs" />
     <Compile Include="Controllers\ActionsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\EvaluatesController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Import_StudentController.cs" />
@@ -1529,6 +1530,14 @@
     <Content Include="Views\Session_Semester\Details.cshtml" />
     <Content Include="Views\Session_Semester\Edit.cshtml" />
     <Content Include="Views\Session_Semester\Index.cshtml" />
+    <Content Include="Views\ProjectParticipants\List_Group_Semester.cshtml" />
+    <Content Include="Views\Session_Reports\List_Submit_Semester.cshtml" />
+    <Content Include="Views\MeetingMinutes\List_Meeting_Semester.cshtml" />
+    <Content Include="Views\Evaluates\Create.cshtml" />
+    <Content Include="Views\Evaluates\Delete.cshtml" />
+    <Content Include="Views\Evaluates\Details.cshtml" />
+    <Content Include="Views\Evaluates\Edit.cshtml" />
+    <Content Include="Views\Evaluates\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -50,7 +50,8 @@ namespace MeetingVL.Controllers
             db.Semesters.Add(semester);
             db.SaveChanges();
 
-            var check = db.SessionReports.Where(s => s.Date_End <= date_End && s.Date_Start >= date_Start && s.Project_ID == project_id && s.State != "Deleted").ToArray();
+            var check = db.SessionReports.Where(s => s.Date_End <= date_End && s.Date_Start >= date_Start 
+                                        && s.Project_ID == project_id  && s.State != "Deleted").ToArray();
             for (int i = 0; i < check.Length; i++)
             {
                 var session = check[i];

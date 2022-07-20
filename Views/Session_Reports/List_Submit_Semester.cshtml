@@ -1,0 +1,21 @@
+﻿@model IEnumerable<MeetingVL.Models.Session_Semester>
+
+@{
+    Layout = null;
+    int group_id = int.Parse(TempData["group_id"].ToString());
+}
+
+@foreach (var item in Model)
+{
+    bool check = item.SessionReport.MeetingMinutes.Where(c => c.Group_ID == group_id).Count() > 0;
+
+    if (check == true)
+    {
+        <td><a href="@Url.Action("List_Meeting_Semester","MeetingMinutes", new { session_id = item.SessionReport_ID,group_id = group_id })">@item.SessionReport.Name</a></td>
+    }
+    else
+    {
+        <td></td>
+    }
+
+}

@@ -107,6 +107,7 @@
           <Property Name="Review" Type="nvarchar(max)" />
           <Property Name="Comment" Type="nvarchar(max)" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Point" Type="int" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -699,6 +700,7 @@
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Group" Relationship="Self.FK_Evaluate_Group" FromRole="Evaluate" ToRole="Group" />
           <NavigationProperty Name="User" Relationship="Self.FK_Evaluate_User" FromRole="Evaluate" ToRole="User" />
+          <Property Name="Point" Type="Int32" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -1288,6 +1290,7 @@
           <EntitySetMapping Name="Evaluates">
             <EntityTypeMapping TypeName="SEP25Team13Model.Evaluate">
               <MappingFragment StoreEntitySet="Evaluate">
+                <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />

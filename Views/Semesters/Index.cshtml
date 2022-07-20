@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="p-2 media-body">
-                            <a href="@Url.Action("Index","Session_Semester" )"><h5>@item.Name</h5> </a>
+                            <a href="@Url.Action("Index","Session_Semester", new {semester_id = item.ID } )"><h5>@item.Name</h5> </a>
                             <p class="courses-time font-small-3">
                                 <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_start)</span>
                                 <span>-</span>
