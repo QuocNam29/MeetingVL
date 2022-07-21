@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MeetingVL.Models.Comment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="media">
+        <div class="media-left mr-2">
+            <a>
+                <span class="avatar avatar-online">
+                    <img src="~/Template/app-assets/img/portrait/small/avatar-s-4.jpg" class="rounded-circle" alt="avatar" width="50">
+                </span>
+            </a>
+        </div>
+        <div class="media-body">
+            <p class="text-bold-600 mb-0">
+                <a>@item.User_ID</a>
+            </p>
+            <p class="m-0">@item.Comment1</p>
+        </div>
+    </div>
+    <br />
+}

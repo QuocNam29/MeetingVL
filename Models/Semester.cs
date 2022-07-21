@@ -17,6 +17,7 @@ namespace MeetingVL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Semester()
         {
+            this.Evaluates = new HashSet<Evaluate>();
             this.Session_Semester = new HashSet<Session_Semester>();
         }
     
@@ -27,9 +28,13 @@ namespace MeetingVL.Models
         public Nullable<System.DateTime> Date_start { get; set; }
         public Nullable<System.DateTime> Date_end { get; set; }
         public string State { get; set; }
+        public Nullable<int> Project_ID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Evaluate> Evaluates { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Session_Semester> Session_Semester { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

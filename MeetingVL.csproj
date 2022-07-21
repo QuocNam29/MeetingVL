@@ -176,6 +176,7 @@
     <Compile Include="Controllers\Actions1Controller.cs" />
     <Compile Include="Controllers\ActionsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\EvaluatesController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1538,6 +1539,11 @@
     <Content Include="Views\Evaluates\Details.cshtml" />
     <Content Include="Views\Evaluates\Edit.cshtml" />
     <Content Include="Views\Evaluates\Index.cshtml" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,51 @@
+﻿@model MeetingVL.Models.Comment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluate.User_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluate.User_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.ID_VanLang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.ID_VanLang)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

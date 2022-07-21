@@ -16,11 +16,11 @@ namespace MeetingVL.Models
     {
         public int ID { get; set; }
         public string User_ID { get; set; }
-        public Nullable<int> Meeting_ID { get; set; }
+        public Nullable<int> Evalute_ID { get; set; }
         public string Comment1 { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<System.DateTime> Time { get; set; }
     
-        public virtual MeetingMinute MeetingMinute { get; set; }
+        public virtual Evaluate Evaluate { get; set; }
         public virtual User User { get; set; }
     }
 }

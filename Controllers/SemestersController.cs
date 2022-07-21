@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MeetingVL.Middleware;
 using MeetingVL.Models;
 
 namespace MeetingVL.Controllers
 {
+    [LoginVerification]
     public class SemestersController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
@@ -17,7 +19,7 @@ namespace MeetingVL.Controllers
         // GET: Semesters
         public ActionResult Index(int project_id)
         {
-            var semesters = db.Semesters.Include(s => s.User).Where(s => s.State != "Deleted");
+            var semesters = db.Semesters.Include(s => s.User).Where(s => s.State != "Deleted" && s.Project_ID == project_id);
             TempData["project_id"] = project_id;
             return View(semesters.ToList());
         }
@@ -47,6 +49,7 @@ namespace MeetingVL.Controllers
             semester.Date = DateTime.Now;
             semester.Date_start = date_Start;
             semester.Date_end = date_End;
+            semester.Project_ID = project_id;
             db.Semesters.Add(semester);
             db.SaveChanges();
 

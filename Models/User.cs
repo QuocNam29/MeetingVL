@@ -19,11 +19,11 @@ namespace MeetingVL.Models
         {
             this.Actions = new HashSet<Action>();
             this.Categories = new HashSet<Category>();
+            this.Comments = new HashSet<Comment>();
             this.Evaluates = new HashSet<Evaluate>();
             this.MeetingMinutes = new HashSet<MeetingMinute>();
             this.ProjectParticipants = new HashSet<ProjectParticipant>();
             this.Semesters = new HashSet<Semester>();
-            this.Comments = new HashSet<Comment>();
         }
     
         public string Email { get; set; }
@@ -41,6 +41,8 @@ namespace MeetingVL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Category> Categories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Evaluate> Evaluates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeetingMinute> MeetingMinutes { get; set; }
@@ -48,7 +50,5 @@ namespace MeetingVL.Models
         public virtual ICollection<ProjectParticipant> ProjectParticipants { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Semester> Semesters { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

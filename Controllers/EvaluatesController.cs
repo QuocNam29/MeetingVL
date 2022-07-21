@@ -6,18 +6,20 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MeetingVL.Middleware;
 using MeetingVL.Models;
 
 namespace MeetingVL.Controllers
 {
+    [LoginVerification]
     public class EvaluatesController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
 
         // GET: Evaluates
-        public ActionResult Index()
+        public ActionResult Index(int group_id, int semester_id)
         {
-            var evaluates = db.Evaluates.Include(e => e.Group).Include(e => e.User);
+            var evaluates = db.Evaluates.Where(e => e.Group_ID == group_id && e.Semester_ID == semester_id);
             return View(evaluates.ToList());
         }
 
@@ -37,7 +39,7 @@ namespace MeetingVL.Controllers
         }
 
         // GET: Evaluates/Create
-        public ActionResult Create(int group_id, string review, int point)
+        public ActionResult Create(int group_id, string review, int point, int semester_id, int project_id)
         {
             string ID_User = Session["ID_User"].ToString();
             Evaluate evaluate = new Evaluate();
@@ -45,9 +47,15 @@ namespace MeetingVL.Controllers
             evaluate.Group_ID = group_id;
             evaluate.Review = review;
             evaluate.Point = point;
+            evaluate.Semester_ID = semester_id;
+            evaluate.Time = DateTime.Now;
             db.Evaluates.Add(evaluate);
             db.SaveChanges();
-            return View();
+
+
+
+
+            return RedirectToAction("Index", "Session_Semester", new { semester_id = semester_id });
         }
 
        

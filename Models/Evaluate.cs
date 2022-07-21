@@ -14,16 +14,27 @@ namespace MeetingVL.Models
     
     public partial class Evaluate
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Evaluate()
+        {
+            this.Comments = new HashSet<Comment>();
+        }
+    
         public int ID { get; set; }
         public string User_ID { get; set; }
         public int Group_ID { get; set; }
+        public Nullable<int> Semester_ID { get; set; }
         public string State { get; set; }
         public string Review { get; set; }
         public string Comment { get; set; }
         public string Status { get; set; }
         public Nullable<int> Point { get; set; }
+        public Nullable<System.DateTime> Time { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
         public virtual Group Group { get; set; }
+        public virtual Semester Semester { get; set; }
         public virtual User User { get; set; }
     }
 }

@@ -32,6 +32,7 @@ namespace MeetingVL.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Evaluate> Evaluates { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<MeetingMinute> MeetingMinutes { get; set; }
@@ -42,6 +43,5 @@ namespace MeetingVL.Models
         public virtual DbSet<SessionReport> SessionReports { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
     }
 }

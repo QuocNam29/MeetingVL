@@ -19,6 +19,7 @@ namespace MeetingVL.Models
         {
             this.ProjectParticipants = new HashSet<ProjectParticipant>();
             this.SessionReports = new HashSet<SessionReport>();
+            this.Semesters = new HashSet<Semester>();
         }
     
         public int ID { get; set; }
@@ -34,5 +35,7 @@ namespace MeetingVL.Models
         public virtual ICollection<ProjectParticipant> ProjectParticipants { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SessionReport> SessionReports { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Semester> Semesters { get; set; }
     }
 }
