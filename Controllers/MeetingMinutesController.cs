@@ -74,7 +74,10 @@ namespace MeetingVL.Controllers
             string ID_User = Session["ID_User"].ToString();
             ProjectParticipant projectParticipant = db.ProjectParticipants.FirstOrDefault(p => p.Project_ID == project.ID 
             && p.User_ID == ID_User && p.Group_ID != null && p.Group.State != "Deleted");
+
+
             TempData["group_id"] = projectParticipant.Group_ID;
+            TempData["role"] = projectParticipant.Role;
 
             return View(links.ToList());
         }
