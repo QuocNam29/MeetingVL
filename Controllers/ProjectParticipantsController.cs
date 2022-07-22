@@ -63,7 +63,7 @@ namespace MeetingVL.Controllers
             TempData["roles_Project"] = Check.Role;
 
             var links = from l in db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
-                        .Where(p => p.Project_ID == project_id && p.Group_ID != null && p.Group.State != "Deleted")
+                        .Where(p => p.Project_ID == project_id && p.Group_ID != null && p.Group.State != "Deleted").OrderBy(p => p.Group_ID)
                         select l;
 
             if (!string.IsNullOrEmpty(keyword))

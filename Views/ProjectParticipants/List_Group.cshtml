@@ -3,9 +3,10 @@
 @{
     Layout = null;
     int project_id = int.Parse(TempData["project_id"].ToString());
-    int size = 0;
-    int[] group = new int[50]  ;
-    string Role = TempData["roles_Project"].ToString();
+   @* int size = 0;
+    int[] group = new int[50]  ;*@
+int group = 0;  
+string Role = TempData["roles_Project"].ToString();
 
 }
 <div class="col-lg-12 col-md-6 col-sm-12">
@@ -68,14 +69,18 @@
 <div class="row match-height">
     @foreach (var item in Model)
     {
-        string DeleteGroup = "DeleteGroup" + item.ID;
-        string EditGroup = "EditGroup" + item.ID;
+       
 
-        if (FindArr(group, 50, item.Group.ID) == -1)
+       @* if (FindArr(group, 50, item.Group.ID) == -1)
         {
 
             AddArr(group, size, item.Group.ID);
-            size++;
+            size++;*@
+    if (group != item.Group_ID)
+    {
+        group = item.Group.ID;
+        string DeleteGroup = "DeleteGroup" + item.ID;
+        string EditGroup = "EditGroup" + item.ID;
             <div class="col-lg-12 col-xl-4">
                 <div class="accordion-wrap-link">
                     <div class="accordion-wrap">
@@ -260,7 +265,7 @@
             </div>
         </div>
     </div> 
-@{ 
+@*@{ 
     int FindArr(int[] arr, int n, int x)
     {
         for (int i = 0; i < n; i++)
@@ -279,4 +284,4 @@
         
         
     }
-}
+}*@
