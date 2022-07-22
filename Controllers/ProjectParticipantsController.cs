@@ -23,7 +23,8 @@ namespace MeetingVL.Controllers
             var projectParticipants = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.User_ID == email && p.Role == "Student").OrderBy(p => p.Group.Name);
 
             var links = from l in db.ProjectParticipants.Include(p => p.Project)
-                        .Include(p => p.User).Where(p => p.User_ID == email && p.Role == "Student")
+                        .Include(p => p.User).Where(p => p.User_ID == email && p.Role == "Student" 
+                        && ( p.Project.State != "Deleted" || p.Project.Category.State != "Deleted"))
                         select l;
             if (!string.IsNullOrEmpty(keyword))
             {
