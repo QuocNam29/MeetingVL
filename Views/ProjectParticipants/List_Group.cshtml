@@ -3,7 +3,8 @@
 @{
     Layout = null;
     int project_id = int.Parse(TempData["project_id"].ToString());
-    int group = -1;
+    int size = 0;
+    int[] group = new int[50]  ;
     string Role = TempData["roles_Project"].ToString();
 
 }
@@ -64,140 +65,142 @@
         </div>
     }
     <!-- /.col-lg-6 -->
-    <div class="row match-height">
-        @foreach (var item in Model)
+<div class="row match-height">
+    @foreach (var item in Model)
+    {
+        string DeleteGroup = "DeleteGroup" + item.ID;
+        string EditGroup = "EditGroup" + item.ID;
+
+        if (FindArr(group, 50, item.Group.ID) == -1)
         {
-            string DeleteGroup = "DeleteGroup" + item.ID;
-            string EditGroup = "EditGroup" + item.ID;
-            if (group != item.Group_ID)
-            {
-                group = item.Group.ID;
 
-
-                <div class="col-lg-12 col-xl-4">
-                    <div class="accordion-wrap-link">
-                        <div class="accordion-wrap">
-                            <a class="accordion-with-card">
-                                <div class="accordion-card">
-                                    <div class="accordion-heading">@item.Group.Name</div>
-                                    <!-- <ion-icon name="add-outline" class="accordion-icon-link"></ion-icon> -->
-                                    <ion-icon name="close-outline" class="accordion-icon-link"></ion-icon>
-                                </div>
-                            </a>
-
-                            <ul class="accordion-with-content">
-                                <li class="accordion-item">
-                                    <p class="accordion-text-topic">@item.Group.Topic</p>
-                                </li>
-                                <li class="accordion-item">
-                                    <p class="accordion-text">Mentor:</p>
-                                    <span class="accordion-name-desc"> @item.Group.Mentor</span>
-                                </li>
-                                <li class="accordion-item">
-                                    <p class="accordion-text">Customer:</p>
-                                    <span class="accordion-name-desc"> @item.Group.Customer</span>
-                                </li>
-                                <li class="accordion-item accordion-item-member">
-                                    <p class="accordion-text">Member:</p>
-                                    @Html.Action("List_Member_Group", "ProjectParticipants", new { project_id = project_id, group_id = item.Group_ID })
-                                </li>
-                                @if (Role == "Manager")
-                                {
-                                    <div style="float: right">
-                                        <a data-toggle="modal" data-target="#@EditGroup">  <i class="ft-edit mr-1 info"></i></a>
-                                        <a data-toggle="modal" data-target="#@DeleteGroup"> <i class="ft-trash-2 danger"></i></a>
-                                    </div>
-                                }
-
-
-                                </ul>
-                            <div class="modal fade text-left" id="@DeleteGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel1"><b>Notification</b></h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h5>Are you sure?</h5>
-                                            <p>Are you sure you want to remove Group  !!!</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            @using (Html.BeginForm("Delete", "Groups", new { id = item.Group_ID }))
-                                            {
-                                                @Html.Hidden("project_id", project_id)
-                                                @Html.AntiForgeryToken()
-                                                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-outline-primary">Yes</button>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
+            AddArr(group, size, item.Group.ID);
+            size++;
+            <div class="col-lg-12 col-xl-4">
+                <div class="accordion-wrap-link">
+                    <div class="accordion-wrap">
+                        <a class="accordion-with-card">
+                            <div class="accordion-card">
+                                <div class="accordion-heading">@item.Group.Name</div>
+                                <!-- <ion-icon name="add-outline" class="accordion-icon-link"></ion-icon> -->
+                                <ion-icon name="close-outline" class="accordion-icon-link"></ion-icon>
                             </div>
+                        </a>
 
-                            <div class="modal fade text-left" id="@EditGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h3 class="modal-title" id="myModalLabel34">Add Group</h3>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        @using (Html.BeginForm("Edit", "Groups", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        <ul class="accordion-with-content">
+                            <li class="accordion-item">
+                                <p class="accordion-text-topic">@item.Group.Topic</p>
+                            </li>
+                            <li class="accordion-item">
+                                <p class="accordion-text">Mentor:</p>
+                                <span class="accordion-name-desc"> @item.Group.Mentor</span>
+                            </li>
+                            <li class="accordion-item">
+                                <p class="accordion-text">Customer:</p>
+                                <span class="accordion-name-desc"> @item.Group.Customer</span>
+                            </li>
+                            <li class="accordion-item accordion-item-member">
+                                <p class="accordion-text">Member:</p>
+                                @Html.Action("List_Member_Group", "ProjectParticipants", new { project_id = project_id, group_id = item.Group_ID })
+                            </li>
+                            @if (Role == "Manager")
+                            {
+                                <div style="float: right">
+                                    <a data-toggle="modal" data-target="#@EditGroup">  <i class="ft-edit mr-1 info"></i></a>
+                                    <a data-toggle="modal" data-target="#@DeleteGroup"> <i class="ft-trash-2 danger"></i></a>
+                                </div>
+                            }
+
+
+                        </ul>
+                        <div class="modal fade text-left" id="@DeleteGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabel1"><b>Notification</b></h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5>Are you sure?</h5>
+                                        <p>Are you sure you want to remove Group  !!!</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        @using (Html.BeginForm("Delete", "Groups", new { id = item.Group_ID }))
                                         {
-                                            @Html.Hidden("id", item.Group_ID)
                                             @Html.Hidden("project_id", project_id)
-                                            <div class="modal-body">
-                                                <div class="row justify-content-md-center">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1">Name</label>
-                                                            <input type="text" id="projectinput1" class="form-control" name="name" value="@item.Group.Name"
-                                                                   required="required" oninvalid="this.setCustomValidity('Please enter name group')" oninput="setCustomValidity('')">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1">Topic</label>
-                                                            <textarea id="issueinput8" rows="5" class="form-control" name="topic" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                                                                      data-title="Comments" required="required" oninvalid="this.setCustomValidity('Please enter topic')" oninput="setCustomValidity('')"> @item.Group.Topic</textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1">Mentor</label>
-                                                            <input type="text" id="projectinput1" class="form-control" name="mentor" value="@item.Group.Mentor"
-                                                                   required="required" oninvalid="this.setCustomValidity('Please enter mentor')" oninput="setCustomValidity('')">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1">Customer</label>
-                                                            <input type="text" id="projectinput1" class="form-control" name="customer" value="@item.Group.Customer">
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Cancel">
-                                                <input type="submit" class="btn btn-outline-primary btn-lg" value="Save">
-                                            </div>
+                                            @Html.AntiForgeryToken()
+                                            <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-outline-primary">Yes</button>
                                         }
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="modal fade text-left" id="@EditGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="myModalLabel34">Add Group</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @using (Html.BeginForm("Edit", "Groups", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        @Html.Hidden("id", item.Group_ID)
+                                        @Html.Hidden("project_id", project_id)
+                                        <div class="modal-body">
+                                            <div class="row justify-content-md-center">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="projectinput1">Name</label>
+                                                        <input type="text" id="projectinput1" class="form-control" name="name" value="@item.Group.Name"
+                                                               required="required" oninvalid="this.setCustomValidity('Please enter name group')" oninput="setCustomValidity('')">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="projectinput1">Topic</label>
+                                                        <textarea id="issueinput8" rows="5" class="form-control" name="topic" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                                                  data-title="Comments" required="required" oninvalid="this.setCustomValidity('Please enter topic')" oninput="setCustomValidity('')"> @item.Group.Topic</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="projectinput1">Mentor</label>
+                                                        <input type="text" id="projectinput1" class="form-control" name="mentor" value="@item.Group.Mentor"
+                                                               required="required" oninvalid="this.setCustomValidity('Please enter mentor')" oninput="setCustomValidity('')">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="projectinput1">Customer</label>
+                                                        <input type="text" id="projectinput1" class="form-control" name="customer" value="@item.Group.Customer">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Cancel">
+                                            <input type="submit" class="btn btn-outline-primary btn-lg" value="Save">
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            }
-
-
+            </div>
         }
-    </div>
+      
+
+
+    }
+</div>
 
     <div class="modal fade text-left" id="AddGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -256,4 +259,24 @@
                 }
             </div>
         </div>
-    </div>
+    </div> 
+@{ 
+    int FindArr(int[] arr, int n, int x)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            if (arr[i] == x)
+                return i;
+        }
+
+        return -1;
+    }
+
+    void AddArr(int[] a, int n, int k)
+    {
+        
+            a[n] = k;
+        
+        
+    }
+}
