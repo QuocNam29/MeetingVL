@@ -1,0 +1,145 @@
+﻿@model MeetingVL.Models.Action
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    string ID_User = Session["ID_User"].ToString();
+    int group_id = int.Parse(TempData["group_id"].ToString());
+    int meeting_id = int.Parse(TempData["meeting_id"].ToString());
+    int project_id = int.Parse(TempData["project_id"].ToString());
+    int session_id = int.Parse(TempData["session_id"].ToString());
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-warning">
+                    <h4 class="card-title" id="horz-layout-colored-controls">Add Action To Meeting Minutes</h4>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+                    @using (Html.BeginForm("Create", "Actions"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("meeting_id", meeting_id)
+                        @Html.Hidden("group_id", group_id)
+                        <form class="form form-horizontal">
+                            <div class="form-body">
+                                <h4 class="form-section">
+                                    <i class="icon-users"></i> Action List
+                                </h4>
+                                <div class="row">
+                                    <div class="table-responsive col-sm-12">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Email</th>
+                                                    <th>Action</th>
+                                                    <th>Deadline</th>
+                                                    <th>Description</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @Html.Action("EditForm", "Actions", new { MeetingMinute_id = meeting_id, Group_id = group_id })
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <h4 class="form-section">
+                                    <i class="icon-users"></i> Action
+                                </h4>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput8">Action: </label>
+                                            <div class="col-md-9">
+                                                <textarea id="Action" rows="6" class="form-control col-md-9 border-primary" name="action"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (TempData["group_id"] != null)
+                                        {
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput5">Member: </label>
+                                                <div class="col-md-9">
+                                                    <select class="custom-select form-control border-primary" id="Member" data-placeholder="Type to search cities" name="Member">
+
+                                                        @Html.Action("List_Member_Meeting", "ProjectParticipants", new { project_id = project_id, group_id = group_id })
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput5">Member: </label>
+                                                <div class="col-md-9">
+                                                    <select class="custom-select form-control border-primary" id="Member" data-placeholder="Type to search cities" name="Member">
+
+
+                                                        <option value="@ID_User">@ID_User</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput5">Deadline: </label>
+                                            <div class="col-md-9">
+                                                <input class="form-control border-primary" type="date" name="Deadline">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput6">Descriptions: </label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control border-primary" type="url" id="Descriptions" name="Descriptions"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 text-left">
+                                        @*                                        <a href="@Url.Action("Index", "MeetingMinutes", new { session_id = session_id })" class="btn  btn-info  my-1"> <i class="ft-arrow-left"></i> Come back</a>
+                                        *@
+                                        <button type="button" class="btn btn-primary my-1" onclick="location.href='@Url.Action("Details", "MeetingMinutes", new { id = meeting_id , group_id = group_id })'"><i class="fa ft-edit"></i> Details</button>
+                                    </div>
+
+                                    <div class="col-md-9 col-sm-9 text-right">
+                                        <a href="@Url.Action("Index", "MeetingMinutes", new { session_id = session_id })">
+                                            <button type="button" class="btn btn-danger mr-1">
+                                                <i class="icon-trash"></i> Cancel
+                                            </button>
+                                        </a>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="icon-note"></i> Save
+                                        </button>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    }
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -71,7 +71,10 @@ namespace MeetingVL.Controllers
             Category category = db.Categories.Find(project.Category_ID);
             TempData["category_id"] = category.ID;
             TempData["category_Name"] = category.Name;
-
+            string ID_User = Session["ID_User"].ToString();
+            ProjectParticipant projectParticipant = db.ProjectParticipants.FirstOrDefault(p => p.Project_ID == project.ID 
+            && p.User_ID == ID_User && p.Group_ID != null && p.Group.State != "Deleted");
+            TempData["group_id"] = projectParticipant.Group_ID;
 
             return View(links.ToList());
         }
@@ -111,7 +114,7 @@ namespace MeetingVL.Controllers
         }
 
         // GET: MeetingMinutes/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? group_id)
         {
             if (id == null)
             {
@@ -126,14 +129,15 @@ namespace MeetingVL.Controllers
             TempData["session_id"] = sessionReport.ID;
             TempData["session_Name"] = sessionReport.Name;
 
-            Project project = db.Projects.Find(sessionReport.Project_ID);
+           
             TempData["project_id"] = sessionReport.Project_ID;
-            TempData["project_Name"] = project.Name;
-            TempData["project_Description"] = project.Description;
+            TempData["project_Name"] = sessionReport.Project.Name;
+            TempData["project_Description"] = sessionReport.Project.Description;
 
-            Category category = db.Categories.Find(project.Category_ID);
-            TempData["category_id"] = category.ID;
-            TempData["category_Name"] = category.Name;
+            TempData["category_id"] = sessionReport.Project.Category.ID;
+            TempData["category_Name"] = sessionReport.Project.Category.Name;
+            TempData["group_id"] = group_id;
+
             return View(meetingMinute);
         }
 
@@ -207,7 +211,7 @@ namespace MeetingVL.Controllers
         }
 
         // GET: MeetingMinutes/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int? group_id)
         {
             if (id == null)
             {
@@ -219,12 +223,13 @@ namespace MeetingVL.Controllers
                 return HttpNotFound();
             }
             ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", meetingMinute.User_ID);
+            TempData["group_id"] = group_id;
             return View(meetingMinute);
         }
 
         public ActionResult Edit_form(int meeting_id, DateTime meetingDate, string location,
              int process, string stages, string content, string objectives,
-             string issues, string NA)
+             string issues, string NA, int? group_id)
         {
             MeetingMinute meetingMinute = db.MeetingMinutes.Find(meeting_id);
             
@@ -250,7 +255,7 @@ namespace MeetingVL.Controllers
             db.Entry(meetingMinute).State = EntityState.Modified;
             db.SaveChanges();
             Session["notification"] = "Successfully Edit Meetin Minutes";
-            return RedirectToAction("Details", new { id = meeting_id });
+            return RedirectToAction("Details", new { id = meeting_id , group_id  = group_id });
         }
 
       

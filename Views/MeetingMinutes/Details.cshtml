@@ -13,6 +13,7 @@
         project_Description = TempData["project_Description"].ToString();
     }
     int category_id = int.Parse(TempData["category_id"].ToString());
+    int group_id = int.Parse(TempData["group_id"].ToString());
     string category_Name = TempData["category_Name"].ToString();
 }
 <div class="row">
@@ -79,7 +80,7 @@
                             <div class="table-responsive col-sm-12">
                                 <table class="table">
                                     <thead>
-                                        <tr>
+                                        <tr >
                                             <th style="text-align: center; font-size: 30px">Objectives</th>
 
                                         </tr>
@@ -106,7 +107,7 @@
                         <div class="table-responsive col-sm-12">
                             <table class="table">
                                 <thead>
-                                    <tr>
+                                    <tr >
                                         <th style="text-align: center; font-size: 30px">Content</th>
 
                                     </tr>
@@ -131,7 +132,7 @@
                         <div class="table-responsive col-sm-12">
                             <table class="table">
                                 <thead>
-                                    <tr>
+                                    <tr >
                                         <th>#</th>
                                         <th>Email</th>
                                         <th>Action</th>
@@ -178,81 +179,21 @@
                 <!-- Invoice Footer -->
                 <div id="invoice-footer">
                     <div class="row">
-
-                        <div class="col-md-12 col-sm-12 text-right">
-                            <a href="@Url.Action("Index", "MeetingMinutes", new { session_id = session_id })" class="btn  btn-info  my-1"> <i class="ft-arrow-left"></i> Come back</a>
-
-                            <button type="button" class="btn btn-primary my-1" onclick="location.href='@Url.Action("Edit", "MeetingMinutes", new { id = Model.ID })'"><i class="fa ft-edit"></i> Edit</button>
+                        <div class="col-md-3 col-sm-12 text-left">
+                            <a href="@Url.Action("Index", "MeetingMinutes", new { session_id = session_id })" class="btn  btn-info  my-1">
+                                <i class="ft-arrow-left"></i> Come back
+                            </a>
                         </div>
-                    </div>
+                        <div class="col-md-9 col-sm-12 text-right">
+                            
+                                <button type="button" class=" btn btn-warning my-1" onclick="location.href='@Url.Action("FormCreate", "Actions", new { meeting_id = Model.ID, group_id = group_id })'"><i class="fa ft-edit-3"></i> Edit Action</button>
+
+                                <button type="button" class="btn btn-primary my-1" onclick="location.href='@Url.Action("Edit", "MeetingMinutes", new { id = Model.ID, group_id = group_id })'"><i class="fa ft-edit"></i> Edit Meeting Minutes</button>
+                            </div>
+                        </div>
                 </div>
                 <!--/ Invoice Footer -->
-                <hr>
-                <div class="container">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="comment-wrapper">
-                            <div class="panel panel-info">
-                                <div class="panel-heading text-center"   >
-                                    Comment panel
-                                </div>
-                                <div class="panel-body">
-                                    <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
-                                    <br>
-                                    <button type="button" class="btn btn-info pull-right">Post</button>
-                                    <div class="clearfix"></div>
-                                    <hr>
-                                    <ul class="media-list">
-                                        <li class="media">
-                                            <a href="#" class="pull-left">
-                                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                                            </a>
-                                            <div class="media-body">
-                                                <span class="text-muted pull-right">
-                                                    <small class="text-muted">30 min ago</small>
-                                                </span>
-                                                <strong class="text-success">Uí dồi ôi</strong>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                    Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <a href="#" class="pull-left">
-                                                <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
-                                            </a>
-                                            <div class="media-body">
-                                                <span class="text-muted pull-right">
-                                                    <small class="text-muted">30 min ago</small>
-                                                </span>
-                                                <strong class="text-success">Nam nè</strong>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                    Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <a href="#" class="pull-left">
-                                                <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
-                                            </a>
-                                            <div class="media-body">
-                                                <span class="text-muted pull-right">
-                                                    <small class="text-muted">30 min ago</small>
-                                                </span>
-                                                <strong class="text-success">Ai nè</strong>
-                                                <p>
-                                                    Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
-                                                </p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+              
             </div>
         </div>
     </div>

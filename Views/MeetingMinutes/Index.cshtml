@@ -13,6 +13,7 @@
         project_Description = TempData["project_Description"].ToString();
     }
     int category_id = int.Parse(TempData["category_id"].ToString());
+    int group_id = int.Parse(TempData["group_id"].ToString());
     string category_Name = TempData["category_Name"].ToString();
 }
 
@@ -78,7 +79,8 @@
                         <h5 class="text-bold-500 primary float-left">Meeting Minutes - @item.User.Email </h5>
                     }
                 <div class="actions float-right">
-                    <a href="@Url.Action("Edit", "MeetingMinutes", new { id = item.ID })">  <i class="ft-edit mr-1 info"></i></a>
+                    <a href="@Url.Action("FormCreate", "Actions", new { meeting_id = item.ID, group_id = group_id })">  <i class="ft-plus-circle mr-1 warning"></i></a>
+                    <a href="@Url.Action("Edit", "MeetingMinutes", new { id = item.ID, group_id = group_id })">  <i class="ft-edit mr-1 info"></i></a>
                     <a data-toggle="modal" data-target="#@DeleteMeeting"> <i class="ft-trash-2 danger"></i></a>
 
                     <div class="modal fade text-left" id="@DeleteMeeting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
@@ -108,7 +110,7 @@
                     </div>
                 </div>
                 </div>
-                <a href="@Url.Action("Details", "MeetingMinutes", new { id = item.ID })">
+                <a href="@Url.Action("Details", "MeetingMinutes", new { id = item.ID, group_id = group_id })">
                     <p id="format-true" style="color : dimgrey">@item.Content</p>
                 </a>
                 

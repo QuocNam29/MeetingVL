@@ -45,6 +45,18 @@ namespace MeetingVL.Controllers
 
             return View(actions.ToList());
         }
+        public ActionResult EditForm(int MeetingMinute_id, int? Group_id)
+        {
+
+            var actions = db.Actions.Include(a => a.MeetingMinute).Include(a => a.User).Where(a => a.Meeting_ID == MeetingMinute_id).OrderBy(a => a.User.Name);
+            MeetingMinute meetingMinute = db.MeetingMinutes.Find(MeetingMinute_id);
+            SessionReport sessionReport = db.SessionReports.Find(meetingMinute.SessionReport_ID);
+
+            TempData["Group_id"] = Group_id;
+            TempData["Project_id"] = sessionReport.Project_ID;
+
+            return View(actions.ToList());
+        }
 
         [HttpPost]
         public ActionResult InsertAction(Action tire)
@@ -80,35 +92,34 @@ namespace MeetingVL.Controllers
         }
 
         // GET: Actions/Create
-        public ActionResult Create()
+        public ActionResult FormCreate(int meeting_id, int group_id)
         {
-            ViewBag.Meeting_ID = new SelectList(db.MeetingMinutes, "ID", "User_ID");
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang");
+            TempData["group_id"] = group_id;
+            TempData["meeting_id"] = meeting_id;
+            MeetingMinute meetingMinute = db.MeetingMinutes.Find(meeting_id);
+            TempData["session_id"] = meetingMinute.SessionReport_ID;
+            TempData["project_id"] = meetingMinute.SessionReport.Project_ID;
             return View();
         }
 
-        // POST: Actions/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,User_ID,Meeting_ID,Work,Deadline")] Action action)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Actions.Add(action);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.Meeting_ID = new SelectList(db.MeetingMinutes, "ID", "User_ID", action.Meeting_ID);
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", action.User_ID);
-            return View(action);
+        public ActionResult Create(int meeting_id, int group_id, string action, string Member, DateTime Deadline, string Descriptions)
+        {
+            Action action1 = new Action();
+            action1.Meeting_ID = meeting_id;
+            action1.Work = action;
+            action1.User_ID = Member;
+            action1.Deadline = Deadline;
+            action1.Description = Descriptions;
+            db.Actions.Add(action1);
+            db.SaveChanges();
+            Session["notification"] = "Successfully Add Action";
+            return RedirectToAction("FormCreate", "Actions", new { meeting_id = meeting_id, group_id = group_id });
         }
 
         // GET: Actions/Edit/5
         public ActionResult Edit(int? id, string Member, string Action, 
-            DateTime Deadline, string Descriptions, int meeting_id)
+            DateTime Deadline, string Descriptions, int meeting_id, int group_id)
         {
             Action action = db.Actions.Find(id);
             action.User_ID = Member;
@@ -122,7 +133,7 @@ namespace MeetingVL.Controllers
             db.Entry(action).State = EntityState.Modified;
             db.SaveChanges();
             Session["notification"] = "Successfully Edit Action";
-            return RedirectToAction("Details", "MeetingMinutes", new { id = meeting_id });
+            return RedirectToAction("FormCreate", "Actions", new { meeting_id = meeting_id, group_id = group_id });
         }
 
 

@@ -1508,7 +1508,7 @@
     <Content Include="Views\MeetingMinutes\Index.cshtml" />
     <Content Include="Views\MeetingMinutes\Content_Meeting.cshtml" />
     <Content Include="Views\MeetingMinutes\Demo_form.cshtml" />
-    <Content Include="Views\Actions\Create.cshtml" />
+    <Content Include="Views\Actions\FormCreate.cshtml" />
     <Content Include="Views\Actions\Delete.cshtml" />
     <Content Include="Views\Actions\Details.cshtml" />
     <Content Include="Views\Actions\Edit.cshtml" />
@@ -1544,6 +1544,7 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Actions\EditForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

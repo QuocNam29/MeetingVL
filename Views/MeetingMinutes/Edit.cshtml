@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    int group_id = int.Parse(TempData["group_id"].ToString());
 }
 
 <div class="row">
@@ -126,9 +127,12 @@
                                
 
                             <div class="form-actions right">
-                                <button type="button" class="btn btn-danger mr-1" onclick="location.href='@Url.Action("Details", "MeetingMinutes", new { id = Model.ID })'">
-                                    <i class="icon-trash"></i> Cancel
-                                </button>
+                                <a href="@Url.Action("Details", "MeetingMinutes", new { id = Model.ID, group_id = group_id })">
+                                    <button type="button" class="btn btn-danger mr-1">
+                                        <i class="icon-trash"></i> Cancel
+                                    </button>
+                                </a>
+                             
                                 <button type="submit" class="btn btn-success">
                                     <i class="icon-note"></i> Save
                                 </button>
