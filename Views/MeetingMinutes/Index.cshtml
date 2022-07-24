@@ -13,8 +13,14 @@
         project_Description = TempData["project_Description"].ToString();
     }
     int category_id = int.Parse(TempData["category_id"].ToString());
-    int group_id = int.Parse(TempData["group_id"].ToString());
-    string role = TempData["role"].ToString();
+    int group_id = 0;
+    string role = "";
+    if (TempData["group_id"] != null)
+    {
+        group_id = int.Parse(TempData["group_id"].ToString());
+        role = TempData["role"].ToString();
+    }
+
     string category_Name = TempData["category_Name"].ToString();
 }
 
@@ -67,8 +73,7 @@
 
 @foreach (var item in Model)
 {
-    if (group_id == item.Group_ID || role == "Manager")
-    {
+   
         string DeleteMeeting = "DeleteMeeting" + item.ID;
         <div class="card border-left my-4 border-primary border-3">
             <div class="card-block pt-3">
@@ -128,7 +133,6 @@
     }
 
 
-}
 
 
 

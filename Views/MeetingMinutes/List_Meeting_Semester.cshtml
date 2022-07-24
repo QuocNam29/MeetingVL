@@ -3,6 +3,10 @@
 @{
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
     string session_Name = TempData["session_Name"].ToString();
+   
+    int group_id = int.Parse(TempData["group_id"].ToString());
+        
+    
 }
 <div class="row">    
     <div class="col-12 mt-3 mb-1 header-content-group">
@@ -17,7 +21,7 @@
     <div class="card border-left my-4 border-primary border-3">
         <div class="card-block pt-3">
             <div class="clearfix">
-                <a href="@Url.Action("Details", "MeetingMinutes", new { id = item.ID })">
+                <a href="@Url.Action("Details", "MeetingMinutes", new { id = item.ID, group_id = group_id  })">
                     @if (item.Group_ID != null)
                     {
                         <h5 class="text-bold-500 primary float-left">@item.Group.Name </h5>
@@ -30,7 +34,7 @@
                 
                 
             </div>
-            <a href="@Url.Action("Details", "MeetingMinutes", new { id = item.ID })">
+            <a href="@Url.Action("Details", "MeetingMinutes", new { id = item.ID, group_id = group_id })">
                 <p id="format-true" style="color : dimgrey">@item.Objectives</p>
             </a>
 

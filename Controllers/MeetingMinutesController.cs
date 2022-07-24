@@ -56,6 +56,15 @@ namespace MeetingVL.Controllers
                 TempData["category_id"] = category1.ID;
                 TempData["category_Name"] = category1.Name;
 
+                string ID_User1 = Session["ID_User"].ToString();
+                ProjectParticipant projectParticipant1 = db.ProjectParticipants.FirstOrDefault(p => p.Project_ID == project1.ID
+           && p.User_ID == ID_User1 && p.Group_ID != null && p.Group.State != "Deleted");
+                if (projectParticipant1 != null)
+                {
+                    TempData["group_id"] = projectParticipant1.Group_ID;
+                    TempData["role"] = projectParticipant1.Role;
+                }
+               
 
                 return View(links.ToList());
             }
@@ -75,9 +84,13 @@ namespace MeetingVL.Controllers
             ProjectParticipant projectParticipant = db.ProjectParticipants.FirstOrDefault(p => p.Project_ID == project.ID 
             && p.User_ID == ID_User && p.Group_ID != null && p.Group.State != "Deleted");
 
-
-            TempData["group_id"] = projectParticipant.Group_ID;
-            TempData["role"] = projectParticipant.Role;
+            if (projectParticipant != null)
+            {
+                TempData["group_id"] = projectParticipant.Group_ID;
+                TempData["role"] = projectParticipant.Role;
+            }
+           
+            
 
             return View(links.ToList());
         }
@@ -100,7 +113,7 @@ namespace MeetingVL.Controllers
             Category category = db.Categories.Find(project.Category_ID);
             TempData["category_id"] = category.ID;
             TempData["category_Name"] = category.Name;
-
+            TempData["group_id"] = group_id;
 
             return View(links.ToList());
         }
