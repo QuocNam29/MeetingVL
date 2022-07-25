@@ -80,13 +80,26 @@ namespace MeetingVL.Controllers
                         }
                     } 
                     int addRow = 0;
+                    int rowFailFormat = 0;
+                    int rowExist = 0;
                     //Insert records to database table.
                     foreach (DataRow row in dt.Rows)
                     {
-                       
+                       if (!String.IsNullOrEmpty(row["TOPIC"].ToString()))
+                                {
+                                    Session["Topic"] = row["TOPIC"].ToString();
+                                    Session["Mentor"] = row["MENTOR"].ToString();
+                                    Session["NameGroup"] = row["TEAM"].ToString();
+                                    Session["Customer"] = row["CUSTOMER"].ToString();
+                                }
                         if (!String.IsNullOrEmpty(row["EMAIL"].ToString()))
                         {
                             string user_id = row["EMAIL"].ToString();
+                            bool check_format_student = user_id.Contains("@vanlanguni.vn");
+                            bool check_format_teacher = user_id.Contains("@vlu.edu.vn");
+
+                            if (check_format_student == true || check_format_teacher == true)
+                            {
                             var check_user = db.ProjectParticipants.Where(c => c.Project_ID == project_id && c.User_ID == user_id ).FirstOrDefault();
                             if (check_user == null)
                             {
@@ -97,16 +110,7 @@ namespace MeetingVL.Controllers
                                     addUser.Email = user_id;
                                     db.Users.Add(addUser);
                                     db.SaveChanges();
-                                }
-                                if (!String.IsNullOrEmpty(row["TOPIC"].ToString()))
-                                {
-                                    Session["Topic"] = row["TOPIC"].ToString();
-                                    Session["Mentor"] = row["MENTOR"].ToString();
-                                    Session["NameGroup"] = row["TEAM"].ToString();
-                                    Session["Customer"] = row["CUSTOMER"].ToString();
-                                }
-
-
+                                }                               
                                 string topic = Session["Topic"].ToString();
                                 string mentor = Session["Mentor"].ToString();
                                 string customer = Session["CUSTOMER"].ToString();
@@ -149,12 +153,23 @@ namespace MeetingVL.Controllers
                                     
                                 }
                                 addRow++;
-                            }                         
+                            }
+                                else
+                                {
+                                    rowExist++;
+                                }
+                            }
+                            else
+                            {
+                                rowFailFormat++;
+                            }
+                                                    
                         }
                     }
                     Session["ViewBag.FileStatus"] = null;
-                    Session["ViewBag.Success"] = "Import student list successful ! " + "(" + addRow + " row data)";
-
+                    Session["ViewBag.Success"] = addRow;
+                    Session["ViewBag.FailFormat"] = rowFailFormat;
+                    Session["ViewBag.Exist"] =  rowExist;
                 }
                 else
                 {

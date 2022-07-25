@@ -38,7 +38,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="userinput1">Meeting date: </label>
+                                            <label class="col-md-3 label-control" for="userinput1">Date start: </label>
                                             <div class="col-md-9">
                                                 <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate"
                                                        required="required" oninvalid="this.setCustomValidity('Please enter Meeting Date')" oninput="setCustomValidity('')">
@@ -47,51 +47,59 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="userinput3">Location: </label>
+                                            <label class="col-md-3 label-control" for="userinput1">Date end: </label>
                                             <div class="col-md-9">
-                                                <input type="text" id="userinput3" class="form-control border-primary" name="location"
-                                                       required="required" oninvalid="this.setCustomValidity('Please enter location')" oninput="setCustomValidity('')">
+                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter Meeting Date')" oninput="setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
 
 
                                 <div class="row">
+
                                     <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput3">Location: </label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="userinput3" class="form-control border-primary" name="location" placeholder="Location..."
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter location')" oninput="setCustomValidity('')">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput3">stages: </label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="stages" class="form-control border-primary" name="stages"  placeholder="Stages..."
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter stages')" oninput="setCustomValidity('')">
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="userinput2">Process (%): </label>
                                             <div class="col-md-9">
-                                                <input type="number" id="process" class="form-control border-primary" name="process" min="0" max="100"
+                                                <input type="number" id="process" class="form-control border-primary" name="process" min="0" max="100" placeholder="Process..."
                                                        required="required" oninvalid="this.setCustomValidity('Please enter process')" oninput="setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="userinput3">stages: </label>
+                                            <label class="col-md-3 label-control" for="userinput8">Objectives: </label>
                                             <div class="col-md-9">
-                                                <input type="text" id="stages" class="form-control border-primary" name="stages"
-                                                       required="required" oninvalid="this.setCustomValidity('Please enter stages')" oninput="setCustomValidity('')">
+                                                <textarea id="Objectives" rows="6" class="form-control  border-primary" name="objectives" placeholder="Objectives..."></textarea>
                                             </div>
                                         </div>
                                     </div>
-
 
 
 
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="userinput8">Objectives: </label>
-                                            <div class="col-md-9">
-                                                <textarea id="Objectives" rows="2" class="form-control col-md-9 border-primary" name="objectives"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                 </div>
-
+                                
+                                   
+                                    
                                     <h4 class="form-section">
                                         <i class="icon-note"></i>Content
                                     </h4>
@@ -100,7 +108,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group row">
                                                 <div class="col-md-12">
-                                                    <textarea id="content_meeting" rows="6" class="form-control col-md-12 border-primary" name="content"
+                                                    <textarea id="content_meeting" rows="6" class="form-control col-md-12 border-primary" name="content" placeholder="Content..."
                                                               required="required" oninvalid="this.setCustomValidity('Please enter content')" oninput="setCustomValidity('')"></textarea>
                                                 </div>
                                             </div>
@@ -114,16 +122,16 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="userinput2">Issues: </label>
-                                                <div class="col-md-9">
-                                                    <textarea class="form-control border-primary" type="url" id="userinput6" name="issues"></textarea>
+                                                <div class="col-md-12">
+                                                    <textarea class="form-control border-primary" type="url" id="userinput6" name="issues" placeholder="Issues..."></textarea>
                                                 </div>
                                             </div>
                                         </div>
-                                       
+
 
                                     </div>
-                                   
+                                </div>
+                         
 
                                 <div class="form-actions right">
                                     <a href="@Url.Action("Index", "MeetingMinutes", new { session_id = session_id })">
