@@ -20,7 +20,7 @@
         group_id = int.Parse(TempData["group_id"].ToString());
         role = TempData["role"].ToString();
     }
-
+    string ID_User = Session["ID_User"].ToString();
     string category_Name = TempData["category_Name"].ToString();
 }
 
@@ -86,7 +86,7 @@
                     {
                         <h5 class="text-bold-500 primary float-left">Meeting Minutes - @item.User.Email </h5>
                     }
-                    @if (group_id == item.Group_ID)
+                    @if (group_id == item.Group_ID || ID_User == item.User_ID)
                     {
                         <div class="actions float-right">
                             <a href="@Url.Action("FormCreate", "Actions", new { meeting_id = item.ID, group_id = group_id })">  <i class="ft-plus-circle mr-1 warning"></i></a>

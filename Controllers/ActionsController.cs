@@ -137,32 +137,15 @@ namespace MeetingVL.Controllers
         }
 
 
-        // GET: Actions/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Action action = db.Actions.Find(id);
-            if (action == null)
-            {
-                return HttpNotFound();
-            }
-            return View(action);
-        }
-
-        // POST: Actions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id, int? meeting_id)
+     
+        public ActionResult Delete(int id, int? meeting_id, int? group_id )
         {
             Action action = db.Actions.Find(id);
             db.Actions.Remove(action);
             db.SaveChanges();
             Session["notification"] = "Successfully Delete Action";
-            
-            return RedirectToAction("Details", "MeetingMinutes", new { id = meeting_id });
+
+            return RedirectToAction("FormCreate", "Actions", new { meeting_id = meeting_id, group_id = group_id });
         }
 
         protected override void Dispose(bool disposing)

@@ -222,7 +222,7 @@ namespace MeetingVL.Controllers
             projectParticipant.Role = role;
                 db.Entry(projectParticipant).State = EntityState.Modified;
                 db.SaveChanges();
-              
+            Session["notification"] = "Successfully Edit User";
             return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 2 });
         }
 

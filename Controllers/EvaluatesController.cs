@@ -35,6 +35,15 @@ namespace MeetingVL.Controllers
             {
                 return HttpNotFound();
             }
+            string ID_User1 = Session["ID_User"].ToString();
+            ProjectParticipant projectParticipant = db.ProjectParticipants.FirstOrDefault(p => p.Project_ID == evaluate.Semester.Project_ID
+       && p.User_ID == ID_User1 && p.Group_ID != null && p.Group.State != "Deleted");
+            if (projectParticipant != null)
+            {
+                TempData["group_id"] = projectParticipant.Group_ID;
+                TempData["role"] = projectParticipant.Role;
+            }
+
             return View(evaluate);
         }
 

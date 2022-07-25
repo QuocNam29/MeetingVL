@@ -21,7 +21,7 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.Hidden("meeting_id", Model.ID)
-                       
+                        @Html.Hidden("group_id", Model.Group_ID)
                         <form class="form form-horizontal">
                             <div class="form-body">
                                 <h4 class="form-section">
@@ -32,7 +32,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="userinput1">Meeting date: </label>
                                             <div class="col-md-9">
-                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate"   value="@String.Format("{0:yyyy-MM-ddTHH:mm:ss}",Model.Date)"
+                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate" value="@String.Format("{0:yyyy-MM-ddTHH:mm:ss}",Model.Date)"
                                                        required="required" oninvalid="this.setCustomValidity('Please enter Meeting Date')" oninput="setCustomValidity('')">
                                             </div>
                                         </div>
@@ -70,7 +70,7 @@
                                     </div>
 
 
-                                   
+
 
 
                                 </div>
@@ -93,7 +93,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group row">
                                             <div class="col-md-12">
-                                                <textarea id="content_meeting" rows="6" class="form-control col-md-12 border-primary" name="content" 
+                                                <textarea id="content_meeting" rows="6" class="form-control col-md-12 border-primary" name="content"
                                                           required="required" oninvalid="this.setCustomValidity('Please enter content')" oninput="setCustomValidity('')"> @Model.Content</textarea>
                                             </div>
                                         </div>
@@ -123,21 +123,21 @@
                                     </div>
 
                                 </div>
-                            
-                               
 
-                            <div class="form-actions right">
-                                <a href="@Url.Action("Details", "MeetingMinutes", new { id = Model.ID, group_id = group_id })">
-                                    <button type="button" class="btn btn-danger mr-1">
-                                        <i class="icon-trash"></i> Cancel
+
+
+                                <div class="form-actions right">
+                                    <a href="@Url.Action("Details", "MeetingMinutes", new { id = Model.ID, group_id = group_id })">
+                                        <button type="button" class="btn btn-danger mr-1">
+                                            <i class="icon-trash"></i> Cancel
+                                        </button>
+                                    </a>
+
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="icon-note"></i> Save
                                     </button>
-                                </a>
-                             
-                                <button type="submit" class="btn btn-success">
-                                    <i class="icon-note"></i> Save
-                                </button>
-                            </div>
                                 </div>
+                            </div>
                         </form>
                     }
                 </div>

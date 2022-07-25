@@ -53,7 +53,7 @@
                                 <a class="nav-link @Session["List_Group"].ToString()" id="base-tabX3" data-toggle="tab" aria-controls="tab3" href="#tab3">Group</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled">Disabled</a>
+                                <a class="nav-link @Session["List_Semester"].ToString()" id="base-tabX3" data-toggle="tab" aria-controls="tab4" href="#tab4">Semester</a>
                             </li>
 
                         </ul>
@@ -73,7 +73,9 @@
                             <div class="tab-pane @Session["List_Group"].ToString()" id="tab3" aria-labelledby="base-tabX3">
                                 @Html.Action("List_Group", "ProjectParticipants", new { project_id = project_id })
                             </div>
-
+                            <div class="tab-pane @Session["List_Semester"].ToString()" id="tab4" aria-labelledby="base-tabX3">
+                                @Html.Action("Index", "Semesters", new { project_id = project_id })
+                            </div>
                         </div>
                     </div>
                 </div>

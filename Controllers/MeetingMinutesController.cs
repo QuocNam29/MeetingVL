@@ -35,7 +35,6 @@ namespace MeetingVL.Controllers
         // GET: MeetingMinutes
         public ActionResult Index(int session_id, string keyword)
         {
-            var meetingMinutes = db.MeetingMinutes.Include(m => m.User).Where(m => m.SessionReport_ID == session_id && m.State != "Deleted").OrderBy(m => m.Group.Name);
             var links = from l in db.MeetingMinutes.Include(m => m.User)
                         .Where(m => m.SessionReport_ID == session_id && m.State != "Deleted").OrderBy(m => m.Group.Name)
                         select l;
@@ -153,6 +152,16 @@ namespace MeetingVL.Controllers
             TempData["category_id"] = sessionReport.Project.Category.ID;
             TempData["category_Name"] = sessionReport.Project.Category.Name;
             TempData["group_id"] = group_id;
+            string ID_User = Session["ID_User"].ToString();
+            ProjectParticipant projectParticipant = db.ProjectParticipants.FirstOrDefault(p => p.Project_ID == sessionReport.Project_ID
+            && p.User_ID == ID_User && p.Group_ID == group_id && p.Group.State != "Deleted");
+
+            if (projectParticipant != null)
+            {
+                
+                TempData["role"] = projectParticipant.Role;
+            }
+
 
             return View(meetingMinute);
         }
@@ -270,7 +279,7 @@ namespace MeetingVL.Controllers
             meetingMinute.Stages = stages;
             db.Entry(meetingMinute).State = EntityState.Modified;
             db.SaveChanges();
-            Session["notification"] = "Successfully Edit Meetin Minutes";
+            Session["notification"] = "Successfully Edit Meeting Minutes";
             return RedirectToAction("Details", new { id = meeting_id , group_id  = group_id });
         }
 
@@ -281,8 +290,7 @@ namespace MeetingVL.Controllers
             meetingMinute.State = "Deleted";
             db.Entry(meetingMinute).State = EntityState.Modified;
             db.SaveChanges();
-            Session["ViewBag.FileStatus"] = null;
-            Session["ViewBag.Success"] = "Delete meeting minutes successful !";
+            Session["notification"] = "Successfully Delete Meeting Minutes";
             return RedirectToAction("Index", new { session_id = session_id });
         }
 

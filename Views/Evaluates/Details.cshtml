@@ -3,6 +3,13 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    int group_id = 0;
+    string role = "";
+    if (TempData["group_id"] != null)
+    {
+        group_id = int.Parse(TempData["group_id"].ToString());
+        role = TempData["role"].ToString();
+    }
 }
 
 <div class="timeline-card card border-grey border-lighten-2">
@@ -49,20 +56,23 @@
         <div class="card-footer px-0 py-0">
             <div class="card-block">
                 @Html.Action("Index", "Comments", new { evalute_id = Model.ID })
-
-                @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @if (role == "Manager" || group_id == Model.Group_ID)
                 {
-                    @Html.AntiForgeryToken()
-                    @Html.Hidden("evalute_id", Model.ID);
-                    <form>
-                        <fieldset class="form-group position-relative has-icon-left mb-0">
-                            <input type="text" class="form-control" placeholder="Write comments..." name="comment">
-                            <div class="form-control-position">
-                                <i class="fa fa-dashcube"></i>
-                            </div>
-                        </fieldset>
-                    </form>
+                    using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("evalute_id", Model.ID);
+                        <form>
+                            <fieldset class="form-group position-relative has-icon-left mb-0">
+                                <input type="text" class="form-control" placeholder="Write comments..." name="comment">
+                                <div class="form-control-position">
+                                    <i class="fa fa-dashcube"></i>
+                                </div>
+                            </fieldset>
+                        </form>
+                    }
                 }
+
             </div>
         </div>
     </div>
