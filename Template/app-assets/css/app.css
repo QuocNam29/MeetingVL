@@ -44444,6 +44444,22 @@ ul.list-inline.list-inline-pipe > li + li:before {
         border-color: #107c41;
     }
 
+
+.btn-Download {
+    background-color: #1E9FF2;
+    color: #FFFFFF !important;
+    background-color: #1E9FF2;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px !important;
+}
+
+    .btn-Download:hover {
+        color: #1E9FF2 !important;
+        background: transparent;
+        border-color: #1E9FF2;
+    }
+
+
 .btn-facebook {
   background-color : #3B5998;
   color : #FFFFFF !important;

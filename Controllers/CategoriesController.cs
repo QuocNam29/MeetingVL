@@ -55,7 +55,7 @@ namespace MeetingVL.Controllers
         public ActionResult Create(string Name)
         {
             Category category = new Category();
-            category.Name = Name;
+            category.Name = Name.Trim();
             category.ID_User = Session["ID_User"].ToString();
             db.Categories.Add(category);
             db.SaveChanges();
@@ -72,7 +72,7 @@ namespace MeetingVL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Category category = db.Categories.Find(id);
-            category.Name = Name;
+            category.Name = Name.Trim();
             db.Entry(category).State = EntityState.Modified;
             db.SaveChanges();
             Session["notification"] = "Successfully Edited Category";

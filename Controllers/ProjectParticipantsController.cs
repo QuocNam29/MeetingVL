@@ -20,7 +20,7 @@ namespace MeetingVL.Controllers
         public ActionResult Index(string keyword)
         {
             string email = Session["ID_User"].ToString();
-            var projectParticipants = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.User_ID == email && p.Role == "Student").OrderBy(p => p.Group.Name);
+            var projectParticipants = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.User_ID == email && p.Project.Category.ID_User != email).OrderBy(p => p.Group.Name);
 
             var links = from l in db.ProjectParticipants.Include(p => p.Project)
                         .Include(p => p.User).Where(p => p.User_ID == email && p.Role == "Student" 
