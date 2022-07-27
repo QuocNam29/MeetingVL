@@ -233,7 +233,8 @@ namespace MeetingVL.Controllers
             db.ProjectParticipants.Remove(projectParticipant);
             db.SaveChanges();
             Session["ViewBag.FileStatus"] = null;
-            Session["ViewBag.Success"] = "Delete user successful !";
+            Session["ViewBag.Success"] = null;
+            Session["notification"] = "Delete user successful !";
             return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 2 });
         }
 

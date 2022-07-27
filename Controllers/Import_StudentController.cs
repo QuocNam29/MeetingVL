@@ -201,7 +201,11 @@ namespace MeetingVL.Controllers
                      
 
                     }
-                   
+                    Session["Topic"] = null;
+                    Session["Mentor"] = null;
+                    Session["NameGroup"] = null;
+                    Session["Customer"] = null;
+
                 }
                 else
                 {
