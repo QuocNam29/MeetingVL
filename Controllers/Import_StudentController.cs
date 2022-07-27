@@ -89,16 +89,16 @@ namespace MeetingVL.Controllers
                     foreach (DataRow row in dt.Rows)
                     {
                         
-                        if (!String.IsNullOrEmpty(row["TOPIC"].ToString()))
+                        if (!String.IsNullOrEmpty(row["TOPIC"].ToString().Trim()))
                         {
-                            Session["Topic"] = row["TOPIC"].ToString();
-                            Session["Mentor"] = row["MENTOR"].ToString();
-                            Session["NameGroup"] = row["TEAM"].ToString();
-                            Session["Customer"] = row["CUSTOMER"].ToString();
+                            Session["Topic"] = row["TOPIC"].ToString().Trim();
+                            Session["Mentor"] = row["MENTOR"].ToString().Trim();
+                            Session["NameGroup"] = row["TEAM"].ToString().Trim();
+                            Session["Customer"] = row["CUSTOMER"].ToString().Trim();
                         }
-                        if (!String.IsNullOrEmpty(row["EMAIL"].ToString()))
+                        if (!String.IsNullOrEmpty(row["EMAIL"].ToString().Trim()))
                         {
-                            string user_id = row["EMAIL"].ToString();
+                            string user_id = row["EMAIL"].ToString().Trim();
                             bool check_format_student = user_id.Contains("@vanlanguni.vn");
                             bool check_format_teacher = user_id.Contains("@vlu.edu.vn");
 
@@ -115,20 +115,20 @@ namespace MeetingVL.Controllers
                                         db.Users.Add(addUser);
                                         db.SaveChanges();
                                     }
-                                    string topic = Session["Topic"].ToString();
-                                    string mentor = Session["Mentor"].ToString();
-                                    string customer = Session["CUSTOMER"].ToString();
-                                    string nameGroup = "Team " + Session["NameGroup"].ToString();
+                                    string topic = Session["Topic"].ToString().Trim();
+                                    string mentor = Session["Mentor"].ToString().Trim();
+                                    string customer = Session["CUSTOMER"].ToString().Trim();
+                                    string nameGroup = "Team " + Session["NameGroup"].ToString().Trim();
 
                                     var group = db.Groups.Where(g => g.Topic == topic && g.Mentor == mentor
                                     && g.Name == nameGroup && g.Customer == customer).FirstOrDefault();
                                     if (group == null)
                                     {
                                         Group addGroup = new Group();
-                                        addGroup.Name = "Team " + row["TEAM"].ToString();
-                                        addGroup.Topic = row["TOPIC"].ToString();
-                                        addGroup.Mentor = row["MENTOR"].ToString();
-                                        addGroup.Customer = row["CUSTOMER"].ToString();
+                                        addGroup.Name = "Team " + row["TEAM"].ToString().Trim();
+                                        addGroup.Topic = row["TOPIC"].ToString().Trim();
+                                        addGroup.Mentor = row["MENTOR"].ToString().Trim();
+                                        addGroup.Customer = row["CUSTOMER"].ToString().Trim();
                                         db.Groups.Add(addGroup);
                                         db.SaveChanges();
 
@@ -180,17 +180,26 @@ namespace MeetingVL.Controllers
                     {
                         string bug = e.ToString();
                         bool check_bug = bug.Contains("does not belong to table");
+                        bool check_bug1 = bug.Contains("Object reference not set to an instance of an object");
                         if (check_bug == true)
                         {
                             Session["ViewBag.Success"] = null;
                             Session["ViewBag.FileStatus"] = "Table structure or table name in excel file is not in the correct format!";
+                        }
+                        else if (check_bug1 == true)
+                        {
+                            Session["ViewBag.Success"] = null;
+                            Session["ViewBag.FileStatus"] = "You missed the data in the first line in the excel file!";
                         }
                         else
                         {
                             Session["ViewBag.Success"] = null;
                             Session["ViewBag.FileStatus"] = e.ToString();
                         }
-                       
+
+
+                     
+
                     }
                    
                 }
