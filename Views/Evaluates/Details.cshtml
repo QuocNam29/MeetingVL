@@ -5,9 +5,14 @@
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
     int group_id = 0;
     string role = "";
-    if (TempData["group_id"] != null)
+    if (TempData["group_id"] != null )
     {
         group_id = int.Parse(TempData["group_id"].ToString());
+        
+    }
+    if (TempData["role"] != null)
+    {
+        
         role = TempData["role"].ToString();
     }
 }

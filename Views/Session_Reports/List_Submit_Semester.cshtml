@@ -7,7 +7,7 @@
 
 @foreach (var item in Model)
 {
-    bool check = item.SessionReport.MeetingMinutes.Where(c => c.Group_ID == group_id).Count() > 0;
+    bool check = item.SessionReport.MeetingMinutes.Where(c => c.Group_ID == group_id && c.State != "Deleted").Count() > 0;
 
     if (check == true)
     {

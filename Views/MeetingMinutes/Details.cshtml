@@ -13,7 +13,7 @@
         project_Description = TempData["project_Description"].ToString();
     }
     int category_id = int.Parse(TempData["category_id"].ToString());
-    int group_id = int.Parse(TempData["group_id"].ToString());
+    int group_id = 0;
     string category_Name = TempData["category_Name"].ToString();
     string role = "";
     string ID_User = Session["ID_User"].ToString();
@@ -21,6 +21,11 @@
     {
 
         role = TempData["role"].ToString();
+    }
+    if (TempData["group_id"] != null)
+    {
+
+        group_id = int.Parse(TempData["group_id"].ToString());
     }
 }
 <div class="row">

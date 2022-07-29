@@ -21,6 +21,10 @@ namespace MeetingVL.Controllers
         {
             var semesters = db.Semesters.Include(s => s.User).Where(s => s.State != "Deleted" && s.Project_ID == project_id);
             TempData["project_id"] = project_id;
+            string ID_User = Session["ID_User"].ToString();
+            var Check = db.ProjectParticipants.Where(r => r.User_ID == ID_User && r.Project_ID == project_id
+            && r.Group.State != "Deleted").FirstOrDefault();
+            TempData["roles_Project"] = Check.Role;
             return View(semesters.ToList());
         }
 

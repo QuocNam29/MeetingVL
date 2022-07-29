@@ -151,14 +151,14 @@ namespace MeetingVL.Controllers
 
             TempData["category_id"] = sessionReport.Project.Category.ID;
             TempData["category_Name"] = sessionReport.Project.Category.Name;
-            TempData["group_id"] = group_id;
+            
             string ID_User = Session["ID_User"].ToString();
             ProjectParticipant projectParticipant = db.ProjectParticipants.FirstOrDefault(p => p.Project_ID == sessionReport.Project_ID
             && p.User_ID == ID_User && p.Group_ID == group_id && p.Group.State != "Deleted");
 
             if (projectParticipant != null)
             {
-                
+                TempData["group_id"] = projectParticipant.Group_ID;
                 TempData["role"] = projectParticipant.Role;
             }
 
