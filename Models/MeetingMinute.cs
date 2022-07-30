@@ -23,7 +23,8 @@ namespace MeetingVL.Models
         public int ID { get; set; }
         public string User_ID { get; set; }
         public int SessionReport_ID { get; set; }
-        public System.DateTime Date { get; set; }
+        public System.DateTime Date_start { get; set; }
+        public Nullable<System.DateTime> Date_end { get; set; }
         public string Location { get; set; }
         public string Objectives { get; set; }
         public string Content { get; set; }

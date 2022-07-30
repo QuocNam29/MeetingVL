@@ -30,60 +30,67 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="userinput1">Meeting date: </label>
+                                            <label class="col-md-3 label-control" for="userinput1">Date start: </label>
                                             <div class="col-md-9">
-                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate" value="@String.Format("{0:yyyy-MM-ddTHH:mm:ss}",Model.Date)"
+                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate_start" value="@String.Format("{0:yyyy-MM-ddTHH:mm:ss}",Model.Date_start)"
                                                        required="required" oninvalid="this.setCustomValidity('Please enter Meeting Date')" oninput="setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="userinput3">Location: </label>
+                                            <label class="col-md-3 label-control" for="userinput1">Date end: </label>
                                             <div class="col-md-9">
-                                                <input type="text" id="userinput3" class="form-control border-primary" name="location" value="@Model.Location"
-                                                       required="required" oninvalid="this.setCustomValidity('Please enter location')" oninput="setCustomValidity('')">
+                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate_end" value="@String.Format("{0:yyyy-MM-ddTHH:mm:ss}",Model.Date_end)"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter Meeting Date')" oninput="setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
 
 
                                 <div class="row">
+
                                     <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput3">Location: </label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="userinput3" class="form-control border-primary" name="location" placeholder="Location..." value="@Model.Location"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter location')" oninput="setCustomValidity('')">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="userinput3">stages: </label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="stages" class="form-control border-primary" name="stages" placeholder="Stages..." value="@Model.Stages"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter stages')" oninput="setCustomValidity('')">
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="userinput2">Process (%): </label>
                                             <div class="col-md-9">
-                                                <input type="number" id="process" class="form-control border-primary" name="process" min="0" max="100" value="@Model.Process"
+                                                <input type="number" id="process" class="form-control border-primary" name="process" min="0" max="100" placeholder="Process..." value="@Model.Process"
                                                        required="required" oninvalid="this.setCustomValidity('Please enter process')" oninput="setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="userinput3">stages: </label>
-                                            <div class="col-md-9">
-                                                <input type="text" id="stages" class="form-control border-primary" name="stages" value="@Model.Stages"
-                                                       required="required" oninvalid="this.setCustomValidity('Please enter stages')" oninput="setCustomValidity('')">
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group row">
                                             <label class="col-md-3 label-control" for="userinput8">Objectives: </label>
                                             <div class="col-md-9">
-                                                <textarea id="Objectives" rows="2" class="form-control col-md-9 border-primary" name="objectives"> @Model.Objectives</textarea>
+                                                <textarea id="Objectives" rows="6" class="form-control  border-primary" name="objectives" placeholder="Objectives...">@Model.Objectives</textarea>
                                             </div>
                                         </div>
                                     </div>
+
+
+
                                 </div>
+
+
 
                                 <h4 class="form-section">
                                     <i class="icon-note"></i>Content
@@ -93,8 +100,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group row">
                                             <div class="col-md-12">
-                                                <textarea id="content_meeting" rows="6" class="form-control col-md-12 border-primary" name="content"
-                                                          required="required" oninvalid="this.setCustomValidity('Please enter content')" oninput="setCustomValidity('')"> @Model.Content</textarea>
+                                                <textarea id="content_meeting" rows="6" class="form-control col-md-12 border-primary" name="content" placeholder="Content..."
+                                                          required="required" oninvalid="this.setCustomValidity('Please enter content')" oninput="setCustomValidity('')">@Model.Content</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -105,24 +112,17 @@
                                     <i class="ft-info"></i> Issues
                                 </h4>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="userinput2">Issues: </label>
-                                            <div class="col-md-9">
-                                                <textarea class="form-control border-primary" type="url" id="userinput6" name="issues">@Model.Issues</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="userinput3">N/A: </label>
-                                            <div class="col-md-9">
-                                                <textarea class="form-control border-primary" type="url" id="userinput6" name="NA">@Model.NA</textarea>
+                                            <div class="col-md-12">
+                                                <textarea class="form-control border-primary" type="url" id="userinput6" name="issues" placeholder="Issues..."> @Model.Issues</textarea>
                                             </div>
                                         </div>
                                     </div>
 
+
                                 </div>
+                            </div>
 
 
 
@@ -137,7 +137,7 @@
                                         <i class="icon-note"></i> Save
                                     </button>
                                 </div>
-                            </div>
+                           
                         </form>
                     }
                 </div>
@@ -145,3 +145,5 @@
         </div>
     </div>
 </div>
+
+

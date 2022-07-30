@@ -11,7 +11,10 @@
     {
         project_Description = TempData["project_Description"].ToString();
     }
-    
+
+    int count_submit = int.Parse(TempData["count_submit"].ToString());
+    int count_all = int.Parse(TempData["count_all"].ToString());
+    int count_waiting = count_all - count_submit;
 }
 
 <section id="basic-tabs-components">
@@ -41,9 +44,9 @@
                                     Session Report
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item " id="dropdown31-tab" href="#dropdown30" data-toggle="tab" aria-controls="dropdown31" aria-expanded="true">All Session</a>
-                                    <a class="dropdown-item" id="dropdown31-tab" href="#dropdown31" data-toggle="tab" aria-controls="dropdown31" aria-expanded="true">Done Submit</a>
-                                    <a class="dropdown-item" id="dropdown32-tab" href="#dropdown32" data-toggle="tab" aria-controls="dropdown32" aria-expanded="true">Waiting to Submit </a>
+                                    <a class="dropdown-item " id="dropdown31-tab" href="#dropdown30" data-toggle="tab" aria-controls="dropdown31" aria-expanded="true">All Session (@count_all)</a>
+                                    <a class="dropdown-item" id="dropdown31-tab" href="#dropdown31" data-toggle="tab" aria-controls="dropdown31" aria-expanded="true">Submited (@count_submit)</a>
+                                    <a class="dropdown-item" id="dropdown32-tab" href="#dropdown32" data-toggle="tab" aria-controls="dropdown32" aria-expanded="true">Waiting to Submit (@count_waiting) </a>
                                 </div>
                             </li>
                             <li class="nav-item">

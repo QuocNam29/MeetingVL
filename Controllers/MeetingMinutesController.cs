@@ -181,8 +181,8 @@ namespace MeetingVL.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult Create_Meeting(DateTime meetingDate, string location,
-             int process, string stages, string content, string objectives,
+        public ActionResult Create_Meeting(DateTime meetingDate_start,DateTime meetingDate_end, 
+            string location, int process, string stages, string content, string objectives,
              string issues, string NA, int session_id, int? group_id)
         {
             var session = System.Web.HttpContext.Current.Session;
@@ -191,7 +191,8 @@ namespace MeetingVL.Controllers
             MeetingMinute meetingMinute = new MeetingMinute();
             meetingMinute.User_ID = ID_User;
             meetingMinute.SessionReport_ID = session_id;
-            meetingMinute.Date = meetingDate;
+            meetingMinute.Date_start = meetingDate_start;
+            meetingMinute.Date_end = meetingDate_end;
             meetingMinute.Location = location;
             if (!String.IsNullOrEmpty(objectives))
             {
@@ -252,13 +253,14 @@ namespace MeetingVL.Controllers
             return View(meetingMinute);
         }
 
-        public ActionResult Edit_form(int meeting_id, DateTime meetingDate, string location,
-             int process, string stages, string content, string objectives,
+        public ActionResult Edit_form(int meeting_id, DateTime meetingDate_start, DateTime meetingDate_end, 
+            string location, int process, string stages, string content, string objectives,
              string issues, string NA, int? group_id)
         {
             MeetingMinute meetingMinute = db.MeetingMinutes.Find(meeting_id);
             
-            meetingMinute.Date = meetingDate;
+            meetingMinute.Date_start = meetingDate_start;
+            meetingMinute.Date_end = meetingDate_end;
             meetingMinute.Location = location;
             if (!String.IsNullOrEmpty(objectives))
             {

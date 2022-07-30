@@ -59,7 +59,8 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="userinput8">Action: </label>
                                             <div class="col-md-9">
-                                                <textarea id="Action" rows="6" class="form-control col-md-9 border-primary" name="action"></textarea>
+                                                <textarea id="Action" rows="6" class="form-control col-md-9 border-primary" name="action"
+                                                          required="required" oninvalid="this.setCustomValidity('Please enter Action')" oninput="setCustomValidity('')"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -96,7 +97,8 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="userinput5">Deadline: </label>
                                             <div class="col-md-9">
-                                                <input class="form-control border-primary" type="date" name="Deadline">
+                                                <input class="form-control border-primary" type="date" name="Deadline"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter Deadline')" oninput="setCustomValidity('')">
                                             </div>
                                         </div>
 

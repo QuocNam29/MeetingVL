@@ -134,13 +134,13 @@ namespace MeetingVL.Controllers
             if (Action == 1)
             {
                 links = links.Where(s => s.State != "Deleted"
-                       && s.MeetingMinutes.Where(c => c.Group_ID == check_group.Group_ID).Count() > 0);
+                       && s.MeetingMinutes.Where(c => c.Group_ID == check_group.Group_ID && c.State != "Deleted").Count() > 0);
 
             }
             else
             {
                 links = links.Where(s => s.State != "Deleted"
-                       && s.MeetingMinutes.Where(c => c.Group_ID == check_group.Group_ID).Count() <= 0);
+                       && s.MeetingMinutes.Where(c => c.Group_ID == check_group.Group_ID && c.State != "Deleted").Count() <= 0);
             }
             
 
@@ -233,7 +233,12 @@ namespace MeetingVL.Controllers
             TempData["project_id"] = project_id;
             TempData["project_Name"] = project.Name;
             TempData["project_Description"] = project.Description;
-            
+
+            string ID_User = Session["ID_User"].ToString();
+            var check_group = db.ProjectParticipants.Where(g => g.Project_ID == project_id && g.User_ID == ID_User).FirstOrDefault();
+            var count_submit = links.Where(s =>s.MeetingMinutes.Where(c => c.Group_ID == check_group.Group_ID && c.State != "Deleted").Count() > 0);
+            TempData["count_submit"] = count_submit.Count();
+            TempData["count_all"] = links.Count();
 
             return View(links.ToList());
         }
