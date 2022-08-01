@@ -4,23 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6366418b2ac94d2f8e5600658171e534" Name="Diagram1">
+      <Diagram DiagramId="11889df14f0749fe98fb73bfd271e687" Name="Diagram1">
         <EntityTypeShape EntityType="SEP25Team13Model.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Action" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Action" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Category" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Category" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.Comment" Width="1.5" PointX="15" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Evaluate" Width="1.5" PointX="12.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Evaluate" Width="1.5" PointX="12.75" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.Group" Width="1.5" PointX="7.5" PointY="17" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.MeetingMinute" Width="1.5" PointX="9.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Project" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Notification" Width="1.5" PointX="17.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Project" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.ProjectParticipant" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.Semester" Width="1.5" PointX="10.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.Semester" Width="1.5" PointX="10.5" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.Session_Semester" Width="1.5" PointX="12.75" PointY="16.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP25Team13Model.SessionReport" Width="1.5" PointX="7.5" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP25Team13Model.SessionReport" Width="1.5" PointX="7.5" PointY="20.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.sysdiagram" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP25Team13Model.User" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
         <AssociationConnector Association="SEP25Team13Model.FK_Action_MeetingMinutes" ManuallyRouted="false" />
@@ -31,13 +32,16 @@
         <AssociationConnector Association="SEP25Team13Model.FK_Project_Category" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Comment_Evaluate" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Notification_Comment1" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Evaluate_Group" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Evaluate_Semester" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Evaluate_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Notification_Evaluate" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_MeetingMinutes_Group" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_ProjectParticipant_Group" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_MeetingMinutes_SessionReport" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_MeetingMinutes_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP25Team13Model.FK_Notification_User" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_ProjectParticipant_Project" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_Semester_Project" ManuallyRouted="false" />
         <AssociationConnector Association="SEP25Team13Model.FK_SessionReport_Project" ManuallyRouted="false" />

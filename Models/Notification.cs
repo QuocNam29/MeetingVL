@@ -12,23 +12,18 @@ namespace MeetingVL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Comment
+    public partial class Notification
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Comment()
-        {
-            this.Notifications = new HashSet<Notification>();
-        }
-    
         public int ID { get; set; }
-        public string User_ID { get; set; }
         public Nullable<int> Evalute_ID { get; set; }
-        public string Comment1 { get; set; }
+        public Nullable<int> Comment_ID { get; set; }
+        public string User_ID { get; set; }
+        public string Content { get; set; }
         public Nullable<System.DateTime> Time { get; set; }
+        public string status { get; set; }
     
+        public virtual Comment Comment { get; set; }
         public virtual Evaluate Evaluate { get; set; }
         public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Notification> Notifications { get; set; }
     }
 }

@@ -145,6 +145,18 @@
           <Property Name="Group_ID" Type="int" />
           <Property Name="State" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Evalute_ID" Type="int" />
+          <Property Name="Comment_ID" Type="int" />
+          <Property Name="User_ID" Type="varchar" MaxLength="250" />
+          <Property Name="Content" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="ID" />
@@ -411,6 +423,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Notification_Comment1">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="Comment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Evaluate">
+          <End Role="Evaluate" Type="Self.Evaluate" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluate">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="Evalute_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Project_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Project" Type="Self.Project" Multiplicity="*" />
@@ -532,6 +580,7 @@
           <EntitySet Name="Evaluate" EntityType="Self.Evaluate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeetingMinutes" EntityType="Self.MeetingMinutes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectParticipant" EntityType="Self.ProjectParticipant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
@@ -598,6 +647,18 @@
           <AssociationSet Name="FK_MeetingMinutes_User" Association="Self.FK_MeetingMinutes_User">
             <End Role="User" EntitySet="User" />
             <End Role="MeetingMinutes" EntitySet="MeetingMinutes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Comment1" Association="Self.FK_Notification_Comment1">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Evaluate" Association="Self.FK_Notification_Evaluate">
+            <End Role="Evaluate" EntitySet="Evaluate" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_User" Association="Self.FK_Notification_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Notification" EntitySet="Notification" />
           </AssociationSet>
           <AssociationSet Name="FK_Project_Category" Association="Self.FK_Project_Category">
             <End Role="Category" EntitySet="Category" />
@@ -735,6 +796,7 @@
           <Property Name="Time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Evaluate" Relationship="Self.FK_Comment_Evaluate" FromRole="Comment" ToRole="Evaluate" />
           <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_Comment1" FromRole="Comment" ToRole="Notification" />
         </EntityType>
         <EntityType Name="Evaluate">
           <Key>
@@ -754,6 +816,7 @@
           <NavigationProperty Name="Group" Relationship="Self.FK_Evaluate_Group" FromRole="Evaluate" ToRole="Group" />
           <NavigationProperty Name="Semester" Relationship="Self.FK_Evaluate_Semester" FromRole="Evaluate" ToRole="Semester" />
           <NavigationProperty Name="User" Relationship="Self.FK_Evaluate_User" FromRole="Evaluate" ToRole="User" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_Evaluate" FromRole="Evaluate" ToRole="Notification" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -795,6 +858,21 @@
           <NavigationProperty Name="Group" Relationship="Self.FK_MeetingMinutes_Group" FromRole="MeetingMinutes" ToRole="Group" />
           <NavigationProperty Name="SessionReport" Relationship="Self.FK_MeetingMinutes_SessionReport" FromRole="MeetingMinutes" ToRole="SessionReport" />
           <NavigationProperty Name="User" Relationship="Self.FK_MeetingMinutes_User" FromRole="MeetingMinutes" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Evalute_ID" Type="Int32" />
+          <Property Name="Comment_ID" Type="Int32" />
+          <Property Name="User_ID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_Notification_Comment1" FromRole="Notification" ToRole="Comment" />
+          <NavigationProperty Name="Evaluate" Relationship="Self.FK_Notification_Evaluate" FromRole="Notification" ToRole="Evaluate" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Notification_User" FromRole="Notification" ToRole="User" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -894,6 +972,7 @@
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
           <NavigationProperty Name="Evaluates" Relationship="Self.FK_Evaluate_User" FromRole="User" ToRole="Evaluate" />
           <NavigationProperty Name="MeetingMinutes" Relationship="Self.FK_MeetingMinutes_User" FromRole="User" ToRole="MeetingMinutes" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_User" FromRole="User" ToRole="Notification" />
           <NavigationProperty Name="ProjectParticipants" Relationship="Self.FK_ProjectParticipant_User" FromRole="User" ToRole="ProjectParticipant" />
           <NavigationProperty Name="Semesters" Relationship="Self.FK_Semester_User" FromRole="User" ToRole="Semester" />
         </EntityType>
@@ -997,6 +1076,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Notification_Comment1">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="Comment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Evaluate_Group">
           <End Role="Group" Type="Self.Group" Multiplicity="1" />
           <End Role="Evaluate" Type="Self.Evaluate" Multiplicity="*" />
@@ -1030,6 +1121,18 @@
             </Principal>
             <Dependent Role="Evaluate">
               <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Evaluate">
+          <End Role="Evaluate" Type="Self.Evaluate" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluate">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="Evalute_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1077,6 +1180,18 @@
               <PropertyRef Name="Email" />
             </Principal>
             <Dependent Role="MeetingMinutes">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Notification">
               <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1181,6 +1296,7 @@
           <EntitySet Name="Evaluates" EntityType="Self.Evaluate" />
           <EntitySet Name="Groups" EntityType="Self.Group" />
           <EntitySet Name="MeetingMinutes" EntityType="Self.MeetingMinute" />
+          <EntitySet Name="Notifications" EntityType="Self.Notification" />
           <EntitySet Name="Projects" EntityType="Self.Project" />
           <EntitySet Name="ProjectParticipants" EntityType="Self.ProjectParticipant" />
           <EntitySet Name="Semesters" EntityType="Self.Semester" />
@@ -1220,6 +1336,10 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
+          <AssociationSet Name="FK_Notification_Comment1" Association="Self.FK_Notification_Comment1">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
           <AssociationSet Name="FK_Evaluate_Group" Association="Self.FK_Evaluate_Group">
             <End Role="Group" EntitySet="Groups" />
             <End Role="Evaluate" EntitySet="Evaluates" />
@@ -1231,6 +1351,10 @@
           <AssociationSet Name="FK_Evaluate_User" Association="Self.FK_Evaluate_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Evaluate" EntitySet="Evaluates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Evaluate" Association="Self.FK_Notification_Evaluate">
+            <End Role="Evaluate" EntitySet="Evaluates" />
+            <End Role="Notification" EntitySet="Notifications" />
           </AssociationSet>
           <AssociationSet Name="FK_MeetingMinutes_Group" Association="Self.FK_MeetingMinutes_Group">
             <End Role="Group" EntitySet="Groups" />
@@ -1247,6 +1371,10 @@
           <AssociationSet Name="FK_MeetingMinutes_User" Association="Self.FK_MeetingMinutes_User">
             <End Role="User" EntitySet="Users" />
             <End Role="MeetingMinutes" EntitySet="MeetingMinutes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_User" Association="Self.FK_Notification_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Notification" EntitySet="Notifications" />
           </AssociationSet>
           <AssociationSet Name="FK_ProjectParticipant_Project" Association="Self.FK_ProjectParticipant_Project">
             <End Role="Project" EntitySet="Projects" />
@@ -1424,6 +1552,19 @@
                 <ScalarProperty Name="Stages" ColumnName="Stages" />
                 <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
                 <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="SEP25Team13Model.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Evalute_ID" ColumnName="Evalute_ID" />
+                <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

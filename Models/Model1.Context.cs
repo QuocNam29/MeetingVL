@@ -36,6 +36,7 @@ namespace MeetingVL.Models
         public virtual DbSet<Evaluate> Evaluates { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<MeetingMinute> MeetingMinutes { get; set; }
+        public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectParticipant> ProjectParticipants { get; set; }
         public virtual DbSet<Semester> Semesters { get; set; }

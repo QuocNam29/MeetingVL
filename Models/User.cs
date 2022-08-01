@@ -22,6 +22,7 @@ namespace MeetingVL.Models
             this.Comments = new HashSet<Comment>();
             this.Evaluates = new HashSet<Evaluate>();
             this.MeetingMinutes = new HashSet<MeetingMinute>();
+            this.Notifications = new HashSet<Notification>();
             this.ProjectParticipants = new HashSet<ProjectParticipant>();
             this.Semesters = new HashSet<Semester>();
         }
@@ -46,6 +47,8 @@ namespace MeetingVL.Models
         public virtual ICollection<Evaluate> Evaluates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeetingMinute> MeetingMinutes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Notification> Notifications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProjectParticipant> ProjectParticipants { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

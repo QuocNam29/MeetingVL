@@ -60,8 +60,23 @@ namespace MeetingVL.Controllers
             evaluate.Point = point;
             evaluate.Semester_ID = semester_id;
             evaluate.Time = DateTime.Now;
-            db.Evaluates.Add(evaluate);
+             db.Evaluates.Add(evaluate);
             db.SaveChanges();
+
+            var list_member_notification = db.ProjectParticipants.Where(p => p.Project_ID == project_id 
+            && p.Group_ID == group_id && p.User_ID != null).ToArray();
+            for (int i = 0; i < list_member_notification.Length; i++)
+            {
+                Notification notification = new Notification();
+                notification.User_ID = list_member_notification[i].User_ID;
+                notification.Time = DateTime.Now;
+                notification.Evalute_ID = evaluate.ID;
+                notification.Content = evaluate.Review;
+                db.Notifications.Add(notification);
+                db.SaveChanges();
+            }
+           
+          
 
 
 
