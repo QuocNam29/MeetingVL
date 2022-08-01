@@ -49,6 +49,52 @@ namespace MeetingVL.Controllers
             comment1.Comment1 = comment;
             db.Comments.Add(comment1);
             db.SaveChanges();
+
+            Evaluate evaluate = db.Evaluates.Find(evalute_id);
+            var check_user = db.ProjectParticipants.Where(p => p.Project_ID == evaluate.Semester.Project_ID
+          && p.User_ID == ID_User).FirstOrDefault();
+            if (check_user.Role == "Manager")
+            {
+                var list_member_notification = db.ProjectParticipants.Where(p => p.Project_ID == evaluate.Semester.Project_ID
+           && p.Group_ID == evaluate.Group_ID && p.User_ID != null).ToArray();
+                for (int i = 0; i < list_member_notification.Length; i++)
+                {
+                    Notification notification = new Notification();
+                    notification.User_ID = list_member_notification[i].User_ID;
+                    notification.Time = DateTime.Now;
+                    notification.Comment_ID = comment1.ID;
+                    notification.Content = comment;
+                    db.Notifications.Add(notification);
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                var find_manager = db.ProjectParticipants.Where(p => p.Project_ID == evaluate.Semester.Project_ID
+        && p.Role == "Manager").FirstOrDefault();
+                Notification notification1 = new Notification();
+                notification1.User_ID = find_manager.User_ID;
+                notification1.Time = DateTime.Now;
+                notification1.Comment_ID = comment1.ID;
+                notification1.Content = comment;
+                db.Notifications.Add(notification1);
+                db.SaveChanges();
+
+                var list_member_notification = db.ProjectParticipants.Where(p => p.Project_ID == evaluate.Semester.Project_ID
+           && p.Group_ID == evaluate.Group_ID && p.User_ID != null && p.User_ID != ID_User).ToArray();
+                for (int i = 0; i < list_member_notification.Length; i++)
+                {
+                    Notification notification = new Notification();
+                    notification.User_ID = list_member_notification[i].User_ID;
+                    notification.Time = DateTime.Now;
+                    notification.Comment_ID = comment1.ID;
+                    notification.Content = comment;
+                    db.Notifications.Add(notification);
+                    db.SaveChanges();
+                }
+            }
+            
+
             return RedirectToAction("Details", "Evaluates", new { id = evalute_id });
         }
 

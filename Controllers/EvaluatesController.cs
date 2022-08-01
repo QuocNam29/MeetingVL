@@ -64,11 +64,11 @@ namespace MeetingVL.Controllers
             db.SaveChanges();
 
             var list_member_notification = db.ProjectParticipants.Where(p => p.Project_ID == project_id 
-            && p.Group_ID == group_id && p.User_ID != null).ToArray();
+            && p.Group_ID == group_id && p.User_ID != null && p.Role =="Student").ToArray();
             for (int i = 0; i < list_member_notification.Length; i++)
             {
                 Notification notification = new Notification();
-                notification.User_ID = list_member_notification[i].User_ID;
+                notification.User_ID = list_member_notification[i].User_ID; 
                 notification.Time = DateTime.Now;
                 notification.Evalute_ID = evaluate.ID;
                 notification.Content = evaluate.Review;

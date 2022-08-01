@@ -37,23 +37,26 @@
                         <div class="noti-list">
                             @foreach (var item in Model)
                             {
+                                if (item.Comment_ID != null)
+                                {
                                 <a href="#" class="dropdown-item noti-container py-2">
                                     <i style="color: #1E9FF2" class="fa fa-commenting-o float-left d-block font-medium-5 mt-4 mr-3"></i>
                                     <span class="noti-wrapper">
                                         <span style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 ">Comment</span>
-                                        <span class="noti-text"><b>Lý Thị Huyền Châu</b></span>
-                                        <span class="noti-text"><br />Nhóm làm rất tốt!</span>
+                                        <span class="noti-text"><b>@item.Comment.User.Email</b></span>
+                                        <span class="noti-text"><br />@item.Content</span>
                                     </span>
                                 </a>
-                                <a href="#" class="dropdown-item noti-container py-2">
+                                }
+                                @*<a href="#" class="dropdown-item noti-container py-2">
                                     <i style="color: #F44336" class="fa fa-trophy float-left d-block font-medium-4 mt-2  mr-3"></i>
                                     <span class="noti-wrapper">
                                         <span style="color: #F44336" class="noti-title line-height-1 d-block text-bold-400 ">Point</span>
                                         <span class="noti-text">10</span>
                                     </span>
-                                </a>
-                                if (item.Evalute_ID != null)
-                                {
+                                </a>*@
+                                    if (item.Evalute_ID != null)
+                                    {
                                     <a href="#" class="dropdown-item noti-container py-2">
                                         <i style="color: #FF9800 " class="fa fa-file-text-o float-left d-block font-medium-4 mt-2  mr-3"></i>
                                         <span class="noti-wrapper">
@@ -63,21 +66,8 @@
                                     </a>
                                 }
 
-                                <a href="#" class="dropdown-item noti-container py-2">
-                                    <i style="color: #FF9800 " class="fa fa-file-text-o float-left d-block font-medium-4 mt-2  mr-3"></i>
-                                    <span class="noti-wrapper">
-                                        <span style="color: #FF9800 " class="noti-title line-height-1 d-block text-bold-400 ">Estimate report</span>
-                                        <span class="noti-text"> Estimate report week 5 has been created.</span>
-                                    </span>
-                                </a>
-                                <a href="#" class="dropdown-item noti-container py-2">
-                                    <i style="color: #1E9FF2" class="fa fa-commenting-o float-left d-block font-medium-5 mt-4 mr-3"></i>
-                                    <span class="noti-wrapper">
-                                        <span style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 ">Comment</span>
-                                        <span class="noti-text"><b>Lý Thị Huyền Châu</b></span>
-                                        <span class="noti-text"><br />Nhóm làm thiếu quá nhiều!</span>
-                                    </span>
-                                </a>
+                               
+                               
                             }
 
 
