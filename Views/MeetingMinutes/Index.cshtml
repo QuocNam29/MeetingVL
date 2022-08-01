@@ -89,7 +89,7 @@
                     @if (group_id == item.Group_ID || ID_User == item.User_ID)
                     {
                         <div class="actions float-right">
-                            <a href="@Url.Action("FormCreate", "Actions", new { meeting_id = item.ID, group_id = group_id })">  <i class="ft-plus-circle mr-1 warning"></i></a>
+                            <a href="@Url.Action("FormCreate", "Actions", new { meeting_id = item.ID, group_id = group_id })">  <i class="ft-list mr-1 warning"></i></a>
                             <a href="@Url.Action("Edit", "MeetingMinutes", new { id = item.ID, group_id = group_id })">  <i class="ft-edit mr-1 info"></i></a>
                             <a data-toggle="modal" data-target="#@DeleteMeeting"> <i class="ft-trash-2 danger"></i></a>
 

@@ -176,14 +176,15 @@ string Role = TempData["roles_Project"].ToString();
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1">Mentor</label>
-                                                        <input type="text" id="projectinput1" class="form-control" name="mentor" value="@item.Group.Mentor"
-                                                               required="required" oninvalid="this.setCustomValidity('Please enter mentor')" oninput="setCustomValidity('')">
+                                                        <textarea id="issueinput8" rows="2" class="form-control" name="mentor" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                                                  data-title="Comments" required="required" oninvalid="this.setCustomValidity('Please enter topic')" oninput="setCustomValidity('')">@item.Group.Mentor</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1">Customer</label>
-                                                        <input type="text" id="projectinput1" class="form-control" name="customer" value="@item.Group.Customer">
+                                                        <textarea id="issueinput8" rows="2" class="form-control" name="customer" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                                                  data-title="Comments" >@item.Group.Customer</textarea>
                                                     </div>
                                                 </div>
 
@@ -238,14 +239,15 @@ string Role = TempData["roles_Project"].ToString();
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="projectinput1">Mentor</label>
-                                    <input type="text" id="projectinput1" class="form-control" name="mentor"
-                                           required="required" oninvalid="this.setCustomValidity('Please enter mentor')" oninput="setCustomValidity('')">
+                                    <textarea id="issueinput8" rows="2" class="form-control" name="mentor" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                              data-title="Comments" required="required" oninvalid="this.setCustomValidity('Please enter Mentor')" oninput="setCustomValidity('')"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="projectinput1">Customer</label>
-                                    <input type="text" id="projectinput1" class="form-control" name="customer">
+                                    <textarea id="issueinput8" rows="2" class="form-control" name="customer" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                              data-title="Comments" ></textarea> 
                                 </div>
                             </div>
                             <div class="col-12">

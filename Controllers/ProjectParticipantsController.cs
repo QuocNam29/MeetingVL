@@ -187,8 +187,8 @@ namespace MeetingVL.Controllers
                     }
                 }
                 Session["ViewBag.FileStatus"] = null;
-                Session["ViewBag.Success"] = "Import student successful !";
-
+                Session["ViewBag.Success"] = null;
+                Session["notification"] = "Successfully Add student";
             }
             else
             {
