@@ -1,77 +1,160 @@
 ﻿@model IEnumerable<MeetingVL.Models.Notification>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
 }
 
-<!DOCTYPE html>
+<section id="grid-option">
+    <div class="row justify-content-md-center">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">Announcement</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-block text-white">
+                        <div class="col-12">
+                            <div style="background-color: #03A9F4 " class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-stretch">
+                                        <div class="actions float-right">
+                                            <div class="dropdown ml-2 display-inline-block">
+                                                <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                                <div class="apps dropdown-menu">
+                                                    <div class="arrow_box">
+                                                        <a class="dropdown-item py-1" data-toggle="modal" data-target="#default8560"><span>Delete</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="py-2 px-2 media-body">
+                                            <a href="">
+                                                <i class="fa fa-commenting-o white float-left d-block font-medium-4 mt-2 mr-2"></i>
+                                                <h4 class="courses-num font-medium-3 text-bold-400 ">Comment</h4>
+                                                <p class="text-black-50"><b>Lý Thị Huyền Châu : </b>Nhóm làm rất tốt. </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-block text-white">
+                        <div class="col-12">
+                            <div style="background-color: #03A9F4 " class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-stretch">
+                                        <div class="actions float-right">
+                                            <div class="dropdown ml-2 display-inline-block">
+                                                <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                                <div class="apps dropdown-menu">
+                                                    <div class="arrow_box">
+                                                        <a class="dropdown-item py-1" data-toggle="modal" data-target="#default8560"><span>Delete</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="py-2 px-2 media-body">
+                                            <a href="">
+                                                <i class="fa fa-commenting-o white float-left d-block font-medium-4 mt-2 mr-2"></i>
+                                                <h4 class="courses-num font-medium-3 text-bold-400 ">Comment</h4>
+                                                <p class="text-black-50"><b>Cong.197pm21898@vanlanguni.vn  : </b> Dạ em cảm ơn cô ạ !  </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-block text-white">
+                        <div class="col-12">
+                            <div style="background-color: #03A9F4 " class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-stretch">
+                                        <div class="actions float-right">
+                                            <div class="dropdown ml-2 display-inline-block">
+                                                <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                                <div class="apps dropdown-menu">
+                                                    <div class="arrow_box">
+                                                        <a class="dropdown-item py-1" data-toggle="modal" data-target="#default8560"><span>Delete</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="py-2 px-2 media-body">
+                                            <a href="">
+                                                <i style="color: #FF9800 " class="fa fa-file-text-o float-left d-block font-medium-4 mt-2  mr-3"></i>
+                                                <h4 style="color: #FF9800 " class="courses-num font-medium-3 text-bold-400 ">Report Estimate  </h4>
+                                                <p class="text-black-50">Estimate report week 5 has been created.  </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-block text-white">
+                        <div class="col-12">
+                            <div style="background-color: #03A9F4 " class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-stretch">
+                                        <div class="actions float-right">
+                                            <div class="dropdown ml-2 display-inline-block">
+                                                <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                                <div class="apps dropdown-menu">
+                                                    <div class="arrow_box">
+                                                        <a class="dropdown-item py-1" data-toggle="modal" data-target="#default8560"><span>Delete</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="dropdown-item noti-container py-2">
+                                            <i style="color: #ff0000" class="fa fa-trophy float-left d-block font-medium-2 mt-1  mr-2"></i>
+                                            <span class="noti-wrapper">
+                                                <h4 style="color: #F44336" class="noti-title line-height-1 d-block text-bold-400 "> Point : 10 </h4>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Comment_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Time)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comment.User_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Evaluate.User_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User.ID_VanLang)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment_ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Time)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment.User_ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Evaluate.User_ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.ID_VanLang)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            </td>
-        </tr>
-    }
-    
-    </table>
-</body>
-</html>
+                                            </span>
+                                        </a>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-block text-white">
+                        <div class="col-12">
+                            <div style="background-color: #03A9F4 " class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-stretch">
+                                        <div class="actions float-right">
+                                            <div class="dropdown ml-2 display-inline-block">
+                                                <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                                <div class="apps dropdown-menu">
+                                                    <div class="arrow_box">
+                                                        <a class="dropdown-item py-1" data-toggle="modal" data-target="#default8560"><span>Delete</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="py-2 px-2 media-body">
+                                            <a href="">
+                                                <i style="color: #FF9800 " class="fa fa-file-text-o float-left d-block font-medium-4 mt-2  mr-3"></i>
+                                                <h4 style="color: #FF9800 " class="courses-num font-medium-3 text-bold-400 ">Report Estimate  </h4>
+                                                <p class="text-black-50">Estimate report week 1 has been created.  </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

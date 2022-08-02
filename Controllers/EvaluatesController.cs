@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using MeetingVL.Middleware;
@@ -63,6 +64,8 @@ namespace MeetingVL.Controllers
              db.Evaluates.Add(evaluate);
             db.SaveChanges();
 
+            Semester semester = db.Semesters.Find(semester_id);
+
             var list_member_notification = db.ProjectParticipants.Where(p => p.Project_ID == project_id 
             && p.Group_ID == group_id && p.User_ID != null && p.Role =="Student").ToArray();
             for (int i = 0; i < list_member_notification.Length; i++)
@@ -72,11 +75,35 @@ namespace MeetingVL.Controllers
                 notification.Time = DateTime.Now;
                 notification.Evalute_ID = evaluate.ID;
                 notification.Content = evaluate.Review;
+                notification.status = "New";
                 db.Notifications.Add(notification);
                 db.SaveChanges();
+
+                //Khởi tạo nội dung gửi mail
+                MailMessage mailmea = new MailMessage();
+                mailmea.To.Add(list_member_notification[i].User_ID);
+                mailmea.From = new MailAddress(@"meetingvanlang@hotmail.com");
+                mailmea.Subject = "Đánh giá báo cáo meeting " + semester.Name;
+                mailmea.IsBodyHtml = true;
+                mailmea.Body = "<font size=10>Review: </font><br>" + "<font size=5><b>   " + review + "</b></font>";
+
+                //Phương thức gửi mail
+                SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+                smtp.UseDefaultCredentials = true;
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Credentials = new NetworkCredential(@"meetingvanlang@hotmail.com", "MeetingVLTeam13"); //Email, mật khẩu ứng dụng
+                try
+                {
+                    smtp.Send(mailmea);
+                }
+                catch (Exception ex)
+                {
+                    Session["thongbao-loi"] = ex.Message;
+                }
             }
+
            
-          
 
 
 

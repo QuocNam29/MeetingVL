@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using MeetingVL.Middleware;
@@ -64,8 +65,10 @@ namespace MeetingVL.Controllers
                     notification.Time = DateTime.Now;
                     notification.Comment_ID = comment1.ID;
                     notification.Content = comment;
+                    notification.status = "New";
                     db.Notifications.Add(notification);
                     db.SaveChanges();
+                   
                 }
             }
             else
@@ -77,6 +80,7 @@ namespace MeetingVL.Controllers
                 notification1.Time = DateTime.Now;
                 notification1.Comment_ID = comment1.ID;
                 notification1.Content = comment;
+                notification1.status = "New";
                 db.Notifications.Add(notification1);
                 db.SaveChanges();
 
@@ -89,6 +93,7 @@ namespace MeetingVL.Controllers
                     notification.Time = DateTime.Now;
                     notification.Comment_ID = comment1.ID;
                     notification.Content = comment;
+                    notification.status = "New";
                     db.Notifications.Add(notification);
                     db.SaveChanges();
                 }

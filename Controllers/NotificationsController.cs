@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MeetingVL.Middleware;
 using MeetingVL.Models;
 
 namespace MeetingVL.Controllers
 {
+    [LoginVerification]
     public class NotificationsController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
@@ -18,13 +20,13 @@ namespace MeetingVL.Controllers
         public ActionResult Index()
         {
             string ID_User = Session["ID_User"].ToString();
-            var notifications = db.Notifications.Include(n => n.Comment).Include(n => n.Evaluate).Include(n => n.User).Where(n => n.User_ID == ID_User);
+            var notifications = db.Notifications.Include(n => n.Comment).Include(n => n.Evaluate).Include(n => n.User).Where(n => n.User_ID == ID_User).OrderByDescending(n => n.ID);
             return View(notifications.ToList());
         }
         public ActionResult Notification_header()
         {
             string ID_User = Session["ID_User"].ToString();
-            var notifications = db.Notifications.Include(n => n.Comment).Include(n => n.Evaluate).Include(n => n.User).Where(n => n.User_ID == ID_User);
+            var notifications = db.Notifications.Include(n => n.Comment).Include(n => n.Evaluate).Include(n => n.User).Where(n => n.User_ID == ID_User).OrderByDescending(n => n.ID);
             return View(notifications.ToList());
         }
 

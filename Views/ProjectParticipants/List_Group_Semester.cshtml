@@ -55,7 +55,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="projectinput1">Review: </label>
-                                <textarea class="form-control border-primary" id="Descriptions" name="review"></textarea>
+                                <textarea class="form-control border-primary" id="Descriptions" name="review"
+                                          required="required" oninvalid="this.setCustomValidity('Please enter Review')" oninput="setCustomValidity('')"></textarea>
                             </div>
 
                         </div>
