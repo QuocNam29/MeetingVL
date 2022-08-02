@@ -1503,6 +1503,7 @@
     <Content Include="Views\Notifications\Edit.cshtml" />
     <Content Include="Views\Notifications\Index.cshtml" />
     <Content Include="Views\Notifications\Notification_header.cshtml" />
+    <Content Include="Views\ProjectParticipants\List_Group_Statistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
