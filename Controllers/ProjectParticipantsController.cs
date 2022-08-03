@@ -126,7 +126,7 @@ namespace MeetingVL.Controllers
                     group = s.Select(p => p.Group.Name).FirstOrDefault(),
                     sum = db.MeetingMinutes.Where(m => m.Group_ID == s.Key && m.SessionReport.Project_ID == project_id && m.State != "Deleted"
                             && m.SessionReport.Date_Start >= semester.Date_start && m.SessionReport.Date_End <= semester.Date_end).GroupBy(m => m.SessionReport_ID).Count(),
-                    point = db.Evaluates.Where(e => e.Group.State != "Deleted" && e.Semester.Project_ID == project_id
+                    point = db.Evaluates.Where(e => e.Group.State != "Deleted" && e.Semester.Project_ID == project_id && e.Semester_ID == semester_id
                             && e.Status != "Deleted" && e.Group_ID == s.Key).Select(q => q.Point).FirstOrDefault()
                 }).ToList(), JsonRequestBehavior.AllowGet) ;
 

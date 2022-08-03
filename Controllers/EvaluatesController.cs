@@ -20,7 +20,7 @@ namespace MeetingVL.Controllers
         // GET: Evaluates
         public ActionResult Index(int group_id, int semester_id)
         {
-            var evaluates = db.Evaluates.Where(e => e.Group_ID == group_id && e.Semester_ID == semester_id);
+            var evaluates = db.Evaluates.Where(e => e.Group_ID == group_id && e.Semester_ID == semester_id && e.Status != "Deleted");
             return View(evaluates.ToList());
         }
 
@@ -113,64 +113,35 @@ namespace MeetingVL.Controllers
 
        
         // GET: Evaluates/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string review, int point)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Evaluate evaluate = db.Evaluates.Find(id);
-            if (evaluate == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Group_ID = new SelectList(db.Groups, "ID", "Name", evaluate.Group_ID);
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", evaluate.User_ID);
-            return View(evaluate);
+            evaluate.Review = review;
+            evaluate.Point = point;
+            db.Entry(evaluate).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Details", new {id = id });
+          
         }
 
-        // POST: Evaluates/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,User_ID,Group_ID,State,Review,Comment,Status")] Evaluate evaluate)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(evaluate).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Group_ID = new SelectList(db.Groups, "ID", "Name", evaluate.Group_ID);
-            ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", evaluate.User_ID);
-            return View(evaluate);
-        }
+       
 
         // GET: Evaluates/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, int semester_id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Evaluate evaluate = db.Evaluates.Find(id);
-            if (evaluate == null)
-            {
-                return HttpNotFound();
-            }
-            return View(evaluate);
-        }
-
-        // POST: Evaluates/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Evaluate evaluate = db.Evaluates.Find(id);
-            db.Evaluates.Remove(evaluate);
+            evaluate.Status = "Deleted";
+            db.Entry(evaluate).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Session_Semester", new { semester_id = semester_id });
         }
 
         protected override void Dispose(bool disposing)
