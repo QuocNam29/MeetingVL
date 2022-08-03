@@ -7,39 +7,196 @@
     int semester_id = int.Parse(TempData["semester_id"].ToString());
 }
 
+<section id="basic-tabs-components">
+    @*<div class="col-sm-12">
+            <ul class="header-controls-list">
+                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Categories")">Category</a></li>
+                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Projects", new {category_id = category_id })">@category_Name</a></li>
+                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+                <li class="header-controls-item text-bold-400">@project_Name</li>
 
-<section id="horizontal">
-    <div class="row">
-        <div class="col-12">
+            </ul>
+        </div>*@
+    <div class="row match-height">
+        <div class="col-xl-12 col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <div class="card-title-wrap bar-danger">
-                        <h4 class="card-title">Semester</h4>
-                    </div>
-                </div>
-                <div class="card-body collapse show">
-                    <div class="card-block card-dashboard">
-                        <table class="table display nowrap table-striped table-bordered scroll-horizontal">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name Group</th>
-                                    @foreach (var item in Model)
-                                    {
-                                        <th>@item.SessionReport.Name</th>
-                                    }
-                                    <th>Review</th>
+                @*<div class="card-header">
+                        <div class="card-title-wrap bar-success">
+                            <h4 class="card-title">@project_Name</h4>
+                            <p class="content-sub-header">@project_Description</p>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @Html.Action("List_Group_Semester", "ProjectParticipants", new { project_id = project_id, semester_id = semester_id })
+                        </div>
+                    </div>*@
+                <div class="card-body">
+                    <div class="card-block">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="base-tabX1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true">Semester</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " id="base-tabX2" data-toggle="tab" aria-controls="tab2" href="#tab2">Statistics</a>
+                            </li>
 
-                            </tbody>
-                        </table>
+                        </ul>
+                        <div class="tab-content px-1 pt-1">
+                            <div class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tabX1">
+                                <section id="horizontal">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <div class="card-title-wrap bar-danger">
+                                                        <h4 class="card-title">Semester</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body collapse show">
+                                                    <div class="card-block card-dashboard">
+                                                        <table class="table display nowrap table-striped table-bordered scroll-horizontal">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Name Group</th>
+                                                                    @foreach (var item in Model)
+                                                                    {
+                                                                        <th>@item.SessionReport.Name</th>
+                                                                    }
+                                                                    <th>Review</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @Html.Action("List_Group_Semester", "ProjectParticipants", new { project_id = project_id, semester_id = semester_id })
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="tab-pane" id="tab2" aria-labelledby="base-tabX3">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="card-title-wrap bar-primary">
+                                                    <h4 class="card-title">Meeting minutes statistics</h4>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="card-block chartjs">
+                                                    <canvas id="column-chart" height="400"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </section>
+
+<script src="~/Template/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
+<script src="~/Template/app-assets/vendors/js/chart.min.js"></script>
+
+<script type="text/javascript">
+
+    var project_id = @project_id;
+    var semester_id = @semester_id;
+
+    $.ajax({
+        type: 'POST',
+        url: '@Url.Action("List_Group_Statistics_Semester", "ProjectParticipants")',
+        data: { 'project_id': project_id, 'semester_id': semester_id },
+        success: function (response) {
+            //Get the context of the Chart canvas element we want to select
+            var ctx = $("#column-chart");
+
+            // Chart Options
+            var chartOptions = {
+                // Elements options apply to all of the options unless overridden in a dataset
+                // In this case, we are setting the border of each bar to be 2px wide and green
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: 'rgb(0, 255, 0)',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scaleShowVerticalLines: false,
+                responsiveAnimationDuration: 500,
+                legend: {
+                    position: 'top',
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            color: "#f3f3f3",
+                            drawTicks: false,
+                        },
+                        scaleLabel: {
+                            display: true,
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        gridLines: {
+                            color: "#f3f3f3",
+                            drawTicks: false,
+                        },
+                        scaleLabel: {
+                            display: true,
+                        }
+                    }]
+                }
+            };
+
+            // Get chart labels and data
+            var labels = response.map(function (e) {
+                return e.group;
+            });
+            var data = response.map(function (e) {
+                return e.sum;
+            });
+
+            // Chart Data
+            var chartData = {
+                labels: labels,
+                datasets: [{
+                    label: "Meeting Minutes",
+                    data: data,
+                    backgroundColor: "rgba(255, 95, 32, 0.8)",
+                    borderColor: "transparent",
+                    pointBackgroundColor: 'rgba(148,159,177,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+                }]
+            };
+
+            var config = {
+                type: 'bar',
+
+                // Chart Options
+                options: chartOptions,
+
+                data: chartData
+            };
+
+            // Create the chart
+            var lineChart = new Chart(ctx, config);
+        }
+    });
+</script>

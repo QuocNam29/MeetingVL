@@ -80,7 +80,9 @@ namespace MeetingVL.Controllers
 
             return View(links.ToList());
         }
-       public ActionResult List_Group_Statistics(int project_id)
+
+        [HttpPost]
+        public JsonResult List_Group_Statistics(int project_id)
         {
 
             
@@ -88,12 +90,46 @@ namespace MeetingVL.Controllers
             var Check = db.ProjectParticipants.Where(r => r.User_ID == ID_User && r.Project_ID == project_id).FirstOrDefault();
             TempData["roles_Project"] = Check.Role;
 
-            var links = from l in db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
+            /*var links = from l in db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
                         .Where(p => p.Project_ID == project_id && p.Group_ID != null && p.Group.State != "Deleted").OrderBy(p => p.Group_ID)
-                        select l;
+                        select l;*/
             TempData["project_id"] = project_id;
 
-            return View(links.ToList());
+            return Json(db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
+                .Where(p => p.Project_ID == project_id && p.Group_ID != null && p.Group.State != "Deleted").GroupBy(p => p.Group_ID)
+                .OrderBy(p => p.Key).Select(s => new
+                {
+                    id = s.Key,
+                    group = s.Select(p => p.Group.Name).FirstOrDefault(),
+                    sum = db.MeetingMinutes.Where(m => m.Group_ID == s.Key && m.SessionReport.Project_ID == project_id && m.State !="Deleted").GroupBy(m => m.SessionReport_ID).Count()
+                   
+                }).ToList(), JsonRequestBehavior.AllowGet) ;
+
+            /*return Json(links.ToList(), JsonRequestBehavior.AllowGet);*/
+        }
+
+        [HttpPost]
+        public JsonResult List_Group_Statistics_Semester(int project_id, int semester_id)
+        {
+
+
+            string ID_User = Session["ID_User"].ToString();
+
+            TempData["project_id"] = project_id;
+            Semester semester = db.Semesters.Find(semester_id);
+
+            return Json(db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
+                .Where(p => p.Project_ID == project_id && p.Group_ID != null && p.Group.State != "Deleted").GroupBy(p => p.Group_ID)
+                .OrderBy(p => p.Key).Select(s => new
+                {
+                    id = s.Key,
+                    group = s.Select(p => p.Group.Name).FirstOrDefault(),
+                    sum = db.MeetingMinutes.Where(m => m.Group_ID == s.Key && m.SessionReport.Project_ID == project_id && m.State != "Deleted"
+                            && m.SessionReport.Date_Start >= semester.Date_start && m.SessionReport.Date_End <= semester.Date_end).GroupBy(m => m.SessionReport_ID).Count()
+                   
+                }).ToList(), JsonRequestBehavior.AllowGet);
+
+            /*return Json(links.ToList(), JsonRequestBehavior.AllowGet);*/
         }
         public ActionResult List_Group_Semester(int project_id, int semester_id)
         {

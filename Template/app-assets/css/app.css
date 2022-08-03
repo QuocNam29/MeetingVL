@@ -54069,3 +54069,7 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     border-bottom: 1px dashed #efefef;
     margin-bottom: 25px;
 }
+
+#column-chart {
+    height: 400px !important;
+}

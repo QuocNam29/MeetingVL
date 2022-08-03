@@ -219,6 +219,7 @@
         legend: {
             position: 'top',
         },
+        
         scales: {
             xAxes: [{
                 display: true,
@@ -251,15 +252,6 @@
             data: [65, 59, 80, 81, 56, 55, 40],
             backgroundColor: "rgba(255, 95, 32, 0.8)",
             borderColor: "transparent",
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-        }, {
-            label: "Series B",
-            data: [28, 48, 40, 19, 86, 27, 90],
-            backgroundColor: "rgba(102, 110, 232, 0.8)",
-            borderColor: 'transparent',
             pointBackgroundColor: 'rgba(148,159,177,1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
