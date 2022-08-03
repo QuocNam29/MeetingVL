@@ -170,6 +170,9 @@
             var data = response.map(function (e) {
                 return e.sum;
             });
+            var point = response.map(function (e) {
+                return e.point;
+            });
 
             // Chart Data
             var chartData = {
@@ -183,7 +186,16 @@
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-                }]
+                }, {
+                        label: "Point",
+                        data: point,
+                        backgroundColor: "rgba(102, 110, 232, 0.8)",
+                        borderColor: 'transparent',
+                        pointBackgroundColor: 'rgba(148,159,177,1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+                    }]
             };
 
             var config = {
