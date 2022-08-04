@@ -37,6 +37,16 @@ namespace MeetingVL.Controllers
             }
             return View(user);
         }
+        public ActionResult Profile()
+        {
+            string ID_User = Session["ID_User"].ToString();
+            User user = db.Users.Find(ID_User);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
 
         // GET: Users/Create
         public ActionResult Create(string name, string email, string role, string department, string majors)

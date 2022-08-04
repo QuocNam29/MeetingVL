@@ -1,0 +1,142 @@
+﻿@model MeetingVL.Models.User
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+}
+
+<section id="user-area">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">Profile</h4>
+                        <p class="content-sub-header"></p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="align-self-center halfway-fab text-center">
+                                    <a href="" class="profile-image" data-toggle="modal" data-target="#iconpicture">
+                                        <img src="~/Template/app-assets/img/portrait/medium/avatar-m-22.jpg" class="rounded-0 img-border gradient-summer width-165" alt="Card image">
+                                    </a>
+                                    <div class="modal fade text-left" id="iconpicture" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title" id="myModalLabel35"> Edit Picture</h3>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <button type="button" class=" btn btn-danger my-1">
+                                                        <i class="fa fa-upload">
+                                                        </i> Upload Picture
+                                                    </button>
+                                                </div>
+                                                <form>
+
+                                                    <div class="modal-footer">
+                                                        <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Cancel">
+                                                        <input type="submit" class="btn btn-outline-primary btn-lg" value="Save">
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-12">
+                                <div class="text primary right">
+                                    <font size="+2&quot;&quot;">
+                                        <a><i class="fa fa-user font-small-3"></i></a>
+                                        Name : <label style="color:black">Trần Trọng Nam</label>
+                                    </font>
+                                </div>
+                                <div class="text primary right">
+                                    <font size="+2&quot;&quot;">
+                                        <a><i class="ft-mail font-small-3"></i></a>
+                                        Email VL : <label style="color:black">nam.197pm09478@vanlanguni.vn</label>
+                                    </font>
+                                </div>
+                                <div class="text primary right">
+                                    <font size="+2&quot;&quot;">
+                                        <a><i class="fa fa-graduation-cap font-small-3"></i></a>
+                                        Faculty : <label style="color:black">Công Nghệ Thông Tin</label>
+                                    </font>
+                                </div>
+                                <div class="text primary right">
+                                    <font size="+2&quot;&quot;">
+                                        <a><i class="fa fa-industry font-small-3"></i></a>
+                                        Industry : <label style="color:black">Kỹ Thuật Phần Mềm</label>
+                                    </font>
+                                </div>
+                                <div class="text primary right">
+                                    <font size="+2&quot;&quot;">
+                                        <a><i class="ft-briefcase font-small-3 font-small-3"></i></a>
+                                        Role : <label style="color:black">Developer</label>
+                                    </font>
+                                </div>
+                                <div class="text primary">
+                                    <font size="+2&quot;&quot;">
+                                        <a><i class="ft-smartphone font-small-3"></i></a>
+                                        Phone number : <label style="color:black">0912131482</label>
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class=" btn btn-warning my-1" data-toggle="modal" data-target="#iconModal"><i class="fa ft-edit-3"></i> Edit Profile</button>
+    <div class="modal fade text-left show" id="iconModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel34">Edit Profile</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label>Phone number : </label>
+                    <div class="form-group position-relative has-icon-left">
+                        <input type="text" placeholder="Phone Number" class="form-control">
+
+                    </div>
+
+                    <label>Industry : </label>
+                    <div class="form-group position-relative has-icon-left">
+                        <input type="text" placeholder="Industry" class="form-control">
+
+                    </div>
+                    <label>Faculty : </label>
+                    <div class="form-group position-relative has-icon-left">
+                        <input type="text" placeholder="Faculty" class="form-control">
+
+                    </div>
+                    <label>Role : </label>
+                    <div class="form-group position-relative has-icon-left">
+                        <input type="text" placeholder="Role" class="form-control">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -17,22 +17,42 @@
                 {
                     if (item.Comment_ID != null)
                     {
-                        <a href="@Url.Action("Details", "Evaluates", new { id = item.Comment.Evalute_ID})" class="dropdown-item noti-container py-2">
-                            <i style="color: #1E9FF2" class="fa fa-commenting-o float-left d-block font-medium-5 mt-4 mr-3"></i>
-                            <span class="noti-wrapper">
-                                <span style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 ">Comment</span>
-                                <span class="noti-text"><b>@item.Comment.User.Email</b></span>
-                                <span class="noti-text"><br />@item.Content</span>
-                            </span>
-                        </a>
+                        if (item.status != "Seen")
+                        {
+                            <a href="@Url.Action("Details", "Evaluates", new { id = item.Comment.Evalute_ID, notification_id = item.ID})" class="dropdown-item noti-container py-2 dropdown-with-item dropdown-with-item--active">
+                                <i style="color: #1E9FF2" class="fa fa-commenting-o float-left d-block font-medium-5 mt-4 mr-3"></i>
+                                <span class="noti-wrapper">
+                                    <span style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 ">Comment</span>
+                                    <span class="noti-text"><b>@item.Comment.User.Email</b></span>
+                                    <span class="noti-text"><br />@item.Content</span>
+                                </span>
+                                <div class="dropdown-item-new">
+                                    <p class="dropdown-item-new-content">New</p>
+                                </div>
+                            </a>
+
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Details", "Evaluates", new { id = item.Comment.Evalute_ID})" class="dropdown-item noti-container py-2">
+                                <i style="color: #1E9FF2" class="fa fa-commenting-o float-left d-block font-medium-5 mt-4 mr-3"></i>
+                                <span class="noti-wrapper">
+                                    <span style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 ">Comment</span>
+                                    <span class="noti-text"><b>@item.Comment.User.Email</b></span>
+                                    <span class="noti-text"><br />@item.Content</span>
+                                </span>
+                            </a>
+                        }
+
                     }
+
                     @*<a href="#" class="dropdown-item noti-container py-2">
-                            <i style="color: #F44336" class="fa fa-trophy float-left d-block font-medium-4 mt-2  mr-3"></i>
-                            <span class="noti-wrapper">
-                                <span style="color: #F44336" class="noti-title line-height-1 d-block text-bold-400 ">Point</span>
-                                <span class="noti-text">10</span>
-                            </span>
-                        </a>*@
+                <i style="color: #F44336" class="fa fa-trophy float-left d-block font-medium-4 mt-2  mr-3"></i>
+                <span class="noti-wrapper">
+                    <span style="color: #F44336" class="noti-title line-height-1 d-block text-bold-400 ">Point</span>
+                    <span class="noti-text">10</span>
+                </span>
+            </a>*@
                     if (item.Evalute_ID != null)
                     {
                         <a href="@Url.Action("Details", "Evaluates", new { id = item.Evalute_ID })" class="dropdown-item noti-container py-2">

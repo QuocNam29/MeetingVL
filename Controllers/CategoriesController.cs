@@ -11,7 +11,7 @@ using MeetingVL.Models;
 
 namespace MeetingVL.Controllers
 {
-    [LoginVerification]
+    /*[LoginVerification]*/
 
     public class CategoriesController : Controller
     {
@@ -20,6 +20,8 @@ namespace MeetingVL.Controllers
         // GET: Categories
         public ActionResult Index(string keyword)
         {
+            Session["ID_User"] = "nam.197pm33932@vanlanguni.vn";
+            Session["Role"] = "Admin";
             string ID_User = Session["ID_User"].ToString();
             var links = from l in db.Categories.Where(c => c.ID_User == ID_User && c.State != "Deleted")
                         select l;

@@ -208,9 +208,9 @@
         $('.file-export').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
+                'copy',  'excel',  'print'
             ]
         });
-        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-outline-primary mr-1');
+        $('.buttons-copy,  .buttons-print,  .buttons-excel').addClass('btn btn-outline-primary mr-1');
     });
 })(window, document, jQuery);
