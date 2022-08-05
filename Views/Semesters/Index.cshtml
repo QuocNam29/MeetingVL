@@ -50,31 +50,34 @@
         <div class="col-xl-3 col-lg-6 col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="media align-items-stretch">
-                        <div class="p-2 text-center bg-warning rounded-left pt-3">
-                            <i class="icon-wallet font-large-2 text-white"></i>
-                        </div>
-                        <div class="actions float-right">
-                            <div class="dropdown ml-2 display-inline-block">
-                                <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical grey" aria-expanded="false"></a>
-                                <div class="apps dropdown-menu">
-                                    <div class="arrow_box">
-                                        <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap"><span>Edit</span></a>
-                                        <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
-                                    </div>
-                                </div>
+                    <a href="@Url.Action("Index","Session_Semester", new {semester_id = item.ID } )">
+                        <div class="media align-items-stretch">
+                            <div class="p-2 text-center bg-warning rounded-left pt-3">
+                                <i class="icon-wallet font-large-2 text-white"></i>
+                            </div>
+                            
+                            <div class="py-1 px-2  media-body">
+                                <h5>@item.Name</h5>
+                                <p class="courses-time font-small-3">
+                                    <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_start)</span>
+                                    <span>-</span>
+                                    <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_end)</span>
+                                </p>
                             </div>
                         </div>
-                        <div class="p-2 media-body">
-                            <a href="@Url.Action("Index","Session_Semester", new {semester_id = item.ID } )"><h5>@item.Name</h5> </a>
-                            <p class="courses-time font-small-3">
-                                <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_start)</span>
-                                <span>-</span>
-                                <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_end)</span>
-                            </p>
-                        </div>
-                    </div>
+                        </a>
                 </div>
+                <div class="actions float-right">
+    <div class="dropdown ml-2 display-inline-block">
+        <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical grey" aria-expanded="false"></a>
+        <div class="apps dropdown-menu">
+            <div class="arrow_box">
+                <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap"><span>Edit</span></a>
+                <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
+            </div>
+        </div>
+    </div>
+</div>
             </div>
         </div>
         <div class="modal fade text-left" id="@myBootstrap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">

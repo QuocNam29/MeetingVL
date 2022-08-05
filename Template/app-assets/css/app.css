@@ -54193,6 +54193,10 @@ input[type='checkbox'].switch, input[type='radio'].switch {
         z-index: -1;
     }
 
-.card-wrap {
-    min-height: 200px;
+.card .card-body:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.media-body-title {
+    padding-top: 6px;
 }
