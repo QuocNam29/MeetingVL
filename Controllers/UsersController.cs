@@ -66,21 +66,21 @@ namespace MeetingVL.Controllers
             }
             user.Email = email;
             user.Role = role;
-            
-           
+
+
             db.Users.Add(user);
             db.SaveChanges();
             Session["notification"] = "Successfully Added New User";
             return RedirectToAction("Index");
-            
+
         }
 
-      
+
 
         // GET: Users/Edit/5
-        public ActionResult Edit( string name, string email, string role, string department, string majors, string state)
+        public ActionResult Edit(string name, string email, string role, string department, string majors, string state)
         {
-           
+
             User user = db.Users.Find(email);
             if (!string.IsNullOrWhiteSpace(name))
             {
@@ -102,17 +102,17 @@ namespace MeetingVL.Controllers
             {
                 user.State = false;
             }
-           
+
             user.Email = email;
             user.Role = role;
-            string ID_User =  Session["ID_User"].ToString();
+            string ID_User = Session["ID_User"].ToString();
             if (ID_User == email)
-            {               
+            {
                 Session["ID_VL"] = user.ID_VanLang;
                 Session["Name"] = name;
                 Session["Role"] = role;
             }
-           
+
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
             if (Session["Role"].ToString() != "Admin")
@@ -125,7 +125,61 @@ namespace MeetingVL.Controllers
             return RedirectToAction("Details", new { email = email });
         }
 
-        
+        public ActionResult Edit_Profile(string name, string department, string majors, HttpPostedFileBase avt)
+        {
+            string ID_User = Session["ID_User"].ToString();
+            User user = db.Users.Find(ID_User);
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                user.Name = name;
+            }
+            if (!string.IsNullOrWhiteSpace(department))
+            {
+                user.Department = department;
+            }
+            if (!string.IsNullOrWhiteSpace(majors))
+            {
+                user.Majors = majors;
+            }
+
+
+            string oldfilePath = user.Avt;
+            if (avt != null && avt.ContentLength > 0)
+            {
+                string time = DateTime.Now.ToString("yymmssfff");
+                var fileName = System.IO.Path.GetFileName(avt.FileName);
+                string filePath = "~/Template/app-assets/img/Avatar/" + time + fileName;
+                avt.SaveAs(Server.MapPath(filePath));
+                user.Avt = "~/Template/app-assets/img/Avatar/" + time + avt.FileName;
+                string fullPath = Request.MapPath(oldfilePath);
+
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+            }
+            else
+            {
+                if (Session["avatar"] != null)
+                {
+                    user.Avt = Session["avatar"].ToString();
+                }
+                else
+                {
+                    user.Avt = null;
+                }
+
+            }
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
+
+            Session["Avt"] = user.Avt;
+            Session["notification"] = "Successfully Edited Profile";
+            return RedirectToAction("Profile");
+
+        }
+
+
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {

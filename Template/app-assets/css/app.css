@@ -54114,3 +54114,81 @@ input[type='checkbox'].switch, input[type='radio'].switch {
         transform: translateY(0);
     }
 }
+
+.profile__wrap {
+    background: #fff;
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile__thumb {
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.profile__thumb-link {
+    width: 100%;
+}
+
+.profile__card-title {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+}
+
+
+.profile__list {
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.profile__item {
+    list-style: none;
+    padding: 3px 0;
+}
+
+.profile__item-title {
+    margin: 0;
+    font-weight: bold;
+}
+
+.profile__item-desc {
+    font-weight: 400;
+}
+
+.profile__card {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    padding: 15px 0;
+}
+
+    .profile__card::before {
+        position: absolute;
+        content: "";
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: #c4e2f9;
+        top: -20%;
+        right: -10%;
+        z-index: -1;
+    }
+
+
+    .profile__card::after {
+        position: absolute;
+        content: "";
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: #fabc0f;
+        bottom: -20%;
+        left: 13%;
+        z-index: -1;
+    }

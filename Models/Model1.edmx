@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SEP25Team13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SEP25Team13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -234,6 +234,7 @@
           <Property Name="Department" Type="nvarchar" MaxLength="100" />
           <Property Name="Majors" Type="nvarchar" MaxLength="100" />
           <Property Name="State" Type="bit" />
+          <Property Name="Avt" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Action_MeetingMinutes">
           <End Role="MeetingMinutes" Type="Self.MeetingMinutes" Multiplicity="1" />
@@ -697,8 +698,7 @@
             <End Role="SessionReport" EntitySet="SessionReport" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SEP25Team13Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -975,6 +975,7 @@
           <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_User" FromRole="User" ToRole="Notification" />
           <NavigationProperty Name="ProjectParticipants" Relationship="Self.FK_ProjectParticipant_User" FromRole="User" ToRole="ProjectParticipant" />
           <NavigationProperty Name="Semesters" Relationship="Self.FK_Semester_User" FromRole="User" ToRole="Semester" />
+          <Property Name="Avt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Action_MeetingMinutes">
           <End Role="MeetingMinutes" Type="Self.MeetingMinute" Multiplicity="1" />
@@ -1641,6 +1642,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="SEP25Team13Model.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Avt" ColumnName="Avt" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID_VanLang" ColumnName="ID_VanLang" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
