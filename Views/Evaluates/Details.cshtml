@@ -8,12 +8,21 @@
     if (TempData["group_id"] != null )
     {
         group_id = int.Parse(TempData["group_id"].ToString());
-        
+
     }
     if (TempData["role"] != null)
     {
-        
+
         role = TempData["role"].ToString();
+    }
+    string avt = "";
+    if (Model.User.Avt != null)
+    {
+        avt = Model.User.Avt;
+    }
+    else
+    {
+        avt = "~/Template/app-assets/img/user.png";
     }
 }
 
@@ -44,7 +53,7 @@
             <div class="media-left mr-2">
                 <a>
                     <span class="avatar avatar-md avatar-busy">
-                        <img src="~/Template/app-assets/img/portrait/small/avatar-s-18.jpg" class="rounded-circle" alt="avatar" width="50">
+                        <img src="@Url.Content(avt)" class="rounded-circle" alt="avatar" width="50">
                     </span>
                     <i></i>
                 </a>
