@@ -72,9 +72,59 @@
             <div class="col-xl-3 col-lg-6 col-12">
                 @if (no % 4 == 1)
                 {
-                    <div class="card bg-success">
-                        <div class="card-body">
+                <div class="card bg-success">
+                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID, active = 1 })" class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="row text-white">
+                                <div class="col-12 courses-wrap">
+                                    <h1>
+                                        <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
+                                    </h1>
+                                    <h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4>
+                                    <p class="courses-time font-small-3">
+                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
+                                        <span>-</span>
+                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="actions float-right">
+                                <div class="dropdown ml-2 display-inline-block">
+                                    <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                    <div class="apps dropdown-menu">
+                                        <div class="arrow_box">
+                                            <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap"><span>Edit</span></a>
+                                            <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                }
+                else if (no % 4 == 2)
+                {
+
+                    <div class="card bg-danger">
+                        <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID, active = 1 })" class="card-body">
                             <div class="px-3 py-3">
+                                <div class="row text-white">
+                                    <div class="col-12 courses-wrap">
+                                        <h1>
+                                            <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
+                                        </h1>
+                                        <h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4>
+                                        <p class="courses-time font-small-3">
+                                            <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
+                                            <span>-</span>
+                                            <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
+                                        </p>
+                                    </div>
+                                </div>
+
                                 <div class="actions float-right">
                                     <div class="dropdown ml-2 display-inline-block">
                                         <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
@@ -86,54 +136,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row text-white">
-                                    <div class="col-12 courses-wrap">
-                                        <h1>
-                                            <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
-                                        </h1>
-                                        <a href="@Url.Action("Index","Session_Reports",new { project_id = item.ID, active = 1})"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
-                                        <p class="courses-time font-small-3">
-                                            <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
-                                            <span>-</span>
-                                            <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
-                                        </p>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                }
-                else if (no % 4 == 2)
-                {
-
-                    <div class="card bg-danger">
-                        <div class="px-3 py-3">
-                            <div class="actions float-right">
-                                <div class="dropdown ml-2 display-inline-block">
-                                    <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
-                                    <div class="apps dropdown-menu">
-                                        <div class="arrow_box">
-                                            <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap"><span>Edit</span></a>
-                                            <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row text-white">
-                                <div class="col-12 courses-wrap">
-                                    <h1>
-                                        <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
-                                    </h1>
-                                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID, active = 1 })"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
-                                    <p class="courses-time font-small-3">
-                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
-                                        <span>-</span>
-                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     </div>
 
                 }
@@ -141,32 +145,35 @@
                 {
 
                     <div class="card bg-info">
-                        <div class="px-3 py-3">
-                            <div class="actions float-right">
-                                <div class="dropdown ml-2 display-inline-block">
-                                    <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
-                                    <div class="apps dropdown-menu">
-                                        <div class="arrow_box">
-                                            <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap"><span>Edit</span></a>
-                                            <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
+                        <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID, active = 1 })" class="card-body">
+                            <div class="px-3 py-3">
+                                <div class="row text-white">
+                                    <div class="col-12 courses-wrap">
+                                        <h1>
+                                            <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
+                                        </h1>
+                                        <h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4>
+                                        <p class="courses-time font-small-3">
+                                            <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
+                                            <span>-</span>
+                                            <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="actions float-right">
+                                    <div class="dropdown ml-2 display-inline-block">
+                                        <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>
+                                        <div class="apps dropdown-menu">
+                                            <div class="arrow_box">
+                                                <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap"><span>Edit</span></a>
+                                                <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal"><span>Delete</span></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row text-white">
-                                <div class="col-12 courses-wrap">
-                                    <h1>
-                                        <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
-                                    </h1>
-                                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID, active = 1 })"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
-                                    <p class="courses-time font-small-3">
-                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
-                                        <span>-</span>
-                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     </div>
 
                 }
@@ -174,33 +181,36 @@
                 {
 
                     <div class="card bg-warning">
-                        <div class="px-3 py-3">
-                            <div class="dropdown nav-item mt-1 actions">
-                                <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>                                <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="arrow_box_right">
-                                        <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap">
-                                            <span> Edit</span>
-                                        </a>
-                                        <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal">
-                                            <span> Delete</span>
-                                        </a>
+                        <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID, active = 1 })" class="card-body">
+                            <div class="px-3 py-3">
+                                <div class="row text-white">
+                                    <div class="col-12 courses-wrap">
+                                        <h1>
+                                            <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
+                                        </h1>
+                                        <h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4>
+                                        <p class="courses-time font-small-3">
+                                            <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
+                                            <span>-</span>
+                                            <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown nav-item mt-1 actions">
+                                    <a id="apps" href="" data-toggle="dropdown" class="ft-more-vertical white" aria-expanded="false"></a>                                <div class="dropdown-menu dropdown-menu-right">
+                                        <div class="arrow_box_right">
+                                            <a href="" class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap">
+                                                <span> Edit</span>
+                                            </a>
+                                            <a class="dropdown-item py-1" data-toggle="modal" data-target="#@myModal">
+                                                <span> Delete</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row text-white">
-                                <div class="col-12 courses-wrap">
-                                    <h1>
-                                        <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
-                                    </h1>
-                                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.ID, active = 1 })"><h4 class="courses-num font-medium-3 text-bold-400">@item.Name</h4></a>
-                                    <p class="courses-time font-small-3">
-                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
-                                        <span>-</span>
-                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Date_End)</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     </div>
 
                 }
