@@ -497,6 +497,7 @@
     <Content Include="Template\app-assets\js\sweet-alerts.min.js" />
     <Content Include="Template\app-assets\js\switch.js" />
     <Content Include="Template\app-assets\js\switch.min.js" />
+    <Content Include="Template\app-assets\js\table2excel.js" />
     <Content Include="Template\app-assets\js\tagging.js" />
     <Content Include="Template\app-assets\js\tagging.min.js" />
     <Content Include="Template\app-assets\js\taskboard.js" />

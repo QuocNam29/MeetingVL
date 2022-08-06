@@ -166,14 +166,14 @@ namespace MeetingVL.Controllers
             return View(links.ToList());
         }
 
-        public ActionResult List_Submit_Semester(int semester_id, int group_id)
+        public ActionResult List_Submit_Semester(int semester_id, int group_id, int? action)
         {
           
             var links = from l in db.Session_Semester
                        .Where(p => p.Semester_ID == semester_id)
                         select l;
             TempData["group_id"] = group_id;
-
+            TempData["action"] = action;
 
             return View(links.ToList());
         }

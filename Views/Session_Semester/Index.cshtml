@@ -212,3 +212,22 @@
         }
     });
 </script>
+
+
+<table hidden id="tblCustomers" class="table" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>Group</th>
+        <th>Comment</th>
+        <th>Point</th>
+    </tr>
+    @Html.Action("List_Group_Semester", "ProjectParticipants", new { project_id = project_id, semester_id = semester_id, action = 1 })
+
+   
+
+
+
+</table>
+<br />
+<input type="submit" id="btnExport" value="Export" />
+
+

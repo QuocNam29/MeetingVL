@@ -3,21 +3,46 @@
 @{
     Layout = null;
     int group_id = int.Parse(TempData["group_id"].ToString());
+    int action = 0;
+    if (TempData["action"] != null)
+    {
+        action = int.Parse(TempData["action"].ToString());
+    }
+    int count = 0;
 }
 
-@foreach (var item in Model)
+@if (action == 1)
 {
-    bool check = item.SessionReport.MeetingMinutes.Where(c => c.Group_ID == group_id && c.State != "Deleted").Count() > 0;
+    foreach (var item in Model)
+    {
+        bool check = item.SessionReport.MeetingMinutes.Where(c => c.Group_ID == group_id && c.State != "Deleted").Count() > 0;
 
-    if (check == true)
-    {
-        <td class="text-center"><a href="@Url.Action("List_Meeting_Semester","MeetingMinutes", new { session_id = item.SessionReport_ID,group_id = group_id })">
-            <i class="fa ft-check-square font-medium-3 mr-2"></i>
-            </a></td>
+        if (check == true)
+        {
+            count++;
+        }
     }
-    else
+    <td>@count</td>
+}
+else
+{
+    foreach (var item in Model)
     {
-        <td></td>
+        bool check = item.SessionReport.MeetingMinutes.Where(c => c.Group_ID == group_id && c.State != "Deleted").Count() > 0;
+
+        if (check == true)
+        {
+            <td class="text-center">
+                <a href="@Url.Action("List_Meeting_Semester","MeetingMinutes", new { session_id = item.SessionReport_ID,group_id = group_id })">
+                    <i class="fa ft-check-square font-medium-3 mr-2"></i>
+                </a>
+            </td>
+        }
+        else
+        {
+            <td></td>
+        }
+
     }
 
 }

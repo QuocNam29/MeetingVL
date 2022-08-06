@@ -18,9 +18,10 @@ namespace MeetingVL.Controllers
         private SEP25Team13Entities db = new SEP25Team13Entities();
 
         // GET: Evaluates
-        public ActionResult Index(int group_id, int semester_id)
+        public ActionResult Index(int group_id, int semester_id, int? action)
         {
             var evaluates = db.Evaluates.Where(e => e.Group_ID == group_id && e.Semester_ID == semester_id && e.Status != "Deleted");
+            TempData["action"] = action;
             return View(evaluates.ToList());
         }
 

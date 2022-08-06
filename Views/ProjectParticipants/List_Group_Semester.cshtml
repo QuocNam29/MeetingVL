@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MeetingVL.Models.ProjectParticipant>
+﻿@using MeetingVL.Models
+@model IEnumerable<MeetingVL.Models.ProjectParticipant>
 
 @{
     Layout = null;
@@ -7,72 +8,96 @@
     int semester_id = int.Parse(TempData["semester_id"].ToString());
     int no = 0;
     string Role = TempData["roles_Project"].ToString();
-
+    int action = 0;
+    if (TempData["action"] != null)
+    {
+        action = int.Parse(TempData["action"].ToString());
+    }
 }
 
 <!DOCTYPE html>
-
-@foreach (var item in Model)
+@if (action == 1)
 {
-    if (group_id != item.Group_ID)
+    foreach (var item in Model)
     {
-        group_id = item.Group.ID;
-        string CreateEvalue = "CreateEvalue" + item.ID;
-        no++;
+        if (group_id != item.Group_ID)
+        {
+            group_id = item.Group.ID;
 <tr>
-    <td>@no</td>
     <td>@item.Group.Name</td>
-    @Html.Action("List_Submit_Semester", "Session_Reports", new { semester_id = semester_id, group_id = group_id })
-<td>
-    @if (Role == "Manager")
-    {
-        <a class="success p-0" data-toggle="modal" data-target="#@CreateEvalue">
-            <i class="fa fa-pencil font-medium-3 mr-2"></i>
-        </a>
+    @Html.Action("List_Submit_Semester", "Session_Reports", new { semester_id = semester_id, group_id = group_id, action = 1 })
+    @Html.Action("Index", "Evaluates", new { semester_id = semester_id, group_id = group_id, action = 1 })
+
+
+</tr>
+        }
     }
+}
+else
+{
+    foreach (var item in Model)
+    {
+        if (group_id != item.Group_ID)
+        {
+            group_id = item.Group.ID;
+            string CreateEvalue = "CreateEvalue" + item.ID;
+            no++;
+            <tr>
+                <td>@no</td>
+                <td>@item.Group.Name</td>
+                @Html.Action("List_Submit_Semester", "Session_Reports", new { semester_id = semester_id, group_id = group_id })
+                <td>
+                    @if (Role == "Manager")
+                    {
+                        <a class="success p-0" data-toggle="modal" data-target="#@CreateEvalue">
+                            <i class="fa fa-pencil font-medium-3 mr-2"></i>
+                        </a>
+                    }
 
 
-    <div class="modal fade text-left" id="@CreateEvalue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="myModalLabel34">Edit student</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                @using (Html.BeginForm("Create", "Evaluates", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.Hidden("project_id", project_id)
-                    @Html.Hidden("group_id", item.Group_ID)
-                    @Html.Hidden("semester_id", semester_id)
-                    <div class="modal-body">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="projectinput1">Point: </label>
-                                <input class="form-control border-primary" type="number" id="Deadline" name="point" max="10" min="0">
+                    <div class="modal fade text-left" id="@CreateEvalue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title" id="myModalLabel34">Edit student</h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                @using (Html.BeginForm("Create", "Evaluates", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("project_id", project_id)
+                                    @Html.Hidden("group_id", item.Group_ID)
+                                    @Html.Hidden("semester_id", semester_id)
+                                    <div class="modal-body">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="projectinput1">Point: </label>
+                                                <input class="form-control border-primary" type="number" id="Deadline" name="point" max="10" min="0">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="projectinput1">Review: </label>
+                                                <textarea class="form-control border-primary" id="Descriptions" name="review"
+                                                          required="required" oninvalid="this.setCustomValidity('Please enter Review')" oninput="setCustomValidity('')"></textarea>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Cancel">
+                                        <input type="submit" class="btn btn-outline-primary btn-lg" value="Save">
+                                    </div>
+                                }
                             </div>
-                            <div class="form-group">
-                                <label for="projectinput1">Review: </label>
-                                <textarea class="form-control border-primary" id="Descriptions" name="review"
-                                          required="required" oninvalid="this.setCustomValidity('Please enter Review')" oninput="setCustomValidity('')"></textarea>
-                            </div>
-
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-outline-primary btn-lg" value="Save">
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
 
-    @Html.Action("Index", "Evaluates", new { semester_id = semester_id, group_id = group_id })
-</td>
-</tr>
+                    @Html.Action("Index", "Evaluates", new { semester_id = semester_id, group_id = group_id })
+                </td>
+            </tr>
+        }
     }
+
 }
 

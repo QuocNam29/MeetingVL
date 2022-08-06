@@ -132,21 +132,22 @@ namespace MeetingVL.Controllers
 
             /*return Json(links.ToList(), JsonRequestBehavior.AllowGet);*/
         }
-        public ActionResult List_Group_Semester(int project_id, int semester_id)
+        public ActionResult List_Group_Semester(int project_id, int semester_id, int? action)
         {
             var links = from l in db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Include(p => p.Group)
                         .Where(p => p.Project_ID == project_id && p.Group_ID != null && p.Group.State != "Deleted").OrderBy(p => p.Group_ID)
                         select l;
-
-            
+  
             TempData["project_id"] = project_id;
             TempData["semester_id"] = semester_id;
             string ID_User = Session["ID_User"].ToString();
             var Check = db.ProjectParticipants.Where(r => r.User_ID == ID_User && r.Project_ID == project_id).FirstOrDefault();
             TempData["roles_Project"] = Check.Role;
+            TempData["action"] = action;
 
             return View(links.ToList());
         }
+       
 
         public ActionResult Search_Group(int project_id, string keyword)
         {
