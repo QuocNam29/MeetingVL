@@ -96,7 +96,7 @@
                             <a href="@Url.Action("Profile", "Users")"><i class="icon-user-following"></i><span data-i18n="" class="menu-title">My Profile</span></a>
                         </li>
                         <li class=" nav-item">
-                            <a href=""><i class="ft-bell white"></i><span data-i18n="" class="menu-title">Announcement</span></a>
+                            <a href="@Url.Action("Index", "Notifications")"><i class="ft-bell white"></i><span data-i18n="" class="menu-title">Announcement</span></a>
                         </li>
 
                         <li class=" nav-item">
@@ -248,8 +248,10 @@
                 $("#tblCustomers").table2excel({
                     filename: "Table.xls"
                 });
+                toastr.success('Export excel successfully', 'Success');
             });
-        })(jQuery);
+
+    })(jQuery);
     </script>
 
 

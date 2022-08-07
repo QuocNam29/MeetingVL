@@ -21,9 +21,11 @@ namespace MeetingVL.Controllers
         {
             var session_Semester = db.Session_Semester.Include(s => s.Semester).Include(s => s.SessionReport).Where(s => s.Semester_ID == semester_id);
 
-            int project_id = session_Semester.FirstOrDefault().SessionReport.Project_ID;
-            TempData["project_id"] = project_id;
-            TempData["semester_id"] = semester_id;
+            Semester semester = db.Semesters.Find(semester_id);
+                int project_id = semester.Project.ID;
+                TempData["project_id"] = project_id;
+                TempData["semester_id"] = semester_id;
+           
 
             return View(session_Semester.ToList());
         }
