@@ -334,6 +334,7 @@
     <Content Include="Template\app-assets\fonts\simple-line-icons\style.css" />
     <Content Include="Template\app-assets\fonts\simple-line-icons\style.min.css" />
     <Content Include="Template\app-assets\fonts\weathericons\weathericons-regular-webfont.svg" />
+    <Content Include="Template\app-assets\img\Avatar\Avt_QuocNam.jpg" />
     <Content Include="Template\app-assets\img\ico\favicon-32.png" />
     <Content Include="Template\app-assets\img\ico\favicon.ico" />
     <Content Include="Template\app-assets\img\in-progress-animate.svg" />
@@ -1422,7 +1423,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Template\app-assets\img\Avatar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
