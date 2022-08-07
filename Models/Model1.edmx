@@ -235,6 +235,7 @@
           <Property Name="Majors" Type="nvarchar" MaxLength="100" />
           <Property Name="State" Type="bit" />
           <Property Name="Avt" Type="nvarchar(max)" />
+          <Property Name="stt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <Association Name="FK_Action_MeetingMinutes">
           <End Role="MeetingMinutes" Type="Self.MeetingMinutes" Multiplicity="1" />
@@ -976,6 +977,7 @@
           <NavigationProperty Name="ProjectParticipants" Relationship="Self.FK_ProjectParticipant_User" FromRole="User" ToRole="ProjectParticipant" />
           <NavigationProperty Name="Semesters" Relationship="Self.FK_Semester_User" FromRole="User" ToRole="Semester" />
           <Property Name="Avt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="stt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="FK_Action_MeetingMinutes">
           <End Role="MeetingMinutes" Type="Self.MeetingMinute" Multiplicity="1" />
@@ -1642,6 +1644,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="SEP25Team13Model.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="stt" ColumnName="stt" />
                 <ScalarProperty Name="Avt" ColumnName="Avt" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID_VanLang" ColumnName="ID_VanLang" />

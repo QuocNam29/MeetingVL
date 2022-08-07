@@ -37,6 +37,7 @@ namespace MeetingVL.Models
         public string Majors { get; set; }
         public Nullable<bool> State { get; set; }
         public string Avt { get; set; }
+        public int stt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Action> Actions { get; set; }

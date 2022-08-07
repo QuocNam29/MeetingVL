@@ -20,7 +20,7 @@ namespace MeetingVL.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db.Users.OrderByDescending(u => u.stt).ToList());
         }
         public ActionResult List_Edit()
         {
