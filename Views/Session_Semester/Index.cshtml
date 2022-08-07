@@ -84,12 +84,30 @@
                                         <div class="card">
                                             <div class="card-header">
                                                 <div class="card-title-wrap bar-primary">
+                                                    <a class="btn btn-social btn-round btn-min-width mr-2 mb-2 btn-Download" id="btnExport">
+                                                        <span class="ft ft-download"></span> Export Excel
+
+                                                    </a>
                                                     <h4 class="card-title">Meeting minutes statistics</h4>
                                                 </div>
                                             </div>
+
                                             <div class="card-body">
                                                 <div class="card-block chartjs">
                                                     <canvas id="column-chart" height="400"></canvas>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-header">
+                                                <div class="card-title-wrap bar-primary">
+                                                   
+                                                    <h4 class="card-title">Meeting minute</h4>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="card-block chartjs">
+                                                    <canvas id="column-chart2" height="400"></canvas>
                                                 </div>
                                             </div>
                                         </div>
@@ -186,7 +204,93 @@
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-                }, {
+                }]
+            };
+
+            var config = {
+                type: 'bar',
+
+                // Chart Options
+                options: chartOptions,
+
+                data: chartData
+            };
+
+            // Create the chart
+            var lineChart = new Chart(ctx, config);
+        }
+    });
+</script>
+<script type="text/javascript">
+
+    var project_id = @project_id;
+    var semester_id = @semester_id;
+
+    $.ajax({
+        type: 'POST',
+        url: '@Url.Action("List_Group_Statistics_Semester", "ProjectParticipants")',
+        data: { 'project_id': project_id, 'semester_id': semester_id },
+        success: function (response) {
+            //Get the context of the Chart canvas element we want to select
+            var ctx = $("#column-chart2");
+
+            // Chart Options
+            var chartOptions = {
+                // Elements options apply to all of the options unless overridden in a dataset
+                // In this case, we are setting the border of each bar to be 2px wide and green
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: 'rgb(0, 255, 0)',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scaleShowVerticalLines: false,
+                responsiveAnimationDuration: 500,
+                legend: {
+                    position: 'top',
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            color: "#f3f3f3",
+                            drawTicks: false,
+                        },
+                        scaleLabel: {
+                            display: true,
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        gridLines: {
+                            color: "#f3f3f3",
+                            drawTicks: false,
+                        },
+                        scaleLabel: {
+                            display: true,
+                        }
+                    }]
+                }
+            };
+
+            // Get chart labels and data
+            var labels = response.map(function (e) {
+                return e.group;
+            });
+            var data = response.map(function (e) {
+                return e.sum;
+            });
+            var point = response.map(function (e) {
+                return e.point;
+            });
+
+            // Chart Data
+            var chartData = {
+                labels: labels,
+                datasets: [{
                         label: "Point",
                         data: point,
                         backgroundColor: "rgba(102, 110, 232, 0.8)",
@@ -213,7 +317,6 @@
     });
 </script>
 
-
 <table hidden id="tblCustomers" class="table" cellpadding="0" cellspacing="0">
     <tr>
         <th>Group</th>
@@ -221,13 +324,8 @@
         <th>Point</th>
     </tr>
     @Html.Action("List_Group_Semester", "ProjectParticipants", new { project_id = project_id, semester_id = semester_id, action = 1 })
-
-   
-
-
-
 </table>
 <br />
-<input type="submit" id="btnExport" value="Export" />
-
+@*<input type="submit" id="btnExport" value="Export" />
+*@
 

@@ -52,7 +52,7 @@ namespace MeetingVL.Controllers
 
             return View(member.ToList());
         }
-        public ActionResult List_Group(int project_id, string keyword)
+        public ActionResult List_Group(int project_id, string keyword, int? action)
         {
 
             if (Session["Keyword_Group"] != null)
@@ -77,8 +77,16 @@ namespace MeetingVL.Controllers
                 || b.User.Name.ToLower().Contains(keyword.ToLower().Trim()));
             }
             TempData["project_id"] = project_id;
+            TempData["action"] = action;
 
             return View(links.ToList());
+        }
+        public ActionResult Count_submit(int project_id, int group_id)
+        {
+            var count = db.SessionReports.Include(s => s.Project)
+                       .Where(p => p.Project_ID == project_id).Where(s => s.State != "Deleted"
+                       && s.MeetingMinutes.Where(c => c.Group_ID == group_id && c.State != "Deleted").Count() > 0);
+            return View(count.ToList());
         }
 
         [HttpPost]

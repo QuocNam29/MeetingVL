@@ -124,7 +124,7 @@ namespace MeetingVL.Controllers
             
             return View(links.ToList());
         }
-        public ActionResult List_Submit_SessionReport(int project_id,  int  Action)
+        public ActionResult List_Submit_SessionReport(int project_id,  int Action)
         {
             string ID_User = Session["ID_User"].ToString();
             var check_group = db.ProjectParticipants.Where(g => g.Project_ID == project_id && g.User_ID == ID_User).FirstOrDefault();
@@ -134,8 +134,7 @@ namespace MeetingVL.Controllers
             if (Action == 1)
             {
                 links = links.Where(s => s.State != "Deleted"
-                       && s.MeetingMinutes.Where(c => c.Group_ID == check_group.Group_ID && c.State != "Deleted").Count() > 0);
-
+                       && s.MeetingMinutes.Where(c => c.Group_ID == check_group.Group_ID && c.State != "Deleted").Count() > 0);              
             }
             else
             {

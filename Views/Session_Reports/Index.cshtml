@@ -88,6 +88,10 @@
                                         <div class="card">
                                             <div class="card-header">
                                                 <div class="card-title-wrap bar-primary">
+                                                    <a class="btn btn-social btn-round btn-min-width mr-2 mb-2 btn-Download" id="btnExport">
+                                                        <span class="ft ft-download"></span> Export Excel
+
+                                                    </a>
                                                     <h4 class="card-title">Meeting minutes statistics</h4>
                                                 </div>
                                             </div>
@@ -108,7 +112,13 @@
 
     </div>
 </section>
-
+<table hidden id="tblCustomers" class="table" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>Group</th>
+        <th>Count</th>
+    </tr>
+    @Html.Action("List_Group", "ProjectParticipants", new { project_id = project_id , action = 1 })
+</table>
 
 <!-- Modal Bootstrap -->
 <div class="modal fade text-left" id="myBootstrap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">

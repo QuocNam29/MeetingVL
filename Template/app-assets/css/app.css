@@ -54073,7 +54073,9 @@ input[type='checkbox'].switch, input[type='radio'].switch {
 #column-chart {
     height: 400px !important;
 }
-
+#column-chart2 {
+    height: 400px !important;
+}
 .dropdown-with-item {
     border-bottom: 1px solid #ccc;
 }
