@@ -160,9 +160,9 @@ namespace MeetingVL.Controllers
             }
             else
             {
-                if (Session["avatar"] != null)
+                if (Session["Avt"] != null)
                 {
-                    user.Avt = Session["avatar"].ToString();
+                    user.Avt = Session["Avt"].ToString();
                 }
                 else
                 {

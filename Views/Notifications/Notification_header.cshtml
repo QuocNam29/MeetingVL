@@ -7,7 +7,7 @@
 
 <li class="dropdown nav-item mt-1">
     <a id="dropdownBasic2" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle">
-        <i class="ft-bell blue-grey darken-4"></i><span class="notification badge badge-pill badge-danger">@Model.Where(m => m.status == "New").Count()</span>
+        <i class="ft-bell blue-grey darken-4"></i><span class="notification badge badge-pill badge-danger">@Model.Where(m => m.status != "Seen").Count()</span>
         <p class="d-none">Notifications</p>
     </a>
     <div class="notification-dropdown dropdown-menu dropdown-menu-right">

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
 }
 
-<<section id="grid-option">
+<section id="grid-option">
     <div class="row justify-content-md-center">
         <div class="col-12">
             <div class="card">
@@ -14,83 +14,66 @@
                     </div>
                 </div>
 
-                <div class="card-block text-white">
-                    <div class="col-12">
-                        <div style="background-color: #ffffff " class="card">
-                            <div class="card-body">
-                                <div class="media align-items-stretch">
-                                    
-                                    <div class="py-0 px-0 media-body">
-                                        <a href="#" class="dropdown-item noti-container py-2">
-                                            <i style="color: #ff0000" class="fa fa-trophy float-left d-block font-medium-2 mt-1  mr-2"></i>
-                                            <span class="noti-wrapper">
-                                                <h4 style="color: #F44336" class="noti-title line-height-1 d-block text-bold-400 "> Point : 10 </h4>
-                                            </span>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-block text-white">
-                    <div class="col-12">
-                        <div style="background-color: #ffffff " class="card">
-                            <div class="card-body">
-                                <div class="media align-items-stretch">
-                                   
-                                    <div class="py-0 px-0 media-body">
-                                        <a href="#" class="dropdown-item noti-container py-2">
-                                            <i style="color: #1E9FF2" class="fa fa-commenting-o float-left d-block font-medium-4 mt-4 mr-3"></i>
-                                            <h4 style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 ">Comment</h4>
-                                            <p class="text-black-50"><b>Lý Thị Huyền Châu : </b>Nhóm làm rất tốt. </p>
-                                        </a>
+                @foreach (var item in Model)
+                {
+                    if (item.Comment_ID != null)
+                    {
+                        <div class="card-block text-white">
+                            <div class="col-12">
+                                <div class="card card_with-chat">
+                                    <div class="card-body">
+                                        <div class="py-0 px-0 media-body">
+                                            <a href="@Url.Action("Details", "Evaluates", new { id = item.Comment.Evalute_ID, notification_id = item.ID})" class="dropdown-item noti-container py-2 dropdown_wrap-chat">
+                                                <i style="color: #1E9FF2" class="fa fa-commenting-o float-left d-block font-medium-4 mr-2"></i>
+                                                <h4 style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 ">Comment</h4>
+                                                <p class="chat_with-name">
+                                                    @item.Comment.User.Email
+                                                    <span class="chat_with-content">@item.Comment.Comment1</span>
+                                                </p>
+                                                @if (item.status != "Seen")
+                                                {
+                                                    <div class="dropdown-item-new-chat">
+                                                        <p class="dropdown-item-new-content">New</p>
+                                                    </div>
+                                                }
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="card-block text-white">
-                    <div class="col-12">
-                        <div style="background-color: #ffffff " class="card">
-                            <div class="card-body">
-                                <div class="media align-items-stretch">
-                                    
-                                    <div class="py-0 px-0 media-body">
-                                        <a href="#" class="dropdown-item noti-container py-2">
-                                            <i style="color: #1E9FF2" class="fa fa-commenting-o float-left d-block font-medium-4 mt-4 mr-3"></i>
-                                            <h4 style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 ">Comment</h4>
-                                            <p class="text-black-50"><b>cong.197pm21898@vanlanguni.vn : </b>Dạ em cảm ơn cô ạ ! </p>
-                                        </a>
+                    }
+                    if (item.Evalute_ID != null)
+                    {
+                        <div class="card-block text-white">
+                            <div class="col-12">
+                                <div class="card card_with-chat">
+                                    <div class="card-body">
+                                        <div class="media align-items-stretch">
+                                            <div class="py-0 px-0 media-body">
+                                                <a  href="@Url.Action("Details", "Evaluates", new { id = item.Comment.Evalute_ID})" class="dropdown-item noti-container py-2">
+                                                    <i class="fa fa-file-text-o font float-left d-block font-medium-4 mr-2 warning"></i>
+                                                    <h4 style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 warning">Review</h4>
+                                                    <p class="chat_with-name chat_with-noti">@item.Evaluate.User_ID đã gửi Review cho nhóm bạn</p>
+                                                    @if (item.status != "Seen")
+                                                    {
+                                                        <div class="dropdown-item-new-chat">
+                                                            <p class="dropdown-item-new-content">New</p>
+                                                        </div>
+                                                    }
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    }
+                }
 
-                <div class="card-block text-white">
-                    <div class="col-12">
-                        <div style="background-color: #ffffff " class="card">
-                            <div class="card-body">
-                                <div class="media align-items-stretch">
-                                   
-                                    <div class="py-0 px-0 media-body">
-                                        <a href="#" class="dropdown-item noti-container py-2">
-                                            <i style="color: #1E9FF2" class="fa fa-file-text-o font float-left d-block font-medium-4 mt-4 mr-3"></i>
-                                            <h4 style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 ">Review</h4>
-                                            <p class="text-italic"><b>Lý Thị Huyền Châu đã gửi Review cho nhóm bạn </b></p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
+            </div>
+        </div>
+    </div>
 
 </section>

@@ -54101,6 +54101,7 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     margin: 0;
     color: var(--green);
     font-weight: 500;
+    font-size: 18px;
 }
 
 @keyframes slideInUp {
@@ -54201,4 +54202,41 @@ input[type='checkbox'].switch, input[type='radio'].switch {
 
 .media-body-title {
     padding-top: 6px;
+}
+.card .card_with-chat {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.noti-title {
+    margin: 0;
+}
+
+.dropdown-with-item {
+    display: flex;
+    align-items: center;
+}
+
+.chat_with-name {
+    padding-top: 12px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.chat_with-content {
+    font-weight: 400;
+}
+
+.chat_with-noti {
+    font-style: italic;
+}
+
+.dropdown-item-new-chat {
+    position: absolute;
+    top: 13%;
+    left: 20%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: slideInUp 0.9s infinite linear;
 }
