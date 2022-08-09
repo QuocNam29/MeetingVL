@@ -33,11 +33,16 @@ namespace MeetingVL.Controllers
             }
         }
         // GET: MeetingMinutes
-        public ActionResult Index(int session_id, string keyword)
+        public ActionResult Index(int session_id, string keyword, int? group_id)
         {
             var links = from l in db.MeetingMinutes.Include(m => m.User)
                         .Where(m => m.SessionReport_ID == session_id && m.State != "Deleted").OrderBy(m => m.Group.Name)
                         select l;
+            if (group_id != null)
+            {
+                links = links.Where(m => m.Group_ID == group_id);
+                TempData["action"] = 1;
+            }
             if (!string.IsNullOrEmpty(keyword))
             {
                 links = links.Where(b => b.Group.Name.ToLower().Contains(keyword.ToLower().Trim())

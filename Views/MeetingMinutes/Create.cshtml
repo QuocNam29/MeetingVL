@@ -134,11 +134,9 @@
                          
 
                                 <div class="form-actions right">
-                                    <a href="@Url.Action("Index", "MeetingMinutes", new { session_id = session_id })">
-                                        <button type="button" class="btn btn-danger mr-1">
+                                        <button type="button" class="btn btn-danger mr-1"  onclick="comeback()">
                                             <i class="icon-trash"></i> Cancel
                                         </button>
-                                    </a>
                                     <button type="submit" class="btn btn-success">
                                         <i class="icon-note"></i> Save
                                     </button>
@@ -150,3 +148,8 @@
         </div>
     </div>
 </div>
+<script>
+    function comeback() {
+        history.back();
+    }
+</script>

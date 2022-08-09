@@ -13,6 +13,7 @@
     int category_id = int.Parse(TempData["category_id"].ToString());
     string category_Name = TempData["category_Name"].ToString();
     string Role = TempData["roles_Project"].ToString();
+    int group_id = int.Parse(TempData["group_id"].ToString());
 }
 
 <section id="minimal-statistics">
@@ -68,8 +69,8 @@
                                     </div>
                                 </div>
                                 <div class="py-2 px-2 media-body">
-                                    <a href="@Url.Action("Index","MeetingMinutes", new { session_id = item.ID})"></a>
-                                    <a href="@Url.Action("Index","MeetingMinutes", new { session_id = item.ID})"><h6 class="info text-bold-500">@item.Name</h6></a>
+                                    <a href="@Url.Action("Index","MeetingMinutes", new { session_id = item.ID, group_id = group_id})"></a>
+                                    <a href="@Url.Action("Index","MeetingMinutes", new { session_id = item.ID, group_id = group_id})"><h6 class="info text-bold-500">@item.Name</h6></a>
                                     <p class="courses-time font-small-3">
                                         <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
                                         <span>-</span>
@@ -103,7 +104,7 @@
                                 </div>
                                 <div class="py-2 px-2 media-body">
                                     <a href="taskboard.html"></a>
-                                    <a href="@Url.Action("Index","MeetingMinutes", new { session_id = item.ID})"><h6 class="info text-bold-500">@item.Name</h6></a>
+                                    <a href="@Url.Action("Index","MeetingMinutes", new { session_id = item.ID, group_id = group_id})"><h6 class="info text-bold-500">@item.Name</h6></a>
                                     <p class="courses-time font-small-3">
                                         <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
                                         <span>-</span>
@@ -136,7 +137,7 @@
                                 </div>
                                 <div class="py-2 px-2 media-body">
                                     <a href="taskboard.html"></a>
-                                    <a href="@Url.Action("Index","MeetingMinutes", new { session_id = item.ID})"><h6 class="info text-bold-500">@item.Name</h6></a>
+                                    <a href="@Url.Action("Index","MeetingMinutes", new { session_id = item.ID, group_id = group_id})"><h6 class="info text-bold-500">@item.Name</h6></a>
                                     <p class="courses-time font-small-3">
                                         <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
                                         <span>-</span>
@@ -171,7 +172,7 @@
                                 </div>
                                 <div class="py-2 px-2 media-body">
                                     <a href="taskboard.html"></a>
-                                    <a href="@Url.Action("Index","MeetingMinutes", new { session_id = item.ID})"><h6 class="info text-bold-500">@item.Name</h6></a>
+                                    <a href="@Url.Action("Index","MeetingMinutes", new { session_id = item.ID, group_id = group_id})"><h6 class="info text-bold-500">@item.Name</h6></a>
                                     <p class="courses-time font-small-3">
                                         <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Date_Start)</span>
                                         <span>-</span>

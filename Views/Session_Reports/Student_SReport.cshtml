@@ -62,7 +62,7 @@
                         </ul>
                         <div class="tab-content px-1 pt-1">
                             <div class="tab-pane @Session["List_SessionReport"].ToString()" id="dropdown30" role="tabpanel" aria-labelledby="dropdown31-tab" aria-expanded="false">
-                                @Html.Action("List_SessionReport", "Session_Reports", new { project_id = project_id })
+                                @Html.Action("List_Submit_SessionReport", "Session_Reports", new { project_id = project_id })
                             </div>
                             <div class="tab-pane" id="dropdown31" role="tabpanel" aria-labelledby="dropdown31-tab" aria-expanded="false">
                                 @Html.Action("List_Submit_SessionReport", "Session_Reports", new { project_id = project_id, Action = 1 })

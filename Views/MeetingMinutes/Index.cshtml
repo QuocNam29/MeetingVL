@@ -22,22 +22,43 @@
     }
     string ID_User = Session["ID_User"].ToString();
     string category_Name = TempData["category_Name"].ToString();
+    int action = 0;
+    if (TempData["action"] != null)
+    {
+        action  = int.Parse(TempData["action"].ToString());
+    }
 }
 
 
 <div class="row">
-    <div class="col-sm-12">
-        <ul class="header-controls-list">
-            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Categories")">Category</a></li>
-            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
-            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Projects", new {category_id = category_id })">@category_Name</a></li>
-            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
-            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Session_Reports", new {project_id = project_id, active = 1 })">@project_Name</a></li>
-            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
-            <li class="header-controls-item text-bold-400">@session_Name</li>
+    @if (action != 1)
+    {
+        <div class="col-sm-12">
+            <ul class="header-controls-list">
+                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Categories")">Category</a></li>
+                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Projects", new {category_id = category_id })">@category_Name</a></li>
+                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Session_Reports", new {project_id = project_id, active = 1 })">@project_Name</a></li>
+                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+                <li class="header-controls-item text-bold-400">@session_Name</li>
 
-        </ul>
-    </div>
+            </ul>
+        </div>
+    }
+    else
+    {
+        <div class="col-sm-12">
+            <ul class="header-controls-list">
+                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "ProjectParticipants")">Project</a></li>
+                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Student_SReport","Session_Reports",new { project_id = project_id, active = 1})">@project_Name</a></li>
+                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+                <li class="header-controls-item text-bold-400">@session_Name</li>
+            </ul>
+        </div>
+    }
+
     <div class="col-12 mt-3 mb-1 header-content-group">
         <h2 class="content-header col-10">@session_Name</h2>
         <a href="@Url.Action("Create", "MeetingMinutes", new { session_id = session_id })">
