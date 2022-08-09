@@ -11,11 +11,14 @@ namespace MeetingVL.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Session_Semester
     {
         public int ID { get; set; }
+        [Required(ErrorMessage = "No SessionReport_ID yet!")]
         public int SessionReport_ID { get; set; }
+        [Required(ErrorMessage = "No Semester_ID yet!")]
         public int Semester_ID { get; set; }
     
         public virtual Semester Semester { get; set; }

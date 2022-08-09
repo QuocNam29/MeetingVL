@@ -11,7 +11,8 @@ namespace MeetingVL.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SessionReport
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,9 +24,12 @@ namespace MeetingVL.Models
     
         public int ID { get; set; }
         public int Project_ID { get; set; }
+        [Required(ErrorMessage = "You have not entered the name SessionReport")]
+        [StringLength(100, ErrorMessage = "Name length must be between 1 and 100.", MinimumLength = 1)]
         public string Name { get; set; }
         public Nullable<System.DateTime> Date_Start { get; set; }
         public Nullable<System.DateTime> Date_End { get; set; }
+        [StringLength(50, ErrorMessage = "State length must be between 1 and 50.", MinimumLength = 1)]
         public string State { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

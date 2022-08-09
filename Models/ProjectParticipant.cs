@@ -11,13 +11,15 @@ namespace MeetingVL.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ProjectParticipant
     {
         public int ID { get; set; }
         public string User_ID { get; set; }
         public int Project_ID { get; set; }
         public Nullable<int> Group_ID { get; set; }
+        [StringLength(36, ErrorMessage = "Role length must be between 1 and 36.", MinimumLength = 1)]
         public string Role { get; set; }
     
         public virtual Group Group { get; set; }

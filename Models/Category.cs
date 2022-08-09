@@ -11,7 +11,8 @@ namespace MeetingVL.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,10 @@ namespace MeetingVL.Models
         }
     
         public int ID { get; set; }
+        [Required(ErrorMessage = "You have not entered the name category")]
+        [StringLength(100, ErrorMessage = "Name length must be between 1 and 100.", MinimumLength = 1)]
         public string Name { get; set; }
+        [StringLength(50, ErrorMessage = "State length must be between 1 and 50.", MinimumLength = 1)]
         public string State { get; set; }
         public string ID_User { get; set; }
     

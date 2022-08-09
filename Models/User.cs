@@ -11,7 +11,8 @@ namespace MeetingVL.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,14 +27,21 @@ namespace MeetingVL.Models
             this.ProjectParticipants = new HashSet<ProjectParticipant>();
             this.Semesters = new HashSet<Semester>();
         }
-    
+        [Required(ErrorMessage = "You have not entered the Email")]
+        [StringLength(250, ErrorMessage = "Email length must be between 1 and 250.", MinimumLength = 1)]
         public string Email { get; set; }
+        [StringLength(250, ErrorMessage = "ID_VanLang length must be between 1 and 250.", MinimumLength = 1)]
         public string ID_VanLang { get; set; }
+        [StringLength(100, ErrorMessage = "Name length must be between 1 and 100.", MinimumLength = 1)]
         public string Name { get; set; }
+        [StringLength(36, ErrorMessage = "Role length must be between 1 and 36.", MinimumLength = 1)]
         public string Role { get; set; }
+        [StringLength(250, ErrorMessage = "Token length must be between 1 and 250.", MinimumLength = 1)]
         public string Token { get; set; }
         public Nullable<System.DateTime> Last_Access { get; set; }
+        [StringLength(100, ErrorMessage = "Department length must be between 1 and 100.", MinimumLength = 1)]
         public string Department { get; set; }
+        [StringLength(100, ErrorMessage = "Majors length must be between 1 and 100.", MinimumLength = 1)]
         public string Majors { get; set; }
         public Nullable<bool> State { get; set; }
         public string Avt { get; set; }

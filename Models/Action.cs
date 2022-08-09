@@ -11,13 +11,18 @@ namespace MeetingVL.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Action
     {
         public int ID { get; set; }
+        [Required(ErrorMessage = "No user_id yet!")]
         public string User_ID { get; set; }
+        [Required(ErrorMessage = "No meeting_id yet!")]
         public int Meeting_ID { get; set; }
+        [Required(ErrorMessage = "You have not entered the action content")]
         public string Work { get; set; }
+        [Required(ErrorMessage = "you haven't set a deadline for the action")]
         public System.DateTime Deadline { get; set; }
         public string Description { get; set; }
     

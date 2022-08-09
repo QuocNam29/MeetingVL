@@ -11,7 +11,8 @@ namespace MeetingVL.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Evaluate
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,13 +23,18 @@ namespace MeetingVL.Models
         }
     
         public int ID { get; set; }
+        [Required(ErrorMessage = "No user_id yet!")]
         public string User_ID { get; set; }
+        [Required(ErrorMessage = "No Group_id yet!")]
         public int Group_ID { get; set; }
         public Nullable<int> Semester_ID { get; set; }
+        [StringLength(200, ErrorMessage = "State length must be between 1 and 100.", MinimumLength = 1)]
         public string State { get; set; }
         public string Review { get; set; }
         public string Comment { get; set; }
+        [StringLength(50, ErrorMessage = "State length must be between 1 and 50.", MinimumLength = 1)]
         public string Status { get; set; }
+        [Required(ErrorMessage = "No point yet!")]
         public Nullable<int> Point { get; set; }
         public Nullable<System.DateTime> Time { get; set; }
     
