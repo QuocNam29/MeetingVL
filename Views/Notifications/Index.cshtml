@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     }
-                    if (item.Evalute_ID != null)
+                   else if (item.Evalute_ID != null)
                     {
                         <div class="card-block text-white">
                             <div class="col-12">
@@ -51,7 +51,7 @@
                                     <div class="card-body">
                                         <div class="media align-items-stretch">
                                             <div class="py-0 px-0 media-body">
-                                                <a  href="@Url.Action("Details", "Evaluates", new { id = item.Comment.Evalute_ID})" class="dropdown-item noti-container py-2">
+                                                <a  href="@Url.Action("Details", "Evaluates", new { id = item.Evalute_ID})" class="dropdown-item noti-container py-2 dropdown_wrap-chat">
                                                     <i class="fa fa-file-text-o font float-left d-block font-medium-4 mr-2 warning"></i>
                                                     <h4 style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 warning">Review</h4>
                                                     <p class="chat_with-name chat_with-noti">@item.Evaluate.User_ID đã gửi Review cho nhóm bạn</p>
