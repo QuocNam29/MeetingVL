@@ -127,7 +127,15 @@
                 </a>
 
                 <span class="primary display-inline-block pt-2">@item.Time</span>
-                <img src="app-assets/img/portrait/small/avatar-s-3.jpg" class="rounded-circle width-50 mr-2 float-right" alt="user image">
+                @if (item.User.Avt != null)
+                {
+                    <img src="@Url.Content(item.User.Avt)" class="rounded-circle width-50 mr-2 float-right" alt="user image">
+
+                }
+                else
+                {
+                    <img src="~/Template/app-assets/img/user.png" class="rounded-circle width-50 mr-2 float-right" alt="user image">
+                }
             </div>
         </div>
     }

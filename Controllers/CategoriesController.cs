@@ -20,11 +20,11 @@ namespace MeetingVL.Controllers
         // GET: Categories
         public ActionResult Index(string keyword)
         {
-            Session["ID_User"] = "nam.197pm33932@vanlanguni.vn";
-            Session["Role"] = "Admin";
+            Session["ID_User"] = "cong.197pm21898@vanlanguni.vn";
            
             string ID_User = Session["ID_User"].ToString();
             User user = db.Users.Find(ID_User);
+            Session["Role"] = user.Role;
             Session["Avt"] = user.Avt;
             var links = from l in db.Categories.Where(c => c.ID_User == ID_User && c.State != "Deleted")
                         select l;
