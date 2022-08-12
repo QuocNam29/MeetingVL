@@ -13,6 +13,8 @@ using Microsoft.Owin.Security.VanLang;
 using System.Net.Mail;
 using System.Web.Security;
 using System.Data.Entity;
+using Microsoft.Owin.Security.OpenIdConnect;
+using Microsoft.Owin.Security.Cookies;
 
 namespace MeetingVL.Controllers
 {
@@ -94,6 +96,34 @@ namespace MeetingVL.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+        }
+
+        public ActionResult SignIn()
+        {
+            
+            Session["ID_User"] = User.Identity.Name;
+
+            return RedirectToAction("Index", "Categories");
+
+        }
+
+        public ActionResult SignOut()
+        {
+            Request.GetOwinContext().Authentication.SignOut();
+            Request.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie);
+            this.HttpContext.GetOwinContext().Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+
+            return RedirectToAction("Login", "Account");
+        }
+
+        public ActionResult SignOutCallback()
+        {
+            if (Request.IsAuthenticated)
+            {
+                // Redirect to home page if the user is authenticated.
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
         }
 
         //
