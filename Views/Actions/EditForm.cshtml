@@ -118,7 +118,7 @@
                         <div class="modal-footer">
                             @using (Html.BeginForm("Delete", "Actions", new { id = item.ID, meeting_id = item.Meeting_ID, group_id = group_id }))
                             {
-                                @Html.AntiForgeryToken()
+                                
                                 <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="submit" class="btn btn-outline-primary">Yes</button>
                             }

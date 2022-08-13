@@ -228,7 +228,7 @@
                                                                 @using (Html.BeginForm("Delete", "ProjectParticipants", new { id = item.ID }))
                                                                 {
                                                                     @Html.Hidden("project_id", project_id)
-                                                                    @Html.AntiForgeryToken()
+                                                                    
                                                                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                                                     <button type="submit" class="btn btn-outline-primary">Yes</button>
                                                                 }

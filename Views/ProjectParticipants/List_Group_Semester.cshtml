@@ -64,7 +64,7 @@ else
                                 </div>
                                 @using (Html.BeginForm("Create", "Evaluates", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
-                                    @Html.AntiForgeryToken()
+                                    
                                     @Html.Hidden("project_id", project_id)
                                     @Html.Hidden("group_id", item.Group_ID)
                                     @Html.Hidden("semester_id", semester_id)

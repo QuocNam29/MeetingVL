@@ -132,7 +132,7 @@
             </div>
             @using (Html.BeginForm("Create", "Session_Reports"))
             {
-                @Html.AntiForgeryToken()
+                
                 @Html.Hidden("project_id", project_id)
                 @Html.Hidden("option", 1)
                 @Html.Hidden("cycles", 1)
@@ -199,7 +199,7 @@
                         <div class="px-3">
                             @using (Html.BeginForm("Create", "Session_Reports"))
                             {
-                                @Html.AntiForgeryToken()
+                                
                                 @Html.Hidden("option", 2)
                                 @Html.Hidden("project_id", project_id)
                                 <form class="form">

@@ -19,7 +19,7 @@
                 <div class="px-3">
                     @using (Html.BeginForm("Edit_form", "MeetingMinutes"))
                     {
-                        @Html.AntiForgeryToken()
+                        
                         @Html.Hidden("meeting_id", Model.ID)
                         @Html.Hidden("group_id", Model.Group_ID)
                         <form class="form form-horizontal">

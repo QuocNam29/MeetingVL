@@ -229,7 +229,6 @@
                         </div>
                         @using (Html.BeginForm("Edit", "Projects"))
                         {
-                            @Html.AntiForgeryToken()
                             @Html.Hidden("id", item.ID)
                             <form>
                                 <div class="modal-body">
@@ -314,7 +313,6 @@
                         <div class="modal-footer">
                             @using (Html.BeginForm("Delete", "Projects", new { id = item.ID }))
                             {
-                                @Html.AntiForgeryToken()
                                 <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="submit" class="btn btn-outline-primary">Yes</button>
                             }
@@ -340,7 +338,6 @@
             </div>
             @using (Html.BeginForm("Create", "Projects"))
             {
-                @Html.AntiForgeryToken()
                 @Html.Hidden("category_id", category_id)
                 <form>
                     <div class="modal-body">

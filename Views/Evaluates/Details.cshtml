@@ -91,7 +91,7 @@
                 {
                     using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        @Html.AntiForgeryToken()
+                        
                         @Html.Hidden("evalute_id", Model.ID);
                         <form>
                             <fieldset class="form-group position-relative has-icon-left mb-0">
@@ -120,7 +120,7 @@
             </div>
             @using (Html.BeginForm("Edit", "Evaluates", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                @Html.AntiForgeryToken()
+                
                 @Html.Hidden("id", Model.ID)
               
                 <div class="modal-body">
@@ -162,7 +162,7 @@
                 @using (Html.BeginForm("Delete", "Evaluates", new { id = Model.ID }))
                 {
                     
-                    @Html.AntiForgeryToken()
+                    
                     @Html.Hidden("semester_id", Model.Semester_ID)
                     <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-outline-primary">Yes</button>
