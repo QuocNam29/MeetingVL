@@ -99,11 +99,54 @@ namespace MeetingVL.Controllers
         }
 
         public ActionResult SignIn()
-        {
-            
+        {        
             Session["ID_User"] = User.Identity.Name;
+            string Email = User.Identity.Name;
+            string token = User.Identity.GetUserId();
+            var check = db.Users.FirstOrDefault(s => s.Email == Email && s.Token != null);
+            if (check == null)
+            {
+                if (string.IsNullOrEmpty(Email))
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+                else
+                {
+                    User user = db.Users.Where(c => c.Email == Email).FirstOrDefault();
+                    if (user != null)
+                    {
+                        user.ID_VanLang = token;
+                        user.Token = token;
+                        user.Last_Access = DateTime.Now;
+                        user.Role = "User";
+                        user.State = true;
+                        db.Entry(user).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        User user1 = new User();
+                        user1.Email = Email;
+                        user1.ID_VanLang = token;
+                        user1.Token = token;
+                        user1.Last_Access = DateTime.Now;
+                        user1.Role = "User";
+                        user1.State = true;
+                        db.Users.Add(user1);
+                        db.SaveChanges();
+                    }
+                    Session["notification"] = null;
+                    return RedirectToAction("Index", "Categories");
+                }
+            }
+            else
+            {
+                var account = db.Users.Where(acc => acc.Email.Equals(Email)).FirstOrDefault();
+                           
+                Session["notification"] = null;
+                return RedirectToAction("Index", "Categories");
+            }
 
-            return RedirectToAction("Index", "Categories");
 
         }
 

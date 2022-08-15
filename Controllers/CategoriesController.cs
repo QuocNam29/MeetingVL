@@ -11,7 +11,7 @@ using MeetingVL.Models;
 
 namespace MeetingVL.Controllers
 {
-    /*[LoginVerification]*/
+    [LoginVerification]
 
     public class CategoriesController : Controller
     {
@@ -19,10 +19,7 @@ namespace MeetingVL.Controllers
 
         // GET: Categories
         public ActionResult Index(string keyword)
-        {
-            Session["ID_User"] = User.Identity.Name;
-
-
+        {       
             string ID_User = Session["ID_User"].ToString();
             User user = db.Users.Find(ID_User);
             Session["Role"] = user.Role;

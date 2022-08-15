@@ -39,6 +39,7 @@ namespace MeetingVL
                         SecurityTokenValidated = (context) =>
                         {
                             string name = context.AuthenticationTicket.Identity.FindFirst("preferred_username").Value;
+                            string signedInUserID = context.AuthenticationTicket.Identity.FindFirst(ClaimTypes.NameIdentifier).Value;
                             context.AuthenticationTicket.Identity.AddClaim(new Claim(ClaimTypes.Name, name, string.Empty));
                             return System.Threading.Tasks.Task.FromResult(0);
                         }
