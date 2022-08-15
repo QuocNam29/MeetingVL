@@ -37,7 +37,7 @@ namespace MeetingVL.Controllers
             }
             return View(user);
         }
-        public ActionResult Profile()
+        public ActionResult MyProfile()
         {
             string ID_User = Session["ID_User"].ToString();
             User user = db.Users.Find(ID_User);
@@ -175,7 +175,7 @@ namespace MeetingVL.Controllers
 
             Session["Avt"] = user.Avt;
             Session["notification"] = "Successfully Edited Profile";
-            return RedirectToAction("Profile");
+            return RedirectToAction("MyProfile");
 
         }
 

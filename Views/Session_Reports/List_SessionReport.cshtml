@@ -13,6 +13,8 @@
     int category_id = int.Parse(TempData["category_id"].ToString());
     string category_Name = TempData["category_Name"].ToString();
     string Role = TempData["roles_Project"].ToString();
+    int count_group = int.Parse(TempData["count_group"].ToString());
+    
 }
 
 <section id="minimal-statistics">
@@ -66,6 +68,8 @@
             var myBootstrap = "bootstrap" + item.ID;
             no++;
             string apps = "apps" + item.ID;
+            int count_submit = item.MeetingMinutes.Where(m => m.State != "Deleted").GroupBy(p => p.Group_ID).Count();
+            
             <div class="col-xl-3 col-lg-6 col-12">
                 @if (no % 4 == 1)
                 {<div class="card">
@@ -85,7 +89,7 @@
                                         @if (Role == "Manager")
                                         {
                                             <div class="progress mt-1 mb-0" style="height: 7px;">
-                                                <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: @(count_submit*100/count_group)%" aria-valuenow="@count_submit" aria-valuemin="0" aria-valuemax="@count_group"></div>
                                             </div>
                                         }                                    
                                     </div>
@@ -124,7 +128,7 @@
                                 @if (Role == "Manager")
                                 {
                                     <div class="progress mt-1 mb-0" style="height: 7px;">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-danger" role="progressbar"style="width: @(count_submit*100/count_group)%" aria-valuenow="@count_submit" aria-valuemin="0" aria-valuemax="@count_group"></div>
                                     </div>
                                 }
                             </div>
@@ -163,7 +167,7 @@
                                 @if (Role == "Manager")
                                 {
                                     <div class="progress mt-1 mb-0" style="height: 7px;">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-success" role="progressbar"style="width: @(count_submit*100/count_group)%" aria-valuenow="@count_submit" aria-valuemin="0" aria-valuemax="@count_group"></div>
                                     </div>
                                 }
                             </div>
@@ -204,7 +208,7 @@
                                 @if (Role == "Manager")
                                 {
                                     <div class="progress mt-1 mb-0" style="height: 7px;">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: @(count_submit*100/count_group)%" aria-valuenow="@count_submit" aria-valuemin="0" aria-valuemax="@count_group"></div>
                                     </div>
                                 }
                             </div>
@@ -212,7 +216,8 @@
                     </a>
                 </div>
                 <div class="dropdown nav-item mt-1 actions">
-                    <a id="@apps"  data-toggle="dropdown" class="ft-more-vertical grey" aria-expanded="false"></a>                                <div class="dropdown-menu dropdown-menu-right">
+                    <a id="@apps"  data-toggle="dropdown" class="ft-more-vertical grey" aria-expanded="false"></a>                                
+                    <div class="dropdown-menu dropdown-menu-right">
                         <div class="arrow_box_right">
                             <a  class="dropdown-item py-1" data-toggle="modal" data-target="#@myBootstrap">
                                 <span> Edit</span>

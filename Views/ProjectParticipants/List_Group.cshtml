@@ -15,20 +15,26 @@
 {
     foreach (var item in Model)
     {
+        int count = 0;
         if (group != item.Group_ID)
         {
             group = item.Group.ID;
+            var count_submit = item.Project.SessionReports.Where(s => s.State != "Deleted"
+                     && s.MeetingMinutes.Where(c => c.Group_ID == group && c.State != "Deleted").Count() > 0);
+            if (count_submit != null)
+            {
+                count = count_submit.Count();
+            }
 <tr>
-    <td>@item.Group.Name</td>
-    @Html.Action("Count_submit", "ProjectParticipants", new { project_id = project_id, group_id = item.Group_ID })
+    <td>@item.Group.Name</td>  
+    <td>@count</td>
 
 </tr>
-            
             }
-        }
     }
- else
-    {
+}
+else
+{
             <div class="col-lg-12 col-md-6 col-sm-12">
                 @if (Session["ViewBag.FileStatus"] != null)
                 {
@@ -94,6 +100,7 @@
                         group = item.Group.ID;
                         string DeleteGroup = "DeleteGroup" + item.ID;
                         string EditGroup = "EditGroup" + item.ID;
+                        var List_Member_Group = Model.Where(p => p.Project_ID == project_id && p.Group_ID == group && p.User_ID != null);
                         <div class="col-lg-12 col-xl-4">
                             <div class="accordion-wrap-link">
                                 <div class="accordion-wrap">
@@ -119,7 +126,14 @@
                                         </li>
                                         <li class="accordion-item accordion-item-member">
                                             <p class="accordion-text">Member:</p>
-                                            @Html.Action("List_Member_Group", "ProjectParticipants", new { project_id = project_id, group_id = item.Group_ID })
+                                            @foreach (var member in List_Member_Group)
+                                            {
+                                                <span class="accordion-name-desc accordion-name-desc-member">
+                                                    <ion-icon name="person-circle-sharp" class="accordion-name-desc-member-icon"></ion-icon>
+                                                    @member.User.Email
+                                                </span>
+                                            }
+                                            @*@Html.Action("List_Member_Group", "ProjectParticipants", new { project_id = project_id, group_id = item.Group_ID })*@
                                         </li>
                                         @if (Role == "Manager")
                                         {

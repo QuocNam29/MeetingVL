@@ -25,7 +25,10 @@ namespace MeetingVL.Controllers
                 int project_id = semester.Project.ID;
                 TempData["project_id"] = project_id;
                 TempData["semester_id"] = semester_id;
-           
+            string ID_User = Session["ID_User"].ToString();
+            var Check = db.ProjectParticipants.Where(r => r.User_ID == ID_User && r.Project_ID == project_id).FirstOrDefault();
+            TempData["roles_Project"] = Check.Role;
+
 
             return View(session_Semester.ToList());
         }

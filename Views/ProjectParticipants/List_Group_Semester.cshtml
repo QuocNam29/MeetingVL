@@ -23,6 +23,7 @@
         if (group_id != item.Group_ID)
         {
             group_id = item.Group.ID;
+            
 <tr>
     <td>@item.Group.Name</td>
     @Html.Action("List_Submit_Semester", "Session_Reports", new { semester_id = semester_id, group_id = group_id, action = 1 })

@@ -19,11 +19,9 @@ namespace MeetingVL.Controllers
         // GET: Session_Reports
         public ActionResult Index(int project_id, string keyword, int active)
         {
-            var sessionReports = db.SessionReports.Include(s => s.Project).Where(p => p.Project_ID == project_id);
+            var sessionReports = db.SessionReports.Include(s => s.Project).Where(p => p.Project_ID == project_id && p.State != "Deleted").FirstOrDefault();
 
-            var links = from l in db.SessionReports.Include(s => s.Project)
-                        .Where(p => p.Project_ID == project_id).Where(s => s.State != "Deleted")
-                        select l;
+          
             if (active == 1)
             { 
                 Session["List_SessionReport"] = "active";
@@ -52,25 +50,6 @@ namespace MeetingVL.Controllers
                 Session["List_Group"] = "";
                 Session["List_Semester"] = "active";
             }
-           
-
-            if (!string.IsNullOrEmpty(keyword))
-            {
-                links = links.Where(b => b.Name.ToLower().Contains(keyword.ToLower().Trim()));
-                TempData["keyword"] = keyword;
-
-                Project project1 = db.Projects.Find(project_id);
-                TempData["project_id"] = project_id;
-                TempData["project_Name"] = project1.Name;
-                TempData["project_Description"] = project1.Description;
-                Category category1 = db.Categories.Find(project1.Category_ID);
-                TempData["category_id"] = category1.ID;
-                TempData["category_Name"] = category1.Name;
-
-               
-                return View(links.ToList());
-            }
-
             Project project = db.Projects.Find(project_id);
             TempData["project_id"] = project_id;
             TempData["project_Name"] = project.Name;
@@ -81,7 +60,7 @@ namespace MeetingVL.Controllers
 
            
 
-            return View(links.ToList());
+            return View(sessionReports);
         }
         public ActionResult List_SessionReport(int project_id, string keyword)
         {
@@ -95,21 +74,16 @@ namespace MeetingVL.Controllers
             {
             TempData["roles_Project"] = Check.Role;
             }
-          
+            int count_group = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
+                         .Where(p => p.Project_ID == project_id && p.Group_ID != null && p.Group.State != "Deleted").GroupBy(p=> p.Group_ID).Count();
+            TempData["count_group"] = count_group;
 
             if (!string.IsNullOrEmpty(keyword))
             {
                 links = links.Where(b => b.Name.ToLower().Contains(keyword.ToLower().Trim()));
                 TempData["keyword"] = keyword;
 
-                Project project1 = db.Projects.Find(project_id);
-                TempData["project_id"] = project_id;
-                TempData["project_Name"] = project1.Name;
-                TempData["project_Description"] = project1.Description;
-                Category category1 = db.Categories.Find(project1.Category_ID);
-                TempData["category_id"] = category1.ID;
-                TempData["category_Name"] = category1.Name;              
-                return View(links.ToList());
+              
             }
 
             Project project = db.Projects.Find(project_id);

@@ -1414,7 +1414,6 @@
     <Content Include="Views\Import_Student\Index.cshtml" />
     <Content Include="Views\ProjectParticipants\List_member.cshtml" />
     <Content Include="Views\ProjectParticipants\List_Group.cshtml" />
-    <Content Include="Views\ProjectParticipants\List_Member_Group.cshtml" />
     <Content Include="Views\MeetingMinutes\Create.cshtml" />
     <Content Include="Views\MeetingMinutes\Details.cshtml" />
     <Content Include="Views\MeetingMinutes\Edit.cshtml" />
@@ -1424,7 +1423,6 @@
     <Content Include="Views\Actions\FormCreate.cshtml" />
     <Content Include="Views\Actions\Index.cshtml" />
     <Content Include="Views\ProjectParticipants\List_Member_Meeting.cshtml" />
-    <Content Include="Views\ProjectParticipants\List_Group_formAdd.cshtml" />
     <Content Include="Views\Session_Reports\List_Submit_SessionReport.cshtml" />
     <Content Include="Views\Semesters\Index.cshtml" />
     <Content Include="Views\Session_Semester\Index.cshtml" />
@@ -1438,8 +1436,7 @@
     <Content Include="Views\Notifications\Index.cshtml" />
     <Content Include="Views\Notifications\Notification_header.cshtml" />
     <Content Include="Views\ProjectParticipants\List_Group_Statistics.cshtml" />
-    <Content Include="Views\Users\Profile.cshtml" />
-    <Content Include="Views\ProjectParticipants\Count_submit.cshtml" />
+    <Content Include="Views\Users\MyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
