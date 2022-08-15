@@ -30,25 +30,27 @@
                     <p class="form-name">Morality - Will - Creativity</p>
                     @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
                     <p class="form-desc">Login with VanLang account</p>
-                    @if (Request.IsAuthenticated)
-                    {
-                        <text>
+
+
+                    @*@if (Request.IsAuthenticated)
+                        {
+                            <text>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "UserProfile", routeValues: null, htmlAttributes: null)
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Sign out", "SignOut", "Account")
+                                    </li>
+                                </ul>
+                            </text>
+                        }
+                        else
+                        {
                             <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "UserProfile", routeValues: null, htmlAttributes: null)
-                                </li>
-                                <li>
-                                    @Html.ActionLink("Sign out", "SignOut", "Account")
-                                </li>
+                                <li>@Html.ActionLink("Sign in", "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
                             </ul>
-                        </text>
-                    }
-                    else
-                    {
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>@Html.ActionLink("Sign in", "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                        </ul>
-                    }
+                        }*@
                 </div>
             </div>
         </div>
@@ -60,3 +62,70 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<div>
+    <p style="font-weight:normal;text-align:justify;margin-top:0;margin-bottom:0;line-height:1.8;">
+        <span style="color: rgb(24, 26, 28); font-size: 20pt; font-family: Times New Roman , serif, EmojiFont; font-weight: bold; ">Review :</span>
+    </p>
+    <br aria-hidden="true">
+    <p style="font-weight:normal;text-align:justify;margin-top:0;margin-bottom:0;line-height:1.8;">
+        <span style=" font-size:13pt; font-family: Times New Roman , serif, EmojiFont ">Point :<b> 10</b></span>
+    </p>
+    <br aria-hidden="true">
+    <div class="x_copy-paste-block" itemprop="copy-paste-block">
+        <p>
+            <span style="font-size:13pt">
+                <span style="font-family: Times New Roman,serif">
+                    <span style="font-size:13pt">
+                        <span style="font-family: &quot,Times New Roman,serif">Nhận xét: </span>
+                    </span>
+                    <span style="font-family: &quot; Times New Romant;,serif">
+                    </span>
+                </span>
+            </span>
+        </p>
+        <ul>
+            <li style="margin-bottom:14px">
+                <span style="font-size:13pt">
+                    <span>
+                        <span style="font-family: Times New Roman,serif">
+                            <span style="font-size:13pt">
+                                <span style="font-family: &quot,Times New Roman,serif">Nhóm cần bổ sung:</span>
+                            </span>
+                            <span style="font-family: &quot,Times New Roman,serif"></span>
+                        </span>
+                    </span>
+                </span>
+                
+            </li>
+        </ul><p style="margin-bottom:13px"><span style="font-size:13pt"><span style="font-family: Times New Roman,serif"><span lang="VI" style="font-family: &quot,Times New Roman,serif"></span></span></span></p>
+    </div>
+   
+        <hr />
+    
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <td style="padding:8px 12px; color: rgb(24, 26, 28); font-size: 12pt; font-family: Times New Roman , serif, EmojiFont; font-weight: bold">
+                        Join on website Meeting VL :
+                        <a href="https://cntttest.vanlanguni.edu.vn:18081/SEP25Team13/" target="_blank" rel="noopener noreferrer" data-auth="NotApplicable" id="LPlnk238218" data-safelink="true" data-linkindex="0">
+                            View Review
+                        </a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>  
+        <hr />
+    <br />
+    <span style="font-size:10pt">
+        <span>
+            <span style="font-family: Times New Roman,serif">
+                <b><i><span style="font-family:quot,Times New Roman,serif">Đây là email tự động, Sinh viên vui lòng không phản hồi email này.</span></i></b><b><i><span style="font-family: &quot,Times New Roman,serif"></span></i></b>
+            </span>
+        </span>
+    </span>
+</div>
+

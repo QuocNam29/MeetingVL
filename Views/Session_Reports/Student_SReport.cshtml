@@ -56,9 +56,11 @@
                                 <a class="nav-link @Session["List_Group"].ToString()" id="base-tabX3" data-toggle="tab" aria-controls="tab3" href="#tab3">Group</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @Session["List_Semester"].ToString()" id="base-tabX3" data-toggle="tab" aria-controls="tab4" href="#tab4">Semester</a>
+                                <a class="nav-link @Session["List_Semester"].ToString()" id="base-tabX4" data-toggle="tab" aria-controls="tab4" href="#tab4">Semester</a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link" id="base-tabX5" data-toggle="tab" aria-controls="tab5" href="#tab5">Statistics</a>
+                            </li>
                         </ul>
                         <div class="tab-content px-1 pt-1">
                             <div class="tab-pane @Session["List_SessionReport"].ToString()" id="dropdown30" role="tabpanel" aria-labelledby="dropdown31-tab" aria-expanded="false">
@@ -76,8 +78,26 @@
                             <div class="tab-pane @Session["List_Group"].ToString()" id="tab3" aria-labelledby="base-tabX3">
                                 @Html.Action("List_Group", "ProjectParticipants", new { project_id = project_id })
                             </div>
-                            <div class="tab-pane @Session["List_Semester"].ToString()" id="tab4" aria-labelledby="base-tabX3">
+                            <div class="tab-pane @Session["List_Semester"].ToString()" id="tab4" aria-labelledby="base-tabX4">
                                 @Html.Action("Index", "Semesters", new { project_id = project_id })
+                            </div>
+                            <div class="tab-pane" id="tab5" aria-labelledby="base-tabX5">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="card-title-wrap bar-primary">
+                                                    <h4 class="card-title">Meeting minutes statistics</h4>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="card-block chartjs">
+                                                    <canvas id="column-chart-student" height="400"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,3 +107,98 @@
 
     </div>
 </section>
+<!--END-->
+<script src="~/Template/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
+<script src="~/Template/app-assets/vendors/js/chart.min.js"></script>
+
+<script type="text/javascript">
+
+    var project_id = @project_id;
+
+    $.ajax({
+        type: 'POST',
+        url: '@Url.Action("List_Group_Statistics", "ProjectParticipants")',
+        data: { 'project_id': project_id },
+        success: function (response) {
+            //Get the context of the Chart canvas element we want to select
+            var ctx = $("#column-chart-student");
+
+            // Chart Options
+            var chartOptions = {
+                // Elements options apply to all of the options unless overridden in a dataset
+                // In this case, we are setting the border of each bar to be 2px wide and green
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: 'rgb(0, 255, 0)',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scaleShowVerticalLines: false,
+                responsiveAnimationDuration: 500,
+                legend: {
+                    position: 'top',
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            color: "#f3f3f3",
+                            drawTicks: false,
+                        },
+                        scaleLabel: {
+                            display: true,
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        gridLines: {
+                            color: "#f3f3f3",
+                            drawTicks: false,
+                        },
+                        scaleLabel: {
+                            display: true,
+                        }
+                    }]
+                }
+            };
+
+            // Get chart labels and data
+            var labels = response.map(function (e) {
+                return e.group;
+            });
+            var data = response.map(function (e) {
+                return e.sum;
+            });
+
+            // Chart Data
+            var chartData = {
+                labels: labels,
+                datasets: [{
+                    label: "Meeting Minutes",
+                    data: data,
+                    backgroundColor: "rgba(255, 95, 32, 0.8)",
+                    borderColor: "transparent",
+                    pointBackgroundColor: 'rgba(148,159,177,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+                }]
+            };
+
+            var config = {
+                type: 'bar',
+
+                // Chart Options
+                options: chartOptions,
+
+                data: chartData
+            };
+
+            // Create the chart
+            var lineChart = new Chart(ctx, config);
+        }
+    });
+</script>
