@@ -40985,6 +40985,14 @@ body.chat-page .main-panel {
   height :    -moz-calc(100% - 85px);
   height :         calc(100% - 85px);
 }
+body.chat-page .main-panel-login {
+    min-height: -webkit-calc(100% - 85px);
+    min-height: -moz-calc(100% - 85px);
+    min-height: calc(100% - 85px);
+    height: -webkit-calc(100% - 85px);
+    height: -moz-calc(100% - 85px);
+    height: calc(100% - 85px);
+}
 
 .chat-application {
   overflow : hidden;
@@ -46274,6 +46282,9 @@ datetime .form-group {
 .wrapper.nav-collapsed .main-panel .main-content {
   padding-left : 60px;
 }
+    .wrapper.nav-collapsed .main-panel-login .main-content {
+        padding-left: 60px;
+    }
 .wrapper.nav-collapsed footer {
   padding-left : 60px;
 }
@@ -47046,6 +47057,24 @@ datetime .form-group {
        -o-transition : all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
           transition : all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
 }
+.main-panel-login {
+    position: relative;
+    z-index: 2;
+    float: right;
+    min-height: 100%;
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
+    -webkit-transform: translate3d(0px, 0, 0);
+    -moz-transform: translate3d(0px, 0, 0);
+    -o-transform: translate3d(0px, 0, 0);
+    -ms-transform: translate3d(0px, 0, 0);
+    transform: translate3d(0px, 0, 0);
+    -webkit-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -moz-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -o-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+}
 .main-panel .main-content {
   position : relative;
   min-height : -webkit-calc(100% - 123px);
@@ -47061,6 +47090,24 @@ datetime .form-group {
 }
 .main-panel > .navbar {
   margin-bottom : 0;
+}
+.main-panel-login .main-content {
+    position: relative;
+    min-height: -webkit-calc(100% - 123px);
+    min-height: -moz-calc(100% - 123px);
+    min-height: calc(100% - 123px);
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.main-panel-login div .footer {
+    border-top: 1px solid #E7E7E7;
+}
+
+.main-panel-login > .navbar {
+    margin-bottom: 0;
 }
 
 .bootstrap-navbar .navigation {
@@ -47080,6 +47127,9 @@ datetime .form-group {
   .main-panel .main-content {
     padding-left : 250px;
   }
+    .main-panel-login .main-content {
+        padding-left: 250px;
+    }
   .navbar .navbar-header {
     padding-left : 240px;
   }
@@ -47089,6 +47139,9 @@ datetime .form-group {
   .sidebar-sm .main-panel .main-content {
     padding-left : 220px;
   }
+    .sidebar-sm .main-panel-login .main-content {
+        padding-left: 220px;
+    }
   .sidebar-sm .navbar .navbar-header {
     padding-left : 210px;
   }
@@ -47101,6 +47154,9 @@ datetime .form-group {
   .sidebar-lg .main-panel .main-content {
     padding-left : 280px;
   }
+    .sidebar-lg .main-panel-login .main-content {
+        padding-left: 280px;
+    }
   .sidebar-lg .navbar .navbar-header {
     padding-left : 270px;
   }

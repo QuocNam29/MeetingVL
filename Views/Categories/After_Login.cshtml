@@ -1,0 +1,210 @@
+﻿@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Convex admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Convex admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Meeting VL</title>
+    <link rel="apple-touch-icon" sizes="60x60" href="~/Template/app-assets/img/ico/apple-icon-60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Template/app-assets/img/ico/apple-icon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Template/app-assets/img/ico/apple-icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Template/app-assets/img/ico/apple-icon-152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Template/app-assets/img/LogoVL.png">
+    <link rel="shortcut icon" type="image/png" href="~/Template/app-assets/img/LogoVL.png">
+
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900%7CMontserrat:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Template/app-assets/fonts/feather/style.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Template/app-assets/fonts/simple-line-icons/style.css">
+    <link rel="stylesheet" type="text/css" href="~/Template/app-assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Template/app-assets/vendors/css/prism.min.css">
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="~/Template/app-assets/css/app.css">
+
+  
+
+    <link href="~/Template/After_Login/sb-admin-2.min.css" rel="stylesheet" />
+
+</head>
+<body data-col="2-columns" class=" 2-columns ">
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <div class="wrapper">
+
+        <div data-active-color="white" data-background-color="aqua-marine" data-image="@Url.Content("~/Template/app-assets/img/sidebar-bg/02.jpg")" class="app-sidebar">
+            <div class="sidebar-header">
+                <div class="logo clearfix">
+                    <a href="index.html" class="logo-text float-left">
+                        <div class="logo-img"><img src="~/Template/app-assets/img/LogoVL.png" alt="Convex Logo" /></div><span class="text align-middle">VanLang</span>
+                    </a><a id="sidebarToggle" href="javascript:;" class="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="expanded" class="ft-disc toggle-icon"></i></a><a id="sidebarClose" href="javascript:;" class="nav-close d-block d-md-block d-lg-none d-xl-none"><i class="ft-circle"></i></a>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="nav-container">
+                    <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
+                        <li class="has-sub nav-item">
+                            <a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">Dashboard</span><span class="tag badge badge-pill badge-danger mt-1">2</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="dt-basic-initialization.html" class="menu-item">eCommerce</a>
+                                </li>
+                                <li>
+                                    <a href="dt-basic-initialization.html" class="menu-item">Analytics</a>
+                                </li>
+                            </ul>
+                        </li>
+                        @if (Session["Role"].ToString() == "Admin")
+                        {
+                            <li class=" nav-item">
+                                <a href="@Url.Action("Index","Users")"><i class="icon-users"></i><span data-i18n="" class="menu-title">Users</span></a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Categories")"><i class="icon-folder"></i><span data-i18n="" class="menu-title">Category</span></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "ProjectParticipants")"><i class="icon-notebook"></i><span data-i18n="" class="menu-title">My Project</span></a>
+                        </li>
+                        <li class=" nav-item">
+                            <a href="@Url.Action("MyProfile", "Users")"><i class="icon-user-following"></i><span data-i18n="" class="menu-title">My Profile</span></a>
+                        </li>
+                        <li class=" nav-item">
+                            <a href="@Url.Action("Index", "Notifications")"><i class="ft-bell white"></i><span data-i18n="" class="menu-title">Announcement</span></a>
+                        </li>
+
+                        <li class=" nav-item">
+                            <a href="@Url.Action("SignOut", "Account")"><i class="fa fa-sign-in"></i><span data-i18n="" class="menu-title">Logout</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-background"></div>
+        </div>
+
+        <div class="main-panel-login">
+            <div class="main-content">
+                <div class="content-wrapper-login">
+                    <div class="container-fluid-login">
+                        <div id="content-wrapper-home" class="d-flex flex-column">
+                            <video src="~/Template/After_Login/backgroundvideo.mp4" muted loop autoplay class="back-video " ></video>
+
+                            <div class="content">
+
+                                <div class="container-fluid-home">
+                                    <div class="content-home ">
+                                        <h2 >MEETING VL</h2>
+                                        <h1>XIN CHÀO</h1>
+                                        <h3>CHÚC BẠN MỘT NGÀY LÀM VIỆC TỐT LÀNH VÀ VUI VẺ !</h3>
+                                        <br />
+                                        <h5 class="date-time" id="current-time"></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!-- BEGIN VENDOR JS-->
+    <script src="~/Template/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/core/popper.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/core/bootstrap.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/prism.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/jquery.matchHeight-min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/screenfull.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/pace/pace.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="~/Template/app-assets/vendors/js/datatable/datatables.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/dataTables.buttons.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/buttons.flash.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/jszip.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/pdfmake.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/vfs_fonts.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/buttons.html5.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/datatable/buttons.print.min.js"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN CONVEX JS-->
+    <script src="~/Template/app-assets/js/app-sidebar.js"></script>
+    <script src="~/Template/app-assets/js/notification-sidebar.js"></script>
+    <!-- END CONVEX JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="~/Template/app-assets/js/data-tables/datatable-advanced.js"></script>
+    <script src="~/Template/app-assets/js/data-tables/datatable-basic.js"></script>
+    <script src="~/Template/app-assets/js/data-tables/datatable-api.js"></script>
+    <script src="~/Template/app-assets/js/components-modal.min.js"></script>
+
+    <script src="~/Template/app-assets/vendors/js/toastr.min.js"></script>
+    <script src="~/Template/app-assets/js/toastr.min.js"></script>
+    <!-- END PAGE LEVEL JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="~/Template/app-assets/vendors/js/tagging.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/prism.min.js"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="~/Template/app-assets/js/tagging.js"></script>
+    <!-- END PAGE LEVEL JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="~/Template/app-assets/vendors/js/katex.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/highlight.min.js"></script>
+    <script src="~/Template/app-assets/vendors/js/quill.min.js"></script>
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="~/Template/app-assets/js/quill.min.js"></script>
+    <!-- END PAGE LEVEL JS-->
+    <!-- END PAGE VENDOR JS-->
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+   
+    
+    @*<script src="~/Template/app-assets/js/chartjs.js"></script>*@
+   
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+</body>
+</html>
+
+
+
+<script>
+    var curDate = new Date();
+
+    // Ngày hiện tại
+    var curDay = curDate.getDate();
+
+    // Tháng hiện tại
+    var curMonth = curDate.getMonth() + 1;
+
+    // Năm hiện tại
+    var curYear = curDate.getFullYear();
+
+    var curTime = curDate.getHours() + ":" + curDate.getMinutes() + ":" + curDate.getSeconds();
+    // Gán vào thẻ HTML
+    document.getElementById('current-time').innerHTML = curTime + " ,Ngày " + curDay + " Tháng " + curMonth + " Năm " + curYear;
+</script>

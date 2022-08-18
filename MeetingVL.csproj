@@ -335,6 +335,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Template\After_Login\backgroundvideo.mp4" />
+    <Content Include="Template\After_Login\sb-admin-2.min.css" />
     <Content Include="Template\app-assets\css\app.css" />
     <Content Include="Template\app-assets\css\app.min.css" />
     <Content Include="Template\app-assets\data\datatables\ajax-child-rows.txt" />
@@ -1437,6 +1439,7 @@
     <Content Include="Views\Notifications\Notification_header.cshtml" />
     <Content Include="Views\ProjectParticipants\List_Group_Statistics.cshtml" />
     <Content Include="Views\Users\MyProfile.cshtml" />
+    <Content Include="Views\Categories\After_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

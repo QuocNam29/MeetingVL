@@ -17,9 +17,15 @@ namespace MeetingVL.Controllers
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
 
+        public ActionResult After_Login()
+        {
+           
+            return View();
+        }
         // GET: Categories
         public ActionResult Index(string keyword)
-        {       
+        {
+
             string ID_User = Session["ID_User"].ToString();
             User user = db.Users.Find(ID_User);
             Session["Role"] = user.Role;
@@ -39,21 +45,8 @@ namespace MeetingVL.Controllers
             return View(links.ToList());
         }
        
-        // GET: Categories/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
-        }
-
+       
+       
         // GET: Categories/Create
         public ActionResult Create(string Name)
         {
