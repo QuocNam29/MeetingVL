@@ -160,12 +160,9 @@ namespace MeetingVL.Controllers
 
         
         // GET: Projects/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+          
             Project project = db.Projects.Find(id);      
             project.State = "Deleted";
             db.Entry(project).State = EntityState.Modified;
