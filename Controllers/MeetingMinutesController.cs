@@ -93,9 +93,6 @@ namespace MeetingVL.Controllers
                 TempData["group_id"] = projectParticipant.Group_ID;
                 TempData["role"] = projectParticipant.Role;
             }
-           
-            
-
             return View(links.ToList());
         }
         public ActionResult List_Meeting_Semester(int session_id,int group_id)
@@ -185,7 +182,6 @@ namespace MeetingVL.Controllers
             return View();
         }
 
-        [ValidateAntiForgeryToken]
         public ActionResult Create_Meeting(DateTime meetingDate_start,DateTime meetingDate_end, 
             string location, int process, string stages, string content, string objectives,
              string issues, string NA, int session_id, int? group_id)

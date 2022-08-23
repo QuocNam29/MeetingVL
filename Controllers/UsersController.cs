@@ -37,6 +37,7 @@ namespace MeetingVL.Controllers
             }
             return View(user);
         }
+        [LoginVerification]
         public ActionResult MyProfile()
         {
             string ID_User = Session["ID_User"].ToString();
