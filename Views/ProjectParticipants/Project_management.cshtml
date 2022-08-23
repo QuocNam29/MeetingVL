@@ -1,0 +1,120 @@
+﻿@model IEnumerable<MeetingVL.Models.ProjectParticipant>
+
+@{
+    Layout = null;
+    int no = 0;
+    }
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        no++;
+        <div class="col-xl-3 col-lg-6 col-12">
+            @if (no % 4 == 1)
+            {
+                <div class="card bg-success">
+                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.Project.ID, active = 1 })" class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="row text-white">
+                                <div class="col-12 courses-wrap">
+                                    <h1>
+                                        <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
+                                    </h1>
+                                    <h4 class="courses-num font-medium-3 text-bold-400">@item.Project.Name</h4>
+                                    <p class="courses-time font-small-3">
+                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Project.Date_Start)</span>
+                                        <span>-</span>
+                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Project.Date_End)</span>
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </a>
+                </div>
+
+            }
+            else if (no % 4 == 2)
+            {
+
+                <div class="card bg-danger">
+                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.Project.ID, active = 1 })" class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="row text-white">
+                                <div class="col-12 courses-wrap">
+                                    <h1>
+                                        <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
+                                    </h1>
+                                    <h4 class="courses-num font-medium-3 text-bold-400">@item.Project.Name</h4>
+                                    <p class="courses-time font-small-3">
+                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Project.Date_Start)</span>
+                                        <span>-</span>
+                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Project.Date_End)</span>
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </a>
+                </div>
+
+            }
+            else if (no % 4 == 3)
+            {
+
+                <div class="card bg-info">
+                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.Project.ID, active = 1 })" class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="row text-white">
+                                <div class="col-12 courses-wrap">
+                                    <h1>
+                                        <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
+                                    </h1>
+                                    <h4 class="courses-num font-medium-3 text-bold-400">@item.Project.Name</h4>
+                                    <p class="courses-time font-small-3">
+                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Project.Date_Start)</span>
+                                        <span>-</span>
+                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Project.Date_End)</span>
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </a>
+                </div>
+
+            }
+            else if (no % 4 == 0)
+            {
+
+                <div class="card bg-warning">
+                    <a href="@Url.Action("Index","Session_Reports", new {project_id = item.Project.ID, active = 1 })" class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="row text-white">
+                                <div class="col-12 courses-wrap">
+                                    <h1>
+                                        <i class="fa fa-star-o background-round text-white p-2 font-medium-3"></i>
+                                    </h1>
+                                    <h4 class="courses-num font-medium-3 text-bold-400">@item.Project.Name</h4>
+                                    <p class="courses-time font-small-3">
+                                        <span class="time-start">@String.Format("{0:dd/MM/yyyy}", item.Project.Date_Start)</span>
+                                        <span>-</span>
+                                        <span class="time-end">@String.Format("{0:dd/MM/yyyy}", item.Project.Date_End)</span>
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </a>
+                </div>
+
+            }
+        </div>
+    }
+
+</div>

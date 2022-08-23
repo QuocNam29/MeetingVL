@@ -1440,6 +1440,7 @@
     <Content Include="Views\ProjectParticipants\List_Group_Statistics.cshtml" />
     <Content Include="Views\Users\MyProfile.cshtml" />
     <Content Include="Views\Categories\After_Login.cshtml" />
+    <Content Include="Views\ProjectParticipants\Project_management.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

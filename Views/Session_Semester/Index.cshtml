@@ -16,26 +16,26 @@
 }
 
 <section id="basic-tabs-components">
-    @*<div class="col-sm-12">
-            <ul class="header-controls-list">
-                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Categories")">Category</a></li>
-                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
-                <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Projects", new {category_id = category_id })">@category_Name</a></li>
-                <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
-                <li class="header-controls-item text-bold-400">@project_Name</li>
-
-            </ul>
-        </div>*@
+    <div class="col-sm-12">
+        <ul class="header-controls-list">
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Categories")">Category</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Projects", new {category_id = @Model.FirstOrDefault().Semester.Project.Category.ID })">@Model.FirstOrDefault().Semester.Project.Category.Name</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Session_Reports", new {project_id = @Model.FirstOrDefault().Semester.Project.ID, active = 4})">@Model.FirstOrDefault().Semester.Project.Name</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400">@Model.FirstOrDefault().Semester.Name</li>
+        </ul>
+        </div>
     <div class="row match-height">
         <div class="col-xl-12 col-lg-12">
             <div class="card">
-                @*<div class="card-header">
-                        <div class="card-title-wrap bar-success">
-                            <h4 class="card-title">@project_Name</h4>
-                            <p class="content-sub-header">@project_Description</p>
+                <div class="card-header">
+                        <div class="card-title-wrap bar-warning">
+                            <h4 class="card-title">Semester - @Model.FirstOrDefault().Semester.Name</h4>
 
                         </div>
-                    </div>*@
+                    </div>
                 <div class="card-body">
                     <div class="card-block">
                         <ul class="nav nav-tabs">
@@ -146,7 +146,7 @@
                                     <div class="col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <div class="card-title-wrap bar-primary">
+                                                <div class="card-title-wrap bar-warning">
                                                     <a class="btn btn-social btn-round btn-min-width mr-2 mb-2 btn-Download" data-toggle="modal" data-target="#ExportExcel">
                                                         <span class="ft ft-download"></span> Export Excel
 

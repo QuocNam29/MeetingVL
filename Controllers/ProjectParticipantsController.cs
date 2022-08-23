@@ -20,7 +20,6 @@ namespace MeetingVL.Controllers
         public ActionResult Index(string keyword)
         {
             string email = Session["ID_User"].ToString();
-            var projectParticipants = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.User_ID == email && p.Project.Category.ID_User != email).OrderBy(p => p.Group.Name);
 
             var links = from l in db.ProjectParticipants.Include(p => p.Project)
                         .Include(p => p.User).Where(p => p.User_ID == email && p.Role == "Student" 
@@ -32,6 +31,19 @@ namespace MeetingVL.Controllers
 
                 return View(links.ToList());
             }
+
+
+            return View(links.ToList());
+        }
+        public ActionResult Project_management(string keyword)
+        {
+            string email = Session["ID_User"].ToString();
+
+            var links = from l in db.ProjectParticipants.Include(p => p.Project)
+                        .Include(p => p.User).Where(p => p.User_ID == email && p.Role == "Manager" && p.Project.Category.ID_User != email
+                        && (p.Project.State != "Deleted" || p.Project.Category.State != "Deleted"))
+                        select l;
+           
 
 
             return View(links.ToList());
