@@ -114,8 +114,14 @@
 </section>
 <table hidden id="tblCustomers" class="table" cellpadding="0" cellspacing="0">
     <tr>
-        <th>Group</th>
-        <th>Count</th>
+        <th colspan="2">MEETING VL</th>     
+    </tr>
+    <tr>
+        <th colspan="2">Statistics on the number of meeting minutes of Project "@project_Name"</th>
+    </tr>
+    <tr>
+        <td>Group</td>
+        <td>Number of meeting minutes</td>
     </tr>
     @Html.Action("List_Group", "ProjectParticipants", new { project_id = project_id, action = 1 })
 </table>

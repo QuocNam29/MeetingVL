@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
     int project_id = int.Parse(TempData["project_id"].ToString());
     int semester_id = int.Parse(TempData["semester_id"].ToString());
+    string semester_name = TempData["semester_name"].ToString();
     string Role = TempData["roles_Project"].ToString();
     var List_Group_Semester = Model.FirstOrDefault().Semester.Project.ProjectParticipants
         .Where(p =>p.Group_ID != null && p.Group.State != "Deleted").GroupBy(g => g.Group_ID).OrderBy(p => p.Key)
@@ -404,8 +405,15 @@
 
 <table hidden id="tblCustomers" class="table" cellpadding="0" cellspacing="0">
     <tr>
+        <th colspan="2">MEETING VL</th>
+    </tr>
+    <tr>
+        <th colspan="3">@semester_name</th>
+
+    </tr>
+    <tr>
         <th>Group</th>
-        <th>Comment</th>
+        <th>Number of meeting minutes</th>
         <th>Point</th>
     </tr>
     @foreach (var item in List_Group_Semester)
