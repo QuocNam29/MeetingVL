@@ -4,6 +4,7 @@
     Layout = null;
     int no = 0;
     int project_id = int.Parse(TempData["project_id"].ToString());
+    DateTime date_start = DateTime.Parse(TempData["date_start"].ToString());
     string Role = TempData["roles_Project"].ToString();
 }
 <section id="minimal-statistics">
@@ -163,7 +164,7 @@
                             <div class="form-group">
                                 <label for="issueinput3">Date_Start</label>
                                 <input type="date" id="date-start" class="form-control" name="date_Start"
-                                       data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" min="@String.Format("{0:yyyy-MM-dd}",Model.FirstOrDefault().Project.Date_Start)"
+                                       data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" min="@String.Format("{0:yyyy-MM-dd}",date_start)"
                                        required="required" oninvalid="this.setCustomValidity('Please enter date start')" oninput="setCustomValidity('')">
                             </div>
                         </div>

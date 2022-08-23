@@ -30,7 +30,8 @@
         int success = int.Parse(Session["ViewBag.Success"].ToString());
         int failFormat = int.Parse(Session["ViewBag.FailFormat"].ToString());
         int exist = int.Parse(Session["ViewBag.Exist"].ToString());
-        int count = success + failFormat + exist;
+        int miss = int.Parse(Session["ViewBag.MissData"].ToString());
+        int count = success + failFormat + exist + miss;
         <button type="button" hidden class="btn btn-lg btn-block btn-outline-success mb-2" id="import-success"
                 data-toggle="modal" data-target="#Success">
             Success
@@ -56,17 +57,20 @@
                             <a> Successfully imported <b>"@success"</b> among <b>"@count"</b> students in the file</a>
                             </div>
                         <br />
-                            <div class="col-12">
-                                <div class="alert alert-success">
-                                    <strong>Success!</strong> Import student list successful ! <b>(@success row data)</b>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <strong>Fail!</strong> Import failed due to incorrect mail format ! <b>(@failFormat row data) </b>
-                                </div>
-                                <div class="alert alert-info">
-                                    <strong>Exist!</strong>  Already exist in the project ! <b>(@exist row data)</b>
-                                </div>
+                        <div class="col-12">
+                            <div class="alert alert-success">
+                                <strong>Success!</strong> Import student list successful ! <b>(@success row data)</b>
                             </div>
+                            <div class="alert alert-danger">
+                                <strong>Fail!</strong> Import failed due to incorrect mail format ! <b>(@failFormat row data) </b>
+                            </div>
+                            <div class="alert alert-warning">
+                                <strong>Miss Data!</strong>  Import failed due to missing data ! <b>(@miss row data)</b>
+                            </div>
+                            <div class="alert alert-info">
+                                <strong>Exist!</strong>  Already exist in the project ! <b>(@exist row data)</b>
+                            </div>
+                        </div>
                         </div>
                     <div class="modal-footer">
                         <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="Cancel">
@@ -78,12 +82,6 @@
             </div>
         </div>
 
-       @* <div class="alert alert-success  alert-dismissible fade show" role="alert">
-            @Session["ViewBag.Success"].ToString()
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>*@
         Session["ViewBag.Success"] = null;
     }
 </div>

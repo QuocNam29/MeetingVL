@@ -83,90 +83,111 @@ namespace MeetingVL.Controllers
                     int addRow = 0;
                     int rowFailFormat = 0;
                     int rowExist = 0;
+                    int missData = 0;
                     try
                         {
                     //Insert records to database table.
                     foreach (DataRow row in dt.Rows)
                     {
-                        
-                        if (!String.IsNullOrEmpty(row["TOPIC"].ToString().Trim()))
-                        {
-                            Session["Topic"] = row["TOPIC"].ToString().Trim();
-                            Session["Mentor"] = row["MENTOR"].ToString().Trim();
-                            Session["NameGroup"] = row["TEAM"].ToString().Trim();
-                            Session["Customer"] = row["CUSTOMER"].ToString().Trim();
-                        }
+                                if (!String.IsNullOrEmpty(row["TOPIC"].ToString().Trim())
+                               && !String.IsNullOrEmpty(row["TEAM"].ToString().Trim())
+                               && !String.IsNullOrEmpty(row["MENTOR"].ToString().Trim()))
+                                {
+                                    Session["Topic"] = row["TOPIC"].ToString().Trim();
+                                    Session["Mentor"] = row["MENTOR"].ToString().Trim();
+                                    Session["NameGroup"] = row["TEAM"].ToString().Trim();
+                                    Session["Customer"] = row["CUSTOMER"].ToString().Trim();
+                            }
+                            else if (String.IsNullOrEmpty(row["TOPIC"].ToString().Trim())
+                               && String.IsNullOrEmpty(row["TEAM"].ToString().Trim())
+                               && String.IsNullOrEmpty(row["MENTOR"].ToString().Trim()))
+                            {
+
+                            }
+                            else
+                            {
+                                Session["Topic"] = null;
+                            }                     
+                            
+                           
                         if (!String.IsNullOrEmpty(row["EMAIL"].ToString().Trim()))
                         {
                             string user_id = row["EMAIL"].ToString().Trim();
                             bool check_format_student = user_id.Contains("@vanlanguni.vn");
                             bool check_format_teacher = user_id.Contains("@vlu.edu.vn");
-
-                            if (check_format_student == true || check_format_teacher == true)
-                            {
-                                var check_user = db.ProjectParticipants.Where(c => c.Project_ID == project_id && c.User_ID == user_id).FirstOrDefault();
-                                if (check_user == null)
+                                if (Session["Topic"] != null)
                                 {
-                                    var user = db.Users.Find(user_id);
-                                    if (user == null)
+                                    if (check_format_student == true || check_format_teacher == true)
                                     {
-                                        User addUser = new User();
-                                        addUser.Email = user_id;
-                                        db.Users.Add(addUser);
-                                        db.SaveChanges();
-                                    }
-                                    string topic = Session["Topic"].ToString().Trim();
-                                    string mentor = Session["Mentor"].ToString().Trim();
-                                    string customer = Session["CUSTOMER"].ToString().Trim();
-                                    string nameGroup = "Team " + Session["NameGroup"].ToString().Trim();
+                                        var check_user = db.ProjectParticipants.Where(c => c.Project_ID == project_id && c.User_ID == user_id).FirstOrDefault();
+                                        if (check_user == null)
+                                        {
+                                            var user = db.Users.Find(user_id);
+                                            if (user == null)
+                                            {
+                                                User addUser = new User();
+                                                addUser.Email = user_id;
+                                                db.Users.Add(addUser);
+                                                db.SaveChanges();
+                                            }
+                                            string topic = Session["Topic"].ToString().Trim();
+                                            string mentor = Session["Mentor"].ToString().Trim();
+                                            string customer = Session["CUSTOMER"].ToString().Trim();
+                                            string nameGroup = "Team " + Session["NameGroup"].ToString().Trim();
 
-                                    var group = db.Groups.Where(g => g.Topic == topic && g.Mentor == mentor
-                                    && g.Name == nameGroup && g.Customer == customer).FirstOrDefault();
-                                    if (group == null)
-                                    {
-                                        Group addGroup = new Group();
-                                        addGroup.Name = "Team " + row["TEAM"].ToString().Trim();
-                                        addGroup.Topic = row["TOPIC"].ToString().Trim();
-                                        addGroup.Mentor = row["MENTOR"].ToString().Trim();
-                                        addGroup.Customer = row["CUSTOMER"].ToString().Trim();
-                                        db.Groups.Add(addGroup);
-                                        db.SaveChanges();
+                                            var group = db.Groups.Where(g => g.Topic == topic && g.Mentor == mentor
+                                            && g.Name == nameGroup && g.Customer == customer).FirstOrDefault();
+                                            if (group == null)
+                                            {
+                                                Group addGroup = new Group();
+                                                addGroup.Name = "Team " + row["TEAM"].ToString().Trim();
+                                                addGroup.Topic = row["TOPIC"].ToString().Trim();
+                                                addGroup.Mentor = row["MENTOR"].ToString().Trim();
+                                                addGroup.Customer = row["CUSTOMER"].ToString().Trim();
+                                                db.Groups.Add(addGroup);
+                                                db.SaveChanges();
 
-                                        var user1 = db.Users.Find(user_id);
+                                                var user1 = db.Users.Find(user_id);
 
-                                        ProjectParticipant projectParticipant = new ProjectParticipant();
-                                        projectParticipant.User_ID = user1.Email;
-                                        projectParticipant.Group_ID = addGroup.ID;
-                                        projectParticipant.Project_ID = project_id;
-                                        projectParticipant.Role = "Student";
-                                        db.ProjectParticipants.Add(projectParticipant);
-                                        db.SaveChanges();
+                                                ProjectParticipant projectParticipant = new ProjectParticipant();
+                                                projectParticipant.User_ID = user1.Email;
+                                                projectParticipant.Group_ID = addGroup.ID;
+                                                projectParticipant.Project_ID = project_id;
+                                                projectParticipant.Role = "Student";
+                                                db.ProjectParticipants.Add(projectParticipant);
+                                                db.SaveChanges();
 
+                                            }
+                                            else
+                                            {
+                                                var user1 = db.Users.Find(user_id);
+
+                                                ProjectParticipant projectParticipant = new ProjectParticipant();
+                                                projectParticipant.User_ID = user1.Email;
+                                                projectParticipant.Group_ID = group.ID;
+                                                projectParticipant.Project_ID = project_id;
+                                                projectParticipant.Role = "Student";
+                                                db.ProjectParticipants.Add(projectParticipant);
+                                                db.SaveChanges();
+
+                                            }
+                                            addRow++;
+                                        }
+                                        else
+                                        {
+                                            rowExist++;
+                                        }
                                     }
                                     else
                                     {
-                                        var user1 = db.Users.Find(user_id);
-
-                                        ProjectParticipant projectParticipant = new ProjectParticipant();
-                                        projectParticipant.User_ID = user1.Email;
-                                        projectParticipant.Group_ID = group.ID;
-                                        projectParticipant.Project_ID = project_id;
-                                        projectParticipant.Role = "Student";
-                                        db.ProjectParticipants.Add(projectParticipant);
-                                        db.SaveChanges();
-
+                                        rowFailFormat++;
                                     }
-                                    addRow++;
                                 }
                                 else
                                 {
-                                    rowExist++;
+                                    missData++;
                                 }
-                            }
-                            else
-                            {
-                                rowFailFormat++;
-                            }
+                           
 
                         }
   
@@ -175,6 +196,7 @@ namespace MeetingVL.Controllers
                         Session["ViewBag.Success"] = addRow;
                         Session["ViewBag.FailFormat"] = rowFailFormat;
                         Session["ViewBag.Exist"] = rowExist;
+                        Session["ViewBag.MissData"] = missData;
                     }
                     catch (Exception e)
                     {

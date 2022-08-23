@@ -76,7 +76,14 @@ namespace MeetingVL.Controllers
             }
             int count_group = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
                          .Where(p => p.Project_ID == project_id && p.Group_ID != null && p.Group.State != "Deleted").GroupBy(p=> p.Group_ID).Count();
-            TempData["count_group"] = count_group;
+            if (count_group ==0)
+            {
+                TempData["count_group"] = 1;
+            }
+            else
+            {
+                TempData["count_group"] = count_group;
+            }
 
             if (!string.IsNullOrEmpty(keyword))
             {
