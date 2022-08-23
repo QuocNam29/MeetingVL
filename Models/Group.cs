@@ -24,13 +24,13 @@ namespace MeetingVL.Models
         }
     
         public int ID { get; set; }
-        [Required(ErrorMessage = "You have not entered the name category")]
+        [Required(ErrorMessage = "You have not entered the name Group")]
         [StringLength(250, ErrorMessage = "Name length must be between 1 and 250.", MinimumLength = 1)]
         public string Name { get; set; }
         [Required(ErrorMessage = "You have not entered the Topic")]
         [StringLength(250, ErrorMessage = "Topic length must be between 1 and 250.", MinimumLength = 1)]
         public string Topic { get; set; }
-        [Required(ErrorMessage = "You have not entered the name category")]
+        [Required(ErrorMessage = "You have not entered the Mentor")]
         [StringLength(250, ErrorMessage = "Mentor length must be between 1 and 250.", MinimumLength = 1)]
         public string Mentor { get; set; }
         [StringLength(250, ErrorMessage = "Customer length must be between 1 and 250.", MinimumLength = 1)]

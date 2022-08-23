@@ -173,12 +173,6 @@ namespace MeetingVL.Controllers
                     Session["thongbao-loi"] = ex.Message;
                 }
             }
-
-           
-
-
-
-
             return RedirectToAction("Index", "Session_Semester", new { semester_id = semester_id });
         }
 
@@ -198,9 +192,6 @@ namespace MeetingVL.Controllers
             return RedirectToAction("Details", new {id = id });
           
         }
-
-       
-
         // GET: Evaluates/Delete/5
         public ActionResult Delete(int? id, int semester_id)
         {

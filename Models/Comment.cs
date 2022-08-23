@@ -11,7 +11,8 @@ namespace MeetingVL.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Comment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,6 +24,7 @@ namespace MeetingVL.Models
         public int ID { get; set; }
         public string User_ID { get; set; }
         public Nullable<int> Evalute_ID { get; set; }
+        [Required(ErrorMessage = "You have not entered the Comment")]
         public string Comment1 { get; set; }
         public Nullable<System.DateTime> Time { get; set; }
     

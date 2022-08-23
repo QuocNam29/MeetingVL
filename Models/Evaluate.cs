@@ -30,6 +30,7 @@ namespace MeetingVL.Models
         public Nullable<int> Semester_ID { get; set; }
         [StringLength(200, ErrorMessage = "State length must be between 1 and 100.", MinimumLength = 1)]
         public string State { get; set; }
+        [Required(ErrorMessage = "You have not entered the Review")]
         public string Review { get; set; }
         public string Comment { get; set; }
         [StringLength(50, ErrorMessage = "State length must be between 1 and 50.", MinimumLength = 1)]

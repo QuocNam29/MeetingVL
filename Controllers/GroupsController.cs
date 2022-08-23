@@ -99,15 +99,12 @@ namespace MeetingVL.Controllers
                 Session["ViewBag.FileStatus"] = null;
                 Session["ViewBag.Success"] = "Import student successful !";
 
-            }
-                         
+            }               
                 ProjectParticipant projectParticipant1 = new ProjectParticipant();
                 projectParticipant1.Project_ID = project_id;               
                 projectParticipant1.Group_ID = group.ID;
                 db.ProjectParticipants.Add(projectParticipant1);
                 db.SaveChanges();
-            
-
             check_User += "in another group";
             user_null += "in the system yet";
             if (flat == false)
@@ -134,11 +131,8 @@ namespace MeetingVL.Controllers
             db.Entry(group).State = EntityState.Modified;
             db.SaveChanges();
             Session["notification"] = "Successfully Edit Group";
-
             return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 3 });
-        }
-
-      
+        }     
         // GET: Groups/Delete/5
         public ActionResult Delete(int? id, int project_id)
         {
