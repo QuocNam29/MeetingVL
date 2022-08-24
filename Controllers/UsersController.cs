@@ -22,6 +22,10 @@ namespace MeetingVL.Controllers
         {
             return View(db.Users.OrderByDescending(u => u.stt).ToList());
         }
+        public ActionResult Dashboard()
+        {
+            return View(db.Users.OrderByDescending(u => u.stt).ToList());
+        }
         public ActionResult List_Edit()
         {
             return View(db.Users.ToList());

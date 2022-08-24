@@ -38,9 +38,10 @@ namespace MeetingVL.Controllers
             var links = from l in db.MeetingMinutes.Include(m => m.User)
                         .Where(m => m.SessionReport_ID == session_id && m.State != "Deleted").OrderBy(m => m.Group.Name)
                         select l;
+            string ID_User = Session["ID_User"].ToString();
             if (group_id != null)
             {
-                links = links.Where(m => m.Group_ID == group_id);
+                links = links.Where(m => m.Group_ID == group_id || m.User_ID == ID_User);
                 TempData["action"] = 1;
             }
             if (!string.IsNullOrEmpty(keyword))
@@ -84,7 +85,7 @@ namespace MeetingVL.Controllers
             Category category = db.Categories.Find(project.Category_ID);
             TempData["category_id"] = category.ID;
             TempData["category_Name"] = category.Name;
-            string ID_User = Session["ID_User"].ToString();
+            
             ProjectParticipant projectParticipant = db.ProjectParticipants.FirstOrDefault(p => p.Project_ID == project.ID 
             && p.User_ID == ID_User && p.Group_ID != null && p.Group.State != "Deleted");
 

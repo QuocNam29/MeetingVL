@@ -1,0 +1,81 @@
+﻿@model IEnumerable<MeetingVL.Models.User>
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout_MeetingVL.cshtml";
+    int login_true = Model.Where(l => l.State == true).Count();
+    int login_false = Model.Where(l => l.State == false).Count();
+    int Not_Login = Model.Where(l => l.State == null).Count();
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-red">
+                    <h4 class="card-title">Dashboard - MeetingVL</h4>
+                </div>               
+            </div>           
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                
+                <div class="card-title-wrap bar-success">
+                    <h4 class="card-title">User access statistics on the website</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-block chartjs">
+                    <canvas id="simple-pie-chart" height="400"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Template/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
+<script src="~/Template/app-assets/vendors/js/chart.min.js"></script>
+<script type="text/javascript">
+    var login_true = @login_true;
+    var login_false  =  @login_false;
+    var Not_Login =  @Not_Login;
+          
+    //Get the context of the Chart canvas element we want to select
+    var ctx = $("#simple-pie-chart");
+    // Chart Options
+    var chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        responsiveAnimationDuration: 500,
+    };
+
+    // Chart Data
+    var chartData = {
+        labels: ['Enable', 'Disable', 'Null'],
+        datasets: [{
+            label: "My First dataset",
+            data: [login_true, login_false, Not_Login],
+            backgroundColor: ["rgba(102, 110, 232, 0.8)", "rgba(30, 159, 242, 0.8)", "rgba(255, 95, 32, 0.8)"],
+        }]
+    };
+
+    var config = {
+        type: 'pie',
+
+        // Chart Options
+        options: chartOptions,
+
+        data: chartData
+    };
+
+    // Create the chart
+    var pieSimpleChart = new Chart(ctx, config);
+
+
+
+</script>

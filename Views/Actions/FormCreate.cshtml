@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    @if (TempData["group_id"] != null)
+                                    @if (group_id != 0)
                                     {
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="userinput5">Member: </label>
@@ -93,11 +93,7 @@
 
 
                                 <div class="col-md-12 col-sm-12 text-right">
-                                    <a href="@Url.Action("Index", "MeetingMinutes", new { session_id = session_id })">
-                                        <button type="button" class="btn btn-danger mr-1">
-                                            <i class="icon-trash"></i> Cancel
-                                        </button>
-                                    </a>
+                                   
                                     <button type="submit" class="btn btn-success">
                                         <i class="icon-note"></i> Save
                                     </button>
@@ -133,8 +129,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 col-sm-12 text-right">
+                               
+                                <button type="button" class="btn btn-info my-1" onclick="comeback()" ><i class="ft-arrow-left"></i> Come back</button>
 
-                                <button type="button" class="btn btn-primary my-1" onclick="location.href='@Url.Action("Details", "MeetingMinutes", new { id = meeting_id , group_id = group_id })'"><i class="fa ft-edit"></i> Details</button>
+                                <button type="button" class="btn btn-primary my-1" onclick="location.href='@Url.Action("Details", "MeetingMinutes", new { id = meeting_id , group_id = group_id })'"><i class="fa ft-edit"></i> See meeting minutes for details</button>
                             </div>
                             </div>
                     </form>
@@ -146,3 +144,8 @@
         </div>
     </div>
 </div>
+<script>
+    function comeback() {
+        history.back();
+    }
+</script>

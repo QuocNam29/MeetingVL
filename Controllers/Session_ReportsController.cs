@@ -141,7 +141,15 @@ namespace MeetingVL.Controllers
             TempData["category_id"] = category.ID;
             TempData["category_Name"] = category.Name;
             ViewBag.SessionReport = true;
-            TempData["group_id"] = check_group.ID;
+            if (check_group.Group_ID == null)
+            {
+                TempData["group_id_session"] = 0;
+            }
+            else
+            {
+                TempData["group_id_session"] = check_group.Group_ID;
+            }
+           
 
             return View(links.ToList());
         }

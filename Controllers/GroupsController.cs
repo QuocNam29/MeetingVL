@@ -117,6 +117,10 @@ namespace MeetingVL.Controllers
                 Session["ViewBag.Success"] = null;
                 Session["ViewBag.FileStatus"] = user_null;
             }
+            if (Session["ViewBag.Success"] != null)
+            {
+                Session["notification"] = "Successfully Add Group";
+            }
             return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 3 });
         }
 

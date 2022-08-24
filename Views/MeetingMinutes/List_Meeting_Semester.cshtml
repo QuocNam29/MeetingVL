@@ -8,11 +8,27 @@
         
     
 }
-<div class="row">    
-    <div class="col-12 mt-3 mb-1 header-content-group">
-        <h2 class="content-header col-10">@session_Name</h2>
-        
+<div class="row">
+    <div class="col-sm-12">
+        <ul class="header-controls-list">
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Categories")">Category</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Projects", new {category_id = @Model.FirstOrDefault().SessionReport.Project.Category.ID })">@Model.FirstOrDefault().SessionReport.Project.Category.Name</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>
+            <li class="header-controls-item text-bold-400"><a href="@Url.Action("Index", "Session_Reports", new {project_id = Model.FirstOrDefault().SessionReport.Project.ID, active = 1 })">@Model.FirstOrDefault().SessionReport.Project.Name</a></li>
+            <ion-icon name="chevron-forward-outline" class="header-direction"></ion-icon>           
+            <li class="header-controls-item text-bold-400">Semester</li>
 
+        </ul>
+    </div>
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-red">
+                    <h2 class="card-title">@session_Name</h2>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @foreach (var item in Model)

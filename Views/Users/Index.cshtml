@@ -21,7 +21,18 @@
     Session["notification"] = null;
 }
 <section id="file-export">
-    <div  class="row">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-red">
+                        <h4 class="card-title">Manage users - MeetingVL</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -38,8 +49,8 @@
                             </div>
                         </div>
 
-                        <table  class="table table-striped table-bordered file-export" >
-                            <thead >
+                        <table class="table table-striped table-bordered file-export">
+                            <thead>
                                 <tr>
                                     <th>No.</th>
                                     <th>Name</th>
@@ -52,7 +63,7 @@
                                     @* <th></th>*@
                                 </tr>
                             </thead>
-                            <tbody >
+                            <tbody>
                                 @foreach (var item in Model)
                                 {
                                     no++;
@@ -61,7 +72,7 @@
                                     {
                                         state = "Enable";
                                     }
-                                    else
+                                    else if (item.State == false)
                                     {
                                         state = "Disable";
                                     }

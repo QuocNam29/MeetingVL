@@ -15,7 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Template/Login/css/grid.css" rel="stylesheet" />
     <link href="~/Template/Login/css/style.css" rel="stylesheet" />
-    <title>Document</title>
+   
+    <title>Login Meeting VL</title>
 </head>
 <body>
     <div class="container">
@@ -24,7 +25,7 @@
                 <p class="form-login-desc">Wellcome to meeting VanLang</p>
                 <p class="form-login-line"></p>
                 <div class="form-login">
-                    <div class="form-logo">
+                    <div class="form-logo" >
                         <img src="~/Template/app-assets/img/LogoVL.png" class="form-logo-link" alt="Logo">
                     </div>
                     <p class="form-name">Morality - Will - Creativity</p>
@@ -32,25 +33,7 @@
                     <p class="form-desc">Login with VanLang account</p>
 
 
-                    @*@if (Request.IsAuthenticated)
-                        {
-                            <text>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li>
-                                        @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "UserProfile", routeValues: null, htmlAttributes: null)
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("Sign out", "SignOut", "Account")
-                                    </li>
-                                </ul>
-                            </text>
-                        }
-                        else
-                        {
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>@Html.ActionLink("Sign in", "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                            </ul>
-                        }*@
+                  
                 </div>
             </div>
         </div>
