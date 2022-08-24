@@ -43,8 +43,7 @@
 <body data-col="2-columns" class=" 2-columns ">
     <!-- ////////////////////////////////////////////////////////////////////////////-->
     <div class="wrapper">
-
-        <div data-active-color="white" data-background-color="aqua-marine" data-image="@Url.Content("~/Template/app-assets/img/sidebar-bg/02.jpg")" class="app-sidebar">
+        <div data-active-color="white" data-background-color="aqua-marine" data-image="@Url.Content("~/Template/After_Login/sidebar_VanLang.jpg")" class="app-sidebar">
             <div class="sidebar-header">
                 <div class="logo clearfix">
                     <a href="index.html" class="logo-text float-left">
@@ -96,19 +95,28 @@
         </div>
 
        
-        <div class="main__wrap-thumb">
+        <div  class="main__wrap-thumb">
             <div class="main__content-wrapper">
                 <div class="main__thumb">
-                    <div class="main__thumb-img">
-                        <video src="~/Template/After_Login/backgroundvideo.mp4" muted loop autoplay class="main__thumb-img-link"></video>
+                    <div id="banner" class="main__thumb-img  text-center">
+                        <video src="~/Template/After_Login/background.mp4" muted loop autoplay class="main__thumb-img-link"></video>
+
+                        <div class="inner">
+                            <img src="~/Template/After_Login/logo2.png" class="img-responsive center-block branch-logo">
+                            <p class="main__content-title">  </p><br />
+                            <p class="main__content-header">MEETING VL</p>
+                            <p class="main__content-desc">Chúc bạn một ngày làm việc tốt lành và vui vẻ</p>
+                            <p class="main__content-time" id="current-time"></p>
+                        </div>
+
 
                     </div>
-                    <div class="main__content">
+                    @*<div class="main__content">
                         <p class="main__content-title">Meeting VL</p>
                         <p class="main__content-header">Xin chào</p>
                         <p class="main__content-desc">Chúc bạn một ngày làm việc tốt lành và vui vẻ</p>
                         <p class="main__content-time" id="current-time"></p>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>

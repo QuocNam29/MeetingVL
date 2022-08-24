@@ -136,7 +136,7 @@ namespace MeetingVL.Controllers
                         db.SaveChanges();
                     }
                     Session["notification"] = null;
-                    return RedirectToAction("Index", "Categories");
+                    return RedirectToAction("After_Login", "Categories");
                 }
             }
             else
@@ -144,7 +144,7 @@ namespace MeetingVL.Controllers
                 var account = db.Users.Where(acc => acc.Email.Equals(Email)).FirstOrDefault();
                            
                 Session["notification"] = null;
-                return RedirectToAction("Index", "Categories");
+                return RedirectToAction("After_Login", "Categories");
             }
 
 

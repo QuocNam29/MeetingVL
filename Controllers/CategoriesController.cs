@@ -19,7 +19,10 @@ namespace MeetingVL.Controllers
 
         public ActionResult After_Login()
         {
-           
+            string ID_User = Session["ID_User"].ToString();
+            User user = db.Users.Find(ID_User);
+            Session["Role"] = user.Role;
+            Session["Avt"] = user.Avt;
             return View();
         }
         // GET: Categories

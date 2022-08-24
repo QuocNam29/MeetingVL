@@ -10193,18 +10193,18 @@ a.text-base:hover, a.text-base:focus {
 }
 
 .gradient-aqua-marine {
-      background-image : -webkit-linear-gradient(45deg, #1488CC, #2B32B2);
-      background-image : -moz- oldlinear-gradient(45deg, #1488CC, #2B32B2);
-      background-image :      -o-linear-gradient(45deg, #1488CC, #2B32B2);
-      background-image :         linear-gradient(45deg, #1488CC, #2B32B2);
+      background-image : -webkit-linear-gradient(45deg, #111111, #b4363f);
+      background-image : -moz- oldlinear-gradient(45deg, #111111, #b4363f);
+      background-image :      -o-linear-gradient(45deg, #111111, #b4363f);
+      background-image :         linear-gradient(45deg, #111111, #b4363f);
   background-repeat : repeat-x;
 }
 
 .btn.gradient-aqua-marine:active, .fc button.gradient-aqua-marine:active, .btn.gradient-aqua-marine.active, .fc button.gradient-aqua-marine.active {
-      background-image : -webkit-linear-gradient(45deg, #1488CC, #2B32B2);
-      background-image : -moz- oldlinear-gradient(45deg, #1488CC, #2B32B2);
-      background-image :      -o-linear-gradient(45deg, #1488CC, #2B32B2);
-      background-image :         linear-gradient(45deg, #1488CC, #2B32B2);
+      background-image : -webkit-linear-gradient(45deg, #111111, #b4363f);
+      background-image : -moz- oldlinear-gradient(45deg, #111111, #b4363f);
+      background-image :      -o-linear-gradient(45deg, #111111, #b4363f);
+      background-image :         linear-gradient(45deg, #111111, #b4363f);
   background-repeat : repeat-x;
 }
 
@@ -46859,17 +46859,17 @@ datetime .form-group {
   color : #FFFFFF;
 }
 .app-sidebar[data-background-color='aqua-marine'], .off-canvas-sidebar[data-background-color='aqua-marine'] {
-      background-image : -webkit-linear-gradient(45deg, #1488CC, #2B32B2);
-      background-image : -moz- oldlinear-gradient(45deg, #1488CC, #2B32B2);
-      background-image :      -o-linear-gradient(45deg, #1488CC, #2B32B2);
-      background-image :         linear-gradient(45deg, #1488CC, #2B32B2);
+      background-image : -webkit-linear-gradient(45deg, #111111, #b4363f);
+      background-image : -moz- oldlinear-gradient(45deg, #111111, #b4363f);
+      background-image :      -o-linear-gradient(45deg, #111111, #b4363f);
+      background-image :         linear-gradient(45deg, #111111, #b4363f);
   background-repeat : repeat-x;
 }
 .app-sidebar[data-background-color='aqua-marine'] .sidebar-background:after, .off-canvas-sidebar[data-background-color='aqua-marine'] .sidebar-background:after {
-      background-image : -webkit-linear-gradient(45deg, #1488CC, #2B32B2);
-      background-image : -moz- oldlinear-gradient(45deg, #1488CC, #2B32B2);
-      background-image :      -o-linear-gradient(45deg, #1488CC, #2B32B2);
-      background-image :         linear-gradient(45deg, #1488CC, #2B32B2);
+      background-image : -webkit-linear-gradient(45deg, #111111, #b4363f);
+      background-image : -moz- oldlinear-gradient(45deg, #111111, #b4363f);
+      background-image :      -o-linear-gradient(45deg, #111111, #b4363f);
+      background-image :         linear-gradient(45deg, #111111, #b4363f);
   background-repeat : repeat-x;
   opacity : 0.9;
 }
