@@ -73,7 +73,7 @@ namespace MeetingVL.Controllers
             db.SaveChanges();
 
             Semester semester = db.Semesters.Find(semester_id);
-
+            Group group = db.Groups.Find(group_id);
             var list_member_notification = db.ProjectParticipants.Where(p => p.Project_ID == project_id 
             && p.Group_ID == group_id && p.User_ID != null && p.Role =="Student").ToArray();
             for (int i = 0; i < list_member_notification.Length; i++)
@@ -91,15 +91,18 @@ namespace MeetingVL.Controllers
                 MailMessage mailmea = new MailMessage();
                 mailmea.To.Add(list_member_notification[i].User_ID);
                 mailmea.From = new MailAddress(@"meetingvanlang@hotmail.com");
-                mailmea.Subject = "Đánh giá báo cáo meeting " + semester.Name;
+                mailmea.Subject = "Đánh giá báo cáo biên bản họp:   " + semester.Name;
                 mailmea.IsBodyHtml = true;
                 mailmea.Body = @"<div>
     <p style=""font-weight:normal;text-align:justify;margin-top:0;margin-bottom:0;line-height:1.8;"">
-        <span style=""color: rgb(24, 26, 28); font-size: 20pt; font-family: Times New Roman , serif, EmojiFont; font-weight: bold; "">Review :</span>
+        <span style=""color: rgb(24, 26, 28); font-size: 20pt; font-family: Times New Roman , serif, EmojiFont; font-weight: bold; "">Kết quả đánh giá biên bản họp kì: " + semester.Name + @" </span>
     </p>
     <br aria-hidden=""true"">
+
     <p style=""font-weight:normal;text-align:justify;margin-top:0;margin-bottom:0;line-height:1.8;"">
-        <span style="" font-size:13pt; font-family: Times New Roman , serif, EmojiFont "">Point :<b> 
+<span style="" font-size:13pt; font-family: Times New Roman , serif, EmojiFont "">Nhóm :<b> 
+" + group.Name + @"</b> <br/><br/></span>
+        <span style="" font-size:13pt; font-family: Times New Roman , serif, EmojiFont "">Điểm (thang điểm 10) :<b> 
 " + point + @"</b></span>
     </p>
     <br aria-hidden=""true"">
@@ -121,8 +124,8 @@ namespace MeetingVL.Controllers
                         <span style=""font-family: Times New Roman,serif"">
                             <span style=""font-size:13pt; white-space: pre-wrap;overflow-wrap: break-word;"">
                                 <span style=""font-family: &quot,Times New Roman,serif; "">
-   <i> " + review +
-                    @"</i></span>
+   <b> " + review +
+                    @"</b></span>
                             </span>
                             <span style=""font-family: &quot,Times New Roman,serif""></span>
                         </span>
@@ -138,9 +141,9 @@ namespace MeetingVL.Controllers
             <tbody>
                 <tr>
                     <td style=""padding:8px 12px; color: rgb(24, 26, 28); font-size: 12pt; font-family: Times New Roman , serif, EmojiFont; font-weight: bold"">
-                        Join on website Meeting VL :
+                        Truy cập vào website Meeting VL :
                         <a href=""https://cntttest.vanlanguni.edu.vn:18081/SEP25Team13/"" target=""_blank"" rel=""noopener noreferrer"" data-auth=""NotApplicable"" id=""LPlnk238218"" data-safelink=""true"" data-linkindex=""0"">
-                            View Review
+                            xem đánh giá
                         </a>
 
                     </td>
@@ -153,7 +156,7 @@ namespace MeetingVL.Controllers
     <span style=""font-size:10pt"">
         <span>
             <span style=""font-family: Times New Roman,serif"">
-                <b><i><span style=""font-family:quot,Times New Roman,serif"">Đây là email tự động, Sinh viên vui lòng không phản hồi email này.</span></i></b><b><i><span style=""font-family: &quot,Times New Roman,serif""></span></i></b>
+                <i><span style=""font-family:quot,Times New Roman,serif"">Đây là email tự động, Sinh viên vui lòng không phản hồi email này.</span></i></b><b><i><span style=""font-family: &quot,Times New Roman,serif""></span></i>
             </span>
         </span>
     </span>
@@ -173,6 +176,8 @@ namespace MeetingVL.Controllers
                     Session["thongbao-loi"] = ex.Message;
                 }
             }
+            Session["notification"] = "Successfully Create Evalute";
+
             return RedirectToAction("Index", "Session_Semester", new { semester_id = semester_id });
         }
 

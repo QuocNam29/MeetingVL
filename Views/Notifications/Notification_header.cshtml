@@ -34,7 +34,7 @@
                         }
                         else
                         {
-                            <a href="@Url.Action("Details", "Evaluates", new { id = item.Comment.Evalute_ID})" class="dropdown-item noti-container py-2">
+                            <a href="@Url.Action("Details", "Evaluates", new { id = item.Comment.Evalute_ID, notification_id = item.ID})" class="dropdown-item noti-container py-2">
                                 <i style="color: #1E9FF2" class="fa fa-commenting-o float-left d-block font-medium-5 mt-4 mr-3"></i>
                                 <span class="noti-wrapper">
                                     <span style="color: #1E9FF2" class="noti-title line-height-1 d-block text-bold-400 ">Comment</span>
@@ -50,7 +50,7 @@
                     {
                         if (item.status != "Seen")
                         {
-            <a href="@Url.Action("Details", "Evaluates", new { id = item.Evalute_ID })" class="dropdown-item noti-container py-2 dropdown-with-item dropdown-with-item--active">
+            <a href="@Url.Action("Details", "Evaluates", new { id = item.Evalute_ID, notification_id = item.ID })" class="dropdown-item noti-container py-2 dropdown-with-item dropdown-with-item--active">
                 <i style="color: #FF9800 " class="fa fa-file-text-o float-left d-block font-medium-4 mt-2  mr-3"></i>
                 <span class="noti-wrapper">
                     <span style="color: #FF9800 " class="noti-title line-height-1 d-block text-bold-400 ">Evalue - @item.Evaluate.Semester.Name</span>
@@ -63,7 +63,7 @@
                         }
                         else
                         {
-                            <a href="@Url.Action("Details", "Evaluates", new { id = item.Evalute_ID })" class="dropdown-item noti-container py-2">
+                            <a href="@Url.Action("Details", "Evaluates", new { id = item.Evalute_ID, notification_id = item.ID })" class="dropdown-item noti-container py-2">
                                 <i style="color: #FF9800 " class="fa fa-file-text-o float-left d-block font-medium-4 mt-2  mr-3"></i>
                                 <span class="noti-wrapper">
                                     <span style="color: #FF9800 " class="noti-title line-height-1 d-block text-bold-400 ">Evalue - @item.Evaluate.Semester.Name</span>

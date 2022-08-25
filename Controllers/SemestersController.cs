@@ -118,6 +118,7 @@ namespace MeetingVL.Controllers
             ViewBag.User_ID = new SelectList(db.Users, "Email", "ID_VanLang", semester.User_ID);
             db.Entry(semester).State = EntityState.Modified;
             db.SaveChanges();
+            Session["notification"] = "Successfully Edit Semester";
             return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 4 });
         }
 
