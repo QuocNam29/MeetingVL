@@ -398,108 +398,10 @@ namespace MeetingVL.Controllers
         //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
-        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
-        {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync2();
-            if (loginInfo == null)
-            {
-                return RedirectToAction("Login");
-            }
-
-            // check email domain of Vanlanguni
-            MailAddress address = new MailAddress(loginInfo.Email);
-            string host = address.Host;
-            if (host != "vanlanguni.vn" && host != "vlu.edu.vn")
-            {
-                TempData["MailDomainError"] = "Oopss, địa chỉ email của bạn không phải email của Văn Lang, bạn hãy thử lại nhé !!!";
-                return RedirectToAction("Login");
-            }
-
-            // Sign in the user with this external login provider if the user already has a login
-            var result = await SignInManager.ExternalSignInAsync2(loginInfo, UserManager);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    var check = db.Users.FirstOrDefault(s => s.Email == loginInfo.Email && s.Token != null);
-                    if (check == null)
-                    {
-                        if (string.IsNullOrEmpty(loginInfo.Email))
-                        {
-                            return RedirectToAction("Login", "Account");
-                        }
-                        else
-                        {
-                            User user = db.Users.Where(c => c.Email == loginInfo.Email).FirstOrDefault();
-                            AspNetUser aspNetUser = db.AspNetUsers.Where(c => c.Email == loginInfo.Email).FirstOrDefault();
-
-                            if (user != null)
-                            {
-                                user.ID_VanLang = aspNetUser.Id;
-                                user.Token = aspNetUser.Id;
-                                user.Last_Access = DateTime.Now;
-                                user.Role = "User";
-                                user.State = true;
-                                db.Entry(user).State = EntityState.Modified;
-                                db.SaveChanges();
-
-                                Session["ID_User"] = user.Email;
-                                Session["ID_VL"] = user.ID_VanLang;
-                                Session["Name"] = user.Name;
-                                Session["Role"] = user.Role;
-                            }
-                            else
-                            {
-                                User user1 = new User();
-                                user1.Email = loginInfo.Email;
-                                user1.ID_VanLang = aspNetUser.Id;
-                                user1.Token = aspNetUser.Id;
-                                user1.Last_Access = DateTime.Now;
-                                user1.Role = "User";
-                                user1.State = true;
-                                db.Users.Add(user1);
-                                db.SaveChanges();
-
-                                Session["ID_User"] = user1.Email;
-                                Session["ID_VL"] = user1.ID_VanLang;
-                                Session["Name"] = user1.Name;
-                                Session["Role"] = user1.Role;
-                            }
-
-
-                            FormsAuthentication.SetAuthCookie(loginInfo.Email, false);
-                            Session["notification"] = null;
-                            return RedirectToAction("Index", "Categories");
-                        }
-                    }
-                    else
-                    {
-                        var account = db.Users.Where(acc => acc.Email.Equals(loginInfo.Email)).FirstOrDefault();
-                        Session["ID_User"] = account.Email;
-                        Session["ID_VL"] = account.ID_VanLang;
-                        Session["Name"] = account.Name;
-                        Session["Role"] = account.Role;
-                        FormsAuthentication.SetAuthCookie(loginInfo.Email, false);
-
-                        Session["notification"] = null;
-                        return RedirectToAction("Index", "Categories");
-                    }             
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
-                case SignInStatus.Failure:
-                default:
-                    // If the user does not have an account, then prompt the user to create an account
-                    ViewBag.ReturnUrl = returnUrl;
-                    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
-            }
-        }
-
+   
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {

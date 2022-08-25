@@ -12,20 +12,23 @@ using MeetingVL.Models;
 
 namespace MeetingVL.Controllers
 {
-    [AdminVerification]
+   
     public class UsersController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
 
         // GET: Users
+        [AdminVerification]
         public ActionResult Index()
         {
             return View(db.Users.OrderByDescending(u => u.stt).ToList());
         }
+        [AdminVerification]
         public ActionResult Dashboard()
         {
             return View(db.Users.OrderByDescending(u => u.stt).ToList());
         }
+        [AdminVerification]
         public ActionResult List_Edit()
         {
             return View(db.Users.ToList());

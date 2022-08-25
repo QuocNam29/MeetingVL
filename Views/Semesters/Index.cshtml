@@ -30,7 +30,7 @@
             <div class="col-xl-3 col-lg-6 col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="@Url.Action("Index","Session_Semester", new {semester_id = item.ID } )">
+                        <a href="@Url.Action("Index", "Session_Semester", new { semester_id = item.ID })">
                             <div class="media align-items-stretch">
                                 <div class="p-2 text-center bg-warning rounded-left pt-3">
                                     <i class="icon-wallet font-large-2 text-white"></i>
@@ -47,6 +47,8 @@
                             </div>
                         </a>
                     </div>
+                    @if (Role == "Manager")
+                    {
                     <div class="actions float-right">
                         <div class="dropdown ml-2 display-inline-block">
                             <a id="@apps_semester" href="" data-toggle="dropdown" class="ft-more-vertical grey" aria-expanded="false"></a>
@@ -58,6 +60,8 @@
                             </div>
                         </div>
                     </div>
+                        }
+                    
                 </div>
             </div>
             <div class="modal fade text-left" id="@myBootstrap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
