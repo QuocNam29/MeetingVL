@@ -97,7 +97,7 @@
                             <img src="~/Template/After_Login/logo2.png" class="img-responsive center-block branch-logo">
                             <p class="main__content-title">  </p><br />
                             <p class="main__content-header">MEETING VL</p>
-                            <p class="main__content-desc">Chúc bạn một ngày làm việc tốt lành và vui vẻ</p>
+                            <p class="main__content-desc">Wishing you a new day of luck and fruitfulness</p>
                             <p class="main__content-time" id="current-time"></p>
                         </div>
 
@@ -192,10 +192,24 @@
     // Tháng hiện tại
     var curMonth = curDate.getMonth() + 1;
 
+    
+
     // Năm hiện tại
     var curYear = curDate.getFullYear();
 
     var curTime = curDate.getHours() + ":" + curDate.getMinutes() + ":" + curDate.getSeconds();
+    
+    function getCurrentMonthName(curDate) {
+        monthNamelist = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        return monthNamelist[curDate.getMonth()];
+    };
+    function getCurrentDayName(curDate) {
+        monthNamelist = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        return monthNamelist[curDate.getDay()];
+    };
+    var setMonth = getCurrentMonthName(curDate);
+    var current_day = getCurrentDayName(curDate);
+
     // Gán vào thẻ HTML
-    document.getElementById('current-time').innerHTML = curTime + " ,Ngày " + curDay + " Tháng " + curMonth + " Năm " + curYear;
+    document.getElementById('current-time').innerHTML = curTime + " " + current_day + " ,  " + curDay + "  " + setMonth + " " + curYear;
 </script>
