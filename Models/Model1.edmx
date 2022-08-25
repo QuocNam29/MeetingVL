@@ -45,7 +45,6 @@
           <Property Name="Semester_ID" Type="int" />
           <Property Name="State" Type="nvarchar" MaxLength="200" />
           <Property Name="Review" Type="nvarchar(max)" />
-          <Property Name="Comment" Type="nvarchar(max)" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="Point" Type="int" />
           <Property Name="Time" Type="datetime" />
@@ -73,9 +72,6 @@
           <Property Name="Location" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Objectives" Type="nvarchar" MaxLength="200" />
           <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Customer" Type="nvarchar" MaxLength="50" />
-          <Property Name="Mentor" Type="nvarchar" MaxLength="50" />
-          <Property Name="TeamMember" Type="nvarchar" MaxLength="200" />
           <Property Name="Time" Type="datetime" />
           <Property Name="Issues" Type="nvarchar(max)" />
           <Property Name="NA" Type="nvarchar(max)" />
@@ -612,7 +608,6 @@
           <Property Name="Semester_ID" Type="Int32" />
           <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Review" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Point" Type="Int32" />
           <Property Name="Time" Type="DateTime" Precision="3" />
@@ -648,9 +643,6 @@
           <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Objectives" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Mentor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TeamMember" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Time" Type="DateTime" Precision="3" />
           <Property Name="Issues" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1214,7 +1206,6 @@
                 <ScalarProperty Name="Semester_ID" ColumnName="Semester_ID" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Review" ColumnName="Review" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
@@ -1244,9 +1235,6 @@
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="Objectives" ColumnName="Objectives" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Customer" ColumnName="Customer" />
-                <ScalarProperty Name="Mentor" ColumnName="Mentor" />
-                <ScalarProperty Name="TeamMember" ColumnName="TeamMember" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Issues" ColumnName="Issues" />
                 <ScalarProperty Name="NA" ColumnName="NA" />

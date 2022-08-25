@@ -32,7 +32,7 @@ namespace MeetingVL.Models
         public string State { get; set; }
         [Required(ErrorMessage = "You have not entered the Review")]
         public string Review { get; set; }
-        public string Comment { get; set; }
+      
         [StringLength(50, ErrorMessage = "State length must be between 1 and 50.", MinimumLength = 1)]
         public string Status { get; set; }
         [Required(ErrorMessage = "No point yet!")]

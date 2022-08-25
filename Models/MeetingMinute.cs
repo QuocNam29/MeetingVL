@@ -36,9 +36,7 @@ namespace MeetingVL.Models
         [StringLength(200, ErrorMessage = "Location length must be between 1 and 200.", MinimumLength = 1)]
         public string Objectives { get; set; }
         public string Content { get; set; }
-        public string Customer { get; set; }
-        public string Mentor { get; set; }
-        public string TeamMember { get; set; }
+       
         public Nullable<System.DateTime> Time { get; set; }
         public string Issues { get; set; }
         public string NA { get; set; }
