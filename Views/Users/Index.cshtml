@@ -20,6 +20,7 @@
     </script>
     Session["notification"] = null;
 }
+
 <section id="file-export">
     <div class="row">
         <div class="col-sm-12">
@@ -32,6 +33,7 @@
             </div>
         </div>
     </div>
+    
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -40,6 +42,17 @@
                         <h4 class="card-title">List User</h4>
                     </div>
                 </div>
+                @if (Session["ViewBag.FileStatus"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @Session["ViewBag.FileStatus"].ToString()
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+
+                        </button>
+                    </div>
+                    Session["ViewBag.FileStatus"] = null;
+                }
                 <div class="card-body collapse show">
                     <div class="card-block card-dashboard">
                         <div class="complaint-add-row">
@@ -96,9 +109,9 @@
                                             <td></td>
                                         }
                                         @* <td>
-                                                <button type="button" class="btn btn-sm btn-outline-danger round"
-                                                         onclick="location.href = '@Url.Action("Details", "Users", new { email = item.Email})'"> <i class="icon-pencil"></i> Details</button>
-                                            </td>*@
+                                    <button type="button" class="btn btn-sm btn-outline-danger round"
+                                             onclick="location.href = '@Url.Action("Details", "Users", new { email = item.Email})'"> <i class="icon-pencil"></i> Details</button>
+                                </td>*@
                                     </tr>
 
                                 }
@@ -146,7 +159,7 @@
                         <div class="px-3">
                             @using (Html.BeginForm("Create", "Users"))
                             {
-                                
+
                                 <form class="form">
                                     <div class="form-body">
                                         <h4 class="form-section">
@@ -184,7 +197,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="projectinput3">E-mail</label>
-                                                    <input type="text" id="projectinput3" class="form-control" name="email"
+                                                    <input type="email" id="projectinput3" class="form-control" name="email"
                                                            required="required" oninvalid="this.setCustomValidity('Please enter Email')" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>

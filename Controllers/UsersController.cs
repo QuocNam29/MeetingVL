@@ -56,28 +56,39 @@ namespace MeetingVL.Controllers
         // GET: Users/Create
         public ActionResult Create(string name, string email, string role, string department, string majors)
         {
-            User user = new User();
-            if (!string.IsNullOrWhiteSpace(name))
+            bool check_format_student = email.Contains("@vanlanguni.vn");
+            bool check_format_teacher = email.Contains("@vlu.edu.vn");
+            if (check_format_student == true || check_format_teacher == true)
             {
-                user.Name = name;
-            }
-            if (!string.IsNullOrWhiteSpace(department))
-            {
-                user.Department = department;
-            }
-            if (!string.IsNullOrWhiteSpace(majors))
-            {
-                user.Majors = majors;
-            }
-            user.Email = email;
-            user.Role = role;
+                User user = new User();
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    user.Name = name;
+                }
+                if (!string.IsNullOrWhiteSpace(department))
+                {
+                    user.Department = department;
+                }
+                if (!string.IsNullOrWhiteSpace(majors))
+                {
+                    user.Majors = majors;
+                }
+                user.Email = email;
+                user.Role = role;
 
 
-            db.Users.Add(user);
-            db.SaveChanges();
-            Session["notification"] = "Successfully Added New User";
+                db.Users.Add(user);
+                db.SaveChanges();
+                Session["notification"] = "Successfully Added New User";
+               
+            }
+            else
+            {
+                
+                Session["ViewBag.FileStatus"] = "The user you added is not from the VanLang organization !";
+            }
+
             return RedirectToAction("Index");
-
         }
 
 

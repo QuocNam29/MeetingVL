@@ -51,7 +51,7 @@ namespace MeetingVL.Controllers
         public ActionResult List_member(int project_id)
         {
 
-            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id && p.User_ID != null);
+            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == project_id);
 
             ViewBag.Group = null;
 
