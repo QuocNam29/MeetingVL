@@ -70,7 +70,7 @@
                 <!-- Invoice Customer Details -->
                 <div id="invoice-customer-details" class="row pt-2">
                     <div class="col-sm-12 text-center">
-                        <h5> <b>Process: @Model.Process % </b></h5>
+                        <h5> <b>Progress: @Model.Process % </b></h5>
 
                     </div>
                     <div class="col-4 text-left">
@@ -83,6 +83,25 @@
                         <p><span class="text-muted">Satges :</span> @Model.Stages</p>
                     </div>
                 </div>
+                <hr />
+                <div id="invoice-customer-details" class="row pt-2">
+                    <div class="col-sm-12 text-center">
+                        <h5> <b>PARTICIPANTS</b></h5>
+
+                    </div>
+                    <div class="col-1 text-left">
+                        <p><span class="text-muted">Member:</span> </p>
+                    </div>
+                    <div class="col-3 text-left">
+                        <p><span class="text-muted"></span> @Model.Member </p>
+                    </div>
+                    <div class="col-4 text-center">
+                        <p><span class="text-muted">Mentor :</span> @Model.Mentor</p>
+                    </div>
+                    <div class="col-4 text-right">
+                        <p><span class="text-muted">Customer :</span> @Model.Customer</p>
+                    </div>
+                </div>
                 <!--/ Invoice Customer Details -->
                 <!-- Invoice Items Details -->
                 <div id="invoice-items-details" class="pt-2">
@@ -92,7 +111,7 @@
                             <div class="table-responsive col-sm-12">
                                 <table class="table">
                                     <thead>
-                                        <tr >
+                                        <tr>
                                             <th style="text-align: center; font-size: 30px">Objectives</th>
 
                                         </tr>
@@ -119,7 +138,7 @@
                         <div class="table-responsive col-sm-12">
                             <table class="table">
                                 <thead>
-                                    <tr >
+                                    <tr>
                                         <th style="text-align: center; font-size: 30px">Content</th>
 
                                     </tr>
@@ -144,7 +163,7 @@
                         <div class="table-responsive col-sm-12">
                             <table class="table">
                                 <thead>
-                                    <tr >
+                                    <tr>
                                         <th>#</th>
                                         <th>Email</th>
                                         <th>Action</th>
@@ -174,7 +193,7 @@
                                             <p>@Model.Issues</p>
 
                                         </td>
-                                        
+
 
                                     </tr>
 
@@ -188,23 +207,23 @@
                 <div id="invoice-footer">
                     <div class="row">
                         <div class="col-md-3 col-sm-12 text-left">
-                            <button type="button"  onclick="comeback()" class="btn  btn-info  my-1">
+                            <button type="button" onclick="comeback()" class="btn  btn-info  my-1">
                                 <i class="ft-arrow-left"></i> Come back
                             </button>
                         </div>
                         @if (group_id == Model.Group_ID || ID_User == Model.User_ID)
                         {
-                    <div class="col-md-9 col-sm-12 text-right">
+                            <div class="col-md-9 col-sm-12 text-right">
 
-                        <button type="button" class=" btn btn-warning my-1" onclick="location.href='@Url.Action("FormCreate", "Actions", new { meeting_id = Model.ID, group_id = group_id })'"><i class="fa ft-edit-3"></i> Edit Action</button>
+                                <button type="button" class=" btn btn-warning my-1" onclick="location.href='@Url.Action("FormCreate", "Actions", new { meeting_id = Model.ID, group_id = group_id })'"><i class="fa ft-edit-3"></i> Edit Action</button>
 
-                        <button type="button" class="btn btn-primary my-1" onclick="location.href='@Url.Action("Edit", "MeetingMinutes", new { id = Model.ID, group_id = group_id })'"><i class="fa ft-edit"></i> Edit Meeting Minutes</button>
-                    </div>
+                                <button type="button" class="btn btn-primary my-1" onclick="location.href='@Url.Action("Edit", "MeetingMinutes", new { id = Model.ID, group_id = group_id })'"><i class="fa ft-edit"></i> Edit Meeting Minutes</button>
+                            </div>
                         }
                     </div>
                 </div>
                 <!--/ Invoice Footer -->
-              
+
             </div>
         </div>
     </div>

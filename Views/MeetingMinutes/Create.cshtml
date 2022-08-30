@@ -1,4 +1,4 @@
-﻿@model MeetingVL.Models.MeetingMinute
+﻿@model MeetingVL.Models.SessionReport
 
 @{
     ViewBag.Title = "Create";
@@ -12,6 +12,7 @@
 
     }
     string ID_User = Session["ID_User"].ToString();
+    
 }
 
 <div class="row">
@@ -40,8 +41,10 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="userinput1">Date start: </label>
                                             <div class="col-md-9">
-                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate_start"
-                                                       required="required" oninvalid="this.setCustomValidity('Please enter Meeting Date')" oninput="setCustomValidity('')">
+                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate_start" 
+                                                       min="@String.Format("{0:yyyy-MM-ddTHH:mm:ss}",Model.Date_Start)" 
+                                                       max="@String.Format("{0:yyyy-MM-ddTHH:mm:ss}",Model.Date_End)"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter Meeting Date Start')" oninput="setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
@@ -49,8 +52,10 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="userinput1">Date end: </label>
                                             <div class="col-md-9">
-                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate_end"
-                                                       required="required" oninvalid="this.setCustomValidity('Please enter Meeting Date')" oninput="setCustomValidity('')">
+                                                <input type="datetime-local" id="userinput1" class="form-control border-primary" name="meetingDate_end" 
+                                                       min="@String.Format("{0:yyyy-MM-ddTHH:mm:ss}",Model.Date_Start)" 
+                                                       max="@String.Format("{0:yyyy-MM-ddTHH:mm:ss}",Model.Date_End)"
+                                                       required="required" oninvalid="this.setCustomValidity('Please enter Meeting Date End')" oninput="setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
@@ -73,14 +78,14 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="userinput3">stages: </label>
                                             <div class="col-md-9">
-                                                <input type="text" id="stages" class="form-control border-primary" name="stages"  placeholder="Stages..."
+                                                <input type="text" id="stages" class="form-control border-primary" name="stages" placeholder="Stages..."
                                                        required="required" oninvalid="this.setCustomValidity('Please enter stages')" oninput="setCustomValidity('')">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="userinput2">Process (%): </label>
+                                            <label class="col-md-3 label-control" for="userinput2">Progress (%): </label>
                                             <div class="col-md-9">
-                                                <input type="number" id="process" class="form-control border-primary" name="process" min="0" max="100" placeholder="Process..."
+                                                <input type="number" id="process" class="form-control border-primary" name="process" min="0" max="100" placeholder="Progress..."
                                                        required="required" oninvalid="this.setCustomValidity('Please enter process')" oninput="setCustomValidity('')">
                                             </div>
                                         </div>
@@ -90,7 +95,7 @@
                                             <label class="col-md-3 label-control" for="userinput8">Objectives: </label>
                                             <div class="col-md-9">
                                                 <textarea id="Objectives" rows="6" class="form-control  border-primary" name="objectives" placeholder="Objectives..."
-                                                           required="required" oninvalid="this.setCustomValidity('Please enter objectives')" oninput="setCustomValidity('')"></textarea>
+                                                          required="required" oninvalid="this.setCustomValidity('Please enter objectives')" oninput="setCustomValidity('')"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -98,40 +103,79 @@
 
 
                                 </div>
-                                
-                                   
-                                    
-                                    <h4 class="form-section">
-                                        <i class="icon-note"></i>Content
-                                    </h4>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
+                                <div class="row">
+                                    @if (group_id == 0)
+                                    {
+                                        <div class="col-md-6">
                                             <div class="form-group row">
-                                                <div class="col-md-12">
-                                                    <textarea id="content_meeting" rows="6" class="form-control col-md-12 border-primary" name="content" placeholder="Content..."
-                                                              required="required" oninvalid="this.setCustomValidity('Please enter content')" oninput="setCustomValidity('')"></textarea>
+                                                <label class="col-md-3 label-control" for="userinput3">Member: </label>
+                                                <div class="col-md-9">
+                                                    <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                                                        @Html.Hidden("member_id", ID_User)
+                                                        @ID_User
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-
-                                    <h4 class="form-section">
-                                        <i class="ft-info"></i> Issues
-                                    </h4>
-                                    <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group row">
-                                                <div class="col-md-12">
-                                                    <textarea class="form-control border-primary" type="url" id="userinput6" name="issues" placeholder="Issues..."></textarea>
+                                                <label class="col-md-3 label-control" for="userinput8">Mentor: </label>
+                                                <div class="col-md-9">
+                                                    <textarea id="Objectives" rows="2" class="form-control  border-primary" name="mentor" placeholder="Mentor..."
+                                                              required="required" oninvalid="this.setCustomValidity('Please enter objectives')" oninput="setCustomValidity('')"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput8">Customer: </label>
+                                                <div class="col-md-9">
+                                                    <textarea id="Objectives" rows="2" class="form-control  border-primary" name="customer" placeholder="Customer..."
+                                                              required="required" oninvalid="this.setCustomValidity('Please enter objectives')" oninput="setCustomValidity('')"></textarea>
                                                 </div>
                                             </div>
                                         </div>
 
+                                    }
+                                    else
+                                    {
+                                        @Html.Action("List_Member_Meeting", "ProjectParticipants", new { project_id = project_id, group_id = group_id, action = 1 })
+                                    }
+                                </div>
 
+                                <h4 class="form-section">
+                                    <i class="icon-note"></i>Content
+                                </h4>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <textarea id="content_meeting" rows="6" class="form-control col-md-12 border-primary" name="content" placeholder="Content..."
+                                                          required="required" oninvalid="this.setCustomValidity('Please enter content')" oninput="setCustomValidity('')"></textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
+
+                                <h4 class="form-section">
+                                    <i class="ft-info"></i> Issues
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <textarea class="form-control border-primary" type="url" id="userinput6" name="issues" placeholder="Issues..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
                          
 
                                 <div class="form-actions right">

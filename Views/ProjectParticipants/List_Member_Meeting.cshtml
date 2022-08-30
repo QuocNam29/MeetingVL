@@ -2,13 +2,68 @@
 
 @{
     Layout = null;
+    int action = 0;
+    if (TempData["action"] != null)
+    {
+        action = int.Parse(TempData["action"].ToString());
+    }
+
 }
 
+@if (action == 1)
+{
     
-    @foreach (var item in Model)
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-md-3 label-control" for="userinput3">Member: </label>
+                <div class="col-md-9">
+                    @foreach (var item in Model)
+                    {
+                    <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                        @Html.Hidden("member_id", item.User_ID)
+                        @item.User_ID
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    }
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-md-3 label-control" for="userinput8">Mentor: </label>
+                <div class="col-md-9">
+                    <textarea id="Objectives" rows="2" class="form-control  border-primary" name="mentor" placeholder="Mentor..." 
+                              required="required" oninvalid="this.setCustomValidity('Please enter objectives')" oninput="setCustomValidity('')">@Model.FirstOrDefault().Group.Mentor</textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 label-control" for="userinput8">Customer: </label>
+                <div class="col-md-9">
+                    <textarea id="Objectives" rows="2" class="form-control  border-primary" name="customer" placeholder="Customer..."
+                              required="required" oninvalid="this.setCustomValidity('Please enter objectives')" oninput="setCustomValidity('')">@Model.FirstOrDefault().Group.Customer</textarea>
+                </div>
+            </div>
+        </div>
+    
+}
+else
+{
+    foreach (var item in Model)
     {
         <option value="@item.User_ID">@item.User_ID</option>
     }
+
+}
+
+
+
 
 
 

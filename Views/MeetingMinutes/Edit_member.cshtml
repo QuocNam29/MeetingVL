@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MeetingVL.Models.ProjectParticipant>
+
+@{
+    Layout = null;
+}
+<div class="col-md-6">
+    <div class="form-group row">
+        <label class="col-md-3 label-control" for="userinput3">Member: </label>
+        <div class="col-md-9">
+            @foreach (var item in Model)
+            {
+                <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                    @Html.Hidden("member_id", item.User_ID)
+                    @item.User_ID
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 label-control" for="userinput3">Add Member: </label>
+        <div class="col-md-9">
+            <div class="close-char form-control " data-tags-input-name="add_member"></div>
+        </div>
+    </div>
+
+</div>

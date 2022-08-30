@@ -15,7 +15,20 @@ namespace MeetingVL.Controllers
     public class ProjectParticipantsController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
-
+        private List<ProjectParticipant> Action_list = null;
+        public ProjectParticipantsController()
+        {
+            var session = System.Web.HttpContext.Current.Session;
+            if (session["Action_list"] != null)
+            {
+                Action_list = session["Action_list"] as List<ProjectParticipant>;
+            }
+            else
+            {
+                Action_list = new List<ProjectParticipant>();
+                session["Action_list"] = Action_list;
+            }
+        }
         // GET: ProjectParticipants
         public ActionResult Index(string keyword)
         {
@@ -154,16 +167,30 @@ namespace MeetingVL.Controllers
             return RedirectToAction("Index", "Session_Reports", new { project_id = project_id, active = 3 });
         }
       
-        public ActionResult List_Member_Meeting(int project_id, int group_id )
+        public ActionResult List_Member_Meeting(int project_id, int group_id, int? action )
         {
-         
-            var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
+            Action_list.Clear();
+               var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
                 .Where(p => p.Project_ID == project_id && p.Group_ID == group_id && p.User_ID != null);
             TempData["project_id"] = project_id;
-
+            TempData["action"] = action;
+           
+           
             return View(member.ToList());
         }
-        
+
+
+        [HttpPost]
+        public ActionResult JSDeleteMember(ProjectParticipant member)
+        {
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            Action_list.Remove(member);
+
+            return Json(member);
+        }
 
 
         // GET: ProjectParticipants/Details/5

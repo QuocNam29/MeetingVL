@@ -17,18 +17,17 @@ namespace MeetingVL.Controllers
     public class MeetingMinutesController : Controller
     {
         private SEP25Team13Entities db = new SEP25Team13Entities();
-        private List<Action> Action_list = null;
+        private List<ProjectParticipant> Action_list = null;
         public void GetAction_list()
         {
             var session = System.Web.HttpContext.Current.Session;
-
             if (session["Action_list"] != null)
             {
-                Action_list = session["Action_list"] as List<Action>;
+                Action_list = session["Action_list"] as List<ProjectParticipant>;
             }
             else
             {
-                Action_list = new List<Action>();
+                Action_list = new List<ProjectParticipant>();
                 session["Action_list"] = Action_list;
             }
         }
@@ -180,12 +179,13 @@ namespace MeetingVL.Controllers
 
             var participant = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User).Where(p => p.Project_ID == sessionReport.Project_ID && p.User_ID == ID_User ).FirstOrDefault();
             TempData["group_id"] = participant.Group_ID;
-            return View();
+            return View(sessionReport);
         }
 
         public ActionResult Create_Meeting(DateTime meetingDate_start,DateTime meetingDate_end, 
             string location, int process, string stages, string content, string objectives,
-             string issues, string NA, int session_id, int? group_id)
+             string issues, string NA, int session_id, int? group_id, 
+             string[] member_id, string customer, string mentor)
         {
             var session = System.Web.HttpContext.Current.Session;
             GetAction_list();
@@ -217,23 +217,20 @@ namespace MeetingVL.Controllers
             {
             meetingMinute.Group_ID = group_id;
             }
-            
+            string member = "";
+            for (int i = 0; i < member_id.Length; i++)
+            {
+                member += member_id[i] + "\r";
+                Action_list.Add(new ProjectParticipant
+                {
+                    User_ID = member_id[i]
+                });
+            }
+            meetingMinute.Member = member;
+            meetingMinute.Customer = customer;
+            meetingMinute.Mentor = mentor;
             db.MeetingMinutes.Add(meetingMinute);
             db.SaveChanges();
-
-            foreach (var item in Action_list)
-            {
-                db.Actions.Add(new Action
-                {
-                    Work = item.Work,
-                    Deadline = item.Deadline,
-                    Description = item.Description,
-                    Meeting_ID = meetingMinute.ID,
-                    User_ID = item.User_ID
-                }) ;
-            }
-            db.SaveChanges();
-            session["Action_list"] = null;
 
             return RedirectToAction("Index", new { session_id = session_id });
         }
@@ -254,11 +251,37 @@ namespace MeetingVL.Controllers
             TempData["group_id"] = group_id;
             return View(meetingMinute);
         }
+            public ActionResult Edit_member(int? id, int? group_id)
+            {              
+                MeetingMinute meetingMinute = db.MeetingMinutes.Find(id);               
+                var session = System.Web.HttpContext.Current.Session;
+                GetAction_list();
+                Action_list.Clear();
+            if (meetingMinute.Member != null)
+            {
+                string[] member = meetingMinute.Member.Split('\r');
+                for (int i = 0; i < member.Length - 1; i++)
+                {
+                    Action_list.Add(new ProjectParticipant
+                    {
+                        User_ID = member[i]
+                    });
+                }
+            }
+                
 
-        public ActionResult Edit_form(int meeting_id, DateTime meetingDate_start, DateTime meetingDate_end, 
+                return View(Action_list);
+            }
+
+
+
+            public ActionResult Edit_form(int meeting_id, DateTime meetingDate_start, DateTime meetingDate_end, 
             string location, int process, string stages, string content, string objectives,
-             string issues, string NA, int? group_id)
+             string issues, string NA, int? group_id, string[] member_id, 
+             string[] add_member, string customer, string mentor)
         {
+            var session = System.Web.HttpContext.Current.Session;
+            GetAction_list();
             MeetingMinute meetingMinute = db.MeetingMinutes.Find(meeting_id);
             
             meetingMinute.Date_start = meetingDate_start;
@@ -281,6 +304,26 @@ namespace MeetingVL.Controllers
                 meetingMinute.NA = NA;
             }
             meetingMinute.Stages = stages;
+            string member = "";
+            if (member_id != null)
+            {
+                for (int i = 0; i < member_id.Length; i++)
+                {
+                    member += member_id[i] + "\r";
+                }
+            }
+            if (add_member != null)
+            {
+                for (int i = 0; i < add_member.Length; i++)
+                {
+                    member += add_member[i] + "\r";
+                }
+            }
+           
+            meetingMinute.Member = member;
+            meetingMinute.Customer = customer;
+            meetingMinute.Mentor = mentor;
+
             db.Entry(meetingMinute).State = EntityState.Modified;
             db.SaveChanges();
             Session["notification"] = "Successfully Edit Meeting Minutes";

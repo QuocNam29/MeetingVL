@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SEP25Team13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SEP25Team13Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Action">
           <Key>
             <PropertyRef Name="ID" />
@@ -79,6 +79,9 @@
           <Property Name="Stages" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Group_ID" Type="int" />
           <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Member" Type="nvarchar(max)" />
+          <Property Name="Mentor" Type="nvarchar" MaxLength="250" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -556,8 +559,7 @@
             <End Role="SessionReport" EntitySet="SessionReport" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SEP25Team13Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -654,6 +656,9 @@
           <NavigationProperty Name="Group" Relationship="Self.FK_MeetingMinutes_Group" FromRole="MeetingMinutes" ToRole="Group" />
           <NavigationProperty Name="SessionReport" Relationship="Self.FK_MeetingMinutes_SessionReport" FromRole="MeetingMinutes" ToRole="SessionReport" />
           <NavigationProperty Name="User" Relationship="Self.FK_MeetingMinutes_User" FromRole="MeetingMinutes" ToRole="User" />
+          <Property Name="Member" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mentor" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -1227,6 +1232,9 @@
           <EntitySetMapping Name="MeetingMinutes">
             <EntityTypeMapping TypeName="SEP25Team13Model.MeetingMinute">
               <MappingFragment StoreEntitySet="MeetingMinutes">
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Mentor" ColumnName="Mentor" />
+                <ScalarProperty Name="Member" ColumnName="Member" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="SessionReport_ID" ColumnName="SessionReport_ID" />

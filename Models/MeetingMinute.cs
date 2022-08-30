@@ -46,7 +46,10 @@ namespace MeetingVL.Models
         public Nullable<int> Group_ID { get; set; }
         [StringLength(50, ErrorMessage = "State length must be between 1 and 50.", MinimumLength = 1)]
         public string State { get; set; }
-    
+        public string Member { get; set; }
+        public string Mentor { get; set; }
+        public string Customer { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Action> Actions { get; set; }
         public virtual Group Group { get; set; }

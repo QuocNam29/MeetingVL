@@ -1429,6 +1429,7 @@
     <Content Include="Views\Categories\After_Login.cshtml" />
     <Content Include="Views\ProjectParticipants\Project_management.cshtml" />
     <Content Include="Views\Users\Dashboard.cshtml" />
+    <Content Include="Views\MeetingMinutes\Edit_member.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

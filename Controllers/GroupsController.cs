@@ -96,8 +96,8 @@ namespace MeetingVL.Controllers
                         user_null += addStudent[i].Trim() + " ";
                     }
                 }
-                Session["ViewBag.FileStatus"] = null;
-                Session["ViewBag.Success"] = "Import student successful !";
+                Session["ViewBag.FileStatus_Group"] = null;
+                Session["ViewBag.Success_Group"] = "Import student successful !";
 
             }               
                 ProjectParticipant projectParticipant1 = new ProjectParticipant();
@@ -109,15 +109,15 @@ namespace MeetingVL.Controllers
             user_null += "in the system yet";
             if (flat == false)
             {
-                Session["ViewBag.Success"] = null;
-                Session["ViewBag.FileStatus"] = check_User;
+                Session["ViewBag.Success_Group"] = null;
+                Session["ViewBag.FileStatus_Group"] = check_User;
             }
             if (flat_user == false)
             {
-                Session["ViewBag.Success"] = null;
-                Session["ViewBag.FileStatus"] = user_null;
+                Session["ViewBag.Success_Group"] = null;
+                Session["ViewBag.FileStatus_Group"] = user_null;
             }
-            if (Session["ViewBag.Success"] != null)
+            if (Session["ViewBag.Success_Group"] != null)
             {
                 Session["notification"] = "Successfully Add Group";
             }
