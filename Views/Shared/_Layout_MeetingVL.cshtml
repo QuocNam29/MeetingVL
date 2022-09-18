@@ -61,12 +61,13 @@
             <div class="sidebar-header">
                 <div class="logo clearfix">
                     <a href="@Url.Action("After_Login", "Categories")" class="logo-text float-left">
-                        <div class="logo-img"><img src="~/Template/app-assets/img/LogoVL.png" alt="Convex Logo" />
-                            </div>
-                       
-                            <span class="text align-middle"> VanLang</span>
-                            
-                        </a><a id="sidebarToggle" href="javascript:;" class="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="expanded" class="ft-disc toggle-icon"></i></a><a id="sidebarClose" href="javascript:;" class="nav-close d-block d-md-block d-lg-none d-xl-none"><i class="ft-circle"></i></a>
+                        <div class="logo-img">
+                            <img src="~/Template/app-assets/img/LogoVL.png" alt="Convex Logo" />
+                        </div>
+
+                        <span class="text align-middle"> VanLang</span>
+
+                    </a><a id="sidebarToggle" href="javascript:;" class="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="expanded" class="ft-disc toggle-icon"></i></a><a id="sidebarClose" href="javascript:;" class="nav-close d-block d-md-block d-lg-none d-xl-none"><i class="ft-circle"></i></a>
                 </div>
             </div>
             <div class="sidebar-content">
@@ -96,7 +97,9 @@
                         <li class=" nav-item">
                             <a href="@Url.Action("Index", "Notifications")"><i class="ft-bell white"></i><span data-i18n="" class="menu-title">Notifications</span></a>
                         </li>
-
+                        <li class=" nav-item">
+                            <a href="~/Content/Files/SEP_Team13_UserGuide-ver0.3.pdf"><i class="ft-book white"></i><span data-i18n="" class="menu-title">User manual</span></a>
+                        </li>
                         <li class=" nav-item">
                             <a href="@Url.Action("SignOut", "Account")"><i class="fa fa-sign-in"></i><span data-i18n="" class="menu-title">Logout</span></a>
                         </li>
@@ -111,9 +114,9 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" data-toggle="collapse" class="navbar-toggle d-lg-none float-left"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="d-lg-none navbar-right navbar-collapse-toggle"><a class="open-navbar-container"><i class="ft-more-vertical"></i></a></span>
-                   
 
-                        <p class="d-none">cart</p>
+
+                    <p class="d-none">cart</p>
                     </a>
 
                 </div>
@@ -145,7 +148,7 @@
 
             </div>
         </nav>
-
+       
         <div class="main-panel">
             <div class="main-content">
                 <div class="content-wrapper">
@@ -166,13 +169,15 @@
                             Session["notification"] = null;
                         }
                         @RenderBody()
-
                     </div>
                 </div>
             </div>
-
+            <footer class="footer footer-static footer-light">
+                <p class="clearfix text-muted text-center px-2"><span>Copyright  &copy; EASY LIFE, All rights reserved. </span></p>
+            </footer>
         </div>
     </div>
+    
     <!-- ////////////////////////////////////////////////////////////////////////////-->
     <!-- BEGIN VENDOR JS-->
     <script src="~/Template/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
