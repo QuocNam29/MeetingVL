@@ -5,11 +5,7 @@
     int no = 0;
     int project_id = int.Parse(TempData["project_id"].ToString());
     string project_Name = TempData["project_Name"].ToString();
-    string project_Description = "";
-    if (TempData["project_Description"] != null)
-    {
-        project_Description = TempData["project_Description"].ToString();
-    }
+  
     int category_id = int.Parse(TempData["category_id"].ToString());
     string category_Name = TempData["category_Name"].ToString();
     string Role = TempData["roles_Project"].ToString();
@@ -34,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="content-sub-header">@project_Description</p>
+        
             </div>
         </div>
     }
