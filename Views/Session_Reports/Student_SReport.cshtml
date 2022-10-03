@@ -39,12 +39,12 @@
                 <div class="card-body">
                     <div class="card-block">
                         <ul class="nav nav-tabs">
-                            <li class="nav-item dropdown ">
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle @Session["List_SessionReport"].ToString()" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     Session Report
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item " id="dropdown31-tab" href="#dropdown30" data-toggle="tab" aria-controls="dropdown31" aria-expanded="true">All Session (@count_all)</a>
+                                    <a class="dropdown-item " id="dropdown30-tab" href="#dropdown30" data-toggle="tab" aria-controls="dropdown30" aria-expanded="true">All Session (@count_all)</a>
                                     <a class="dropdown-item" id="dropdown31-tab" href="#dropdown31" data-toggle="tab" aria-controls="dropdown31" aria-expanded="true">Submited (@count_submit)</a>
                                     <a class="dropdown-item" id="dropdown32-tab" href="#dropdown32" data-toggle="tab" aria-controls="dropdown32" aria-expanded="true">Waiting to Submit (@count_waiting) </a>
                                 </div>
@@ -58,18 +58,18 @@
                             <li class="nav-item">
                                 <a class="nav-link @Session["List_Semester"].ToString()" id="base-tabX4" data-toggle="tab" aria-controls="tab4" href="#tab4">Semester</a>
                             </li>
-                            <li class="nav-item">
+                           @* <li class="nav-item">
                                 <a class="nav-link" id="base-tabX5" data-toggle="tab" aria-controls="tab5" href="#tab5">Statistics</a>
-                            </li>
+                            </li>*@
                         </ul>
                         <div class="tab-content px-1 pt-1">
-                            <div class="tab-pane @Session["List_SessionReport"].ToString()" id="dropdown30" role="tabpanel" aria-labelledby="dropdown31-tab" aria-expanded="false">
+                            <div class="tab-pane @Session["List_SessionReport"].ToString()" id="dropdown30" aria-labelledby="dropdown30-tab" aria-expanded="false">
                                 @Html.Action("List_Submit_SessionReport", "Session_Reports", new { project_id = project_id })
                             </div>
-                            <div class="tab-pane" id="dropdown31" role="tabpanel" aria-labelledby="dropdown31-tab" aria-expanded="false">
+                            <div class="tab-pane" id="dropdown31"  aria-labelledby="dropdown31-tab" aria-expanded="false">
                                 @Html.Action("List_Submit_SessionReport", "Session_Reports", new { project_id = project_id, Action = 1 })
                             </div>
-                            <div class="tab-pane" id="dropdown32" role="tabpanel" aria-labelledby="dropdown32-tab" aria-expanded="false">
+                            <div class="tab-pane" id="dropdown32"aria-labelledby="dropdown32-tab" aria-expanded="false">
                                 @Html.Action("List_Submit_SessionReport", "Session_Reports", new { project_id = project_id, Action = 2 })
                             </div>
                             <div class="tab-pane @Session["List_Member"].ToString()" id="tab2" aria-labelledby="base-tabX2">
@@ -81,7 +81,7 @@
                             <div class="tab-pane @Session["List_Semester"].ToString()" id="tab4" aria-labelledby="base-tabX4">
                                 @Html.Action("Index", "Semesters", new { project_id = project_id })
                             </div>
-                            <div class="tab-pane" id="tab5" aria-labelledby="base-tabX5">
+                            @*<div class="tab-pane" id="tab5" aria-labelledby="base-tabX5">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">
@@ -98,7 +98,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
     </div>
 </section>
 
-<!--END-->
+<!--END-->@*
 <script src="~/Template/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
 <script src="~/Template/app-assets/vendors/js/chart.min.js"></script>
 
@@ -202,4 +202,4 @@
             var lineChart = new Chart(ctx, config);
         }
     });
-</script>
+</script>*@

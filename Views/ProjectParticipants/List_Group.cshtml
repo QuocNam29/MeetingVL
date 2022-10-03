@@ -108,21 +108,21 @@ else
                                         <div class="accordion-card">
                                             <div class="accordion-heading">@item.Group.Name</div>
                                             <!-- <ion-icon name="add-outline" class="accordion-icon-link"></ion-icon> -->
-                                            <ion-icon name="close-outline" class="accordion-icon-link"></ion-icon>
+                                            <ion-icon name="chevron-up-outline" class="accordion-icon-link"></ion-icon>
                                         </div>
                                     </a>
 
                                     <ul class="accordion-with-content">
                                         <li class="accordion-item">
-                                            <p class="accordion-text-topic">@item.Group.Topic</p>
+                                            <p class="accordion-text-topic" id="format-Meeting">@item.Group.Topic</p>
                                         </li>
                                         <li class="accordion-item">
                                             <p class="accordion-text">Mentor:</p>
-                                            <span class="accordion-name-desc"> @item.Group.Mentor</span>
+                                            <span class="accordion-name-desc" id="format-Meeting"> @item.Group.Mentor</span>
                                         </li>
                                         <li class="accordion-item">
                                             <p class="accordion-text">Customer:</p>
-                                            <span class="accordion-name-desc"> @item.Group.Customer</span>
+                                            <span class="accordion-name-desc" id="format-Meeting"> @item.Group.Customer</span>
                                         </li>
                                         <li class="accordion-item accordion-item-member">
                                             <p class="accordion-text">Member:</p>

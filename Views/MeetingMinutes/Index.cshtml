@@ -99,14 +99,16 @@
         <div class="card border-left my-4 border-primary border-3">
             <div class="card-block pt-3">
                 <div class="clearfix">
-                    @if (item.Group_ID != null)
-                    {
-                        <h5 class="text-bold-500 primary float-left">@item.Group.Name </h5>
-                    }
-                    else
-                    {
-                        <h5 class="text-bold-500 primary float-left">Meeting Minutes - @item.User.Email </h5>
-                    }
+                    <a href="@Url.Action("Details", "MeetingMinutes", new { id = item.ID, group_id = group_id })">
+                        @if (item.Group_ID != null)
+                        {
+                            <h5 class="text-bold-500 primary float-left">@item.Group.Name </h5>
+                        }
+                        else
+                        {
+                            <h5 class="text-bold-500 primary float-left">Meeting Minutes - @item.User.Email </h5>
+                        }
+                    </a>
                     @if (group_id == item.Group_ID || ID_User == item.User_ID)
                     {
                         <div class="actions float-right">
@@ -131,7 +133,7 @@
                                             @using (Html.BeginForm("Delete", "MeetingMinutes", new { id = item.ID }))
                                             {
                                                 @Html.Hidden("session_id", session_id)
-                                                
+
                                                 <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                                 <button type="submit" class="btn btn-outline-primary">Yes</button>
                                             }
@@ -146,17 +148,18 @@
                 <a href="@Url.Action("Details", "MeetingMinutes", new { id = item.ID, group_id = group_id })">
                     <p id="format-true" style="color : dimgrey">@item.Objectives</p>
                 </a>
+                <a href="@Url.Action("Details", "MeetingMinutes", new { id = item.ID, group_id = group_id })">
+                    <span class="primary display-inline-block pt-2">@item.Time</span>
+                    </a>
+                    @if (item.User.Avt != null)
+                    {
+                        <img src="@Url.Content(item.User.Avt)" class="rounded-circle width-50 mr-2 float-right" alt="user image">
 
-                <span class="primary display-inline-block pt-2">@item.Time</span>
-                @if (item.User.Avt != null)
-                {
-                    <img src="@Url.Content(item.User.Avt)" class="rounded-circle width-50 mr-2 float-right" alt="user image">
-
-                }
-                else
-                {
-                    <img src="~/Template/app-assets/img/user.png" class="rounded-circle width-50 mr-2 float-right" alt="user image">
-                }
+                    }
+                    else
+                    {
+                        <img src="~/Template/app-assets/img/user.png" class="rounded-circle width-50 mr-2 float-right" alt="user image">
+                    }
             </div>
         </div>
     }

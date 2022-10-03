@@ -53995,7 +53995,7 @@ input[type='checkbox'].switch, input[type='radio'].switch {
     }
 
         .accordion-wrap.open-menu .accordion-icon-link {
-            transform: rotate(135deg);
+            transform: rotate(180deg);
         }
 
 

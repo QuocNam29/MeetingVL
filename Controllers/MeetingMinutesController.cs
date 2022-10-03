@@ -232,7 +232,7 @@ namespace MeetingVL.Controllers
             db.MeetingMinutes.Add(meetingMinute);
             db.SaveChanges();
 
-            return RedirectToAction("Index", new { session_id = session_id });
+            return RedirectToAction("Index", new { session_id = session_id, group_id = group_id });
         }
 
         // GET: MeetingMinutes/Edit/5
@@ -334,11 +334,12 @@ namespace MeetingVL.Controllers
         public ActionResult Delete(int? id, int? session_id)
         {
             MeetingMinute meetingMinute = db.MeetingMinutes.Find(id);
+            int group_id = meetingMinute.Group.ID;
             meetingMinute.State = "Deleted";
             db.Entry(meetingMinute).State = EntityState.Modified;
             db.SaveChanges();
             Session["notification"] = "Successfully Delete Meeting Minutes";
-            return RedirectToAction("Index", new { session_id = session_id });
+            return RedirectToAction("Index", new { session_id = session_id, group_id = group_id });
         }
 
         protected override void Dispose(bool disposing)
