@@ -69,19 +69,19 @@
           <Property Name="SessionReport_ID" Type="int" Nullable="false" />
           <Property Name="Date_start" Type="datetime" Nullable="false" />
           <Property Name="Date_end" Type="datetime" />
-          <Property Name="Location" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Objectives" Type="nvarchar" MaxLength="200" />
+          <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Objectives" Type="nvarchar(max)" />
           <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Time" Type="datetime" />
           <Property Name="Issues" Type="nvarchar(max)" />
           <Property Name="NA" Type="nvarchar(max)" />
           <Property Name="Process" Type="int" Nullable="false" />
-          <Property Name="Stages" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Stages" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Group_ID" Type="int" />
           <Property Name="State" Type="nvarchar" MaxLength="50" />
           <Property Name="Member" Type="nvarchar(max)" />
-          <Property Name="Mentor" Type="nvarchar" MaxLength="250" />
-          <Property Name="Customer" Type="nvarchar" MaxLength="250" />
+          <Property Name="Mentor" Type="nvarchar(max)" />
+          <Property Name="Customer" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -642,14 +642,14 @@
           <Property Name="SessionReport_ID" Type="Int32" Nullable="false" />
           <Property Name="Date_start" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Date_end" Type="DateTime" Precision="3" />
-          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Objectives" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Objectives" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Time" Type="DateTime" Precision="3" />
           <Property Name="Issues" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Process" Type="Int32" Nullable="false" />
-          <Property Name="Stages" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Group_ID" Type="Int32" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Actions" Relationship="Self.FK_Action_MeetingMinutes" FromRole="MeetingMinutes" ToRole="Action" />
@@ -657,8 +657,8 @@
           <NavigationProperty Name="SessionReport" Relationship="Self.FK_MeetingMinutes_SessionReport" FromRole="MeetingMinutes" ToRole="SessionReport" />
           <NavigationProperty Name="User" Relationship="Self.FK_MeetingMinutes_User" FromRole="MeetingMinutes" ToRole="User" />
           <Property Name="Member" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Mentor" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Customer" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Mentor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
