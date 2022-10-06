@@ -22,34 +22,31 @@ namespace MeetingVL.Models
         }
     
         public int ID { get; set; }
-        [Required(ErrorMessage = "No User_ID yet!")]
         public string User_ID { get; set; }
-        [Required(ErrorMessage = "No SessionReport_ID yet!")]
         public int SessionReport_ID { get; set; }
-        [Required(ErrorMessage = "No Date_start yet!")]
         public System.DateTime Date_start { get; set; }
-        [Required(ErrorMessage = "No Date_end yet!")]
         public Nullable<System.DateTime> Date_end { get; set; }
         [Required(ErrorMessage = "You have not entered the Location")]
         [StringLength(100, ErrorMessage = "Location length must be between 1 and 100.", MinimumLength = 1)]
+
         public string Location { get; set; }
-        [StringLength(200, ErrorMessage = "Location length must be between 1 and 200.", MinimumLength = 1)]
         public string Objectives { get; set; }
         public string Content { get; set; }
-       
         public Nullable<System.DateTime> Time { get; set; }
         public string Issues { get; set; }
         public string NA { get; set; }
         public int Process { get; set; }
         [StringLength(200, ErrorMessage = "Stages length must be between 1 and 200.", MinimumLength = 1)]
+
         public string Stages { get; set; }
         public Nullable<int> Group_ID { get; set; }
         [StringLength(50, ErrorMessage = "State length must be between 1 and 50.", MinimumLength = 1)]
+
         public string State { get; set; }
         public string Member { get; set; }
         public string Mentor { get; set; }
         public string Customer { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Action> Actions { get; set; }
         public virtual Group Group { get; set; }
