@@ -78,20 +78,15 @@
                                                    required="required" oninvalid="this.setCustomValidity('Please enter Deadline')" oninput="setCustomValidity('')">
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label class="col-md-3 label-control" for="userinput6">Descriptions: </label>
                                         <div class="col-md-9">
                                             <textarea class="form-control border-primary" type="url" id="Descriptions" name="Descriptions"></textarea>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
                             <div class="row">
-
-
                                 <div class="col-md-12 col-sm-12 text-right">
                                    
                                     <button type="submit" class="btn btn-success">
@@ -99,8 +94,6 @@
                                     </button>
 
                                 </div>
-
-
                             </div>
                             <h4 class="form-section">
                                 <i class="icon-users"></i> Action List
@@ -120,12 +113,10 @@
                                         </thead>
                                         <tbody>
                                             @Html.Action("EditForm", "Actions", new { MeetingMinute_id = meeting_id, Group_id = group_id })
-
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-
                         </div>
                         <div class="row">
                             <div class="col-md-12 col-sm-12 text-right">
@@ -136,9 +127,7 @@
                             </div>
                             </div>
                     </form>
-
                     }
-                
                 </div>
             </div>
         </div>

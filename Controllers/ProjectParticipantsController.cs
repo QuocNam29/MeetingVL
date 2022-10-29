@@ -169,7 +169,7 @@ namespace MeetingVL.Controllers
       
         public ActionResult List_Member_Meeting(int project_id, int group_id, int? action )
         {
-            Action_list.Clear();
+           
                var member = db.ProjectParticipants.Include(p => p.Project).Include(p => p.User)
                 .Where(p => p.Project_ID == project_id && p.Group_ID == group_id && p.User_ID != null);
             TempData["project_id"] = project_id;
