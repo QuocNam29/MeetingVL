@@ -76,24 +76,24 @@ namespace MeetingVL.Controllers
             Group group = db.Groups.Find(group_id);
             var list_member_notification = db.ProjectParticipants.Where(p => p.Project_ID == project_id 
             && p.Group_ID == group_id && p.User_ID != null && p.Role =="Student").ToArray();
+            
+            //Khởi tạo nội dung gửi mail
+            MailMessage mm = new MailMessage();
+            mm.From = new MailAddress("meetingvl2022@gmail.com", "Meeting VL");         
             for (int i = 0; i < list_member_notification.Length; i++)
             {
+                mm.To.Add((list_member_notification[i].User_ID));
                 Notification notification = new Notification();
-                notification.User_ID = list_member_notification[i].User_ID; 
+                notification.User_ID = list_member_notification[i].User_ID;
                 notification.Time = DateTime.Now;
                 notification.Evalute_ID = evaluate.ID;
                 notification.Content = evaluate.Review;
                 notification.status = "New";
                 db.Notifications.Add(notification);
                 db.SaveChanges();
-
-                //Khởi tạo nội dung gửi mail
-                MailMessage mailmea = new MailMessage();
-                mailmea.To.Add(list_member_notification[i].User_ID);
-                mailmea.From = new MailAddress(@"meetingvanlang@hotmail.com");
-                mailmea.Subject = "Đánh giá báo cáo biên bản họp:   " + semester.Name;
-                mailmea.IsBodyHtml = true;
-                mailmea.Body = @"<div>
+            }              
+                mm.IsBodyHtml = true;
+                mm.Body = @"<div>
     <p style=""font-weight:normal;text-align:justify;margin-top:0;margin-bottom:0;line-height:1.8;"">
         <span style=""color: rgb(24, 26, 28); font-size: 20pt; font-family: Times New Roman , serif, EmojiFont; font-weight: bold; "">Kết quả đánh giá biên bản họp kì: " + semester.Name + @" </span>
     </p>
@@ -142,7 +142,7 @@ namespace MeetingVL.Controllers
                 <tr>
                     <td style=""padding:8px 12px; color: rgb(24, 26, 28); font-size: 12pt; font-family: Times New Roman , serif, EmojiFont; font-weight: bold"">
                         Truy cập vào website Meeting VL :
-                        <a href=""https://cntttest.vanlanguni.edu.vn:18081/SEP25Team13/"" target=""_blank"" rel=""noopener noreferrer"" data-auth=""NotApplicable"" id=""LPlnk238218"" data-safelink=""true"" data-linkindex=""0"">
+                        <a  target=""_blank"" rel=""noopener noreferrer"" data-auth=""NotApplicable"" id=""LPlnk238218"" data-safelink=""true"" data-linkindex=""0"">
                             xem đánh giá
                         </a>
 
@@ -161,21 +161,26 @@ namespace MeetingVL.Controllers
         </span>
     </span>
 </div>";
-                //Phương thức gửi mail
-                SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
-                smtp.UseDefaultCredentials = true;
-                smtp.EnableSsl = true;
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Credentials = new NetworkCredential(@"meetingvanlang@hotmail.com", "MeetingVLTeam13"); //Email, mật khẩu ứng dụng
-                try
+            
+           
+            mm.Subject = "Đánh giá báo cáo biên bản họp:   " + semester.Name;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential("meetingvl2022@gmail.com", "nbuwikbmthtroyst");
+
+                     
+            try
                 {
-                    smtp.Send(mailmea);
+                    smtp.Send(mm);
                 }
                 catch (Exception ex)
                 {
                     Session["thongbao-loi"] = ex.Message;
                 }
-            }
+            
             Session["notification"] = "Successfully Create Evalute";
 
             return RedirectToAction("Index", "Session_Semester", new { semester_id = semester_id });
